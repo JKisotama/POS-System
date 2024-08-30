@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="header">
+        <h2> Edit Goods Property</h2>
+    </div>
+
+    <div class="main">
+        <form #editGoodsPropertyForm="ngForm" (ngSubmit)="onSave()">
+            <mat-form-field>
+                <mat-label>Goods Id</mat-label>
+                <input matInput [(ngModel)]="editGoodsProperty.goodsId" name="goodsId" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label> Property Id</mat-label>
+                <input matInput [(ngModel)]="editGoodsProperty.propertyId" name="propertyId" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label> Property Name</mat-label>
+                <input matInput [(ngModel)]="editGoodsProperty.propertyName" name="propertyName" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label> Property Value</mat-label>
+                <input matInput [(ngModel)]="editGoodsProperty.propertyValue" name="propertyValue" required>
+            </mat-form-field>
+
+            <button mat-flat-button color="primary" type="submit" >Save</button>
+
+        </form>
+    </div>
+</div>

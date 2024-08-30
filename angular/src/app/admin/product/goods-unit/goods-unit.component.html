@@ -1,0 +1,129 @@
+<div class="container">
+    <div class="container-main">
+        <div class="header">
+            <app-header [isInDialog]="true" [dialogRefGoodsUnit]="dialogRef"></app-header>
+        </div>
+
+        <div class="main">
+            <div class="main-header">
+                <h2> Goods Unit</h2>
+            </div>
+
+            <div class="main-search">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search" />
+                    <i class="fas fa-search"></i>
+                </div>
+
+                <div class="filter-bar">
+                    <input type="text" placeholder="Filter" />
+                    <i class="fas fa-filter"></i>
+                </div>
+
+            </div>
+
+            <div class="form-field-container">
+            
+
+                <button class="showform" mat-flat-button color="primary" (click)="toggleFormVisibility()">
+                    Add New Goods Unit
+                  </button>
+                
+                  <div *ngIf="showForm">
+                    <form #createGoodsUnitForm="ngForm" (ngSubmit)="onSubmit(createGoodsUnitForm)">
+                      <mat-form-field>
+                        <mat-label>Goods Id</mat-label>
+                        <input matInput [(ngModel)]="product.goodsId" name="goodsId" required />
+                      </mat-form-field>
+                
+                      <mat-form-field>
+                        <mat-label>Bar Code</mat-label>
+                        <input matInput [(ngModel)]="newGoodsUnit.barCode" name="barCode" required />
+                      </mat-form-field>
+                
+                      <mat-form-field>
+                        <mat-label>Goods Unit</mat-label>
+                        <input matInput [(ngModel)]="newGoodsUnit.goodsUnit" name="goodsUnit" required />
+                      </mat-form-field>
+                
+                      <mat-form-field>
+                        <mat-label>Unit Size</mat-label>
+                        <input matInput [(ngModel)]="newGoodsUnit.unitSize" name="unitSize" required />
+                      </mat-form-field>
+                
+                      <mat-form-field>
+                        <mat-label>Unit Status</mat-label>
+                        <input matInput [(ngModel)]="newGoodsUnit.unitStatus" name="unitStatus" required />
+                      </mat-form-field>
+                
+                      <mat-form-field>
+                        <mat-label>Unit Stock</mat-label>
+                        <input matInput [(ngModel)]="newGoodsUnit.unitStock" name="unitStock" required />
+                      </mat-form-field>
+                
+                      <button mat-flat-button color="primary" type="submit">Save</button>
+                    </form>
+                  </div>
+            </div>
+            
+
+            <div class="main-table">
+                <mat-table [dataSource]="dataSource">
+                    <ng-container matColumnDef="goodsId">
+                        <mat-header-cell *matHeaderCellDef>Goods Id</mat-header-cell>
+                        <mat-cell *matCellDef="let goodsUnit">{{goodsUnit.goodsId}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="barCode">
+                        <mat-header-cell *matHeaderCellDef> Bar Code</mat-header-cell>
+                        <mat-cell *matCellDef="let goodsUnit">{{goodsUnit.barCode}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="goodsUnit">
+                        <mat-header-cell *matHeaderCellDef>Goods Unit</mat-header-cell>
+                        <mat-cell *matCellDef="let goodsUnit"> {{goodsUnit.goodsUnit}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="unitSize">
+                        <mat-header-cell *matHeaderCellDef> Unit Size</mat-header-cell>
+                        <mat-cell *matCellDef="let goodsUnit"> {{goodsUnit.unitSize}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="unitStatus">
+                        <mat-header-cell *matHeaderCellDef> Unit Status</mat-header-cell>
+                        <mat-cell *matCellDef="let goodsUnit"> {{goodsUnit.unitStatus}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="unitStock">
+                        <mat-header-cell *matHeaderCellDef> Unit Stock</mat-header-cell>
+                        <mat-cell *matCellDef="let goodsUnit"> {{goodsUnit.unitStock}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                        <mat-cell *matCellDef="let goodsUnit">
+                          <button mat-flat-button [matMenuTriggerFor]="actionsMenu" color="primary" class="action-btn">
+                            Actions
+                            <mat-icon>arrow_drop_down</mat-icon>
+                          </button>
+                          <mat-menu #actionsMenu="matMenu">
+                            <button mat-menu-item (click)="openEditGoodsUnit(goodsUnit)">
+                              <mat-icon>edit</mat-icon>
+                              <span>Edit</span>
+                            </button>
+                            <button mat-menu-item (click)="deleteGoodsUnit(goodsUnit.id)">
+                              <mat-icon>delete</mat-icon>
+                              <span>Delete</span>
+                            </button>
+                          </mat-menu>
+                        </mat-cell>
+                      </ng-container>
+                    
+                    <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayColumns;"></mat-row>
+                </mat-table>
+
+
+            </div>
+        </div>
+    </div>
+</div>

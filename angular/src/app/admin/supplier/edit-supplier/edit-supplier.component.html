@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Edit Supplier</h2>
+
+<div mat-dialog-content>
+    <form #editSupplierForm="ngForm" (ngSubmit)="onSave()">
+        <mat-form-field>
+            <mat-label>Supplier Id</mat-label>
+            <input matInput [(ngModel)]="editSupplier.supplierId" name="supplierId" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Supplier Name</mat-label>
+            <input matInput [(ngModel)]="editSupplier.supplierName" name="supplierName" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Supplier Type</mat-label>
+            <input matInput [(ngModel)]="editSupplier.supplierType" name="supplierType" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Supplier Address</mat-label>
+            <input matInput [(ngModel)]="editSupplier.supplierAddress" name="supplierAddress" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Supplier Phone</mat-label>
+            <input matInput [(ngModel)]="editSupplier.supplierPhone" name="supplierPhone" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Supplier Email</mat-label>
+            <input matInput [(ngModel)]="editSupplier.supplierEmail" name="supplierEmail" required>
+        </mat-form-field>
+
+        
+    </form>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-flat-button (click)="onCancel()">Cancel</button>
+    <button mat-flat-button color="primary" type="submit" (click)="onSave()" [mat-dialog-close]="editSupplier">Save</button>
+</div>

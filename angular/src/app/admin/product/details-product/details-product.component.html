@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="container-main">
+        <div class="header">
+            <app-header [isInDialog]="true" [dialogRefDetailsProduct]="dialogRef" ></app-header>
+        </div>
+
+        <div class="main">
+            <div class="main-header">
+                <h2>Details Product</h2>
+            </div>
+
+            <div class="main-table">
+                <mat-table [dataSource]="[product]">
+                    <ng-container matColumnDef="groupId">
+                        <mat-header-cell *matHeaderCellDef> Group Id</mat-header-cell>
+                        <mat-cell *matCellDef="let goods">{{goods.groupId}}</mat-cell>
+          
+                      </ng-container>
+          
+                      <ng-container matColumnDef="goodsId">
+                        <mat-header-cell *matHeaderCellDef> Goods ID</mat-header-cell>
+                        <mat-cell *matCellDef="let goods"> {{goods.goodsId}}</mat-cell>
+                      </ng-container>
+          
+                      <ng-container matColumnDef="goodsName">
+                        <mat-header-cell *matHeaderCellDef> Goods Name</mat-header-cell>
+                        <mat-cell *matCellDef="let goods">{{goods.goodsName}}</mat-cell>
+                      </ng-container>
+          
+                      <ng-container matColumnDef="goodsBrand">
+                        <mat-header-cell *matHeaderCellDef> Goods Brand</mat-header-cell>
+                        <mat-cell *matCellDef="let goods">{{goods.goodsBrand}}</mat-cell>
+                      </ng-container>
+          
+                      <ng-container matColumnDef="goodsStatus">
+                        <mat-header-cell *matHeaderCellDef> Goods Status</mat-header-cell>
+                        <mat-cell *matCellDef="let goods">{{goods.goodsStatus}}</mat-cell>
+                      </ng-container>
+
+                      <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action</mat-header-cell>
+                        <mat-cell *matCellDef="let goodsUnit">
+                            <button mat-flat-button [matMenuTriggerFor]="actionsMenu" color="primary" class="detail-btn">
+                              Actions
+                              <mat-icon>arrow_drop_down</mat-icon>
+                            </button>
+                            <mat-menu #actionsMenu="matMenu">
+                              <button mat-menu-item (click)="openGoodsUnitDialog()">
+                                <mat-icon>add</mat-icon>
+                                <span>Add Unit</span>
+                              </button>
+                              <button mat-menu-item (click)="openGoodsPropertyDialog()">
+                                <mat-icon>edit</mat-icon>
+                                <span>Add Property</span>
+                              </button>
+                              <button mat-menu-item (click)="openSellPriceDialog()">
+                                <mat-icon>attach_money</mat-icon>
+                                <span>Add Price</span>
+                              </button>
+                            </mat-menu>
+                          </mat-cell>
+                      </ng-container>
+
+                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </div>
+        </div>
+    </div>
+</div>

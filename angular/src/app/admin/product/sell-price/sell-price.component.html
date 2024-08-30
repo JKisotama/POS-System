@@ -1,0 +1,116 @@
+<div class="container">
+    <div class="container-main">
+        <div class="header">
+            <app-header [isInDialog]="true" [dialogRefSellPrice]="dialogRef"></app-header>
+        </div>
+    
+
+        <div class="main">
+        <div class="main-header">
+            <h2>Sell Price</h2>
+        </div>
+
+        <div class="main-search">
+            <div class="search-bar">
+                <input type="text" placeholder="Search" />
+                <i class="fas fa-search"></i>
+            </div>
+
+            <div class="filter-bar">
+                <input type="text" placeholder="Filter" />
+                <i class="fas fa-filter"></i>
+            </div>
+        </div>
+
+        <div class="form-field-container">
+
+            <button class="showform" mat-flat-button color="primary" (click)="toggleFormVisibility()">
+                Add New Sell Price
+              </button>
+            
+              <div *ngIf="showForm">
+                <form #createSellPriceForm="ngForm" (ngSubmit)="onSubmit(createSellPriceForm)">
+                  <mat-form-field>
+                    <mat-label>Goods Id</mat-label>
+                    <input matInput [(ngModel)]="product.goodsId" name="goodsId" required />
+                  </mat-form-field>
+            
+                  <mat-form-field>
+                    <mat-label>Bar Code</mat-label>
+                    <input matInput [(ngModel)]="newSellPrice.barCode" name="barCode" required />
+                  </mat-form-field>
+            
+                  <mat-form-field>
+                    <mat-label>Goods Unit</mat-label>
+                    <input matInput [(ngModel)]="newSellPrice.goodsUnit" name="goodsUnit" required />
+                  </mat-form-field>
+            
+                  <mat-form-field>
+                    <mat-label>Sell Number</mat-label>
+                    <input matInput [(ngModel)]="newSellPrice.sellNumber" name="sellNumber" required />
+                  </mat-form-field>
+            
+                  <mat-form-field>
+                    <mat-label>Sell Price</mat-label>
+                    <input matInput [(ngModel)]="newSellPrice.sellPrice" name="sellPrice" required />
+                  </mat-form-field>
+            
+                  <button mat-flat-button color="primary" type="submit">Save</button>
+                </form>
+              </div>
+        </div>
+
+        <div class="main-table">
+            <mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="goodsId">
+                    <mat-header-cell *matHeaderCellDef>Goods Code</mat-header-cell>
+                    <mat-cell *matCellDef="let SellPrice">{{SellPrice.goodsId}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="barCode">
+                    <mat-header-cell *matHeaderCellDef> Bar Code</mat-header-cell>
+                    <mat-cell *matCellDef="let SellPrice">{{SellPrice.barCode}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="goodsUnit">
+                    <mat-header-cell *matHeaderCellDef>Goods Unit</mat-header-cell>
+                    <mat-cell *matCellDef="let SellPrice"> {{SellPrice.goodsUnit}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="sellNumber">
+                    <mat-header-cell *matHeaderCellDef>Sell Number</mat-header-cell>
+                    <mat-cell *matCellDef="let sellPrice"> {{sellPrice.sellNumber}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="sellPrice">
+                    <mat-header-cell *matHeaderCellDef>Sell Price</mat-header-cell>
+                    <mat-cell *matCellDef="let sellPrice"> {{sellPrice.sellPrice}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                    <mat-cell *matCellDef="let sellPrice">
+                      <button mat-flat-button [matMenuTriggerFor]="actionsMenu" color="primary" class="action-btn">
+                        Actions
+                        <mat-icon>arrow_drop_down</mat-icon>
+                      </button>
+                      <mat-menu #actionsMenu="matMenu">
+                        <button mat-menu-item (click)="openEditSellPrice(sellPrice)">
+                          <mat-icon>edit</mat-icon>
+                          <span>Edit</span>
+                        </button>
+                        <button mat-menu-item (click)="deleteSellPrice(sellPrice.id)">
+                          <mat-icon>delete</mat-icon>
+                          <span>Delete</span>
+                        </button>
+                      </mat-menu>
+                    </mat-cell>
+                  </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayColumns;"></mat-row>
+            </mat-table>
+            </div>
+        </div>
+    </div>
+</div>

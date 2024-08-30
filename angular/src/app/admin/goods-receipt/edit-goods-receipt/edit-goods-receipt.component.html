@@ -1,0 +1,41 @@
+<h2 mat-dialog-title> Edit Goods Receipt</h2>
+
+<div mat-dialog-content>
+    <form #editGoodsReceiptForm="ngForm" (submit)="onSave()">
+        <mat-form-field>
+            <mat-label>Date Receipt</mat-label>
+            <input matInput [(ngModel)]="editGoodsReceipt.dateReceipt" name="dateReceipt" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Receipt Number </mat-label>
+            <input matInput [(ngModel)]="editGoodsReceipt.receiptNumber" name="receiptNumber" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Supplier</mat-label>
+            <input matInput [(ngModel)]="editGoodsReceipt.supplier" name="supplier" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Total Amount </mat-label>
+            <input matInput [(ngModel)]="editGoodsReceipt.totalAmount" name="totalAmount" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Indept</mat-label>
+            <input matInput [(ngModel)]="editGoodsReceipt.inDept" name="inDept" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Status </mat-label>
+            <input matInput [(ngModel)]="editGoodsReceipt.status" name="status" required>
+        </mat-form-field>
+
+    </form>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-flat-button color="primary" type="submit" [mat-dialog-close]="editGoodsReceipt" (click)="onSave()">Save</button>
+</div>

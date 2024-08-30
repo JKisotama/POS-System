@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="header">
+        <h2>Edit Property Group</h2>
+    </div>
+
+    <div class="main">
+        <form #editPropertyGroupForm="ngForm" (ngSubmit)="onSave()">
+            <mat-form-field>
+                <mat-label> Property Id</mat-label>
+                <input matInput [(ngModel)]="editPropertyGroup.propertyId" name="propertyId" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Property Name</mat-label>
+                <input matInput [(ngModel)]="editPropertyGroup.propertyName" name="propertyName" required>
+            </mat-form-field>
+
+            <button mat-flat-button color="primary" type="submit" >Save</button>
+
+        </form>
+    </div>
+</div>

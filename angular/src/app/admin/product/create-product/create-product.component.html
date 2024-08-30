@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Create New Product</h2>
+<div mat-dialog-content>
+  <form #createProductForm="ngForm" (ngSubmit)="onSubmit(createProductForm)">
+    <mat-form-field>
+      <mat-label>Group ID</mat-label>
+      <input matInput [(ngModel)]="newProduct.groupId" name="groupId "required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Goods ID</mat-label>
+      <input matInput [(ngModel)]="newProduct.goodsId" name="goodsId" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Goods Name</mat-label>
+      <input matInput [(ngModel)]="newProduct.goodsName" name="productName" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Goods Brand</mat-label>
+      <input matInput [(ngModel)]="newProduct.goodsBrand" name="goodsBrand" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Goods Status</mat-label>
+      <input matInput [(ngModel)]="newProduct.goodsStatus" name="goodsStatus" required>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button type="submit" [mat-dialog-close]="newProduct" (click)="onSubmit(createProductForm)">Save</button>
+</div>

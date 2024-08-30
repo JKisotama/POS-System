@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  align-items: center;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between; /* This ensures the items are spaced apart */
+  width: 100%; /* Set to 100% to take up the full width of the container */
+  align-items: center;
+}
+
+.header-left {
+  align-items: center;
+}
+
+.header-left a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.header-right {
+  display: flex; /* Ensure the icon stays aligned correctly */
+  align-items: center;
+}
+
+.header-right .profile-icon {
+  font-size: 24px;
+  color: #333;
+  margin-left: 10px;
+}

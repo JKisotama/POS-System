@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Create New Staff</h2>
+<div mat-dialog-content>
+  <form #createStaffForm="ngForm" (ngSubmit)="onSubmit(createStaffForm)">
+    <mat-form-field>
+      <mat-label>Staff Code</mat-label>
+      <input matInput [(ngModel)]="newStaff.code" name="code" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Staff Name</mat-label>
+      <input matInput [(ngModel)]="newStaff.name" name="name" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Staff Age</mat-label>
+      <input matInput [(ngModel)]="newStaff.age" name="age" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Staff Role</mat-label>
+      <input matInput [(ngModel)]="newStaff.role" name="role" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Staff Department</mat-label>
+      <input matInput [(ngModel)]="newStaff.department" name="department" required>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button type="submit" [mat-dialog-close]="newStaff" (click)="onSubmit(createStaffForm)">Save</button>
+</div>

@@ -1,0 +1,43 @@
+<h2 mat-dialog-title> Edit Inventory </h2>
+
+<div mat-dialog-content>
+    <form #editInventoryForm="ngForm" (ngSubmit)="onSave()">
+
+        <mat-form-field>
+            <mat-label> Amount </mat-label>
+            <input matInput [(ngModel)]="editInventory.amount" name="amount" required />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Unit </mat-label>
+            <input matInput [(ngModel)]="editInventory.unit" name="unit" required />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Goods Name</mat-label>
+            <input matInput [(ngModel)]="editInventory.goodsName" name="goodsName" required />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Type </mat-label>
+            <input matInput [(ngModel)]="editInventory.type" name="type" required />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Buy Price </mat-label>
+            <input matInput [(ngModel)]="editInventory.buyPrice" name="buyPrice" required />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Total Amount </mat-label>
+            <input matInput [(ngModel)]="editInventory.totalAmount" name="totalAmount" required />
+        </mat-form-field>
+
+    </form>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-flat-button color="primary" type="submit" [mat-dialog-close]="editInventory" (click)="onSave()">Save</button>
+
+</div>
