@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using POS_System_BAL.Services.Customer;
 using POS_System_DAL.Data;
 using POS_System_DAL.Models;
 
@@ -15,63 +16,49 @@ namespace POS_Final_Year.Controller
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private readonly OnlinePosContext _context;
+        private readonly ICustomerServices _customerServices;
 
-        public CustomerController(OnlinePosContext context)
+        public CustomerController(ICustomerServices customerServices)
         {
-            _context = context;
+            _customerServices = customerServices;
         }
 
         // GET: api/Customer
         [HttpGet("Gett All Customer")]
-        public async Task<ActionResult<IEnumerable<TblCustomer>>> GetTblCustomers()
+        public async Task<ActionResult<IEnumerable<TblCustomer>>> GetTblCustomers(string company_id)
         {
-            return await _context.TblCustomers.ToListAsync();
+            var customers = await _customerServices.GetAllCustomer(company_id);
+            return Ok(customers);
         }
 
         // GET: api/Customer/5
-        [HttpGet("Get Customer {id}")]
-        public async Task<ActionResult<TblCustomer>> GetTblCustomer(string id)
+        [HttpGet("Get Customer")]
+        public async Task<ActionResult<TblCustomer>> GetTblCustomer(string comapny_id, string customer_id)
         {
-            var tblCustomer = await _context.TblCustomers.FindAsync(id);
+            var customer = await _customerServices.GetCustomer(comapny_id, customer_id);
 
-            if (tblCustomer == null)
+            if (customer == null)
             {
-                return NotFound();
+                return NotFound("No Customer Found");
             }
 
-            return tblCustomer;
+            return Ok(customer);
         }
 
         // PUT: api/Customer/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("Edit Customer {id}")]
-        public async Task<IActionResult> PutTblCustomer(string id, TblCustomer tblCustomer)
+        [HttpPut("Edit Customer")]
+        public async Task<IActionResult> PutTblCustomer(string customer_id, [FromBody]TblCustomer tblCustomer)
         {
-            if (id != tblCustomer.CustomerId)
+            if(customer_id == tblCustomer.CustomerId)
             {
-                return BadRequest();
+                await _customerServices.UpdateCustomer(tblCustomer);
+                return NoContent();
             }
+           
 
-            _context.Entry(tblCustomer).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TblCustomerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            
+            return BadRequest();
         }
 
         // POST: api/Customer
@@ -79,45 +66,26 @@ namespace POS_Final_Year.Controller
         [HttpPost("Save Customer")]
         public async Task<ActionResult<TblCustomer>> PostTblCustomer(TblCustomer tblCustomer)
         {
-            _context.TblCustomers.Add(tblCustomer);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (TblCustomerExists(tblCustomer.CustomerId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _customerServices.CreateCustomer(tblCustomer);
+            
+
 
             return CreatedAtAction("GetTblCustomer", new { id = tblCustomer.CustomerId }, tblCustomer);
         }
 
         // DELETE: api/Customer/5
-        [HttpDelete("Delete Customer {id}")]
-        public async Task<IActionResult> DeleteTblCustomer(string id)
+        [HttpDelete("Delete Customer ")]
+        public async Task<IActionResult> DeleteTblCustomer(string comapny_id, string customer_id)
         {
-            var tblCustomer = await _context.TblCustomers.FindAsync(id);
-            if (tblCustomer == null)
+            var existCustomer = GetTblCustomer(comapny_id, customer_id); 
+            if (existCustomer == null)
             {
                 return NotFound();
             }
 
-            _context.TblCustomers.Remove(tblCustomer);
-            await _context.SaveChangesAsync();
+            await _customerServices.DeleteCustomer(customer_id);
 
             return NoContent();
-        }
-
-        private bool TblCustomerExists(string id)
-        {
-            return _context.TblCustomers.Any(e => e.CustomerId == id);
         }
     }
 }

@@ -9,11 +9,11 @@ namespace POS_System_DAL
 {
     public interface IGenericRepository<TEntity> where TEntity : class, new()
     {
-        Task<TEntity> Add(TEntity entity);
+        Task<TEntity> AddAsync(TEntity entity);
         Task<int> DeleteAsync(TEntity entity);
         Task<IEnumerable<TEntity>> GettAllAsync(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> UpdateAsync(TEntity entity);
         Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate);
-
+        Task DeleteAsync(Expression<Func<TEntity, bool>> predicate);
     }
 }

@@ -11,4 +11,8 @@
     <ProjectReference Include="..\POS-System_DAL\POS-System_DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
 </Project>

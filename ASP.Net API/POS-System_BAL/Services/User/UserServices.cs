@@ -32,12 +32,12 @@ namespace POS_System_BAL.Services.User
 
         public async Task<TblUser> CreateUser(TblUser user)
         {
-            if ( await _userRepository.TblUserExists(user.LoginName))
+            if (! await _userRepository.TblUserExists(user.LoginName))
             {
                 throw new InvalidOperationException("User Already Exist");
             }
 
-            await _userRepository.Add(user);
+            await _userRepository.AddAsync(user);
             return user;
         }
 

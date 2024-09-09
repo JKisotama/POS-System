@@ -65,7 +65,7 @@ namespace POS_System_BAL.Services.Goods
                 UnitStock = sku,
                 UnitSize = size
             };
-           await _goodsRepository.Add(newUnit);
+           await _goodsRepository.AddAsync(newUnit);
 
         }
 

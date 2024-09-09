@@ -18,7 +18,7 @@ namespace POS_System_DAL
         }
 
 
-        public async Task<TEntity> Add(TEntity entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
             _onlinePosContext.Add(entity);
             await _onlinePosContext.SaveChangesAsync();
@@ -45,10 +45,19 @@ namespace POS_System_DAL
         }
 
         public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
-        {
-
-          
+        { 
             return await _onlinePosContext.Set<TEntity>().FirstOrDefaultAsync(predicate);
+        }
+
+        public async Task DeleteAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            var entityToDelete = await GetAsync(predicate);
+            if (entityToDelete != null)
+            {
+                _onlinePosContext.Set<TEntity>().Remove(entityToDelete);
+                await _onlinePosContext.SaveChangesAsync();
+
+            }
         }
 
     }
