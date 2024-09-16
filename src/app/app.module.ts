@@ -17,7 +17,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatTableModule} from '@angular/material/table';
+import { DashboardComponent } from './admin/admin-page/dashboard/dashboard.component';
 
 
 
@@ -30,6 +31,7 @@ import {MatButtonModule} from '@angular/material/button';
     AdminSidebarComponent,
     PosHeaderComponent,
     PosFooterComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule, 
@@ -40,6 +42,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatButtonModule, 
     MatDividerModule, 
     MatIconModule,
+    MatTableModule,
     
 ],
   providers: [provideClientHydration(), provideAnimationsAsync()],

@@ -1,0 +1,20 @@
+
+.box-top{
+    background: var(--White-Snow, #FBFBFB);
+    padding: 70px;
+    border-radius: 15px;
+    
+    .box-top-title{
+        i{
+            margin-right: 10px;
+        }
+    }
+}
+
+.box-bellow{
+    background: var(--White-Snow, #FBFBFB);
+    margin-top: 40px;
+    padding: 50px;
+    border-radius: 15px;
+    
+}

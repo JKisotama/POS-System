@@ -1,6 +1,20 @@
-.ad-head-btn{
+.ad-header{
     margin: 15px 25px 0 0;
-    padding: 0 25px 0 0;
+
+}
+
+.ad-head-btn{
+
+    button{
+        margin: 0 10px 0 0;
+        span{
+            .mat-mdc-button-touch-target{
+                margin-right: 10px ;
+            }
+        }
+    }
+
+
 }
 
 
@@ -11,6 +25,11 @@
 
     button{
         margin: 0 10px 0 0;
+        span{
+            .mat-mdc-button-touch-target{
+                margin-right: 10px !important;
+            }
+        }
     }
     
     input{
