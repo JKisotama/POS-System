@@ -8,6 +8,7 @@ namespace POS_System_BAL.DTOs
 {
     public class GoodUnitDTO
     {
+        public int Id { get; set; }
         public string? GoodsId { get; set; }
 
         public string? Barcode { get; set; }

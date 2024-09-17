@@ -252,7 +252,7 @@ namespace POS_System_DAL.Migrations
                     goods_status = table.Column<int>(type: "int", nullable: true),
                     store_id = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: true),
                     goods_counter = table.Column<int>(type: "int", nullable: true),
-                    picture = table.Column<byte[]>(type: "varbinary(1)", maxLength: 1, nullable: false)
+                    picture = table.Column<byte[]>(type: "varbinary(8000)", maxLength: 8000, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -395,9 +395,9 @@ namespace POS_System_DAL.Migrations
                 name: "tbl_goodsunit",
                 columns: table => new
                 {
+                    goods_unit = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     goods_id = table.Column<string>(type: "varchar(16)", unicode: false, maxLength: 16, nullable: true),
                     barcode = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
-                    goods_unit = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     unit_size = table.Column<int>(type: "int", nullable: true),
                     unit_status = table.Column<int>(type: "int", nullable: true),
                     unit_stock = table.Column<int>(type: "int", nullable: true),
@@ -405,6 +405,7 @@ namespace POS_System_DAL.Migrations
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_tbl_goodsunit", x => x.goods_unit);
                     table.ForeignKey(
                         name: "FK__tbl_goods__goods__6D0D32F4",
                         column: x => x.goods_id,

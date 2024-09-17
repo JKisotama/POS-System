@@ -12,7 +12,7 @@ using POS_System_DAL.Data;
 namespace POS_System_DAL.Migrations
 {
     [DbContext(typeof(OnlinePosContext))]
-    [Migration("20240907125304_Initial")]
+    [Migration("20240915140718_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -246,6 +246,11 @@ namespace POS_System_DAL.Migrations
 
             modelBuilder.Entity("POS_System_DAL.Models.TblGoodsunit", b =>
                 {
+                    b.Property<string>("GoodsUnit")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)")
+                        .HasColumnName("goods_unit");
+
                     b.Property<string>("Barcode")
                         .HasMaxLength(20)
                         .IsUnicode(false)
@@ -257,11 +262,6 @@ namespace POS_System_DAL.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(16)")
                         .HasColumnName("goods_id");
-
-                    b.Property<string>("GoodsUnit")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)")
-                        .HasColumnName("goods_unit");
 
                     b.Property<string>("StoreId")
                         .HasMaxLength(5)
@@ -280,6 +280,8 @@ namespace POS_System_DAL.Migrations
                     b.Property<int?>("UnitStock")
                         .HasColumnType("int")
                         .HasColumnName("unit_stock");
+
+                    b.HasKey("GoodsUnit");
 
                     b.HasIndex("GoodsId");
 

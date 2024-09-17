@@ -26,15 +26,17 @@ namespace POS_Final_Year.Controller
             _goodsServices = goodsServices;
         }
 
-        // GET: api/GoodGroup
         [HttpGet("Get All Group")]
         public async Task<ActionResult<IEnumerable<TblGoodsgroup>>> GetTblGoodsgroups(string store_id)
         {
-            await _goodsServices.GetTblGoodsgroupsAsync(store_id);
-            return Ok();
+            var groupList = await _goodsServices.GetTblGoodsgroupsAsync(store_id);
+            if (groupList == null && groupList.Any())
+            {
+                return BadRequest();
+            }
+            return Ok(groupList);
         }
 
-        // GET: api/GoodGroup/5
         [HttpGet("Get Group{id}")]
         public async Task<ActionResult<TblGoodsgroup>> GetTblGoodsgroup(string store_id, string group_id)
         {
@@ -56,19 +58,29 @@ namespace POS_Final_Year.Controller
         }
 
         [HttpGet("Get Property Group")]
-        public async Task<ActionResult<IEnumerable<TblPropertygroup>>> GetPropertyGood(string store_id)
+        public async Task<ActionResult<TblPropertygroup>> GetPropertyGood(string store_id, string property_id)
         {
-            var properties = _goodsServices.GetAllPropertyGroupAsync(store_id);
+            var properties = await _goodsServices.GetPropertyGroupAsync(store_id,property_id);
             return Ok(properties);
+        } 
+        
+        [HttpGet("Get Goods")]
+        public async Task<ActionResult<TblGood>> GetGoods(string store_id,string goods_id)
+        {
+            var goods = await _goodsServices.GetGoodsAsync(store_id, goods_id);
+            if(goods == null)
+            {
+                return NotFound();
+            }
+            
+            return Ok(goods);
+        }[HttpGet("Get Image")]
+        public async Task<ActionResult<TblGood>> GetImage(string store_id,string goods_id)
+        {
+            var image = await _goodsServices.GetImage(store_id, goods_id);
+
+            return Ok(image);
         }
-
-        //[HttpGet("Get Good By Name")]
-        //public async Task<ActionResult<TblGood>> GetGoodByName(string goods_reminiscent_name)
-        //{
-
-        //}
-
-
 
         [HttpGet("Get Good Unit")]
         public async Task<ActionResult<IEnumerable<TblGoodsunit>>> GetUnit(string store_id, int type)
@@ -102,9 +114,6 @@ namespace POS_Final_Year.Controller
             }
             return Ok(prices);
         }
-
-        // PUT: api/GoodGroup/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("Update Good By Group {id}")]
         public async Task<IActionResult> PutTblGoodsgroup(string id, TblGoodsgroup tblGoodsgroup)
         {
@@ -133,55 +142,42 @@ namespace POS_Final_Year.Controller
 
             return NoContent();
         }
-
-        // POST: api/GoodGroup
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("Save Good Group")]
-        public async Task<ActionResult<TblGoodsgroup>> PostTblGoodsgroup(TblGoodsgroup tblGoodsgroup)
+        public async Task<ActionResult<TblGoodsgroup>> PostTblGoodsgroup(GoodsGroupDTO goodsGroupDTO)
         {
-            _context.TblGoodsgroups.Add(tblGoodsgroup);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (TblGoodsgroupExists(tblGoodsgroup.GroupId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetTblGoodsgroup", new { id = tblGoodsgroup.GroupId }, tblGoodsgroup);
+            await _goodsServices.SaveGoodsGroup(goodsGroupDTO);
+            return CreatedAtAction("GetTblGoodsgroup", new { id = goodsGroupDTO.GroupId }, goodsGroupDTO);
         }
 
         // DELETE: api/GoodGroup/5
         [HttpPost("Save Property Group")]
         public async Task<ActionResult<TblPropertygroup>> PostTblPropertyGroup(TblPropertygroup group_name)
         {
-            _context.TblPropertygroups.Add(group_name);
-            await _context.SaveChangesAsync();
+            await _goodsServices.SavePropertyGroup(group_name);
             return Ok(group_name);
+        }
+
+        [HttpPost("Save Goods TEST")]
+        public async Task<ActionResult<GoodsDTO>> PostGoods([FromQuery]GoodsDTO goodsDTO, IFormFile file)
+        {
+            await _goodsServices.SaveGoods(goodsDTO, file);
+            return StatusCode(201, "Create OK");
         }
         [HttpPost("Save Unit")]
         public async Task<ActionResult<TblGoodsunit>> PostTblUnit([FromBody] GoodUnitDTO goodsunit/*string store_id,string goods_id, int applied_type, string unit_name, int sku, int size*/)
         {
 
-            var goodsunits = new TblGoodsunit
+            goodsunit = new GoodUnitDTO
             {
                 StoreId = goodsunit.StoreId,
                 GoodsId = goodsunit.GoodsId,
                 UnitStatus = goodsunit.UnitStatus,
-                GoodsUnit = goodsunit.GoodsUnit,
+                GoodsUnit = (goodsunit.GoodsId + "xx"),
                 UnitStock = goodsunit.UnitStock,
                 UnitSize = goodsunit.UnitSize
             };
-            await _goodsServices.SaveUnit(goodsunits);
-            return CreatedAtAction(("GetUnit"), new { id = goodsunit.GoodsId }, goodsunit);
+            await _goodsServices.SaveUnit(goodsunit);
+            return CreatedAtAction(("GetUnit"), new { id = goodsunit.GoodsUnit }, goodsunit);
         }
         [HttpPost("Save Property")]
         public async Task<ActionResult<TblGoodsproperty>> PostTblGoodProperty(string store_id, string goods_id, string property_id, string property_value)

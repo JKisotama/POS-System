@@ -5,6 +5,7 @@ namespace POS_System_DAL.Models;
 
 public partial class TblSupplier
 {
+
     public string SupplierId { get; set; } = null!;
 
     public string? SupplierName { get; set; }

@@ -9,7 +9,6 @@ using POS_System_BAL.Services.User;
 using POS_System_DAL;
 using POS_System_DAL.Data;
 using POS_System_DAL.Repository;
-using POS_System_DAL.Repository.Goods;
 using POS_System_DAL.Repository.Supplier;
 using POS_System_DAL.Repository.User;
 using AutoMapper;
@@ -40,7 +39,6 @@ namespace POS_System
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
-            builder.Services.AddScoped<IGoodsRepository, GoodsRepository>();
             builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
             builder.Services.AddScoped<IUserServices, UserServices>();
             builder.Services.AddScoped<IGoodsServices, GoodsServices>();

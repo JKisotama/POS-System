@@ -32,6 +32,7 @@ namespace POS_System_BAL.Services.Receipt
             var receiptDetails = await _receiptRepository.GetDetails(store_id, receipt_number);
             return receiptDetails;
         }
+
         public string GenerateSupplierId(string store_id,  DateTime created_Date)
         {
             int counter = _receiptRepository.GetReceiptCounterByStoreId( store_id, created_Date );

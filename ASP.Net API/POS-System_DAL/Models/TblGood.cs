@@ -19,7 +19,7 @@ public partial class TblGood
 
     public int? GoodsCounter { get; set; }
 
-    public byte[] Picture { get; set; } = null!;
+    public string Picture { get; set; } = null;
 
     public virtual TblGoodsgroup? Group { get; set; }
 

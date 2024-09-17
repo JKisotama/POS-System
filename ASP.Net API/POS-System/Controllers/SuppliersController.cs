@@ -63,7 +63,7 @@ namespace POS_Final_Year.Controller
 
       
         [HttpPost]
-        public async Task<ActionResult<TblSupplier>> PostTblSupplier(TblSupplier tblSupplier)
+        public async Task<ActionResult<TblSupplier>> PostTblSupplier([FromQuery]TblSupplier tblSupplier)
         {
             var supplier = await _supplierServices.CreateSupplier(tblSupplier);
 

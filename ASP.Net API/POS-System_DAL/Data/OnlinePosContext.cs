@@ -58,7 +58,7 @@ public partial class OnlinePosContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=16ACH-LEGION;Initial Catalog=ONLINE_POS;Persist Security Info=True;Encrypt=True;TrustServerCertificate=True;Trusted_Connection=true");
+        optionsBuilder.UseSqlServer("Server=16ACH-LEGION;Initial Catalog=POS-Web;Persist Security Info=True;Encrypt=True;TrustServerCertificate=True;Trusted_Connection=true");
         //optionsBuilder.UseSqlServer("Server=DESKTOP-GHP70PK\\SQLEXPRESS;Database=ONLINE_POS;TrustServerCertificate=True;Trusted_Connection=True;");
     }
 
@@ -221,8 +221,10 @@ public partial class OnlinePosContext : DbContext
 
         modelBuilder.Entity<TblGoodsunit>(entity =>
         {
+
             entity
-                .HasNoKey()
+                .HasKey(e => e.GoodsUnit);
+            entity
                 .ToTable("tbl_goodsunit");
 
             entity.Property(e => e.Barcode)
