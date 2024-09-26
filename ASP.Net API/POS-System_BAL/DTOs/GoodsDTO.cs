@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper.Configuration.Annotations;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,17 +13,12 @@ namespace POS_System_BAL.DTOs
     {
         public string? GroupId { get; set; }
 
-        public string GoodsId { get; set; } = null!;
-
         public string? GoodsName { get; set; }
 
         public string? GoodsBrand { get; set; }
 
         public int? GoodsStatus { get; set; }
 
-        public string? StoreId { get; set; }
-
-        public int? GoodsCounter { get; set; }
        
        
     }

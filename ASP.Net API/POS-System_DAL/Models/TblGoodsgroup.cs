@@ -11,9 +11,9 @@ public partial class TblGoodsgroup
 
     public int? GroupStatus { get; set; }
 
-    public string? StoreId { get; set; }
+    public string StoreId { get; set; }
 
-    public int? GroupCounter { get; set; }
+    public int GroupCounter { get; set; } 
 
     public virtual ICollection<TblGood> TblGoods { get; set; } = new List<TblGood>();
 }

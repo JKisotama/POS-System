@@ -7,6 +7,7 @@ using POS_System_DAL.Data;
 using POS_System_DAL.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -40,10 +41,11 @@ namespace POS_System_BAL.Services.Goods
             return groupList;
         }
 
-        public async Task<IEnumerable<TblGood>> GetGoodsByGroupAsync(string store_id, string group_id)
+        public async Task<IEnumerable<TblGoodsgroup>> GetGoodsByGroupAsync(string store_id, string group_id)
         {
-            return await _onlinePosContext.TblGoods
-                .Where(s => s.StoreId == store_id)
+            return await _onlinePosContext.TblGoodsgroups
+                .Where(s => s.StoreId == store_id && s.GroupId == group_id)
+                .Include(s => s.TblGoods)
                 .ToListAsync();
         }
 
@@ -82,6 +84,9 @@ namespace POS_System_BAL.Services.Goods
         public async Task SaveGoodsGroup(GoodsGroupDTO goodsGroupDTO)
         {
             var entity = _mapper.Map<TblGoodsgroup>(goodsGroupDTO);
+            var groupCounter = GenerateGoodGroupID(entity.StoreId);
+            entity.GroupCounter = GetGroupCounterByStoreId(entity.StoreId) + 1;
+            entity.GroupId = entity.StoreId + groupCounter;
             _onlinePosContext.TblGoodsgroups
                 .Add(entity);
             await _onlinePosContext.SaveChangesAsync();
@@ -89,6 +94,9 @@ namespace POS_System_BAL.Services.Goods
 
         public async Task SavePropertyGroup(TblPropertygroup tblPropertygroup)
         {
+            var propertyCounter = GenerateGoodGroupProperty(tblPropertygroup.StoreId);
+            tblPropertygroup.PropertyId = tblPropertygroup.StoreId + propertyCounter;
+            tblPropertygroup.PropertyCounter = GetPropertyCounterByStoreId(tblPropertygroup.StoreId) + 1;
             _onlinePosContext.TblPropertygroups
                 .Add(tblPropertygroup);
             await _onlinePosContext.SaveChangesAsync();
@@ -96,9 +104,13 @@ namespace POS_System_BAL.Services.Goods
 
         public async Task SaveGoods(GoodsDTO goodsDTO, IFormFile imageFile)
         {
-            
-            string imageData = await SaveImage(imageFile, goodsDTO.StoreId, goodsDTO.GoodsId);            
+                        
             var entity = _mapper.Map<TblGood>(goodsDTO);
+            var goodsCounter = GenerateGoodId(entity.StoreId, goodsDTO.GroupId);
+            entity.GoodsId = goodsCounter;
+            entity.GoodsCounter = GetGoodsCounterByStoreId(entity.StoreId) + 1;
+
+            string imageData = await SaveImage(imageFile, entity.StoreId, entity.GoodsId);
             entity.Picture = imageData;
             _onlinePosContext.TblGoods.Add(entity);
             await _onlinePosContext.SaveChangesAsync();
@@ -137,58 +149,58 @@ namespace POS_System_BAL.Services.Goods
         public string GenerateGoodGroupID(string store_id)
         {
             int counter = GetGroupCounterByStoreId(store_id);
-            string group_id = new string('0', 3 - counter.ToString().Length);
+            var  nCounter =   counter + 1;
+            string group_id = new string('0', 3 - nCounter.ToString().Length) + nCounter.ToString();
             return group_id;
         }
 
         public string GenerateGoodId(string store_id, string goodgroup_id)
         {
             int counter = GetGoodsCounterByStoreId(store_id);
-            string group_id = new string('0', 3 - counter.ToString().Length);
-            return group_id;
+            var nCounter = counter + 1;
+            string good_id = goodgroup_id + new string('0', 4 - nCounter.ToString().Length) + nCounter.ToString();
+            return good_id;
         }
 
         public string GenerateGoodGroupProperty(string store_id)
         {
-            int counter = GetGoodsCounterByStoreId(store_id);
-            string group_id = new string('0', 3 - counter.ToString().Length);
+            int counter = GetPropertyCounterByStoreId(store_id);
+            var nCounter = counter + 1;
+            string group_id = new string('0', 3 - nCounter.ToString().Length) + nCounter.ToString();
             return group_id;
         }
 
         public int GetGroupCounterByStoreId(string storerId)
         {
-            using (_onlinePosContext)
-            {
-                var groupCounter = _onlinePosContext.TblGoodsgroups
-                    .Where(g => g.StoreId == storerId)
-                    .Select(g => g.GroupCounter)
-                    .FirstOrDefault();
-                return (int)groupCounter;
-            }
+            var groupCounter = _onlinePosContext.TblGoodsgroups
+                .Where(g => g.StoreId == storerId)
+                .OrderBy(g => g.StoreId)
+                .ThenByDescending(g => g.GroupCounter)
+                .Select(g => g.GroupCounter)
+                .FirstOrDefault();
+                return groupCounter;
         }
 
         public int GetGoodsCounterByStoreId(string storeId)
         {
-            using (_onlinePosContext)
-            {
                 var goodsCounter = _onlinePosContext.TblGoods
                     .Where(g => g.StoreId == storeId)
+                    .OrderBy(g => g.StoreId)
+                    .ThenByDescending (g => g.GoodsCounter)
                     .Select(g => g.GoodsCounter)
                     .FirstOrDefault();
-                return (int)goodsCounter;
-            }
+                return goodsCounter;            
         }
 
-        public int PropertyCounterByStoreId(string storeId)
+        public int GetPropertyCounterByStoreId(string storeId)
         {
-            using (_onlinePosContext)
-            {
                 var propertyCounter = _onlinePosContext.TblPropertygroups
                     .Where(g => g.StoreId == storeId)
+                    .OrderBy(g => g.StoreId)
+                    .ThenByDescending(g => g.PropertyCounter)
                     .Select(g => g.PropertyCounter)
                     .FirstOrDefault();
-                return (int)propertyCounter;
-            }
+                return propertyCounter;
         }
 
         public async Task<string> SaveImage(IFormFile image, string id, string idenID)

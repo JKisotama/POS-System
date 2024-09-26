@@ -9,7 +9,7 @@ namespace POS_System_BAL.DTOs
 {
     public class SupplierDTO
     {
-        [JsonIgnore]
+
         public string SupplierId { get;  set; } = null!;
         public string? SupplierName { get; set; }
         public int? SupllierType { get; set; }
@@ -22,9 +22,8 @@ namespace POS_System_BAL.DTOs
 
         public int? AllowDebt { get; set; }
 
-        public int? SupplierCounter { get; set; }
+        public int SupplierCounter { get; set; }
 
-        [JsonIgnore]
         public string? StoreId { get; set; }
 
         public DateTime? CreatedDate { get; set; }

@@ -24,14 +24,13 @@ namespace POS_Final_Year.Controller
             _supplierServices = supplierServices;
         }
 
-        // GET: api/Suppliers
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TblSupplier>>> GetTblSuppliers(string store_id)
         {
             return Ok(await _supplierServices.GetAllSupplier(store_id));
         }
 
-        // GET: api/Suppliers/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TblSupplier>> GetTblSupplier(string store_id, string supplier_id)
         {
@@ -45,8 +44,6 @@ namespace POS_Final_Year.Controller
             return Ok(tblSupplier);
         }
 
-        // PUT: api/Suppliers/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("Update Supplier")]
         public async Task<IActionResult> PutTblSupplier(string store_id,string supplier_id, SupplierDTO supplierDTO)
         {
@@ -63,11 +60,11 @@ namespace POS_Final_Year.Controller
 
       
         [HttpPost]
-        public async Task<ActionResult<TblSupplier>> PostTblSupplier([FromQuery]TblSupplier tblSupplier)
+        public async Task<ActionResult<TblSupplier>> PostTblSupplier(SupplierDTO supplierDTO)
         {
-            var supplier = await _supplierServices.CreateSupplier(tblSupplier);
+            await _supplierServices.CreateSupplier(supplierDTO);
 
-            return CreatedAtAction("GetTblSupplier", new { id = tblSupplier.SupplierId }, tblSupplier);
+            return CreatedAtAction("GetTblSupplier", new { id = supplierDTO.SupplierId }, supplierDTO);
         }
 
         // DELETE: api/Suppliers/5

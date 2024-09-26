@@ -20,11 +20,11 @@ public partial class TblSupplier
 
     public int? AllowDebt { get; set; }
 
-    public int? SupplierCounter { get; set; }
+    public int SupplierCounter { get; set; }
 
     public string? StoreId { get; set; }
 
-    public DateTime? CreatedDate { get; set; }
+    public DateTime CreatedDate { get; set; }
 
     public virtual ICollection<TblGoodssupplied> TblGoodssupplieds { get; set; } = new List<TblGoodssupplied>();
 }

@@ -110,7 +110,7 @@ namespace POS_System_DAL.Migrations
                 name: "tbl_propertygroup",
                 columns: table => new
                 {
-                    property_id = table.Column<string>(type: "varchar(3)", unicode: false, maxLength: 3, nullable: false),
+                    property_id = table.Column<string>(type: "varchar(6)", unicode: false, maxLength: 3, nullable: false),
                     property_name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     store_id = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: true),
                     property_counter = table.Column<int>(type: "int", nullable: true)

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿    using Microsoft.EntityFrameworkCore;
 using POS_System_DAL.Data;
 using POS_System_DAL.Models;
 using System;
@@ -21,16 +21,6 @@ namespace POS_System_DAL.Repository.Supplier
         {
             return _onlinePosContext.TblSuppliers.AnyAsync(s => s.StoreId == store_id && s.SupplierId == supplier_id);
         }
-        public int GetSupplierCounterByStoreId(string storeId, DateTime created_Date)
-        {
-            using (_onlinePosContext = new OnlinePosContext())
-            {
-                var supplierCounetr = _onlinePosContext.TblSuppliers
-                    .Where(g => g.StoreId == storeId && g.CreatedDate == created_Date.Date)
-                    .Select(g => g.SupplierCounter)
-                    .FirstOrDefault();
-                return (int)supplierCounetr;
-            }
-        }
+       
     }
 }

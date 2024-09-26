@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using POS_System_BAL.DTOs;
+using POS_System_DAL.Data;
 using POS_System_DAL.Models;
 using POS_System_DAL.Repository.Supplier;
 using System;
@@ -12,12 +13,12 @@ namespace POS_System_BAL.Services.Supplier
 {
     public class SupplierServices : ISupplierServices
     {
-        private readonly ISupplierRepository _supplierRepository;
+        private readonly OnlinePosContext _onlinePosContext;
         private readonly IMapper _mapper;
 
-        public SupplierServices(ISupplierRepository supplierRepository, IMapper mapper)
+        public SupplierServices(OnlinePosContext onlinePosContext, IMapper mapper)
         {
-            _supplierRepository = supplierRepository;
+            _onlinePosContext = onlinePosContext;
             _mapper = mapper;
         }
 
@@ -25,19 +26,25 @@ namespace POS_System_BAL.Services.Supplier
         {
             if (true)
             {
-                await _supplierRepository.GettAllAsync(s => s.StoreId == store_id);
+                await _onlinePosContext.TblSuppliers.FindAsync();
             }
             return null;
         }
 
         public async Task<TblSupplier> GetSupplier(string store_id, string supplier_id)
         {
-            return await _supplierRepository.GetAsync(s => s.StoreId == store_id && s.SupplierId == supplier_id);
+            return null;
         }
 
-        public async Task<TblSupplier> CreateSupplier(TblSupplier supplier)
+        public async Task CreateSupplier(SupplierDTO supplier)
         {
-            return await _supplierRepository.AddAsync(supplier);
+            var entity = _mapper.Map<TblSupplier>(supplier);
+            var supplierCounter = GenerateSupplierID(entity.StoreId, entity.CreatedDate);
+            entity.SupplierCounter = GetSupplierCounterByStoreId(entity.StoreId, entity.CreatedDate) + 1;
+            entity.SupplierId = entity.StoreId + supplierCounter;
+            _onlinePosContext.TblSuppliers
+                .Add(entity);
+            await _onlinePosContext.SaveChangesAsync();
         }
 
         public async Task UpdateSupplier(SupplierDTO supplierDTO)
@@ -46,10 +53,31 @@ namespace POS_System_BAL.Services.Supplier
             if (existSupplier != null)
             {
                 _mapper.Map(supplierDTO, existSupplier);
-                await _supplierRepository.UpdateAsync(existSupplier);
+                 _onlinePosContext.Update(existSupplier);
                 
             }
             throw new InvalidOperationException("No Supplier found");
+        }
+
+        public string GenerateSupplierID(string store_id, DateTime created_date)
+        {
+            int counter = GetSupplierCounterByStoreId(store_id, created_date);
+            var nCounter = counter + 1;
+            string supplier_id = new string('0', 3 - nCounter.ToString().Length) + nCounter.ToString();
+            return supplier_id;
+        }
+
+
+
+        public int GetSupplierCounterByStoreId(string storeId, DateTime created_Date)
+        {
+                var supplierCounetr = _onlinePosContext.TblSuppliers
+                    .Where(g => g.StoreId == storeId && g.CreatedDate.Date == created_Date.Date)
+                    .OrderBy(g => g.StoreId)
+                    .ThenByDescending(g => g.SupplierCounter)
+                    .Select(g => g.SupplierCounter)
+                    .FirstOrDefault();
+                return supplierCounetr;
         }
 
         public async Task<TblSupplier> DeleteAsync(string store_id, string supplier_id)
@@ -57,7 +85,7 @@ namespace POS_System_BAL.Services.Supplier
             var supplier = await GetSupplier(store_id, supplier_id);
             if (supplier != null)
             {
-               await _supplierRepository.DeleteAsync(supplier);
+               _onlinePosContext.Remove(supplier);
                return supplier;
             }
             throw new InvalidOperationException("no Supplier Found");

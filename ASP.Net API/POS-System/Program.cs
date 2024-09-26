@@ -39,7 +39,6 @@ namespace POS_System
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
-            builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
             builder.Services.AddScoped<IUserServices, UserServices>();
             builder.Services.AddScoped<IGoodsServices, GoodsServices>();
             builder.Services.AddScoped<ISupplierServices, SupplierServices>();

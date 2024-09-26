@@ -12,7 +12,7 @@ namespace POS_System_BAL.Services.Customer
     {
         Task<IEnumerable<TblCustomer>> GetAllCustomer(string company_id);
         Task<TblCustomer> GetCustomer(string company_id, string customer_id);
-        Task<TblCustomer> CreateCustomer(TblCustomer customer);
+        Task CreateCustomer(TblCustomer customer);
         Task UpdateCustomer(CustomerDTO customerDTO);
         Task DeleteCustomer(string customer_id);
     }

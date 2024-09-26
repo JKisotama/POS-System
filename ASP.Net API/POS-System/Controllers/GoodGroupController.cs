@@ -37,10 +37,10 @@ namespace POS_Final_Year.Controller
             return Ok(groupList);
         }
 
-        [HttpGet("Get Group{id}")]
+        [HttpGet("Get Group")]
         public async Task<ActionResult<TblGoodsgroup>> GetTblGoodsgroup(string store_id, string group_id)
         {
-            var tblGoodsgroup = _goodsServices.GetGroupAsync(store_id,group_id);
+            var tblGoodsgroup = await _goodsServices.GetGroupAsync(store_id,group_id);
 
             if (tblGoodsgroup == null)
             {
@@ -53,7 +53,7 @@ namespace POS_Final_Year.Controller
         [HttpGet("Get Goods By Group")]
         public async Task<ActionResult<IEnumerable<TblGood>>> GetGoodByGroup(string store_id,string group_id)
         {
-            var goods = _goodsServices.GetGoodsByGroupAsync(store_id,group_id);
+            var goods = await _goodsServices.GetGoodsByGroupAsync(store_id,group_id);
             return Ok(goods);
         }
 
@@ -74,7 +74,9 @@ namespace POS_Final_Year.Controller
             }
             
             return Ok(goods);
-        }[HttpGet("Get Image")]
+        }
+        
+        [HttpGet("Get Image")]
         public async Task<ActionResult<TblGood>> GetImage(string store_id,string goods_id)
         {
             var image = await _goodsServices.GetImage(store_id, goods_id);
@@ -146,7 +148,8 @@ namespace POS_Final_Year.Controller
         public async Task<ActionResult<TblGoodsgroup>> PostTblGoodsgroup(GoodsGroupDTO goodsGroupDTO)
         {
             await _goodsServices.SaveGoodsGroup(goodsGroupDTO);
-            return CreatedAtAction("GetTblGoodsgroup", new { id = goodsGroupDTO.GroupId }, goodsGroupDTO);
+            //return CreatedAtAction("GetTblGoodsgroup", new { id = goodsGroupDTO.GroupName }, goodsGroupDTO);
+            return Ok("Test");
         }
 
         // DELETE: api/GoodGroup/5
@@ -182,9 +185,9 @@ namespace POS_Final_Year.Controller
         [HttpPost("Save Property")]
         public async Task<ActionResult<TblGoodsproperty>> PostTblGoodProperty(string store_id, string goods_id, string property_id, string property_value)
         {
-            var property = _goodsServices.SaveProperty(store_id,goods_id, property_id, property_value);
+            await _goodsServices.SaveProperty(store_id,goods_id, property_id, property_value);
 
-            return CreatedAtAction(nameof(TblGoodsproperty), property);
+            return CreatedAtAction(nameof(TblGoodsproperty), property_id);
         }
         [HttpPost("Save Selling Price")]
         public async Task<ActionResult<TblSellprice>> PostTblSellPrice(string goods_id, string unit, string barcode, int quantity, int selling_price)

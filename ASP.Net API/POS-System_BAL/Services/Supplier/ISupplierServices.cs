@@ -12,7 +12,7 @@ namespace POS_System_BAL.Services.Supplier
     {
         Task<IEnumerable<TblSupplier>> GetAllSupplier(string store_id);
         Task<TblSupplier> GetSupplier(string store_id, string supplier_id);
-        Task<TblSupplier> CreateSupplier(TblSupplier supplier);
+        Task CreateSupplier(SupplierDTO supplier);
         Task UpdateSupplier(SupplierDTO supplierDTO);
         Task<TblSupplier> DeleteAsync(string store_id, string supplier_id);
     }

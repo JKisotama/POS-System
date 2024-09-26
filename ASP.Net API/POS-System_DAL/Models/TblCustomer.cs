@@ -17,9 +17,9 @@ public partial class TblCustomer
 
     public int? Allowdebt { get; set; }
 
-    public int? CustomerCounter { get; set; }
+    public int CustomerCounter { get; set; }
 
     public string? CompanyId { get; set; }
 
-    public DateTime? CreatedDate { get; set; }
+    public DateTime CreatedDate { get; set; }
 }

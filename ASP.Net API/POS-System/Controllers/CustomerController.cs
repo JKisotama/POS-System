@@ -24,7 +24,7 @@ namespace POS_Final_Year.Controller
             _customerServices = customerServices;
         }
 
-        // GET: api/Customer
+
         [HttpGet("Gett All Customer")]
         public async Task<ActionResult<IEnumerable<TblCustomer>>> GetTblCustomers(string company_id)
         {
@@ -32,7 +32,6 @@ namespace POS_Final_Year.Controller
             return Ok(customers);
         }
 
-        // GET: api/Customer/5
         [HttpGet("Get Customer")]
         public async Task<ActionResult<TblCustomer>> GetTblCustomer(string comapny_id, string customer_id)
         {
@@ -46,8 +45,7 @@ namespace POS_Final_Year.Controller
             return Ok(customer);
         }
 
-        // PUT: api/Customer/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPut("Edit Customer")]
         public async Task<IActionResult> PutTblCustomer(string comapny_id,string customer_id, CustomerDTO customerDTO)
         {
@@ -64,8 +62,6 @@ namespace POS_Final_Year.Controller
             
         }
 
-        // POST: api/Customer
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("Save Customer")]
         public async Task<ActionResult<TblCustomer>> PostTblCustomer(TblCustomer tblCustomer)
         {
@@ -76,7 +72,6 @@ namespace POS_Final_Year.Controller
             return CreatedAtAction("GetTblCustomer", new { id = tblCustomer.CustomerId }, tblCustomer);
         }
 
-        // DELETE: api/Customer/5
         [HttpDelete("Delete Customer ")]
         public async Task<IActionResult> DeleteTblCustomer(string comapny_id, string customer_id)
         {
