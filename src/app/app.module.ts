@@ -27,6 +27,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MenuItem } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { PosMainComponent } from './POS/pos-main/pos-main.component';
+import { CarouselModule } from 'primeng/carousel';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,7 @@ import { PosMainComponent } from './POS/pos-main/pos-main.component';
     MatIconModule,
     MatTableModule,
 
-    ToolbarModule, ButtonModule, SplitButtonModule,InputTextModule,AvatarModule,
+    ToolbarModule, ButtonModule, SplitButtonModule,InputTextModule,AvatarModule,CarouselModule, ButtonModule, TagModule,
     
 ],
   providers: [provideClientHydration(), provideAnimationsAsync()],
