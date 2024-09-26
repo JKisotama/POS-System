@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
 import { AdminPageComponent } from './admin/admin-page/admin-page.component';
 import { AdminSidebarComponent } from './admin/admin-sidebar/admin-sidebar.component';
-import { PosHeaderComponent } from './pos-header/pos-header.component';
-import { PosFooterComponent } from './pos-footer/pos-footer.component';
+import { PosHeaderComponent } from './POS/pos-header/pos-header.component';
+import { PosFooterComponent } from './POS/pos-footer/pos-footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,8 +20,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import { DashboardComponent } from './admin/admin-page/dashboard/dashboard.component';
 
-
-
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { InputTextModule } from 'primeng/inputtext';
+import { MenuItem } from 'primeng/api';
+import { AvatarModule } from 'primeng/avatar';
+import { PosMainComponent } from './POS/pos-main/pos-main.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +37,7 @@ import { DashboardComponent } from './admin/admin-page/dashboard/dashboard.compo
     PosHeaderComponent,
     PosFooterComponent,
     DashboardComponent,
+    PosMainComponent,
   ],
   imports: [
     BrowserModule, 
@@ -43,6 +49,8 @@ import { DashboardComponent } from './admin/admin-page/dashboard/dashboard.compo
     MatDividerModule, 
     MatIconModule,
     MatTableModule,
+
+    ToolbarModule, ButtonModule, SplitButtonModule,InputTextModule,AvatarModule,
     
 ],
   providers: [provideClientHydration(), provideAnimationsAsync()],
