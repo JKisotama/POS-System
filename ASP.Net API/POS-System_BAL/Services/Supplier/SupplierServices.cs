@@ -2,7 +2,6 @@
 using POS_System_BAL.DTOs;
 using POS_System_DAL.Data;
 using POS_System_DAL.Models;
-using POS_System_DAL.Repository.Supplier;
 using System;
 using System.Collections.Generic;
 using System.Linq;

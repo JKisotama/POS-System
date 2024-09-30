@@ -56,12 +56,12 @@ namespace POS_System_BAL.Services.Goods
                 .ToListAsync();
         }
 
-        public async Task<TblPropertygroup> GetPropertyGroupAsync(string store_id, string property_id)
+        public async Task<TblPropertygroup> GetPropertyGroupAsync(string store_id,string property_id)
         {
-            var propertyGroup = await _onlinePosContext.TblPropertygroups
+            var property = await _onlinePosContext.TblPropertygroups
                 .Where(s => s.StoreId == store_id && s.PropertyId == property_id)
                 .FirstOrDefaultAsync();
-            return propertyGroup;
+            return property;
         }
 
         public async Task<TblGood> GetGoodsAsync(string store_id, string goods_id)
@@ -69,7 +69,6 @@ namespace POS_System_BAL.Services.Goods
             var goods = await _onlinePosContext.TblGoods
                 .Where(s => s.StoreId == store_id && s.GoodsId == goods_id)
                .FirstOrDefaultAsync();
-           
             return goods;
         }
 
@@ -86,7 +85,7 @@ namespace POS_System_BAL.Services.Goods
             var entity = _mapper.Map<TblGoodsgroup>(goodsGroupDTO);
             var groupCounter = GenerateGoodGroupID(entity.StoreId);
             entity.GroupCounter = GetGroupCounterByStoreId(entity.StoreId) + 1;
-            entity.GroupId = entity.StoreId + groupCounter;
+            entity.GroupId = groupCounter;
             _onlinePosContext.TblGoodsgroups
                 .Add(entity);
             await _onlinePosContext.SaveChangesAsync();
@@ -103,14 +102,12 @@ namespace POS_System_BAL.Services.Goods
         }
 
         public async Task SaveGoods(GoodsDTO goodsDTO, IFormFile imageFile)
-        {
-                        
+        {     
             var entity = _mapper.Map<TblGood>(goodsDTO);
-            var goodsCounter = GenerateGoodId(entity.StoreId, goodsDTO.GroupId);
-            entity.GoodsId = goodsCounter;
+            var goodsCounter = GenerateGoodId(entity.StoreId);
+            entity.GoodsId = entity.StoreId + goodsCounter;
             entity.GoodsCounter = GetGoodsCounterByStoreId(entity.StoreId) + 1;
-
-            string imageData = await SaveImage(imageFile, entity.StoreId, entity.GoodsId);
+            string imageData = await SaveImage(imageFile, entity.StoreId, goodsCounter);
             entity.Picture = imageData;
             _onlinePosContext.TblGoods.Add(entity);
             await _onlinePosContext.SaveChangesAsync();
@@ -154,11 +151,11 @@ namespace POS_System_BAL.Services.Goods
             return group_id;
         }
 
-        public string GenerateGoodId(string store_id, string goodgroup_id)
+        public string GenerateGoodId(string store_id)
         {
             int counter = GetGoodsCounterByStoreId(store_id);
             var nCounter = counter + 1;
-            string good_id = goodgroup_id + new string('0', 4 - nCounter.ToString().Length) + nCounter.ToString();
+            string good_id = new string('0', 3 - nCounter.ToString().Length) + nCounter.ToString();
             return good_id;
         }
 
@@ -208,7 +205,7 @@ namespace POS_System_BAL.Services.Goods
             
             string filename = "";
             var type = "stores";
-            var filepath = Path.Combine("wwwroot","image", type, id);
+            var filepath = Path.Combine("wwwroot", "image", $"{type}\\{id}");
 
             if (!Directory.Exists(filepath))
             {

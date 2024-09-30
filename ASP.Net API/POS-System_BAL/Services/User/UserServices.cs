@@ -1,4 +1,5 @@
-﻿using POS_System_DAL.Models;
+﻿using POS_System_DAL.Authentication;
+using POS_System_DAL.Models;
 using POS_System_DAL.Repository.User;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,11 @@ namespace POS_System_BAL.Services.User
     public class UserServices : IUserServices
     {
         private readonly IUserRepository _userRepository;
-        public UserServices(IUserRepository userRepository)
+        private readonly IAuthenticate _authenticate;
+        public UserServices(IUserRepository userRepository, IAuthenticate authenticate)
         {
             _userRepository = userRepository;           
+            _authenticate = authenticate;
         }
 
         public async Task<IEnumerable<TblUser>> GetAllUser(string store_id)
@@ -57,6 +60,11 @@ namespace POS_System_BAL.Services.User
             }
             throw new InvalidOperationException("Null");
 
+        }
+
+        public async Task Login(string store_id, string login_name, string password)
+        {
+            _authenticate.CheckLogin(store_id, login_name, password);
         }
     }
 }

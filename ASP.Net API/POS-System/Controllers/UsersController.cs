@@ -92,20 +92,8 @@ namespace POS_Final_Year.Controller
         [HttpGet("Login")]
         public async Task<IActionResult> Login (string store_id, string login_name, string password)
         {
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-                var user = await _context.TblUsers
-                    .Where(u => u.StoreId == store_id && u.LoginName == login_name && u.PassWord == password)
-                    .FirstOrDefaultAsync();
-
-                if (user != null)
-                {
-                    return Ok(user);
-                }
-            
-            return NotFound();
+            await _userServices.Login(store_id,login_name,password);
+            return Ok();
         }
 
     

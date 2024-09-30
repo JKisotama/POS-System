@@ -13,5 +13,6 @@ namespace POS_System_BAL.Services.User
         Task<TblUser> GetUser(string store_id, string login_name);
         Task<TblUser> CreateUser(TblUser user);
         Task<TblUser> UpdateUser(string storeId, string loginName, string fullName, string identifyString, string password, int status);
+        Task Login(string store_id, string login_name, string password);
     }
 }

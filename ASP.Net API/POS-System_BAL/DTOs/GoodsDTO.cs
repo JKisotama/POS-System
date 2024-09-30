@@ -19,7 +19,7 @@ namespace POS_System_BAL.DTOs
 
         public int? GoodsStatus { get; set; }
 
-       
+        public string StoreId {  get; set; }  
        
     }
 }

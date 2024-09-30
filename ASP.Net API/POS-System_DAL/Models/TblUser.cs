@@ -17,9 +17,9 @@ public partial class TblUser
 
     public string? UserLanguage { get; set; }
 
-    public int? UserType { get; set; }
+    public int UserType { get; set; }
 
     public int? UserLevel { get; set; }
 
-    public int? UserStatus { get; set; }
+    public int UserStatus { get; set; }
 }

@@ -9,9 +9,9 @@ using POS_System_BAL.Services.User;
 using POS_System_DAL;
 using POS_System_DAL.Data;
 using POS_System_DAL.Repository;
-using POS_System_DAL.Repository.Supplier;
 using POS_System_DAL.Repository.User;
 using AutoMapper;
+using POS_System_DAL.Authentication;
 
 namespace POS_System
 {
@@ -43,6 +43,7 @@ namespace POS_System
             builder.Services.AddScoped<IGoodsServices, GoodsServices>();
             builder.Services.AddScoped<ISupplierServices, SupplierServices>();
             builder.Services.AddScoped<ICustomerServices, CustomerServices>();
+            builder.Services.AddScoped<IAuthenticate, Authenticate>();
 
 
             var app = builder.Build();

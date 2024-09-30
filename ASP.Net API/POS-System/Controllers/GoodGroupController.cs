@@ -57,10 +57,24 @@ namespace POS_Final_Year.Controller
             return Ok(goods);
         }
 
-        [HttpGet("Get Property Group")]
-        public async Task<ActionResult<TblPropertygroup>> GetPropertyGood(string store_id, string property_id)
+        [HttpGet("Get All Property Group")]
+        public async Task<ActionResult<TblPropertygroup>> GetAllPropertyGood(string store_id)
         {
-            var properties = await _goodsServices.GetPropertyGroupAsync(store_id,property_id);
+            var properties = await _goodsServices.GetAllPropertyGroupAsync(store_id);
+            if (properties == null)
+            {
+                return Ok(new { message = "No property group found" });
+            }
+            return Ok(properties);
+        } 
+        [HttpGet("Get Property Group")]
+        public async Task<ActionResult<TblPropertygroup>> GetPropertyGood(string store_id,string property_id)
+        {
+            var properties = await _goodsServices.GetPropertyGroupAsync(store_id, property_id);
+            if (properties == null)
+            {
+                return NotFound("No property group found");
+            }
             return Ok(properties);
         } 
         
@@ -85,14 +99,14 @@ namespace POS_Final_Year.Controller
         }
 
         [HttpGet("Get Good Unit")]
-        public async Task<ActionResult<IEnumerable<TblGoodsunit>>> GetUnit(string store_id, int type)
+        public async Task<ActionResult<IEnumerable<TblGoodsunit>>> GetUnit(string store_id, string goods_id,int type)
         {
-            var unit = await _context.TblGoodsunits.FindAsync(store_id, type);
-            if (store_id == unit.StoreId && type == unit.UnitStatus)
+            var unit = await _goodsServices.GetGoodsUnitAsync(store_id, goods_id, type);
+            if (store_id != null && goods_id != null && type != null)
             {
-                return Ok(unit);
+                return NotFound("Not Found Unit");
             }
-            return NotFound();
+            return Ok(unit);
         }
 
         [HttpGet("Get Good Property")]
@@ -167,18 +181,8 @@ namespace POS_Final_Year.Controller
             return StatusCode(201, "Create OK");
         }
         [HttpPost("Save Unit")]
-        public async Task<ActionResult<TblGoodsunit>> PostTblUnit([FromBody] GoodUnitDTO goodsunit/*string store_id,string goods_id, int applied_type, string unit_name, int sku, int size*/)
+        public async Task<ActionResult<TblGoodsunit>> PostTblUnit([FromQuery] GoodUnitDTO goodsunit/*string store_id,string goods_id, int applied_type, string unit_name, int sku, int size*/)
         {
-
-            goodsunit = new GoodUnitDTO
-            {
-                StoreId = goodsunit.StoreId,
-                GoodsId = goodsunit.GoodsId,
-                UnitStatus = goodsunit.UnitStatus,
-                GoodsUnit = (goodsunit.GoodsId + "xx"),
-                UnitStock = goodsunit.UnitStock,
-                UnitSize = goodsunit.UnitSize
-            };
             await _goodsServices.SaveUnit(goodsunit);
             return CreatedAtAction(("GetUnit"), new { id = goodsunit.GoodsUnit }, goodsunit);
         }
@@ -198,11 +202,11 @@ namespace POS_Final_Year.Controller
             prices.Barcode = barcode;
             prices.SellNumber = quantity;
             prices.SellPrice = selling_price;
-            
-            _context.TblSellprices.Add(prices);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(TblSellprice), new {id = prices.GoodsId}, prices);
+            await _goodsServices.SaveSellingPrices(prices);
+            
+
+            return Ok(prices);
         }
 
         private bool TblGoodsgroupExists(string id)

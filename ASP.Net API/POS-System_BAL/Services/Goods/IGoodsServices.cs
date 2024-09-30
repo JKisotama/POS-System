@@ -25,7 +25,7 @@ namespace POS_System_BAL.Services.Goods
         Task SaveGoods(GoodsDTO goodsDTO, IFormFile imageFile);
         Task SaveProperty(string store_id, string goods_id, string property_id, string property_value);
         string GenerateGoodGroupID(string store_id);
-        string GenerateGoodId(string store_id, string goodgroup_id);
+        string GenerateGoodId(string store_id);
         string GenerateGoodGroupProperty(string store_id);
         int GetGroupCounterByStoreId(string storerId);
         int GetGoodsCounterByStoreId(string storeId);
