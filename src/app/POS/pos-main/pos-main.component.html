@@ -1,13 +1,82 @@
 <app-pos-header></app-pos-header>
 
-<div class="container-fuild">
+<div class="row">
     <div class="col-12 pos-main-top">
         <h4 class="">Bills Pending:</h4>
 
     </div>
 
     <div class="col-8">
-        
+        <div class="card-table">
+          <h3>Data Table:</h3>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Products Name</th>
+                    <th scope="col">Prices</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>mdo</td>
+                    <td>mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>mdo</td>
+                    <td>mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>mdo</td>
+                    <td>mdo</td>
+                    <td>mdo</td>
+                    <td>mdo</td>
+
+                  </tr>
+                </tbody>
+            </table>            
+
+        </div>
+
+    </div>
+    <div class="col-4">
+        <div class="prodcut-edit ">
+            <p class="">Product Name: <span class="fw-bold">Boobaa milk mlem mlem</span></p>
+            <p>Prices: <input type="number" class="text-center" id="pd-price" min="0" step="1000"  pattern="\d*" ><span class="fw-bold">VND</span></p>
+            <p>Quantity: <input type="number" class="text-center" id="pd-quantity" min="1" step="1"></p>                
+        </div>
+        <div class="member">
+          <div class="mem-title d-flex justify-content-between">
+            <h4 class="">Member information: </h4>
+            <button type="button" class="btn btn-success">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+
+          </div>
+          <p>Name: <span class="fw-bold"> WhoTillBunReal</span></p>
+          <button type="button" class="btn btn-danger">
+            Remove
+          </button>
+          
+        </div>
+        <div class="btn-zone d-flex justify-content-evenly">
+          <button type="button" class="btn btn-danger">
+            Button
+          </button>
+          <button type="button" class="btn btn-success">
+            Button
+          </button>
+          
+        </div>
     </div>
 
-</div>
+</div>    
