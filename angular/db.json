@@ -1,55 +1,5 @@
 {
-  "staff": [
-    {
-      "code": "GCS1002",
-      "name": "David Nguyen",
-      "age": "22",
-      "role": "Employee",
-      "department": "Bach Hoa Xanh",
-      "id": "1"
-    },
-    {
-      "code": "GCS1003",
-      "name": "Trinity Alex",
-      "age": "25",
-      "role": "Manager",
-      "department": "Bach Hoa Xanh",
-      "id": "2"
-    },
-    {
-      "id": "3",
-      "code": "P2R7JCGU",
-      "name": "ABC",
-      "age": "15",
-      "role": "Manager",
-      "department": "Ministop"
-    },
-    {
-      "id": "4",
-      "code": "GTLYHWVM",
-      "name": "Pop Durk",
-      "age": "19",
-      "role": "Employee",
-      "department": "Circle K"
-    },
-    {
-      "id": "ecdb",
-      "code": "GCS20991",
-      "name": "Le Man",
-      "age": "20",
-      "role": "Employee",
-      "department": "Circle K"
-    },
-    {
-      "id": "e3a6",
-      "code": "TWEKND",
-      "name": "The Weeknd",
-      "age": "20",
-      "role": "Manager",
-      "department": "Circle K"
-    }
-  ],
-  "goods": [
+    "goods": [
     {
       "id": "03ff",
       "groupId": "FOOD1",
@@ -287,7 +237,7 @@
       "goodsId": "BEEF1002",
       "barCode": "1981111234",
       "goodsUnit": "Pack",
-      "unitSize": "550ml",
+      "unitSize": "100g",
       "unitStatus": "Available",
       "unitStock": "300 packs"
     },
@@ -308,259 +258,25 @@
       "unitSize": "1,5 liter",
       "unitStatus": "Available",
       "unitStock": "5000 Bottle"
-    }
-  ],
-  "sellPrice": [
-    {
-      "id": "1",
-      "goodsId": "AP0001",
-      "barCode": "000009123123",
-      "goodsUnit": "bag",
-      "sellNumber": "1",
-      "sellPrice": "100.000vnd"
     },
     {
-      "id": "7c55",
-      "goodsId": "MILK10005",
-      "barCode": "66666666",
-      "goodsUnit": "Bottle",
-      "sellNumber": "1",
-      "sellPrice": "25.000 VND"
-    },
-    {
-      "id": "ea35",
-      "goodsId": "MILK10005",
-      "barCode": "66666666",
-      "goodsUnit": "Box",
-      "sellNumber": "1",
-      "sellPrice": "500.000 VND"
-    },
-    {
-      "id": "8d0b",
-      "goodsId": "COLA1001",
-      "barCode": "1981111234",
-      "goodsUnit": "Bottle",
-      "sellNumber": "1",
-      "sellPrice": "10.000 VND"
-    },
-    {
-      "id": "5552",
-      "goodsId": "COLA1001",
-      "barCode": "1981111234",
-      "goodsUnit": "Vortex",
-      "sellNumber": "1",
-      "sellPrice": "60.000 VND"
-    },
-    {
-      "id": "4a67",
-      "goodsId": "PEPSI1001",
-      "barCode": "909123141",
-      "goodsUnit": "Bottle",
-      "sellNumber": "1",
-      "sellPrice": "10.000 VND"
-    },
-    {
-      "id": "5a32",
-      "goodsId": "PEPSI1001",
-      "barCode": "909123141",
-      "goodsUnit": "Vortex",
-      "sellNumber": "1",
-      "sellPrice": "60.000 VND"
-    },
-    {
-      "id": "93fa",
+      "id": "ce5b",
       "goodsId": "BEEF1002",
       "barCode": "909123141",
       "goodsUnit": "Pack",
-      "sellNumber": "1",
-      "sellPrice": "250.000 VND"
-    }
-  ],
-  "goodsProperty": [
-    {
-      "id": "1",
-      "goodsId": "AP0001",
-      "propertyId": "10002123",
-      "propertyName": "Socola",
-      "propertyValue": "1"
+      "unitSize": "1kg",
+      "unitStatus": "Available",
+      "unitStock": "400 packs"
     },
     {
-      "id": "21b7",
+      "id": "2b21",
       "goodsId": "BEEF1002",
-      "propertyId": "1002B123",
-      "propertyName": "Raw",
-      "propertyValue": "1"
-    },
-    {
-      "id": "14fd",
-      "goodsId": "K1002",
-      "propertyId": "100211",
-      "propertyName": "Matcha",
-      "propertyValue": "2"
-    },
-    {
-      "id": "8b1f",
-      "goodsId": "K1002",
-      "propertyId": "100210",
-      "propertyName": "Socola",
-      "propertyValue": "5"
-    },
-    {
-      "id": "7d4c",
-      "goodsId": "PEPSI1001",
-      "propertyId": "100211",
-      "propertyName": "Less Sugar",
-      "propertyValue": "20"
-    },
-    {
-      "id": "f815",
-      "goodsId": "PEPSI1001",
-      "propertyId": "100210",
-      "propertyName": "Lemonade",
-      "propertyValue": "20"
-    }
-  ],
-  "propertyGroup": [
-    {
-      "id": "1",
-      "propertyId": "10002123",
-      "propertyName": "Taste"
-    },
-    {
-      "id": "4321",
-      "propertyId": "10022122",
-      "propertyName": "Size"
-    }
-  ],
-  "supplier": [
-    {
-      "id": "1",
-      "supplierId": "10021",
-      "supplierName": "Cocacola",
-      "supplierType": "Soft drink",
-      "supplierAddress": "20 Cong Hoa, Tan Binh District, Ho Chi Minh city",
-      "supplierPhone": "0943330432",
-      "supplierEmail": "toilathinh150503@gmail.com"
-    },
-    {
-      "id": "ea14",
-      "supplierId": "10022",
-      "supplierName": "Pepsico",
-      "supplierType": "Soft drink",
-      "supplierAddress": "Thu Dau Mot , Binh Duong",
-      "supplierPhone": "0973374820",
-      "supplierEmail": "thinhvhgcs210908@fpt.edu.vn"
-    },
-    {
-      "id": "a930",
-      "supplierId": "10023",
-      "supplierName": "Netsle",
-      "supplierType": "Snacks",
-      "supplierAddress": "311 Dien Bien Phu, District 1, Ho Chi Minh city",
-      "supplierPhone": "0912214827",
-      "supplierEmail": "thinhvh2003@gmail.com"
-    },
-    {
-      "id": "b085",
-      "supplierId": "10024",
-      "supplierName": "Vissan",
-      "supplierType": "Food",
-      "supplierAddress": "420 No Trang Long, ward 13, Binh Thanh District, Ho Chi Minh city",
-      "supplierPhone": "0973374820",
-      "supplierEmail": "vissan@gmail.com"
-    }
-  ],
-  "receipt": [
-    {
-      "dateReceipt": "20/08/2024",
-      "receiptNumber": "09098281",
-      "supplier": "Netsle",
-      "totalAmount": "5.000.000 VND",
-      "inDept": "2.000.000 VND",
-      "status": "Not Delivered",
-      "id": "af97"
-    },
-    {
-      "id": "1bfa",
-      "dateReceipt": "20/08/2024",
-      "receiptNumber": "1891112",
-      "supplier": "Cocacola",
-      "totalAmount": "50.000.000 VND",
-      "inDept": "20.000.000 VND",
-      "status": "Delivered"
-    },
-    {
-      "id": "fed8",
-      "dateReceipt": "19/08/2024",
-      "receiptNumber": "15052003",
-      "supplier": "PepsiCo",
-      "totalAmount": "30.000.000 VND",
-      "inDept": "10.000.000 VND",
-      "status": "Delivered"
-    },
-    {
-      "id": "69f7",
-      "dateReceipt": "21/08/2024",
-      "receiptNumber": "19001560",
-      "supplier": "Vissan",
-      "totalAmount": "15.500.000 VND",
-      "inDept": "1.000.000 VND",
-      "status": "Delivered"
-    }
-  ],
-  "inventory": [
-    {
-      "amount": "200",
-      "unit": "Pack",
-      "goodsName": "Beef Steak",
-      "type": "Food",
-      "buyPrice": "100.000 VND",
-      "totalAmount": "100.000.000 VND",
-      "id": "b924"
-    },
-    {
-      "id": "e246",
-      "amount": "5000",
-      "unit": "Bottle",
-      "goodsName": "Coca 550 ml",
-      "type": "Soft Drink",
-      "buyPrice": "10.000 VND",
-      "totalAmount": "50.000.000 VND"
-    },
-    {
-      "id": "8774",
-      "amount": "100",
-      "unit": "Pack",
-      "goodsName": "Kitkat ",
-      "type": "Snack",
-      "buyPrice": "15.000 VND",
-      "totalAmount": "1.500.000 VND"
-    }
-  ],
-  "customer": [
-    {
-      "id": "1",
-      "customerId": "GCS210908",
-      "customerName": "Tran Nguyen Dong Quan",
-      "customerAddress": "1001 CMT8, ward 7 , Tan Binh District, Ho Chi Minh city",
-      "customerPhone": "0943330432",
-      "customerEmail": "quantnd@gmail.com"
-    },
-    {
-      "id": "2103",
-      "customerId": "GCS100123",
-      "customerName": "Vu Hong Thinh",
-      "customerAddress": "20 Cong Hoa, Ward 12, Tan Binh District, Ho Chi Minh city",
-      "customerPhone": "0908337424",
-      "customerEmail": "thinhvhgcs210908@fpt.edu.vn"
-    },
-    {
-      "id": "be83",
-      "customerId": "GCS2004",
-      "customerName": "Pham Quoc Tuan",
-      "customerAddress": "405 Dien Bien Phu, ward 5, Bien Hoa city",
-      "customerPhone": "079203016406",
-      "customerEmail": "tuanpq@gmail.com"
+      "barCode": "66666666",
+      "goodsUnit": "Pack",
+      "unitSize": "500g",
+      "unitStatus": "Unavailable",
+      "unitStock": "0 packs"
     }
   ]
+
 }

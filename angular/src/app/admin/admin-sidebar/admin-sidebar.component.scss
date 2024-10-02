@@ -1,0 +1,35 @@
+@import "../../../_variables.scss";
+
+
+
+.ad-infor{
+    padding: 50px 0 0 10px;
+    img{
+        height: 80px;
+        border-radius: 15px;
+    }
+    .ad-detail{
+        margin: 5px 0 0 20px;
+        h4,p{
+            color: $White-Snow;
+
+        }
+    }
+    
+}
+
+.ad-sidemenu{
+    margin: 10px 0 0 10px;
+    ul{
+        padding: 0 10px 0 0;
+        li{
+            border: 1px solid;
+            a{
+                color: $White-Snow;
+            }
+        }
+    }
+}
+.admin-sidebar{
+
+}

@@ -1,0 +1,26 @@
+@import "../../../styles.scss";
+
+
+.pos-header-bg{
+    background-color: $Greenwich;
+    padding: 50px 25px 50px 25px !important;
+    border-radius: 0px 0px 40px 40px;
+    margin-bottom: 30px;
+
+    .pos-header-who{
+        img{
+            height: 75px;
+            border: $Gluon-Grey solid 1px;
+            border-radius: 50px;
+        }
+
+    }
+
+    .pos-header-logo{
+        img{
+            height: 70px;
+            width: 273px;
+            
+        }
+    }
+}
