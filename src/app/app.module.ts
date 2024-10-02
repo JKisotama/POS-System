@@ -29,6 +29,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { PosMainComponent } from './POS/pos-main/pos-main.component';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
+import { LoginComponent } from './authentication/login/login.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { TagModule } from 'primeng/tag';
     PosFooterComponent,
     DashboardComponent,
     PosMainComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule, 
