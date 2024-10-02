@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using POS_System_BAL.DTOs;
 using POS_System_BAL.Services.User;
 using POS_System_DAL.Data;
 using POS_System_DAL.Models;
@@ -55,12 +56,12 @@ namespace POS_Final_Year.Controller
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("Update User")]
-        public async Task<IActionResult> PutTblUser(string store_id, string login_name, string full_name,string identifyString,string password, int status)
+        public async Task<IActionResult> PutTblUser([FromQuery]UserDTO userDTO,string store_id, string login_name)
         {
 
-            var user = await _userServices
-                .UpdateUser(store_id, login_name, full_name,identifyString,password,status);
-            return Ok(user);
+            var updateUser = await _userServices
+                .UpdateUser(userDTO,store_id, login_name);
+            return Ok(updateUser);
         }
 
         // POST: api/Users

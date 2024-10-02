@@ -139,6 +139,18 @@ namespace POS_System_BAL.Services.Goods
 
         public async Task SaveSellingPrices(TblSellprice tblSellprice)
         {
+            string? storeId = _onlinePosContext.TblGoods
+                        .Where(g => g.GoodsId == tblSellprice.GoodsId)
+                        .Select(g => g.StoreId)
+                        .FirstOrDefault();
+            if (storeId != null)
+            {
+                tblSellprice.StoreId = storeId;
+            }
+            else
+            {
+                throw new InvalidOperationException("No store ID found for goods ID");
+            }
             _onlinePosContext.TblSellprices
                 .Add(tblSellprice);
             await _onlinePosContext.SaveChangesAsync();

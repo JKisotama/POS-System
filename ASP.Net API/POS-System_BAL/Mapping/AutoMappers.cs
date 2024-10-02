@@ -14,12 +14,20 @@ namespace POS_System_BAL.Mapping
     {
         public AutoMappers()
         {
-            CreateMap<TblSupplier, SupplierDTO>().ReverseMap();
-            CreateMap<TblCustomer, CustomerDTO>().ReverseMap();
-            CreateMap<TblGoodsunit, GoodUnitDTO>().ReverseMap();
+            CreateMap<TblSupplier, SupplierDTO>()
+                .ReverseMap();
+            CreateMap<TblCustomer, CustomerDTO>()
+                .ReverseMap();
+            CreateMap<TblGoodsunit, GoodUnitDTO>()
+                .ReverseMap();
             CreateMap<TblGood, GoodsDTO>()
                 .ReverseMap();
-            CreateMap<TblGoodsgroup, GoodsGroupDTO>().ReverseMap();
+            CreateMap<TblGoodsgroup, GoodsGroupDTO>()
+                .ReverseMap();
+            CreateMap<TblUser, UserDTO>()
+                .ReverseMap();
+            CreateMap<TblSellprice, SellPriceDTO>()
+                .ReverseMap();
         }
     }
 

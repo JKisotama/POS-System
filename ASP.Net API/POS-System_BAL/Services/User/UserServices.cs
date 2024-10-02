@@ -1,4 +1,8 @@
-﻿using POS_System_DAL.Authentication;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using POS_System_BAL.DTOs;
+using POS_System_DAL.Authentication;
+using POS_System_DAL.Data;
 using POS_System_DAL.Models;
 using POS_System_DAL.Repository.User;
 using System;
@@ -11,55 +15,75 @@ namespace POS_System_BAL.Services.User
 {
     public class UserServices : IUserServices
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
         private readonly IAuthenticate _authenticate;
-        public UserServices(IUserRepository userRepository, IAuthenticate authenticate)
+        private readonly OnlinePosContext _onlinePosContext;
+        public UserServices(IMapper mapper, IAuthenticate authenticate, OnlinePosContext onlinePosContext)
         {
-            _userRepository = userRepository;           
+            _mapper = mapper;
             _authenticate = authenticate;
+            _onlinePosContext = onlinePosContext;
         }
 
         public async Task<IEnumerable<TblUser>> GetAllUser(string store_id)
         {
             if (true)
             {
-               await _userRepository.GettAllAsync(s => s.StoreId == store_id);
+                await _onlinePosContext.TblUsers.Where(s => s.StoreId == store_id).ToListAsync();
             }
             return null;
         }
 
         public async Task<TblUser> GetUser(string store_id, string login_name)
         {
-            return await _userRepository.GetAsync(s => s.StoreId == store_id && s.LoginName == login_name );
+            return await _onlinePosContext.TblUsers.FirstOrDefaultAsync(s => s.StoreId == store_id && s.LoginName == login_name);
         }
 
         public async Task<TblUser> CreateUser(TblUser user)
         {
-            if (! await _userRepository.TblUserExists(user.LoginName))
+            try
             {
-                throw new InvalidOperationException("User Already Exist");
+                var newUser = new TblUser
+                {
+                    StoreId = user.StoreId,
+                    LoginName = user.LoginName,
+                    FullName = user.FullName,
+                    PassWord = _authenticate.VerifyPasswordHash(user.PassWord),
+                    IdentifyString = user.IdentifyString,
+                    UserLanguage = user.UserLanguage,
+                    UserType = user.UserType,
+                    UserLevel = 1,
+                    UserStatus = 0
+                };
+                _onlinePosContext.TblUsers.Add(newUser);
+                await _onlinePosContext.SaveChangesAsync();
+                
+                return newUser;
             }
-
-            await _userRepository.AddAsync(user);
-            return user;
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
-        public async Task<TblUser> UpdateUser(string storeId, string loginName, string fullName, string identifyString, string password, int status)
+        public async Task<UserDTO> UpdateUser(UserDTO userDTO, string store_id, string login_name)
         {
-            var user = await _userRepository.GetUser(storeId, loginName);
-            if (user != null)
+            var existUser = await GetUser(store_id,login_name);
+            var entity = _mapper.Map<UserDTO>(existUser);
+            if (existUser != null)
             {
-                user.LoginName = loginName;
-                user.FullName = fullName;
-                user.IdentifyString = identifyString;
-                user.PassWord = password;
-                user.UserStatus = status;
-                await _userRepository.UpdateAsync(user);
-                return user;
+                existUser.FullName = userDTO.FullName;
+                existUser.PassWord = _authenticate.VerifyPasswordHash(userDTO.PassWord);
+                existUser.IdentifyString = userDTO.IdentifyString;
+                existUser.UserLanguage = userDTO.UserLanguage;
+                existUser.UserType = userDTO.UserType;
+                existUser.UserLevel = userDTO.UserLevel;
+                existUser.UserStatus = userDTO.UserStatus;
                 
+                _onlinePosContext.TblUsers.Update(existUser);
+                await _onlinePosContext.SaveChangesAsync();
             }
-            throw new InvalidOperationException("Null");
-
+            return entity;
         }
 
         public async Task Login(string store_id, string login_name, string password)
