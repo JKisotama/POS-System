@@ -27,11 +27,7 @@ namespace POS_System_BAL.Services.User
 
         public async Task<IEnumerable<TblUser>> GetAllUser(string store_id)
         {
-            if (true)
-            {
-                await _onlinePosContext.TblUsers.Where(s => s.StoreId == store_id).ToListAsync();
-            }
-            return null;
+            return await _onlinePosContext.TblUsers.Where(s => s.StoreId == store_id).ToListAsync();
         }
 
         public async Task<TblUser> GetUser(string store_id, string login_name)
@@ -58,11 +54,16 @@ namespace POS_System_BAL.Services.User
                 _onlinePosContext.TblUsers.Add(newUser);
                 await _onlinePosContext.SaveChangesAsync();
                 
+               
+
                 return newUser;
+
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
+                
             }
         }
 

@@ -59,7 +59,7 @@ public partial class OnlinePosContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Server=16ACH-LEGION;Initial Catalog=POS-Web;Persist Security Info=True;Encrypt=True;TrustServerCertificate=True;Trusted_Connection=true");
-        //optionsBuilder.UseSqlServer("Server=DESKTOP-GHP70PK\\SQLEXPRESS;Database=ONLINE_POS;TrustServerCertificate=True;Trusted_Connection=True;");
+        //optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=ONLINE_POS;TrustServerCertificate=True;Trusted_Connection=True;");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -177,7 +177,8 @@ public partial class OnlinePosContext : DbContext
             entity.Property(e => e.PropertyId)
                 .HasMaxLength(3)
                 .IsUnicode(false)
-                .HasColumnName("property_id");
+                .HasColumnName("property_id")
+                .HasColumnType("nchar(3)");
             entity.Property(e => e.PropertyName)
                 .HasMaxLength(20)
                 .HasColumnName("property_name");
@@ -408,7 +409,8 @@ public partial class OnlinePosContext : DbContext
             entity.Property(e => e.PropertyId)
                 .HasMaxLength(3)
                 .IsUnicode(false)
-                .HasColumnName("property_id");
+                .HasColumnName("property_id")
+                .HasColumnType("nchar(3)");
             entity.Property(e => e.PropertyCounter).HasColumnName("property_counter");
             entity.Property(e => e.PropertyName)
                 .HasMaxLength(20)
