@@ -85,7 +85,7 @@ namespace POS_System_BAL.Services.Goods
             var entity = _mapper.Map<TblGoodsgroup>(goodsGroupDTO);
             var groupCounter = GenerateGoodGroupID(entity.StoreId);
             entity.GroupCounter = GetGroupCounterByStoreId(entity.StoreId) + 1;
-            entity.GroupId = groupCounter;
+            entity.GroupId = entity.StoreId + groupCounter;
             _onlinePosContext.TblGoodsgroups
                 .Add(entity);
             await _onlinePosContext.SaveChangesAsync();
