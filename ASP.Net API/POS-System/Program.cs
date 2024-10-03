@@ -44,6 +44,16 @@ namespace POS_System
             builder.Services.AddScoped<ISupplierServices, SupplierServices>();
             builder.Services.AddScoped<ICustomerServices, CustomerServices>();
             builder.Services.AddScoped<IAuthenticate, Authenticate>();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowLocalhost4200",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:4200")
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                    });
+            });
 
 
             var app = builder.Build();
@@ -58,7 +68,7 @@ namespace POS_System
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
+            app.UseCors("AllowLocalhost4200");
 
             app.MapControllers();
 

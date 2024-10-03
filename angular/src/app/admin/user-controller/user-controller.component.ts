@@ -70,7 +70,7 @@ export class UserControllerComponent implements OnInit {
   }
   openCreateStaffDialog() {
     const dialogRef = this.dialog.open(CreateStaffComponent, {
-      width: '400px',
+      width: '700px',
       data: { newStaff: this.newStaff }
     });
 

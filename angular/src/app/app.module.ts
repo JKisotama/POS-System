@@ -32,6 +32,8 @@ import { MatIconModule} from '@angular/material/icon'
 import { GoodsPageComponent } from './admin/goods-page/goods-page.component';
 import {  MatMenuModule} from '@angular/material/menu'
 import { MatSelectModule } from '@angular/material/select';
+import { UserControllerComponent } from './admin/user-controller/user-controller.component';
+import { CreateStaffComponent } from './admin/user-controller/create-staff/create-staff.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +45,8 @@ import { MatSelectModule } from '@angular/material/select';
     DashboardComponent,
     PosMainComponent,
     GoodsPageComponent,
+    UserControllerComponent,
+    CreateStaffComponent,
 
   ],
   imports: [
