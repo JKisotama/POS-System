@@ -9,7 +9,7 @@ namespace POS_System_BAL.DTOs
 {
     public class GoodsGroupDTO
     {
-        [JsonIgnore]
+        
         public string GroupId { get; set; } = null!;
         public string? GroupName { get; set; }
 
