@@ -56,12 +56,12 @@ namespace POS_Final_Year.Controller
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("Update User")]
-        public async Task<IActionResult> PutTblUser([FromQuery]UserDTO userDTO,string store_id, string login_name)
+        public async Task<ActionResult> PutTblUser([FromQuery]UserDTO userDTO,string store_id, string login_name)
         {
 
             var updateUser = await _userServices
                 .UpdateUser(userDTO,store_id, login_name);
-            return Ok(updateUser);
+            return NoContent();
         }
 
         // POST: api/Users
@@ -74,27 +74,12 @@ namespace POS_Final_Year.Controller
             return CreatedAtAction("GetTblUser", new { id = tblUser.LoginName }, newUser);
         }
 
-        //// DELETE: api/Users/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteTblUser(string id)
-        //{
-        //    var tblUser = await _context.TblUsers.FindAsync(id);
-        //    if (tblUser == null)
-        //    {
-        //        return NotFound();
-        //    }
 
-        //    _context.TblUsers.Remove(tblUser);
-        //    await _context.SaveChangesAsync();
-
-        //    return NoContent();
-        //}
-
-        [HttpGet("Login")]
-        public async Task<IActionResult> Login (string store_id, string login_name, string password)
+        [HttpPost("Login")]
+        public async Task<ActionResult> Login (string store_id, string login_name, string password)
         {
             await _userServices.Login(store_id,login_name,password);
-            return Ok();
+            return Ok("Logged in");
         }
 
     
