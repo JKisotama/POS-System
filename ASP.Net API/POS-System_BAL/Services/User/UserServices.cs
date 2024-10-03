@@ -87,9 +87,32 @@ namespace POS_System_BAL.Services.User
             return entity;
         }
 
-        public async Task Login(string store_id, string login_name, string password)
+        public async Task<TblUser> Login(string store_id, string login_name, string password)
         {
-            _authenticate.CheckLogin(store_id, login_name, password);
+            var user = await _authenticate.CheckLogin(store_id, login_name, password);
+            return user;
+        }
+
+        public async Task<int> GrandRights(string store_id, string login_name, int menu_id)
+        {
+            var user = GetUser(store_id, login_name);
+            var menu = _onlinePosContext.TblMenus.FirstOrDefaultAsync(m => m.MenuId == menu_id);
+            if(user == null || menu == null)
+            {
+                return -1;
+            }
+            var userRights = new TblUserright
+            {
+                LoginName = login_name,
+                MenuId = menu_id,
+                StoreId = store_id,
+                Assigned = 0
+            };
+
+            _onlinePosContext.TblUserrights
+                .Add(userRights);
+            await _onlinePosContext.SaveChangesAsync();
+            return 0;
         }
     }
 }

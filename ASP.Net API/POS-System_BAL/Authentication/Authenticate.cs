@@ -1,4 +1,5 @@
 ﻿using POS_System_DAL.Data;
+using POS_System_DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace POS_System_DAL.Authentication
         {
             _onlinePosContext = onlinePosContext;
         }
-        public int CheckLogin(string store_id, string login_name, string pass_word)
+        public async Task<TblUser> CheckLogin(string store_id, string login_name, string pass_word)
         {
             string pass_encrypted = VerifyPasswordHash(pass_word);
             var user = (from u in _onlinePosContext.TblUsers
@@ -28,13 +29,13 @@ namespace POS_System_DAL.Authentication
             {
                 if (user.UserStatus == 1)
                 {
-                    return -2;
+                    return null;
                 }
                 else
-                    return user.UserType;
+                    return user;
             }
             else
-                return -1;
+                return null;
         }
 
         public int ForgotPassword(string store_id, string id_code, string login_name)

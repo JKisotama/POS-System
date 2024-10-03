@@ -76,10 +76,10 @@ namespace POS_Final_Year.Controller
 
 
         [HttpPost("Login")]
-        public async Task<ActionResult> Login (string store_id, string login_name, string password)
+        public async Task<ActionResult<TblUser>> Login (string store_id, string login_name, string password)
         {
-            await _userServices.Login(store_id,login_name,password);
-            return Ok("Logged in");
+            var loginUser = await _userServices.Login(store_id,login_name,password);
+            return Ok(loginUser);
         }
 
     
