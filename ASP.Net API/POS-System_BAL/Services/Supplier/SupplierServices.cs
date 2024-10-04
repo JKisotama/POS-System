@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using POS_System_BAL.DTOs;
 using POS_System_DAL.Data;
 using POS_System_DAL.Models;
@@ -23,16 +24,18 @@ namespace POS_System_BAL.Services.Supplier
 
         public async Task<IEnumerable<TblSupplier>> GetAllSupplier(string store_id)
         {
-            if (true)
-            {
-                await _onlinePosContext.TblSuppliers.FindAsync();
-            }
-            return null;
+            return await _onlinePosContext.TblSuppliers.
+                Where(s => s.StoreId == store_id)
+                .ToListAsync();
         }
 
         public async Task<TblSupplier> GetSupplier(string store_id, string supplier_id)
         {
-            return null;
+            var supplierList = await _onlinePosContext.TblSuppliers
+                .Where(s => s.StoreId == store_id && s.SupplierId == supplier_id)
+                .Include(s => s.TblGoodssupplieds)
+                .FirstOrDefaultAsync();
+            return supplierList;
         }
 
         public async Task CreateSupplier(SupplierDTO supplier)

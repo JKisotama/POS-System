@@ -8,8 +8,6 @@ using POS_System_BAL.Services.Supplier;
 using POS_System_BAL.Services.User;
 using POS_System_DAL;
 using POS_System_DAL.Data;
-using POS_System_DAL.Repository;
-using POS_System_DAL.Repository.User;
 using AutoMapper;
 using POS_System_DAL.Authentication;
 
@@ -27,18 +25,6 @@ namespace POS_System
             services.AddDistributedMemoryCache();
             services.AddSession();
 
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAll",
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin();
-                        builder.AllowAnyMethod();
-                        builder.AllowAnyHeader();
-                    });
-            });
-
-
             builder.Services.AddDbContext<OnlinePosContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
@@ -50,12 +36,23 @@ namespace POS_System
 
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
-            builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IUserServices, UserServices>();
             builder.Services.AddScoped<IGoodsServices, GoodsServices>();
             builder.Services.AddScoped<ISupplierServices, SupplierServices>();
             builder.Services.AddScoped<ICustomerServices, CustomerServices>();
             builder.Services.AddScoped<IAuthenticate, Authenticate>();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowLocalhost4200",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:4200")
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                    });
+            });
+
+
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowLocalhost4200",
@@ -77,7 +74,7 @@ namespace POS_System
                 app.UseSwaggerUI();
             }
 
-            app.UseCors("AllowAll");
+            app.UseCors("AllowLocalhost4200");
 
             app.UseHttpsRedirection();
 

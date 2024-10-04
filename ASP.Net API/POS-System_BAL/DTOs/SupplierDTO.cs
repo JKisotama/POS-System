@@ -10,7 +10,7 @@ namespace POS_System_BAL.DTOs
     public class SupplierDTO
     {
 
-        public string SupplierId { get;  set; } = null!;
+        public string SupplierId { get;  set; }
         public string? SupplierName { get; set; }
         public int? SupllierType { get; set; }
 

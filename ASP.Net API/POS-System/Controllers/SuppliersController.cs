@@ -25,13 +25,14 @@ namespace POS_Final_Year.Controller
         }
 
 
-        [HttpGet]
+        [HttpGet("Get-All-Supplier")]
         public async Task<ActionResult<IEnumerable<TblSupplier>>> GetTblSuppliers(string store_id)
         {
-            return Ok(await _supplierServices.GetAllSupplier(store_id));
+            var supplier = await _supplierServices.GetAllSupplier(store_id);
+            return Ok(supplier);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("Get-Supplier")]
         public async Task<ActionResult<TblSupplier>> GetTblSupplier(string store_id, string supplier_id)
         {
             var tblSupplier = await _supplierServices.GetSupplier(store_id, supplier_id);
@@ -44,27 +45,25 @@ namespace POS_Final_Year.Controller
             return Ok(tblSupplier);
         }
 
-        [HttpPut("Update Supplier")]
-        public async Task<IActionResult> PutTblSupplier(string store_id,string supplier_id, SupplierDTO supplierDTO)
+        [HttpPut("Update-Supplier")]
+        public async Task<IActionResult> PutTblSupplier(SupplierDTO supplierDTO)
         {
-            if (supplier_id != supplierDTO.SupplierId)
+            var updateSupplier = await _supplierServices.GetSupplier(supplierDTO.StoreId, supplierDTO.SupplierId);
+            if (updateSupplier == null)
             {
-                return BadRequest();
+                return NotFound();
             }
-            supplierDTO.SupplierId = supplier_id;
-            supplierDTO.StoreId = store_id;
             await _supplierServices.UpdateSupplier(supplierDTO);
-
             return NoContent();
         } 
 
       
-        [HttpPost]
+        [HttpPost("Create-Supplier")]
         public async Task<ActionResult<TblSupplier>> PostTblSupplier(SupplierDTO supplierDTO)
         {
             await _supplierServices.CreateSupplier(supplierDTO);
 
-            return CreatedAtAction("GetTblSupplier", new { id = supplierDTO.SupplierId }, supplierDTO);
+            return StatusCode(201, supplierDTO);
         }
 
         // DELETE: api/Suppliers/5

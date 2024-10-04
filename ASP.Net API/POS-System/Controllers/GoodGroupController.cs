@@ -26,7 +26,7 @@ namespace POS_Final_Year.Controller
             _goodsServices = goodsServices;
         }
         #region GET
-        [HttpGet("Get All Group")]
+        [HttpGet("Get-All-Group")]
         public async Task<ActionResult<IEnumerable<TblGoodsgroup>>> GetTblGoodsgroups(string store_id)
         {
             var groupList = await _goodsServices.GetTblGoodsgroupsAsync(store_id);
@@ -37,7 +37,7 @@ namespace POS_Final_Year.Controller
             return Ok(groupList);
         }
 
-        [HttpGet("Get Group")]
+        [HttpGet("Get-Group")]
         public async Task<ActionResult<TblGoodsgroup>> GetTblGoodsgroup(string store_id, string group_id)
         {
             var tblGoodsgroup = await _goodsServices.GetGroupAsync(store_id,group_id);
@@ -50,7 +50,7 @@ namespace POS_Final_Year.Controller
             return Ok(tblGoodsgroup);
         }
 
-        [HttpGet("Get Goods By Group")]
+        [HttpGet("Get-Goods-By-Group")]
         public async Task<ActionResult<IEnumerable<TblGood>>> GetGoodByGroup(string store_id,string group_id)
         {
             var goods = await _goodsServices.GetGoodsByGroupAsync(store_id,group_id);
@@ -67,7 +67,7 @@ namespace POS_Final_Year.Controller
             }
             return Ok(properties);
         } 
-        [HttpGet("Get Property Group")]
+        [HttpGet("Get-Property-Group")]
         public async Task<ActionResult<TblPropertygroup>> GetPropertyGood(string store_id,string property_id)
         {
             var properties = await _goodsServices.GetPropertyGroupAsync(store_id, property_id);
@@ -78,7 +78,7 @@ namespace POS_Final_Year.Controller
             return Ok(properties);
         } 
         
-        [HttpGet("Get Goods")]
+        [HttpGet("Get-Goods")]
         public async Task<ActionResult<TblGood>> GetGoods(string store_id,string goods_id)
         {
             var goods = await _goodsServices.GetGoodsAsync(store_id, goods_id);
@@ -90,7 +90,7 @@ namespace POS_Final_Year.Controller
             return Ok(goods);
         }
         
-        [HttpGet("Get Image")]
+        [HttpGet("Get-Image")]
         public async Task<ActionResult<TblGood>> GetImage(string store_id,string goods_id)
         {
             var image = await _goodsServices.GetImage(store_id, goods_id);
@@ -98,7 +98,7 @@ namespace POS_Final_Year.Controller
             return Ok(image);
         }
 
-        [HttpGet("Get Good Unit")]
+        [HttpGet("Get-Good-Unit")]
         public async Task<ActionResult<IEnumerable<TblGoodsunit>>> GetUnit(string store_id, string goods_id,int type)
         {
             var unit = await _goodsServices.GetGoodsUnitAsync(store_id, goods_id, type);
@@ -109,21 +109,21 @@ namespace POS_Final_Year.Controller
             return Ok(unit);
         }
 
-        [HttpGet("Get Good Property")]
-        public async Task<ActionResult<IEnumerable<TblGoodsproperty>>> GetProperty(string goods_id, string property_id, string user_language)
+        [HttpGet("Get-Good-Property")]
+        public async Task<ActionResult<IEnumerable<TblGoodsproperty>>> GetProperty(string store_id,string goods_id, string property_id, string user_language)
         {
-            var properties = await _context.TblGoodsproperties
-                .Where(g => g.GoodsId == goods_id && g.PropertyId == property_id && g.LocalValue == user_language)
-                .ToListAsync();
-            return Ok(properties); // chưa có function
+            var property = await _goodsServices.GetGoodsPropertyAsync(store_id,goods_id, property_id, user_language);
+            if (property != null )
+            {
+                return NotFound("No Property found");
+            }
+            return Ok(property);
         }
 
-        [HttpGet("Get Good Prices")]
-        public async Task<ActionResult<TblSellprice>>GetGoodPrice(string goods_id, string unit, int quantity)
+        [HttpGet("Get-Good-Prices")]
+        public async Task<ActionResult<TblSellprice>>GetGoodPrice(string store_id,string goods_id, string unit, int quantity)
         {
-            var prices = await _context.TblSellprices
-                .Where(s => s.GoodsId == goods_id && s.GoodsUnit == unit && s.SellNumber == quantity)
-                .FirstOrDefaultAsync();
+            var prices = await _goodsServices.GetSellpricesAsync(store_id,goods_id, unit, quantity); 
             if(prices == null)
             {
                 return NotFound();
