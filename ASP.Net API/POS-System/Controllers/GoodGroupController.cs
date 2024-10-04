@@ -25,7 +25,7 @@ namespace POS_Final_Year.Controller
             _context = context;
             _goodsServices = goodsServices;
         }
-
+        #region GET
         [HttpGet("Get All Group")]
         public async Task<ActionResult<IEnumerable<TblGoodsgroup>>> GetTblGoodsgroups(string store_id)
         {
@@ -130,7 +130,11 @@ namespace POS_Final_Year.Controller
             }
             return Ok(prices);
         }
-        [HttpPut("Update Good By Group {id}")]
+
+        #endregion
+
+        #region PUT
+        [HttpPut("Chưa đụng nha ")]
         public async Task<IActionResult> PutTblGoodsgroup(string id, TblGoodsgroup tblGoodsgroup)
         {
             if (id != tblGoodsgroup.GroupId)
@@ -158,12 +162,14 @@ namespace POS_Final_Year.Controller
 
             return NoContent();
         }
+        #endregion
+
+        #region POST
         [HttpPost("Save Good Group")]
         public async Task<ActionResult<TblGoodsgroup>> PostTblGoodsgroup(GoodsGroupDTO goodsGroupDTO)
         {
             await _goodsServices.SaveGoodsGroup(goodsGroupDTO);
-            //return CreatedAtAction("GetTblGoodsgroup", new { id = goodsGroupDTO.GroupName }, goodsGroupDTO);
-            return Ok("Test");
+            return StatusCode(201, goodsGroupDTO);
         }
 
         // DELETE: api/GoodGroup/5
@@ -174,11 +180,11 @@ namespace POS_Final_Year.Controller
             return Ok(group_name);
         }
 
-        [HttpPost("Save Goods TEST")]
+        [HttpPost("Save Goods")]
         public async Task<ActionResult<GoodsDTO>> PostGoods([FromQuery]GoodsDTO goodsDTO, IFormFile file)
         {
             await _goodsServices.SaveGoods(goodsDTO, file);
-            return StatusCode(201, "Create OK");
+            return StatusCode(201, goodsDTO);
         }
         [HttpPost("Save Unit")]
         public async Task<ActionResult<TblGoodsunit>> PostTblUnit([FromQuery] GoodUnitDTO goodsunit/*string store_id,string goods_id, int applied_type, string unit_name, int sku, int size*/)
@@ -208,7 +214,7 @@ namespace POS_Final_Year.Controller
 
             return Ok(prices);
         }
-
+        #endregion
         private bool TblGoodsgroupExists(string id)
         {
             return _context.TblGoodsgroups.Any(e => e.GroupId == id);
