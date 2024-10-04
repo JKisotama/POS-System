@@ -10,6 +10,7 @@ using POS_System_DAL;
 using POS_System_DAL.Data;
 using AutoMapper;
 using POS_System_DAL.Authentication;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 namespace POS_System
 {
@@ -45,13 +46,13 @@ namespace POS_System
 
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowLocalhost4200",
-                    policy =>
-                    {
-                        policy.WithOrigins("http://localhost:4200")
-                           .AllowAnyMethod()
-                           .AllowAnyHeader();
-                    });
+                options.AddPolicy("AngularWeb", policy =>
+                {
+                    policy.WithOrigins("http://Localhost:4200");
+                    policy.AllowAnyHeader();
+                    policy.AllowAnyMethod();
+                    policy.AllowCredentials();
+                });
             });
 
 
@@ -64,14 +65,13 @@ namespace POS_System
                 app.UseSwaggerUI();
             }
 
-            app.UseCors("AllowLocalhost4200");
-
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
-
             app.MapControllers();
+
+            app.UseCors("AngularWeb");
 
             app.Run();
         }

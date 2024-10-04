@@ -25,14 +25,14 @@ namespace POS_Final_Year.Controller
         }
 
 
-        [HttpGet("Get-All-Supplier")]
+        [HttpGet("GetAllSupplier")]
         public async Task<ActionResult<IEnumerable<TblSupplier>>> GetTblSuppliers(string store_id)
         {
             var supplier = await _supplierServices.GetAllSupplier(store_id);
             return Ok(supplier);
         }
 
-        [HttpGet("Get-Supplier")]
+        [HttpGet("GetSupplier")]
         public async Task<ActionResult<TblSupplier>> GetTblSupplier(string store_id, string supplier_id)
         {
             var tblSupplier = await _supplierServices.GetSupplier(store_id, supplier_id);
@@ -45,7 +45,7 @@ namespace POS_Final_Year.Controller
             return Ok(tblSupplier);
         }
 
-        [HttpPut("Update-Supplier")]
+        [HttpPut("UpdateSupplier")]
         public async Task<IActionResult> PutTblSupplier(SupplierDTO supplierDTO)
         {
             var updateSupplier = await _supplierServices.GetSupplier(supplierDTO.StoreId, supplierDTO.SupplierId);
@@ -58,7 +58,7 @@ namespace POS_Final_Year.Controller
         } 
 
       
-        [HttpPost("Create-Supplier")]
+        [HttpPost("CreateSupplier")]
         public async Task<ActionResult<TblSupplier>> PostTblSupplier(SupplierDTO supplierDTO)
         {
             await _supplierServices.CreateSupplier(supplierDTO);
