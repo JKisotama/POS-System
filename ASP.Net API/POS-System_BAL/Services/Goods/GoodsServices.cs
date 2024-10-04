@@ -26,6 +26,7 @@ namespace POS_System_BAL.Services.Goods
             _onlinePosContext = onlinePosContext;
         }
 
+        #region GET
         public async Task<IEnumerable<TblGoodsgroup>> GetTblGoodsgroupsAsync(string store_id)
         {
             return await _onlinePosContext.TblGoodsgroups
@@ -48,7 +49,7 @@ namespace POS_System_BAL.Services.Goods
                 .Include(s => s.TblGoods)
                 .ToListAsync();
         }
-
+        
         public async Task<IEnumerable<TblPropertygroup>> GetAllPropertyGroupAsync(string store_id)
         {
             return await _onlinePosContext.TblPropertygroups
@@ -93,6 +94,9 @@ namespace POS_System_BAL.Services.Goods
                 .Where(s => s.StoreId == store_id && s.GoodsId == goods_id && s.GoodsUnit == unit && s.SellNumber == quantity)
                 .ToListAsync();
         }
+
+        #endregion
+
         #region CREATE
         public async Task SaveGoodsGroup(GoodsGroupDTO goodsGroupDTO)
         {
@@ -169,7 +173,9 @@ namespace POS_System_BAL.Services.Goods
                 .Add(tblSellprice);
             await _onlinePosContext.SaveChangesAsync();
         }
-#endregion
+        #endregion
+
+        #region AUTO GEN
         public string GenerateGoodGroupID(string store_id)
         {
             int counter = GetGroupCounterByStoreId(store_id);
@@ -226,7 +232,7 @@ namespace POS_System_BAL.Services.Goods
                     .FirstOrDefault();
                 return propertyCounter;
         }
-
+        #endregion
         public async Task<string> SaveImage(IFormFile image, string id, string idenID)
         {
             

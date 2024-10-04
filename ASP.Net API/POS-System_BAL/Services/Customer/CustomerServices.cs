@@ -27,13 +27,17 @@ namespace POS_System_BAL.Services.Customer
 
         public async Task<IEnumerable<TblCustomer>> GetAllCustomer(string company_id)
         {
-            var customers = await _genericRepository.GettAllAsync(c => c.CompanyId == company_id);
+            var customers = await _onlinePosContext.TblCustomers
+                .Where(c => c.CompanyId == company_id)
+                .ToListAsync();
             return customers;
         }
 
         public async Task<TblCustomer> GetCustomer(string company_id, string customer_id)
         {
-            var customer = await _genericRepository.GetAsync(c => c.CompanyId == company_id && c.CustomerId == customer_id);
+            var customer = await _onlinePosContext.TblCustomers
+                .Where(c => c.CompanyId == company_id && c.CustomerId == customer_id)
+                .FirstOrDefaultAsync();
             return customer;
         }
 

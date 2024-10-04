@@ -27,7 +27,7 @@ public partial class TblReceipt
 
     public int? PaymentMethod { get; set; }
 
-    public int? ReceiptCounter { get; set; }
+    public int ReceiptCounter { get; set; }
 
     public string? ReceiptCreator { get; set; }
 
