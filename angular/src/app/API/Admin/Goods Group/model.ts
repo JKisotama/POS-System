@@ -1,7 +1,7 @@
 export interface GoodsGroupDTO {
     groupId?: string,
     groupName?: string,
-    groupStatus?: string,
-    [key: string]: any; 
+    groupStatus?: number,
+    storeId?: string,
 
 }

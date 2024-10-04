@@ -11,6 +11,9 @@ import { CreateStaffComponent } from './create-staff/create-staff.component';
 import { EditStaffComponent } from './edit-staff/edit-staff.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthenticationService } from '../../API/Admin/authentication.service';
+import { GoodsDTO } from '../../API/Admin/goods/model';
+import { UserService } from '../../API/Admin/user/user.service';
 
 
 
@@ -37,36 +40,35 @@ export class UserControllerComponent implements OnInit {
     role: '',
     department: ''
   };
-  displayedColumns: string[] = ['code', 'name', 'age', 'role', 'department', 'action'];
+  displayedColumns: string[] = ['action','storeId', 'loginName', 'fullName', 'passWord'];
   
-  dataSource = new MatTableDataSource<StaffDTO>();
+  dataSource = new MatTableDataSource<GoodsDTO>();
+  storeId: string | null = null;
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
 
   constructor(
-    private staffService : StaffService,
-    private dialog: MatDialog
+    private userService : UserService,
+    private dialog: MatDialog,
+    private authenticationService: AuthenticationService,
 
   ){}
 
   ngOnInit() {
-    this.getAllStaff();
-
+    this.storeId = this.authenticationService.getStoreIdUser();
+    this.GetAllUser();
   }
   ngAfterViewInit() {
     // Set the paginators for the main table and nested table
     this.dataSource.paginator = this.paginator;
   }
 
-  getAllStaff() {
-    this.staffService.GetAllStaff().subscribe(
-      (response) => {
+  GetAllUser(){
+    if(this.storeId){
+      this.userService.GetAllUser(this.storeId).subscribe((response) => {
         this.dataSource.data = response;
-      },
-      (error) => {
-        console.error('Error fetching staff data:', error);
-      }
-    );
+      })
+    }
   }
   openCreateStaffDialog() {
     const dialogRef = this.dialog.open(CreateStaffComponent, {

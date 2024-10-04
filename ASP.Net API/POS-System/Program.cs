@@ -25,6 +25,7 @@ namespace POS_System
             services.AddDistributedMemoryCache();
             services.AddSession();
 
+
             builder.Services.AddDbContext<OnlinePosContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
@@ -43,26 +44,16 @@ namespace POS_System
             builder.Services.AddScoped<IAuthenticate, Authenticate>();
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowLocalhost4200",
-                    policy =>
-                    {
-                        policy.WithOrigins("http://localhost:4200")
-                           .AllowAnyMethod()
-                           .AllowAnyHeader();
-                    });
+                options.AddPolicy("AllowLocalhost4200", policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200")
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
             });
 
 
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowLocalhost4200",
-                    policy =>
-                    {
-                        policy.WithOrigins("http://localhost:4200")
-                           .AllowAnyMethod()
-                           .AllowAnyHeader();
-                    });
-            });
+         
 
 
             var app = builder.Build();
@@ -76,10 +67,13 @@ namespace POS_System
 
             app.UseCors("AllowLocalhost4200");
 
-            app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.UseHttpsRedirection();
             app.UseCors("AllowLocalhost4200");
+            app.UseAuthorization();
+            app.UseSession();
+
+
 
             app.MapControllers();
 

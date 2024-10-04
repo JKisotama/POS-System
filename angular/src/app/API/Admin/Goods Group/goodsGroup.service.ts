@@ -12,17 +12,15 @@ export class GoodsGroupService {
         private http: HttpClient
     ){}
 
-    private baseUrl = 'http://localhost:3000/goodsGroup';
+    private baseUrl = 'http://localhost:7062/api/GoodGroup';
 
-    GetAllGoodsGroup(): Observable<any>{
-        return this.http.get(`${this.baseUrl}`);
+    GetAllGoodsGroup(storeId: string): Observable<any>{
+        return this.http.get(`${this.baseUrl}/Get-All-Group?store_id=${storeId}`);
     }
     createGoodsGroup(GoodsGroupData: GoodsGroupDTO): Observable<any> {
-        return this.http.post(`${this.baseUrl}`, GoodsGroupData);
+        return this.http.post(`${this.baseUrl}/Save Good Group`, GoodsGroupData);
     }
-    updateGoodsGroup(GoodsGroupData: GoodsGroupDTO): Observable<any> {
-        return this.http.put(`${this.baseUrl}/${GoodsGroupData['id']}`, GoodsGroupData);
-    }
+    
     deleteGoodsGroup(id: string): Observable<any> {
         return this.http.delete(`${this.baseUrl}/${id}`);
     }

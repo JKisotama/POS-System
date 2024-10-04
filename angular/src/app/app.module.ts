@@ -34,6 +34,11 @@ import {  MatMenuModule} from '@angular/material/menu'
 import { MatSelectModule } from '@angular/material/select';
 import { UserControllerComponent } from './admin/user-controller/user-controller.component';
 import { CreateStaffComponent } from './admin/user-controller/create-staff/create-staff.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { AuthenticationService } from './API/Admin/authentication.service';
+import { AuthenticationGuard } from './authentication.guard';
+import { GoodsGroupComponent } from './admin/goods-group/goods-group.component';
+import { CreateGoodGroupComponent } from './admin/goods-group/create-good-group/create-good-group.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +52,9 @@ import { CreateStaffComponent } from './admin/user-controller/create-staff/creat
     GoodsPageComponent,
     UserControllerComponent,
     CreateStaffComponent,
+    LoginComponent,
+    GoodsGroupComponent,
+    CreateGoodGroupComponent,
 
   ],
   imports: [
@@ -66,7 +74,12 @@ import { CreateStaffComponent } from './admin/user-controller/create-staff/creat
     ToolbarModule, ButtonModule, SplitButtonModule,InputTextModule,AvatarModule,CarouselModule, ButtonModule, TagModule,
     
 ],
-  providers: [provideClientHydration(), provideAnimationsAsync()],
+  providers: [
+    provideClientHydration(), 
+    provideAnimationsAsync(),
+    AuthenticationService,
+    AuthenticationGuard
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

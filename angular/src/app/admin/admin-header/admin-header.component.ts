@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { AuthenticationService } from '../../API/Admin/authentication.service';
 
 
 @Component({
@@ -9,6 +10,10 @@ import { MenuItem } from 'primeng/api';
 })
 export class AdminHeaderComponent  implements OnInit {
   items: MenuItem[] | undefined;
+
+  constructor(private authenticationService: AuthenticationService,){
+    
+  }
 
   ngOnInit() {
       this.items = [
@@ -21,6 +26,11 @@ export class AdminHeaderComponent  implements OnInit {
               icon: 'pi pi-times'
           }
       ];
+  }
+
+  logout(){
+    this.authenticationService.logout();
+    location.reload();
   }
 
 }

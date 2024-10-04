@@ -20,6 +20,53 @@
           <div
             class="table-responsive"
           >
+          <mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> Action</mat-header-cell>
+                  <mat-cell *matCellDef="let users">
+                    <button mat-stroked-button [matMenuTriggerFor]="actionsMenu" color="primary" class="detail-btn">
+                      Actions
+                      <mat-icon>arrow_drop_down</mat-icon>
+                    </button>
+                    <mat-menu #actionsMenu="matMenu">
+                      <button mat-menu-item >
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit</span>
+                      </button>
+                      <button mat-menu-item >
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                      </button>
+                    </mat-menu>
+                  </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="storeId">
+              <mat-header-cell *matHeaderCellDef>Store Id</mat-header-cell>
+              <mat-cell *matCellDef="let users">{{users.storeId}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="loginName">
+              <mat-header-cell *matHeaderCellDef>Login Name</mat-header-cell>
+              <mat-cell *matCellDef="let users">{{users.loginName}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="fullName">
+              <mat-header-cell *matHeaderCellDef>Full Name</mat-header-cell>
+              <mat-cell *matCellDef="let users">{{users.fullName}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="passWord">
+              <mat-header-cell *matHeaderCellDef>Password</mat-header-cell>
+              <mat-cell *matCellDef="let users">{{users.passWord}}</mat-cell>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                
+          </mat-table>
+
           
           </div>
           

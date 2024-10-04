@@ -1,11 +1,11 @@
 export interface SupplierDTO {
     supplierId?: string,
     supplierName?: string,
-    supplierType?: string,
+    supplierType?: number,
     supplierAddress?: string,
     supplierPhone?: string,
     supplierEmail?: string,
-    [key: string]: any; 
+    storeId?: string;
 
 
 }

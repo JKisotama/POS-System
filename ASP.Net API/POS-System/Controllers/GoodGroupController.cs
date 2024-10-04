@@ -30,7 +30,7 @@ namespace POS_Final_Year.Controller
         public async Task<ActionResult<IEnumerable<TblGoodsgroup>>> GetTblGoodsgroups(string store_id)
         {
             var groupList = await _goodsServices.GetTblGoodsgroupsAsync(store_id);
-            if (groupList == null && groupList.Any())
+            if (groupList == null)
             {
                 return BadRequest();
             }
