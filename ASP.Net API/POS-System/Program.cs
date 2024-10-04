@@ -10,6 +10,7 @@ using POS_System_DAL;
 using POS_System_DAL.Data;
 using AutoMapper;
 using POS_System_DAL.Authentication;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 namespace POS_System
 {
@@ -24,7 +25,6 @@ namespace POS_System
 
             services.AddDistributedMemoryCache();
             services.AddSession();
-
 
             builder.Services.AddDbContext<OnlinePosContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
@@ -42,18 +42,18 @@ namespace POS_System
             builder.Services.AddScoped<ISupplierServices, SupplierServices>();
             builder.Services.AddScoped<ICustomerServices, CustomerServices>();
             builder.Services.AddScoped<IAuthenticate, Authenticate>();
+
+
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowLocalhost4200", policy =>
+                options.AddPolicy("AngularWeb", policy =>
                 {
-                    policy.WithOrigins("http://localhost:4200")
-                          .AllowAnyMethod()
-                          .AllowAnyHeader();
+                    policy.WithOrigins("http://Localhost:4200");
+                    policy.AllowAnyHeader();
+                    policy.AllowAnyMethod();
+                    policy.AllowCredentials();
                 });
             });
-
-
-         
 
 
             var app = builder.Build();
@@ -65,17 +65,13 @@ namespace POS_System
                 app.UseSwaggerUI();
             }
 
-            app.UseCors("AllowLocalhost4200");
-
-
             app.UseHttpsRedirection();
-            app.UseCors("AllowLocalhost4200");
+
             app.UseAuthorization();
-            app.UseSession();
-
-
 
             app.MapControllers();
+
+            app.UseCors("AngularWeb");
 
             app.Run();
         }

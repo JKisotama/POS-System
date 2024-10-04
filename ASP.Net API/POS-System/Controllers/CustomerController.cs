@@ -25,14 +25,14 @@ namespace POS_Final_Year.Controller
         }
 
 
-        [HttpGet("Gett All Customer")]
+        [HttpGet("GettAllCustomer")]
         public async Task<ActionResult<IEnumerable<TblCustomer>>> GetTblCustomers(string company_id)
         {
             var customers = await _customerServices.GetAllCustomer(company_id);
             return Ok(customers);
         }
 
-        [HttpGet("Get Customer")]
+        [HttpGet("GetCustomer")]
         public async Task<ActionResult<TblCustomer>> GetTblCustomer(string comapny_id, string customer_id)
         {
             var customer = await _customerServices.GetCustomer(comapny_id, customer_id);
@@ -46,7 +46,7 @@ namespace POS_Final_Year.Controller
         }
 
 
-        [HttpPut("Edit Customer")]
+        [HttpPut("EditCustomer")]
         public async Task<IActionResult> PutTblCustomer(string comapny_id,string customer_id, CustomerDTO customerDTO)
         {
             if(customer_id != customerDTO.CustomerId)
@@ -62,7 +62,7 @@ namespace POS_Final_Year.Controller
             
         }
 
-        [HttpPost("Save Customer")]
+        [HttpPost("SaveCustomer")]
         public async Task<ActionResult<TblCustomer>> PostTblCustomer(TblCustomer tblCustomer)
         {
             await _customerServices.CreateCustomer(tblCustomer);
@@ -72,7 +72,7 @@ namespace POS_Final_Year.Controller
             return CreatedAtAction("GetTblCustomer", new { id = tblCustomer.CustomerId }, tblCustomer);
         }
 
-        [HttpDelete("Delete Customer ")]
+        [HttpDelete("DeleteCustomer")]
         public async Task<IActionResult> DeleteTblCustomer(string comapny_id, string customer_id)
         {
             var existCustomer = GetTblCustomer(comapny_id, customer_id); 
