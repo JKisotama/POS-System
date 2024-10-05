@@ -9,7 +9,7 @@ import { UserDTO } from './model';
 })
 
 export class UserService {
-    private baseUrl = 'https://localhost:7062/api/Users';
+    private baseUrl = 'https://localhost:5000/api/Users';
 
     constructor( private http: HttpClient){}
 

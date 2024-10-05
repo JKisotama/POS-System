@@ -22,10 +22,9 @@ namespace POS_System
 
             var builder = WebApplication.CreateBuilder(args);
             var configuration = builder.Configuration;
-
+            services.AddCors();
             services.AddDistributedMemoryCache();
             services.AddSession();
-
             builder.Services.AddDbContext<OnlinePosContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
@@ -44,16 +43,15 @@ namespace POS_System
             builder.Services.AddScoped<IAuthenticate, Authenticate>();
 
 
-            builder.Services.AddCors(options =>
+            builder.Services.AddCors(options => options
+            .AddPolicy("CorsPolicy", builder => 
             {
-                options.AddPolicy("AngularWeb", policy =>
-                {
-                    policy.WithOrigins("http://Localhost:4200");
-                    policy.AllowAnyHeader();
-                    policy.AllowAnyMethod();
-                    policy.AllowCredentials();
-                });
-            });
+                builder
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .WithOrigins("http://localhost:4200", "Other domain");
+            }));
 
 
             var app = builder.Build();
@@ -64,14 +62,15 @@ namespace POS_System
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
-
+            //app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
             app.UseAuthorization();
 
             app.MapControllers();
 
-            app.UseCors("AngularWeb");
+
+            
 
             app.Run();
         }

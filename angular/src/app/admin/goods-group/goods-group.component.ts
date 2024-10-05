@@ -5,6 +5,7 @@ import { GoodsGroupService } from '../../API/Admin/Goods Group/goodsGroup.servic
 import { AuthenticationService } from '../../API/Admin/authentication.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateGoodGroupComponent } from './create-good-group/create-good-group.component';
+import { SupplierService } from '../../API/Admin/Supplier/supplier.service';
 
 @Component({
   selector: 'app-goods-group',

@@ -14,6 +14,6 @@ namespace POS_System_BAL.Services.Customer
         Task<TblCustomer> GetCustomer(string company_id, string customer_id);
         Task CreateCustomer(TblCustomer customer);
         Task UpdateCustomer(CustomerDTO customerDTO);
-        Task DeleteCustomer(string customer_id);
+        Task DeleteCustomer(string company_id,string customer_id);
     }
 }

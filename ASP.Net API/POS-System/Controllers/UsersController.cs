@@ -78,7 +78,8 @@ namespace POS_Final_Year.Controller
         [HttpPost("Login")]
         public async Task<ActionResult<TblUser>> Login (string store_id, string login_name, string password)
         {
-            var loginUser = await _userServices.Login(store_id,login_name,password);
+            var loginUser = await _userServices.Login(store_id, login_name, password);
+            Console.WriteLine(loginUser);
             return Ok(loginUser);
         }
 

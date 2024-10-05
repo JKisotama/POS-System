@@ -84,9 +84,11 @@ namespace POS_System_BAL.Services.Customer
         }
 
 
-        public async Task DeleteCustomer( string customer_id)
+        public async Task DeleteCustomer(string company_id,string customer_id)
         {
-            await _genericRepository.DeleteAsync(c => c.CustomerId == customer_id);
+            var customer = GetCustomer(company_id, customer_id);
+            _onlinePosContext.Remove(customer);
+            await _onlinePosContext.SaveChangesAsync();
         }
 
 
