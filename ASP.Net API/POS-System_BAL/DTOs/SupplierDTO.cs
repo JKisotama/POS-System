@@ -12,13 +12,13 @@ namespace POS_System_BAL.DTOs
 
         public string SupplierId { get;  set; }
         public string? SupplierName { get; set; }
-        public int? SupllierType { get; set; }
+        public int SupplierType { get; set; }
 
-        public string? SupllierAddress { get; set; }
+        public string SupplierAddress { get; set; }
 
-        public string? SupllierPhone { get; set; }
+        public string SupplierPhone { get; set; }
 
-        public string? SupllierEmail { get; set; }
+        public string? SupplierEmail { get; set; }
 
         public int? AllowDebt { get; set; }
 
