@@ -2,7 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Azure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -57,7 +60,7 @@ namespace POS_Final_Year.Controller
             return Ok(goods);
         }
 
-        [HttpGet("Get All Property Group")]
+        [HttpGet("GetAllPropertyGroup")]
         public async Task<ActionResult<TblPropertygroup>> GetAllPropertyGood(string store_id)
         {
             var properties = await _goodsServices.GetAllPropertyGroupAsync(store_id);
@@ -89,14 +92,6 @@ namespace POS_Final_Year.Controller
             
             return Ok(goods);
         }
-        
-        [HttpGet("GetImage")]
-        public async Task<ActionResult<TblGood>> GetImage(string store_id,string goods_id)
-        {
-            var image = await _goodsServices.GetImage(store_id, goods_id);
-
-            return Ok(image);
-        }
 
         [HttpGet("GetGoodUnit")]
         public async Task<ActionResult<IEnumerable<TblGoodsunit>>> GetUnit(string store_id, string goods_id,int type)
@@ -104,9 +99,10 @@ namespace POS_Final_Year.Controller
             var unit = await _goodsServices.GetGoodsUnitAsync(store_id, goods_id, type);
             if (store_id != null && goods_id != null && type != null)
             {
-                return NotFound("Not Found Unit");
+                return Ok(unit);
             }
-            return Ok(unit);
+            return NotFound("Not Found Unit");
+           
         }
 
         [HttpGet("GetGoodProperty")]
@@ -137,35 +133,14 @@ namespace POS_Final_Year.Controller
         [HttpPut("Chưa đụng nha ")]
         public async Task<IActionResult> PutTblGoodsgroup(string id, TblGoodsgroup tblGoodsgroup)
         {
-            if (id != tblGoodsgroup.GroupId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(tblGoodsgroup).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TblGoodsgroupExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            
 
             return NoContent();
         }
         #endregion
 
         #region POST
-        [HttpPost("Save Good Group")]
+        [HttpPost("SaveGoodGroup")]
         public async Task<ActionResult<TblGoodsgroup>> PostTblGoodsgroup(GoodsGroupDTO goodsGroupDTO)
         {
             await _goodsServices.SaveGoodsGroup(goodsGroupDTO);
@@ -173,33 +148,37 @@ namespace POS_Final_Year.Controller
         }
 
         // DELETE: api/GoodGroup/5
-        [HttpPost("Save Property Group")]
+        [HttpPost("SavePropertyGroup")]
         public async Task<ActionResult<TblPropertygroup>> PostTblPropertyGroup(TblPropertygroup group_name)
         {
             await _goodsServices.SavePropertyGroup(group_name);
             return Ok(group_name);
         }
 
-        [HttpPost("Save Goods")]
+        [HttpPost("SaveGoods")]
         public async Task<ActionResult<GoodsDTO>> PostGoods([FromQuery]GoodsDTO goodsDTO, IFormFile file)
         {
             await _goodsServices.SaveGoods(goodsDTO, file);
             return StatusCode(201, goodsDTO);
         }
-        [HttpPost("Save Unit")]
-        public async Task<ActionResult<TblGoodsunit>> PostTblUnit([FromQuery] GoodUnitDTO goodsunit/*string store_id,string goods_id, int applied_type, string unit_name, int sku, int size*/)
+        [HttpPost("SaveUnit")]
+        public async Task<ActionResult> PostTblUnit([FromBody] GoodUnitDTO goodsunit)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             await _goodsServices.SaveUnit(goodsunit);
-            return CreatedAtAction(("GetUnit"), new { id = goodsunit.GoodsUnit }, goodsunit);
+            return StatusCode(201, goodsunit);
         }
-        [HttpPost("Save Property")]
+        [HttpPost("SaveProperty")]
         public async Task<ActionResult<TblGoodsproperty>> PostTblGoodProperty(string store_id, string goods_id, string property_id, string property_value)
         {
             await _goodsServices.SaveProperty(store_id,goods_id, property_id, property_value);
 
             return CreatedAtAction(nameof(TblGoodsproperty), property_id);
         }
-        [HttpPost("Save Selling Price")]
+        [HttpPost("SaveSellingPrice")]
         public async Task<ActionResult<TblSellprice>> PostTblSellPrice(string goods_id, string unit, string barcode, int quantity, int selling_price)
         {
             var prices = new TblSellprice();
@@ -215,9 +194,6 @@ namespace POS_Final_Year.Controller
             return Ok(prices);
         }
         #endregion
-        private bool TblGoodsgroupExists(string id)
-        {
-            return _context.TblGoodsgroups.Any(e => e.GroupId == id);
-        }
+
     }
 }

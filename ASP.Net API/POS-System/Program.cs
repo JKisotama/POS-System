@@ -11,6 +11,10 @@ using POS_System_DAL.Data;
 using AutoMapper;
 using POS_System_DAL.Authentication;
 using Microsoft.AspNetCore.Cors.Infrastructure;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using dotenv.net;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace POS_System
 {
@@ -19,9 +23,26 @@ namespace POS_System
         public static void Main(string[] args)
         {
             IServiceCollection services = new ServiceCollection();
+         
 
             var builder = WebApplication.CreateBuilder(args);
             var configuration = builder.Configuration;
+
+            var cloudinarySettings = configuration.GetSection("CloudinarySettings").Get<CloudinarySettings>();
+            if (cloudinarySettings == null)
+            {
+                throw new ArgumentException("CloudinarySettings section is missing from appsettings.json");
+            }
+
+            var account = new Account(
+            cloudinarySettings.CloudName,
+            cloudinarySettings.ApiKey,
+            cloudinarySettings.ApiSecret
+            );
+
+            Cloudinary cloudinary = new Cloudinary(account);
+            cloudinary.Api.Secure = true;
+
             services.AddCors();
             services.AddDistributedMemoryCache();
             services.AddSession();
@@ -34,7 +55,7 @@ namespace POS_System
 
             builder.Services.AddAutoMapper(typeof(AutoMappers));
 
-            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddSingleton(cloudinary);
 
             builder.Services.AddScoped<IUserServices, UserServices>();
             builder.Services.AddScoped<IGoodsServices, GoodsServices>();
@@ -43,16 +64,15 @@ namespace POS_System
             builder.Services.AddScoped<IAuthenticate, Authenticate>();
 
 
-            builder.Services.AddCors(options => options
-            .AddPolicy("CorsPolicy", builder => 
+            builder.Services.AddCors(options =>
             {
-                builder
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials()
-                .WithOrigins("http://localhost:4200", "Other domain");
-            }));
-
+                options.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                    .AllowAnyHeader() 
+                    .AllowAnyMethod();
+                });
+            });
 
             var app = builder.Build();
 
@@ -63,14 +83,17 @@ namespace POS_System
                 app.UseSwaggerUI();
             }
             app.UseCors("CorsPolicy");
+            
             app.UseHttpsRedirection();
-            //app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+
+            app.UseStaticFiles();
+
             app.UseAuthorization();
 
             app.MapControllers();
 
 
-            
+
 
             app.Run();
         }

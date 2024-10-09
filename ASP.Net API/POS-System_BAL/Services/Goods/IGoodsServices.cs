@@ -17,7 +17,7 @@ namespace POS_System_BAL.Services.Goods
         Task<IEnumerable<TblPropertygroup>> GetAllPropertyGroupAsync(string store_id);
         Task<TblPropertygroup> GetPropertyGroupAsync(string store_id, string property_id);
         Task<TblGood> GetGoodsAsync(string store_id, string goods_id);
-        Task<IEnumerable<string?>> GetGoodsUnitAsync(string store_id, string goods_id, int type);
+        Task<IEnumerable<GoodUnitDTO>> GetGoodsUnitAsync(string store_id, string goods_id, int type);
         Task<IEnumerable<TblGoodsproperty>> GetGoodsPropertyAsync(string store_id, string goods_id, string property_group, string user_language);
         Task<IEnumerable<TblSellprice>> GetSellpricesAsync(string store_id, string goods_id, string unit, int quantity);
         Task SaveGoodsGroup(GoodsGroupDTO goodsGroupDTO);
@@ -32,7 +32,5 @@ namespace POS_System_BAL.Services.Goods
         int GetGroupCounterByStoreId(string storerId);
         int GetGoodsCounterByStoreId(string storeId);
         int GetPropertyCounterByStoreId(string storeId);
-        Task<string> SaveImage(IFormFile image, string id, string idenID);
-        Task<byte[]> GetImage(string id, string idenID);
     }
 }

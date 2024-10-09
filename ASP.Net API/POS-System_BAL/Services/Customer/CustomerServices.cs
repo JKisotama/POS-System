@@ -14,13 +14,11 @@ namespace POS_System_BAL.Services.Customer
 {
     public class CustomerServices : ICustomerServices
     {
-        private readonly IGenericRepository<TblCustomer> _genericRepository;
         private readonly OnlinePosContext _onlinePosContext;
         private readonly IMapper _mapper;
 
-        public CustomerServices( IGenericRepository<TblCustomer> genericRepository, IMapper mapper, OnlinePosContext onlinePosContext)
+        public CustomerServices( IMapper mapper, OnlinePosContext onlinePosContext)
         {
-            _genericRepository = genericRepository;
             _mapper = mapper;
             _onlinePosContext = onlinePosContext;
         }
@@ -57,7 +55,7 @@ namespace POS_System_BAL.Services.Customer
             if (existCustomer != null)
             {
                 _mapper.Map(customerDTO, existCustomer);
-                await _genericRepository.UpdateAsync(existCustomer);
+                 _onlinePosContext.Update(existCustomer);
             }
             
             
