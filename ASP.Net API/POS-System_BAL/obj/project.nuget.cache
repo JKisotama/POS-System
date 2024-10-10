@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "dgSpecHash": "XwwHKiywqlHDJ4X1/S9ALLTTqwdBpevGgj612wl2NHtDU4WGwbCToNfduFIpTnamQChip+4kGBA7ExOtqj++aA==",
+  "success": false,
+  "projectFilePath": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_BAL\\POS-System_BAL.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ADMIN\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
+}

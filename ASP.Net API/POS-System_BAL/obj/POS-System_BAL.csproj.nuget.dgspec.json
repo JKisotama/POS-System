@@ -1,0 +1,82 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_BAL\\POS-System_BAL.csproj": {}
+  },
+  "projects": {
+    "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_BAL\\POS-System_BAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_BAL\\POS-System_BAL.csproj",
+        "projectName": "POS-System_BAL",
+        "projectPath": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_BAL\\POS-System_BAL.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_BAL\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj": {
+                "projectPath": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
