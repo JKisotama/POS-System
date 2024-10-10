@@ -1,0 +1,43 @@
+
+
+
+.ad-header{
+    margin: 15px 25px 0 0;
+
+}
+
+.ad-head-btn{
+
+    button{
+        margin: 0 10px 0 0;
+        span{
+            .mat-mdc-button-touch-target{
+                margin-right: 10px ;
+            }
+        }
+    }
+
+
+}
+
+
+
+.search-bar{
+    margin: auto;
+    padding: 0 120px;
+
+    button{
+        margin: 0 10px 0 0;
+        span{
+            .mat-mdc-button-touch-target{
+                margin-right: 10px !important;
+            }
+        }
+    }
+    
+    input{
+        border-radius: 50px;
+        border: 1px solid;
+    }
+    
+}
