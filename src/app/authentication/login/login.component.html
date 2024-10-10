@@ -14,18 +14,24 @@
             <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
 
 
-            <form action="" method="">
+            <form [formGroup]="form">
+
               <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
+                <input type="text" class="form-control" id="storeId" formControlName="storeId" placeholder="Please input Store ID...">
+                <label for="storeId">Store ID</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="loginName" formControlName="loginName" placeholder="Please input Login Name....">
+                <label for="loginName">Login Name</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
+                <input type="password" class="form-control" id="passWord" formControlName="passWord" placeholder="Please input Password...">
+                <label for="passWord">Password</label>
               </div>
 
               <div class="d-grid">
-                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign
+                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" (click)="login()">Sign
                   in</button>
               </div>
             </form>

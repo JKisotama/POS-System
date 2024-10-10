@@ -1,0 +1,282 @@
+{
+    "goods": [
+    {
+      "id": "03ff",
+      "groupId": "FOOD1",
+      "goodsId": "BEEF1002",
+      "goodsName": "Beef Steak",
+      "goodsBrand": "Vissan",
+      "goodsStatus": "Out of Stock"
+    },
+    {
+      "id": "a22c",
+      "groupId": "DRINK2",
+      "goodsId": "COLA1001",
+      "goodsName": "Coca Cola less sugar",
+      "goodsBrand": "CocaCola",
+      "goodsStatus": "Out of Stock"
+    },
+    {
+      "id": "asd",
+      "groupId": "DRINK2",
+      "goodsId": "PEPSI1001",
+      "goodsName": "Pepsi less sugar",
+      "goodsBrand": "PepsiCo",
+      "goodsStatus": "Out of Stock"
+    },
+    {
+      "id": "69b5",
+      "groupId": "K3091231",
+      "goodsId": "AP0001",
+      "goodsName": "Airpod Pro 3",
+      "goodsBrand": "Apple",
+      "goodsStatus": "Available"
+    },
+    {
+      "id": "b1b5",
+      "groupId": "FOOD3",
+      "goodsId": "K1002",
+      "goodsName": "Kitkat ",
+      "goodsBrand": "Nestle",
+      "goodsStatus": "Available"
+    },
+    {
+      "id": "c4d2",
+      "groupId": "TECH1",
+      "goodsId": "IPHONE14PRO",
+      "goodsName": "iPhone 14 Pro",
+      "goodsBrand": "Apple",
+      "goodsStatus": "Available"
+    },
+    {
+      "id": "e1f8",
+      "groupId": "TECH1",
+      "goodsId": "GALAXY22ULTRA",
+      "goodsName": "Galaxy S22 Ultra",
+      "goodsBrand": "Samsung",
+      "goodsStatus": "Out of Stock"
+    },
+    {
+      "id": "f2a9",
+      "groupId": "FOOD2",
+      "goodsId": "RICE1001",
+      "goodsName": "Jasmine Rice",
+      "goodsBrand": "Golden King",
+      "goodsStatus": "Available"
+    },
+    {
+      "id": "g3b6",
+      "groupId": "FOOD2",
+      "goodsId": "FLOUR1002",
+      "goodsName": "All-Purpose Flour",
+      "goodsBrand": "Red Star",
+      "goodsStatus": "Available"
+    },
+    {
+      "id": "h4c7",
+      "groupId": "CLOTH1",
+      "goodsId": "TSHIRT001",
+      "goodsName": "Basic T-Shirt",
+      "goodsBrand": "H&M",
+      "goodsStatus": "Available"
+    },
+    {
+      "id": "i5d2",
+      "groupId": "CLOTH1",
+      "goodsId": "JEANS002",
+      "goodsName": "Slim Fit Jeans",
+      "goodsBrand": "Levi's",
+      "goodsStatus": "Available"
+    },
+    {
+      "id": "j6e3",
+      "groupId": "HOUSE1",
+      "goodsId": "SOFA001",
+      "goodsName": "3-Seater Sofa",
+      "goodsBrand": "IKEA",
+      "goodsStatus": "Available"
+    },
+    {
+      "id": "k7f4",
+      "groupId": "HOUSE1",
+      "goodsId": "LAMP002",
+      "goodsName": "Desk Lamp",
+      "goodsBrand": "Philips",
+      "goodsStatus": "Available"
+    },
+    {
+      "id": "l8g5",
+      "groupId": "BEAUTY1",
+      "goodsId": "SHAMPOO001",
+      "goodsName": "Nourishing Shampoo",
+      "goodsBrand": "L'Oreal",
+      "goodsStatus": "Out of Stock"
+    },
+    {
+      "id": "m9h6",
+      "groupId": "BEAUTY1",
+      "goodsId": "MAKEUP002",
+      "goodsName": "Liquid Foundation",
+      "goodsBrand": "Maybelline",
+      "goodsStatus": "Available"
+    },
+    {
+      "id": "n0i7",
+      "groupId": "SPORT1",
+      "goodsId": "FOOTBALL001",
+      "goodsName": "Leather Soccer Ball",
+      "goodsBrand": "Adidas",
+      "goodsStatus": "Available"
+    },
+    {
+      "id": "o1j8",
+      "groupId": "SPORT1",
+      "goodsId": "RACKET002",
+      "goodsName": "Tennis Racket",
+      "goodsBrand": "Wilson",
+      "goodsStatus": "Available"
+    },
+    {
+      "id": "p2k9",
+      "groupId": "BABY1",
+      "goodsId": "DIAPERS001",
+      "goodsName": "Baby Diapers",
+      "goodsBrand": "Pampers",
+      "goodsStatus": "Out of Stock"
+    },
+    {
+      "id": "q3l0",
+      "groupId": "BABY1",
+      "goodsId": "FORMULA002",
+      "goodsName": "Infant Formula",
+      "goodsBrand": "Similac",
+      "goodsStatus": "Available"
+    },
+    {
+      "id": "r4m1",
+      "groupId": "PETS1",
+      "goodsId": "PETFOOD001",
+      "goodsName": "Dry Dog Food",
+      "goodsBrand": "Purina",
+      "goodsStatus": "Available"
+    },
+    {
+      "id": "s5n2",
+      "groupId": "PETS1",
+      "goodsId": "PETSHAMPOO002",
+      "goodsName": "Pet Shampoo",
+      "goodsBrand": "Burt's Bees",
+      "goodsStatus": "Available"
+    }
+  ],
+  "goodsGroup": [
+    {
+      "id": "c0ce",
+      "groupId": "FOOD1",
+      "groupName": "Fresh Food",
+      "groupStatus": "Available"
+    },
+    {
+      "id": "50e9",
+      "groupId": "FOOD2",
+      "groupName": "Snacks",
+      "groupStatus": "Available"
+    },
+    {
+      "id": "c567",
+      "groupId": "DRINK1",
+      "groupName": "Milk",
+      "groupStatus": "Available"
+    },
+    {
+      "id": "7403",
+      "groupId": "DRINK2",
+      "groupName": "Soft Drinks",
+      "groupStatus": "Available"
+    }
+  ],
+  "goodsUnit": [
+    {
+      "id": "1",
+      "goodsId": "COLA1001",
+      "barCode": "1090289123",
+      "goodsUnit": "bag",
+      "unitSize": "1kg",
+      "unitStatus": "available",
+      "unitStock": "in"
+    },
+    {
+      "id": "0ec0",
+      "goodsId": "AP0001",
+      "barCode": "000009123123",
+      "goodsUnit": "Box",
+      "unitSize": "15cm",
+      "unitStatus": "Available",
+      "unitStock": "In"
+    },
+    {
+      "id": "3f42",
+      "goodsId": "MILK10005",
+      "barCode": "1981111234",
+      "goodsUnit": "Bottle",
+      "unitSize": "550ml",
+      "unitStatus": "Unavailable",
+      "unitStock": "5000 Bottle"
+    },
+    {
+      "id": "436a",
+      "goodsId": "MILK10005",
+      "barCode": "909123141",
+      "goodsUnit": "Bottle",
+      "unitSize": "1,5 liter",
+      "unitStatus": "Available",
+      "unitStock": "1000 Bottle"
+    },
+    {
+      "id": "65b0",
+      "goodsId": "BEEF1002",
+      "barCode": "1981111234",
+      "goodsUnit": "Pack",
+      "unitSize": "100g",
+      "unitStatus": "Available",
+      "unitStock": "300 packs"
+    },
+    {
+      "id": "71ce",
+      "goodsId": "PEPSI1001",
+      "barCode": "909123141",
+      "goodsUnit": "Bottle",
+      "unitSize": "550ml",
+      "unitStatus": "Available",
+      "unitStock": "5000 Bottle"
+    },
+    {
+      "id": "5c81",
+      "goodsId": "PEPSI1001",
+      "barCode": "909123141",
+      "goodsUnit": "Bottle",
+      "unitSize": "1,5 liter",
+      "unitStatus": "Available",
+      "unitStock": "5000 Bottle"
+    },
+    {
+      "id": "ce5b",
+      "goodsId": "BEEF1002",
+      "barCode": "909123141",
+      "goodsUnit": "Pack",
+      "unitSize": "1kg",
+      "unitStatus": "Available",
+      "unitStock": "400 packs"
+    },
+    {
+      "id": "2b21",
+      "goodsId": "BEEF1002",
+      "barCode": "66666666",
+      "goodsUnit": "Pack",
+      "unitSize": "500g",
+      "unitStatus": "Unavailable",
+      "unitStock": "0 packs"
+    }
+  ]
+
+}

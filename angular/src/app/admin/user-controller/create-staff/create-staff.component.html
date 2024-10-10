@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Create New Staff</h2>
+<div mat-dialog-content>
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="form">
+        <div class="mt-2">
+          <label>Store Id</label>
+          <input type="text" class="form-control" formControlName="storeId"/>
+        </div>
+
+        <div class="mt-2">
+          <label>Login Name</label>
+          <input type="text" class="form-control" formControlName="loginName"/>
+        </div>
+    
+        <div class="mt-2">
+          <label>Full Name</label>
+          <input type="text" class="form-control" formControlName="fullName"/>
+        </div>
+    
+        <div class="mt-2">
+          <label>Password</label>
+          <input type="text" class="form-control" formControlName="passWord"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <div class="card">
+    <div class="card-body">
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-button type="submit" (click)="Save()">Save</button>
+    </div>
+  </div>
+</div>
