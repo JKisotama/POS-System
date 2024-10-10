@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
@@ -28,17 +29,8 @@ import { AvatarModule } from 'primeng/avatar';
 import { PosMainComponent } from './POS/pos-main/pos-main.component';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
-import { MatIconModule} from '@angular/material/icon'
-import { GoodsPageComponent } from './admin/goods-page/goods-page.component';
-import {  MatMenuModule} from '@angular/material/menu'
-import { MatSelectModule } from '@angular/material/select';
-import { UserControllerComponent } from './admin/user-controller/user-controller.component';
-import { CreateStaffComponent } from './admin/user-controller/create-staff/create-staff.component';
 import { LoginComponent } from './authentication/login/login.component';
-import { AuthenticationService } from './API/Admin/authentication.service';
-import { AuthenticationGuard } from './authentication.guard';
-import { GoodsGroupComponent } from './admin/goods-group/goods-group.component';
-import { CreateGoodGroupComponent } from './admin/goods-group/create-good-group/create-good-group.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,13 +41,7 @@ import { CreateGoodGroupComponent } from './admin/goods-group/create-good-group/
     PosFooterComponent,
     DashboardComponent,
     PosMainComponent,
-    GoodsPageComponent,
-    UserControllerComponent,
-    CreateStaffComponent,
     LoginComponent,
-    GoodsGroupComponent,
-    CreateGoodGroupComponent,
-
   ],
   imports: [
     BrowserModule, 
@@ -67,19 +53,11 @@ import { CreateGoodGroupComponent } from './admin/goods-group/create-good-group/
     MatDividerModule, 
     MatIconModule,
     MatTableModule,
-    MatMenuModule,
-    MatSelectModule,
-
 
     ToolbarModule, ButtonModule, SplitButtonModule,InputTextModule,AvatarModule,CarouselModule, ButtonModule, TagModule,
     
 ],
-  providers: [
-    provideClientHydration(), 
-    provideAnimationsAsync(),
-    AuthenticationService,
-    AuthenticationGuard
-  ],
+  providers: [provideClientHydration(), provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
