@@ -51,6 +51,7 @@ export class GoodsGroupComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
         console.log('Created new Good Group', result);
+        this.getAllGoodGroup();
       }
     });
   }

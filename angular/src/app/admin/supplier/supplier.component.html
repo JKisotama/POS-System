@@ -1,0 +1,102 @@
+<div class="fuild-container">
+  <div class="row">
+    <div class="col-xl-2 col-lg-2 col-md-2 admin-sidebar">
+      <app-admin-sidebar></app-admin-sidebar>
+    </div>
+    <div class="col-xl-10 col-lg-10 col-md-10">
+      <app-admin-header></app-admin-header>
+      <div class="ad-background">
+        <div class="ad-btn-function">
+          <button mat-stroked-button (click)="openCreateSupplier()">Add Supplier</button>
+          <button mat-stroked-button matTooltip="This is a tooltip!">text</button>
+        </div>
+
+        <div class="ad-table">
+          <div
+              class="table-responsive">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action</th>
+                <td mat-cell *matCellDef="let goods">
+                  <button mat-stroked-button [matMenuTriggerFor]="actionsMenu" color="primary" class="detail-btn">
+                    Actions
+                    <mat-icon>arrow_drop_down</mat-icon>
+                  </button>
+                  <mat-menu #actionsMenu="matMenu">
+                    <button mat-menu-item>
+                      <mat-icon>edit</mat-icon>
+                      <span>Edit</span>
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon>delete</mat-icon>
+                      <span>Delete</span>
+                    </button>
+                  </mat-menu>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="supplierId">
+                <th mat-header-cell *matHeaderCellDef> Supplier Id</th>
+                <td mat-cell *matCellDef="let supplier">{{supplier.supplierId}}</td>
+
+              </ng-container>
+
+              <ng-container matColumnDef="supplierName">
+                <th mat-header-cell *matHeaderCellDef> Supplier Name</th>
+                <td mat-cell *matCellDef="let supplier"> {{supplier.supplierName}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="supplierType">
+                <th mat-header-cell *matHeaderCellDef> Supplier Type</th>
+                <td mat-cell *matCellDef="let supplier">{{supplier.supplierType}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="supplierAddress">
+                <th mat-header-cell *matHeaderCellDef> Supplier Address</th>
+                <td mat-cell *matCellDef="let supplier">{{supplier.supplierAddress}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="supplierPhone">
+                <th mat-header-cell *matHeaderCellDef>Supplier Phone</th>
+                <td mat-cell *matCellDef="let supplier">{{supplier.supplierPhone}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="supplierEmail">
+                <th mat-header-cell *matHeaderCellDef>Supplier Email</th>
+                <td mat-cell *matCellDef="let supplier">{{supplier.supplierEmail}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="storeId">
+                <th mat-header-cell *matHeaderCellDef>Store Id</th>
+                <td mat-cell *matCellDef="let supplier">{{supplier.storeId}}</td>
+              </ng-container>
+
+
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Bootstrap JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>

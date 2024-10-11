@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>Create New Staff</h2>
+<div mat-dialog-content>
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="form">
+        <div class="mt-2">
+          <label>Supplier Name</label>
+          <input type="text" class="form-control" formControlName="supplierName" />
+        </div>
+
+        <div class="mt-2">
+          <label>Supplier Type</label>
+          <select class="form-select" formControlName="supplierType">
+            <option [value]="0">Company</option>
+            <option [value]="1">Agency</option>
+          </select>
+        </div>
+
+        <div class="mt-2">
+          <label>Supplier Address</label>
+          <input type="text" class="form-control" formControlName="supplierAddress" />
+        </div>
+
+        <div class="mt-2">
+          <label>Supplier Phone</label>
+          <input type="text" class="form-control" formControlName="supplierPhone" />
+        </div>
+
+        <div class="mt-2">
+          <label>Supplier Email</label>
+          <input type="text" class="form-control" formControlName="supplierEmail" />
+        </div>
+
+        
+
+
+      </form>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <div class="card">
+    <div class="card-body">
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-button type="submit" (click)="Save()">Save</button>
+    </div>
+  </div>
+</div>

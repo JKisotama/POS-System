@@ -18,7 +18,7 @@ export class GoodsGroupService {
         return this.http.get(`${this.baseUrl}/GetAllGroup?store_id=${storeId}`);
     }
     createGoodsGroup(GoodsGroupData: GoodsGroupDTO): Observable<any> {
-        return this.http.post(`${this.baseUrl}/SaveGoodGroup`, GoodsGroupData);
+        return this.http.post(`${this.baseUrl}/Save Good Group`, GoodsGroupData);
     }
     
     deleteGoodsGroup(id: string): Observable<any> {

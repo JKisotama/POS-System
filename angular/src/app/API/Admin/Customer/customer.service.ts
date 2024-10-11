@@ -4,32 +4,32 @@ import { Observable } from 'rxjs';
 import { CustomerDTO } from './model';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class CustomerService {
 
-    constructor(
-        private http : HttpClient
-    ){}
+  constructor(
+    private http: HttpClient
+  ) { }
 
-    private baseUrl = 'http://localhost:3000/customer';
+  private baseUrl = 'https://localhost:5000/api/Customer';
 
-    GetAllCustomer(): Observable<any>{
-        return this.http.get(`${this.baseUrl}`);
-    }
-    createCustomer(CustomerData: CustomerDTO): Observable<any> {
-        return this.http.post(`${this.baseUrl}`, CustomerData);
-    }
-    updateCustomer(CustomerData: CustomerDTO): Observable<any> {
-        return this.http.put(`${this.baseUrl}/${CustomerData['id']}`, CustomerData);
-    }
-    deleteCustomer(id: string): Observable<any> {
-        return this.http.delete(`${this.baseUrl}/${id}`);
-    }
+  GetAllCustomer(customerId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/GettAllCustomer?company_id=${customerId}`);
+  }
+  createCustomer(CustomerData: CustomerDTO): Observable<any> {
+    return this.http.post(`${this.baseUrl}/SaveCustomer`, CustomerData);
+  }
+  // updateCustomer(CustomerData: CustomerDTO): Observable<any> {
+  //     return this.http.put(`${this.baseUrl}/${CustomerData['id']}`, CustomerData);
+  // }
+  deleteCustomer(id: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
 
-    GetCustomerById(id: string): Observable<any>{
-        return this.http.get(`${this.baseUrl}/${id}`);
-    }
+  GetCustomerById(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${id}`);
+  }
 
 
 

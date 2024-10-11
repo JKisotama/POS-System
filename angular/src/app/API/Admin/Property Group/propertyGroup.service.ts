@@ -13,17 +13,17 @@ export class PropertyGroupService {
         private http: HttpClient
     ){}
 
-    private baseUrl = 'http://localhost:3000/propertyGroup';
+    private baseUrl = 'https://localhost:5000/api/GoodGroup';
 
-    GetAllPropertyGroup(): Observable<any>{
-        return this.http.get(`${this.baseUrl}`);
+    GetAllPropertyGroup(storeId: string): Observable<any>{
+        return this.http.get(`${this.baseUrl}/Get All Property Group?store_id=${storeId}`);
     }
     createPropertyGroup(PropertyGroupData: PropertyGroupDTO): Observable<any> {
-        return this.http.post(`${this.baseUrl}`, PropertyGroupData);
+        return this.http.post(`${this.baseUrl}/Save Property Group`, PropertyGroupData);
     }
-    updatePropertyGroup(PropertyGroupData: PropertyGroupDTO): Observable<any> {
-        return this.http.put(`${this.baseUrl}/${PropertyGroupData['id']}`, PropertyGroupData);
-    }
+    // updatePropertyGroup(PropertyGroupData: PropertyGroupDTO): Observable<any> {
+    //     return this.http.put(`${this.baseUrl}/${PropertyGroupData['id']}`, PropertyGroupData);
+    // }
     deletePropertyGroup(id: string): Observable<any> {
         return this.http.delete(`${this.baseUrl}/${id}`);
     }

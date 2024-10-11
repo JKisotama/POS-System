@@ -58,8 +58,8 @@ public partial class OnlinePosContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=16ACH-LEGION;Initial Catalog=POS-Web;Persist Security Info=True;Encrypt=True;TrustServerCertificate=True;Trusted_Connection=true");
-        //optionsBuilder.UseSqlServer("Server=DESKTOP-ENEA971\\SQLEXPRESS;Database=POS-Web;TrustServerCertificate=True;Trusted_Connection=True;");
+        //optionsBuilder.UseSqlServer("Server=16ACH-LEGION;Initial Catalog=POS-Web;Persist Security Info=True;Encrypt=True;TrustServerCertificate=True;Trusted_Connection=true");
+        optionsBuilder.UseSqlServer("Server=DESKTOP-ENEA971\\SQLEXPRESS;Database=POS-Web;TrustServerCertificate=True;Trusted_Connection=True;");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

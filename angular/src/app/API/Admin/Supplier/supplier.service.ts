@@ -20,7 +20,7 @@ export class SupplierService {
         return this.http.get(`${this.baseUrl}/GetAllSupplier?store_id=${storeId}`);
     }
     createSupplier(SupplierData: SupplierDTO): Observable<any> {
-        return this.http.post(`${this.baseUrl}`, SupplierData);
+        return this.http.post(`${this.baseUrl}/CreateSupplier`, SupplierData);
     }
 
     deleteSupplier(id: string): Observable<any> {

@@ -23,7 +23,7 @@ namespace POS_System_BAL.Services.Goods
         private readonly IMapper _mapper;
         private readonly OnlinePosContext _onlinePosContext;
         private readonly Cloudinary _cloudinary;
-        public GoodsServices( IMapper mapper ,OnlinePosContext onlinePosContext, Cloudinary cloudinary)
+        public GoodsServices(IMapper mapper, OnlinePosContext onlinePosContext, Cloudinary cloudinary)
         {
             _mapper = mapper;
             _onlinePosContext = onlinePosContext;
@@ -53,7 +53,7 @@ namespace POS_System_BAL.Services.Goods
                 .Include(s => s.TblGoods)
                 .ToListAsync();
         }
-        
+
         public async Task<IEnumerable<TblPropertygroup>> GetAllPropertyGroupAsync(string store_id)
         {
             return await _onlinePosContext.TblPropertygroups
@@ -61,7 +61,7 @@ namespace POS_System_BAL.Services.Goods
                 .ToListAsync();
         }
 
-        public async Task<TblPropertygroup> GetPropertyGroupAsync(string store_id,string property_id)
+        public async Task<TblPropertygroup> GetPropertyGroupAsync(string store_id, string property_id)
         {
             var property = await _onlinePosContext.TblPropertygroups
                 .Where(s => s.StoreId == store_id && s.PropertyId == property_id)
@@ -88,7 +88,7 @@ namespace POS_System_BAL.Services.Goods
         {
             return await _onlinePosContext.TblGoodsproperties
                 .Where(s => s.StoreId == store_id && s.GoodsId == goods_id && s.PropertyId == property_group)
-                .Include(s =>s.LocalValue == user_language)
+                .Include(s => s.LocalValue == user_language)
                 .ToListAsync();
         }
 
@@ -125,24 +125,24 @@ namespace POS_System_BAL.Services.Goods
 
         public async Task SaveGoods(GoodsDTO goodsDTO, IFormFile imageFile)
         {
-            
-                var entity = _mapper.Map<TblGood>(goodsDTO);
-                var goodsCounter = GenerateGoodId(entity.StoreId);
-                entity.GoodsId = entity.StoreId + entity.GroupId+ goodsCounter;
-                entity.GoodsCounter = GetGoodsCounterByStoreId(entity.StoreId) + 1;
-                var imageName = $"{entity.StoreId}-{entity.GroupId}-{goodsCounter}";
-                var uploadResult = await UploadImageToCloudinary(imageFile, entity.StoreId, goodsCounter, imageName);
-                if (uploadResult.Error != null)
-                {
-                    throw new Exception(uploadResult.Error.Message);
-                }
 
-                entity.Picture = uploadResult.SecureUrl.ToString();
+            var entity = _mapper.Map<TblGood>(goodsDTO);
+            var goodsCounter = GenerateGoodId(entity.StoreId);
+            entity.GoodsId = entity.StoreId + entity.GroupId + goodsCounter;
+            entity.GoodsCounter = GetGoodsCounterByStoreId(entity.StoreId) + 1;
+            var imageName = $"{entity.StoreId}-{entity.GroupId}-{goodsCounter}";
+            var uploadResult = await UploadImageToCloudinary(imageFile, entity.StoreId, goodsCounter, imageName);
+            if (uploadResult.Error != null)
+            {
+                throw new Exception(uploadResult.Error.Message);
+            }
 
-                _onlinePosContext.TblGoods.Add(entity);
-                await _onlinePosContext.SaveChangesAsync();
+            entity.Picture = uploadResult.SecureUrl.ToString();
 
-            
+            _onlinePosContext.TblGoods.Add(entity);
+            await _onlinePosContext.SaveChangesAsync();
+
+
         }
 
         public async Task SaveUnit(GoodUnitDTO goodUnitDTO)
@@ -192,7 +192,7 @@ namespace POS_System_BAL.Services.Goods
         public string GenerateGoodGroupID(string store_id)
         {
             int counter = GetGroupCounterByStoreId(store_id);
-            var  nCounter =   counter + 1;
+            var nCounter = counter + 1;
             string group_id = new string('0', 3 - nCounter.ToString().Length) + nCounter.ToString();
             return group_id;
         }
@@ -221,33 +221,33 @@ namespace POS_System_BAL.Services.Goods
                 .ThenByDescending(g => g.GroupCounter)
                 .Select(g => g.GroupCounter)
                 .FirstOrDefault();
-                return groupCounter;
+            return groupCounter;
         }
 
         public int GetGoodsCounterByStoreId(string storeId)
         {
-                var goodsCounter = _onlinePosContext.TblGoods
-                    .Where(g => g.StoreId == storeId)
-                    .OrderBy(g => g.StoreId)
-                    .ThenByDescending (g => g.GoodsCounter)
-                    .Select(g => g.GoodsCounter)
-                    .FirstOrDefault();
-                return goodsCounter;            
+            var goodsCounter = _onlinePosContext.TblGoods
+                .Where(g => g.StoreId == storeId)
+                .OrderBy(g => g.StoreId)
+                .ThenByDescending(g => g.GoodsCounter)
+                .Select(g => g.GoodsCounter)
+                .FirstOrDefault();
+            return goodsCounter;
         }
 
         public int GetPropertyCounterByStoreId(string storeId)
         {
-                var propertyCounter = _onlinePosContext.TblPropertygroups
-                    .Where(g => g.StoreId == storeId)
-                    .OrderBy(g => g.StoreId)
-                    .ThenByDescending(g => g.PropertyCounter)
-                    .Select(g => g.PropertyCounter)
-                    .FirstOrDefault();
-                return propertyCounter;
+            var propertyCounter = _onlinePosContext.TblPropertygroups
+                .Where(g => g.StoreId == storeId)
+                .OrderBy(g => g.StoreId)
+                .ThenByDescending(g => g.PropertyCounter)
+                .Select(g => g.PropertyCounter)
+                .FirstOrDefault();
+            return propertyCounter;
         }
         #endregion
 
-        private async Task<ImageUploadResult> UploadImageToCloudinary(IFormFile imageFile, string id, string idenID,string imageName)
+        private async Task<ImageUploadResult> UploadImageToCloudinary(IFormFile imageFile, string id, string idenID, string imageName)
         {
             var uploadResult = new ImageUploadResult();
 

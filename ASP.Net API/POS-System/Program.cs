@@ -23,7 +23,7 @@ namespace POS_System
         public static void Main(string[] args)
         {
             IServiceCollection services = new ServiceCollection();
-         
+
 
             var builder = WebApplication.CreateBuilder(args);
             var configuration = builder.Configuration;
@@ -69,7 +69,7 @@ namespace POS_System
                 options.AddPolicy("CorsPolicy", policy =>
                 {
                     policy.AllowAnyOrigin()
-                    .AllowAnyHeader() 
+                    .AllowAnyHeader()
                     .AllowAnyMethod();
                 });
             });
@@ -83,7 +83,7 @@ namespace POS_System
                 app.UseSwaggerUI();
             }
             app.UseCors("CorsPolicy");
-            
+
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();

@@ -39,6 +39,13 @@ import { AuthenticationService } from './API/Admin/authentication.service';
 import { AuthenticationGuard } from './authentication.guard';
 import { GoodsGroupComponent } from './admin/goods-group/goods-group.component';
 import { CreateGoodGroupComponent } from './admin/goods-group/create-good-group/create-good-group.component';
+import { PropertyGroupComponent } from './admin/property-group/property-group.component';
+import { CreatePropertyGroupComponent } from './admin/property-group/create-property-group/create-property-group.component';
+import { CreateGoodsComponent } from './admin/goods-page/create-goods/create-goods.component';
+import { SupplierComponent } from './admin/supplier/supplier.component';
+import { CreateSupplierComponent } from './admin/supplier/create-supplier/create-supplier.component';
+import { CustomerComponent } from './admin/customer/customer.component';
+import { CreateCustomerComponent } from './admin/customer/create-customer/create-customer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +62,13 @@ import { CreateGoodGroupComponent } from './admin/goods-group/create-good-group/
     LoginComponent,
     GoodsGroupComponent,
     CreateGoodGroupComponent,
+    PropertyGroupComponent,
+    CreatePropertyGroupComponent,
+    CreateGoodsComponent,
+    SupplierComponent,
+    CreateSupplierComponent,
+    CustomerComponent,
+    CreateCustomerComponent,
 
   ],
   imports: [
