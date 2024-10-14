@@ -1,0 +1,77 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001001.jpg",
+      "PackagePath": "staticwebassets\\image\\stores\\001001.jpg"
+    },
+    {
+      "Id": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001.jpg",
+      "PackagePath": "staticwebassets\\image\\stores\\001\\001001.jpg"
+    },
+    {
+      "Id": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001004.jpg",
+      "PackagePath": "staticwebassets\\image\\stores\\001\\001001004.jpg"
+    },
+    {
+      "Id": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001005.jpg",
+      "PackagePath": "staticwebassets\\image\\stores\\001\\001001005.jpg"
+    },
+    {
+      "Id": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001006.jpg",
+      "PackagePath": "staticwebassets\\image\\stores\\001\\001001006.jpg"
+    },
+    {
+      "Id": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001007.jpg",
+      "PackagePath": "staticwebassets\\image\\stores\\001\\001001007.jpg"
+    },
+    {
+      "Id": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001008.jpg",
+      "PackagePath": "staticwebassets\\image\\stores\\001\\001001008.jpg"
+    },
+    {
+      "Id": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001002.jpg",
+      "PackagePath": "staticwebassets\\image\\stores\\001\\001002.jpg"
+    },
+    {
+      "Id": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001003.jpg",
+      "PackagePath": "staticwebassets\\image\\stores\\001\\001003.jpg"
+    },
+    {
+      "Id": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001004.jpg",
+      "PackagePath": "staticwebassets\\image\\stores\\001\\001004.jpg"
+    },
+    {
+      "Id": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001005.jpg",
+      "PackagePath": "staticwebassets\\image\\stores\\001\\001005.jpg"
+    },
+    {
+      "Id": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001006.jpg",
+      "PackagePath": "staticwebassets\\image\\stores\\001\\001006.jpg"
+    },
+    {
+      "Id": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001007.jpg",
+      "PackagePath": "staticwebassets\\image\\stores\\001\\001007.jpg"
+    },
+    {
+      "Id": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\002\\002001.jpg",
+      "PackagePath": "staticwebassets\\image\\stores\\002\\002001.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.POS-System.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.POS-System.props",
+      "PackagePath": "build\\POS-System.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.POS-System.props",
+      "PackagePath": "buildMultiTargeting\\POS-System.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.POS-System.props",
+      "PackagePath": "buildTransitive\\POS-System.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

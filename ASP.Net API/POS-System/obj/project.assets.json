@@ -1628,14 +1628,27 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AutoMapper": "13.0.1",
-          "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj": "1.0.0",
-          "Microsoft.AspNetCore.Http.Features": "5.0.17"
+          "Microsoft.AspNetCore.Http.Features": "5.0.17",
+          "POS-System_DAL": "1.0.0"
         },
         "compile": {
           "bin/placeholder/POS-System_BAL.dll": {}
         },
         "runtime": {
           "bin/placeholder/POS-System_BAL.dll": {}
+        }
+      },
+      "POS-System_DAL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8"
+        },
+        "compile": {
+          "bin/placeholder/POS-System_DAL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/POS-System_DAL.dll": {}
         }
       }
     }
@@ -4618,14 +4631,19 @@
       "type": "project",
       "path": "../POS-System_BAL/POS-System_BAL.csproj",
       "msbuildProject": "../POS-System_BAL/POS-System_BAL.csproj"
+    },
+    "POS-System_DAL/1.0.0": {
+      "type": "project",
+      "path": "../POS-System_DAL/POS-System_DAL.csproj",
+      "msbuildProject": "../POS-System_DAL/POS-System_DAL.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.8",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.8",
       "POS-System_BAL >= 1.0.0",
+      "POS-System_DAL >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.7.3"
     ]
   },
@@ -4718,16 +4736,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1104",
-      "level": "Error",
-      "message": "Unable to find project 'E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj'. Check that the project reference is valid and that the project file exists.",
-      "libraryId": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  }
 }

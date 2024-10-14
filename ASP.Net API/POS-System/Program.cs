@@ -35,7 +35,6 @@ namespace POS_System
 
             builder.Services.AddAutoMapper(typeof(AutoMappers));
 
-            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             builder.Services.AddScoped<IUserServices, UserServices>();
             builder.Services.AddScoped<IGoodsServices, GoodsServices>();
