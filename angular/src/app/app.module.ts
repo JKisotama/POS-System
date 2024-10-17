@@ -14,7 +14,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
@@ -29,8 +28,24 @@ import { AvatarModule } from 'primeng/avatar';
 import { PosMainComponent } from './POS/pos-main/pos-main.component';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
+import { MatIconModule} from '@angular/material/icon'
+import { GoodsPageComponent } from './admin/goods-page/goods-page.component';
+import {  MatMenuModule} from '@angular/material/menu'
+import { MatSelectModule } from '@angular/material/select';
+import { UserControllerComponent } from './admin/user-controller/user-controller.component';
+import { CreateStaffComponent } from './admin/user-controller/create-staff/create-staff.component';
 import { LoginComponent } from './authentication/login/login.component';
-
+import { AuthenticationService } from './API/Admin/authentication.service';
+import { AuthenticationGuard } from './authentication.guard';
+import { GoodsGroupComponent } from './admin/goods-group/goods-group.component';
+import { CreateGoodGroupComponent } from './admin/goods-group/create-good-group/create-good-group.component';
+import { PropertyGroupComponent } from './admin/property-group/property-group.component';
+import { CreatePropertyGroupComponent } from './admin/property-group/create-property-group/create-property-group.component';
+import { CreateGoodsComponent } from './admin/goods-page/create-goods/create-goods.component';
+import { SupplierComponent } from './admin/supplier/supplier.component';
+import { CreateSupplierComponent } from './admin/supplier/create-supplier/create-supplier.component';
+import { CustomerComponent } from './admin/customer/customer.component';
+import { CreateCustomerComponent } from './admin/customer/create-customer/create-customer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +56,20 @@ import { LoginComponent } from './authentication/login/login.component';
     PosFooterComponent,
     DashboardComponent,
     PosMainComponent,
+    GoodsPageComponent,
+    UserControllerComponent,
+    CreateStaffComponent,
     LoginComponent,
+    GoodsGroupComponent,
+    CreateGoodGroupComponent,
+    PropertyGroupComponent,
+    CreatePropertyGroupComponent,
+    CreateGoodsComponent,
+    SupplierComponent,
+    CreateSupplierComponent,
+    CustomerComponent,
+    CreateCustomerComponent,
+
   ],
   imports: [
     BrowserModule, 
@@ -53,11 +81,19 @@ import { LoginComponent } from './authentication/login/login.component';
     MatDividerModule, 
     MatIconModule,
     MatTableModule,
+    MatMenuModule,
+    MatSelectModule,
+
 
     ToolbarModule, ButtonModule, SplitButtonModule,InputTextModule,AvatarModule,CarouselModule, ButtonModule, TagModule,
     
 ],
-  providers: [provideClientHydration(), provideAnimationsAsync()],
+  providers: [
+    provideClientHydration(), 
+    provideAnimationsAsync(),
+    AuthenticationService,
+    AuthenticationGuard
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -13,14 +13,14 @@ export class SupplierService {
         private http: HttpClient
     ){}
 
-    private baseUrl = 'http://localhost:7062/api/Suppliers';
+    private baseUrl = 'https://localhost:5000/api/Suppliers';
 
 
     GetAllSupplier(storeId: string): Observable<any>{
-        return this.http.get(`${this.baseUrl}/Get-All-Supplier?store_id=${storeId}`);
+        return this.http.get(`${this.baseUrl}/GetAllSupplier?store_id=${storeId}`);
     }
     createSupplier(SupplierData: SupplierDTO): Observable<any> {
-        return this.http.post(`${this.baseUrl}`, SupplierData);
+        return this.http.post(`${this.baseUrl}/CreateSupplier`, SupplierData);
     }
 
     deleteSupplier(id: string): Observable<any> {

@@ -58,8 +58,8 @@ public partial class OnlinePosContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        //optionsBuilder.UseSqlServer("Server=16ACH-LEGION;Initial Catalog=POS-Web;Persist Security Info=True;Encrypt=True;TrustServerCertificate=True;Trusted_Connection=true");
-        optionsBuilder.UseSqlServer("Server=DESKTOP-ENEA971\\SQLEXPRESS;Database=POS-Web;TrustServerCertificate=True;Trusted_Connection=True;");
+        optionsBuilder.UseSqlServer("Server=DESKTOP-6J6JQBK\\SQLEXPRESS;Initial Catalog=POS-Web;Persist Security Info=True;Encrypt=True;TrustServerCertificate=True;Trusted_Connection=true");
+        //optionsBuilder.UseSqlServer("Server=DESKTOP-ENEA971\\SQLEXPRESS;Database=POS-Web;TrustServerCertificate=True;Trusted_Connection=True;");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -669,19 +669,19 @@ public partial class OnlinePosContext : DbContext
                 .HasMaxLength(5)
                 .IsUnicode(false)
                 .HasColumnName("store_id");
-            entity.Property(e => e.SupllierAddress)
+            entity.Property(e => e.SupplierAddress)
                 .HasMaxLength(100)
                 .IsUnicode(false)
-                .HasColumnName("supllier_address");
-            entity.Property(e => e.SupllierEmail)
+                .HasColumnName("supplier_address");
+            entity.Property(e => e.SupplierEmail)
                 .HasMaxLength(100)
                 .IsUnicode(false)
-                .HasColumnName("supllier_email");
-            entity.Property(e => e.SupllierPhone)
+                .HasColumnName("supplier_email");
+            entity.Property(e => e.SupplierPhone)
                 .HasMaxLength(20)
                 .IsUnicode(false)
-                .HasColumnName("supllier_phone");
-            entity.Property(e => e.SupllierType).HasColumnName("supllier_type");
+                .HasColumnName("supplier_phone");
+            entity.Property(e => e.SupplierType).HasColumnName("supplier_type");
             entity.Property(e => e.SupplierCounter).HasColumnName("supplier_counter");
             entity.Property(e => e.SupplierName)
                 .HasMaxLength(200)

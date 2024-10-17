@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using POS_System_BAL.DTOs;
@@ -20,10 +22,12 @@ namespace POS_System_BAL.Services.Goods
     {
         private readonly IMapper _mapper;
         private readonly OnlinePosContext _onlinePosContext;
-        public GoodsServices( IMapper mapper ,OnlinePosContext onlinePosContext)
+        private readonly Cloudinary _cloudinary;
+        public GoodsServices( IMapper mapper ,OnlinePosContext onlinePosContext, Cloudinary cloudinary)
         {
             _mapper = mapper;
             _onlinePosContext = onlinePosContext;
+            _cloudinary = cloudinary;
         }
 
         #region GET
@@ -73,12 +77,12 @@ namespace POS_System_BAL.Services.Goods
             return goods;
         }
 
-        public async Task<IEnumerable<string?>> GetGoodsUnitAsync(string store_id, string goods_id, int type)
+        public async Task<IEnumerable<GoodUnitDTO>> GetGoodsUnitAsync(string store_id, string goods_id, int type)
         {
-            return await _onlinePosContext.TblGoodsunits
+            var entity = await _onlinePosContext.TblGoodsunits
                 .Where(s => s.StoreId == store_id && s.GoodsId == goods_id && s.UnitStatus == type)
-                .Select(s => s.GoodsUnit)
                 .ToListAsync();
+            return _mapper.Map<IEnumerable<GoodUnitDTO>>(entity);
         }
         public async Task<IEnumerable<TblGoodsproperty>> GetGoodsPropertyAsync(string store_id, string goods_id, string property_group, string user_language)
         {
@@ -120,16 +124,25 @@ namespace POS_System_BAL.Services.Goods
         }
 
         public async Task SaveGoods(GoodsDTO goodsDTO, IFormFile imageFile)
-        {     
-            var entity = _mapper.Map<TblGood>(goodsDTO);
-            var goodsCounter = GenerateGoodId(entity.StoreId);
-            entity.GoodsId = entity.StoreId + goodsCounter;
-            entity.GoodsCounter = GetGoodsCounterByStoreId(entity.StoreId) + 1;
-            string imageData = await SaveImage(imageFile, entity.StoreId, goodsCounter);
-            entity.Picture = imageData;
-            _onlinePosContext.TblGoods.Add(entity);
-            await _onlinePosContext.SaveChangesAsync();
+        {
+            
+                var entity = _mapper.Map<TblGood>(goodsDTO);
+                var goodsCounter = GenerateGoodId(entity.StoreId);
+                entity.GoodsId = entity.StoreId + entity.GroupId+ goodsCounter;
+                entity.GoodsCounter = GetGoodsCounterByStoreId(entity.StoreId) + 1;
+                var imageName = $"{entity.StoreId}-{entity.GroupId}-{goodsCounter}";
+                var uploadResult = await UploadImageToCloudinary(imageFile, entity.StoreId, goodsCounter, imageName);
+                if (uploadResult.Error != null)
+                {
+                    throw new Exception(uploadResult.Error.Message);
+                }
 
+                entity.Picture = uploadResult.SecureUrl.ToString();
+
+                _onlinePosContext.TblGoods.Add(entity);
+                await _onlinePosContext.SaveChangesAsync();
+
+            
         }
 
         public async Task SaveUnit(GoodUnitDTO goodUnitDTO)
@@ -233,58 +246,29 @@ namespace POS_System_BAL.Services.Goods
                 return propertyCounter;
         }
         #endregion
-        public async Task<string> SaveImage(IFormFile image, string id, string idenID)
+
+        private async Task<ImageUploadResult> UploadImageToCloudinary(IFormFile imageFile, string id, string idenID,string imageName)
         {
-            
-            string filename = "";
-            var type = "stores";
-            var filepath = Path.Combine("wwwroot", "image", $"{type}\\{id}");
+            var uploadResult = new ImageUploadResult();
 
-            if (!Directory.Exists(filepath))
+            if (imageFile.Length > 0)
             {
-                Directory.CreateDirectory(filepath);
+                using (var stream = imageFile.OpenReadStream())
+                {
+                    var filePath = $"{id}/{idenID}";
+                    var uploadParams = new ImageUploadParams()
+                    {
+                        File = new FileDescription(imageFile.FileName, stream),
+                        PublicId = filePath,
+                        Transformation = new Transformation().Crop("fill").Gravity("face").Width(500).Height(500)
+                    };
+
+                    uploadResult = await _cloudinary.UploadAsync(uploadParams);
+                }
             }
 
-            try
-            {
-                var extension = Path.GetExtension(image.FileName).ToLowerInvariant();
-                if (extension == ".jpg" || extension == ".jpeg" || extension == ".png")
-                {
-                    filename = $"{id}{idenID}{extension}";
-                }
-                else
-                {
-                    throw new NotSupportedException("Image format not supported.");
-                }
-                var exactpath = Path.Combine(filepath, filename);
-                using (var stream = new FileStream(exactpath, FileMode.Create))
-                {
-                    await image.CopyToAsync(stream);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error saving image: {ex.Message}");
-                throw;
-            }
-            return filename;
+            return uploadResult;
         }
 
-        public async Task<byte[]> GetImage(string id, string idenID)
-        {
-            var filepath = Path.Combine("wwwroot", "image", "stores", id, id + idenID);
-            var extensions = new[] { ".jpg", ".jpeg", ".png" };
-            
-            foreach (var extension in extensions)
-            {
-                var fullPath = Path.Combine(filepath + extension);
-                if (File.Exists(fullPath))
-                {
-                    var bytes = await File.ReadAllBytesAsync(fullPath);
-                    return bytes;
-                }
-            }
-                throw new FileNotFoundException("Image not found", filepath);           
-        }
     }
 }

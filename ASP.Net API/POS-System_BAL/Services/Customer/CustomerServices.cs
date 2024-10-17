@@ -55,7 +55,7 @@ namespace POS_System_BAL.Services.Customer
             if (existCustomer != null)
             {
                 _mapper.Map(customerDTO, existCustomer);
-                _onlinePosContext.Update(existCustomer);
+                 _onlinePosContext.Update(existCustomer);
             }
             
             
@@ -82,9 +82,11 @@ namespace POS_System_BAL.Services.Customer
         }
 
 
-        public async Task DeleteCustomer( string customer_id)
+        public async Task DeleteCustomer(string company_id,string customer_id)
         {
-             _onlinePosContext.Remove(customer_id);
+            var customer = GetCustomer(company_id, customer_id);
+            _onlinePosContext.Remove(customer);
+            await _onlinePosContext.SaveChangesAsync();
         }
 
 

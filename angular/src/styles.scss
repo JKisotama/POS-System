@@ -36,7 +36,6 @@ $final-ui-theme: mat.define-light-theme((
 
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
-
 /* You can add global styles to this file, and also import other style files */
 
 @import "variables";
@@ -45,3 +44,9 @@ $final-ui-theme: mat.define-light-theme((
 
 
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

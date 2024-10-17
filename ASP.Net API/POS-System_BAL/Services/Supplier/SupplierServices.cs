@@ -41,8 +41,8 @@ namespace POS_System_BAL.Services.Supplier
         public async Task CreateSupplier(SupplierDTO supplier)
         {
             var entity = _mapper.Map<TblSupplier>(supplier);
-            var supplierCounter = GenerateSupplierID(entity.StoreId, entity.CreatedDate);
-            entity.SupplierCounter = GetSupplierCounterByStoreId(entity.StoreId, entity.CreatedDate) + 1;
+            var supplierCounter = GenerateSupplierID(entity.StoreId);
+            entity.SupplierCounter = GetSupplierCounterByStoreId(entity.StoreId) + 1;
             entity.SupplierId = entity.StoreId + supplierCounter;
             _onlinePosContext.TblSuppliers
                 .Add(entity);
@@ -61,9 +61,9 @@ namespace POS_System_BAL.Services.Supplier
             throw new InvalidOperationException("No Supplier found");
         }
 
-        public string GenerateSupplierID(string store_id, DateTime created_date)
+        public string GenerateSupplierID(string store_id)
         {
-            int counter = GetSupplierCounterByStoreId(store_id, created_date);
+            int counter = GetSupplierCounterByStoreId(store_id);
             var nCounter = counter + 1;
             string supplier_id = new string('0', 3 - nCounter.ToString().Length) + nCounter.ToString();
             return supplier_id;
@@ -71,10 +71,10 @@ namespace POS_System_BAL.Services.Supplier
 
 
 
-        public int GetSupplierCounterByStoreId(string storeId, DateTime created_Date)
+        public int GetSupplierCounterByStoreId(string storeId)
         {
                 var supplierCounetr = _onlinePosContext.TblSuppliers
-                    .Where(g => g.StoreId == storeId && g.CreatedDate.Date == created_Date.Date)
+                    .Where(g => g.StoreId == storeId )
                     .OrderBy(g => g.StoreId)
                     .ThenByDescending(g => g.SupplierCounter)
                     .Select(g => g.SupplierCounter)

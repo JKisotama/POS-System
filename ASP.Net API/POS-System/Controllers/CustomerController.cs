@@ -81,7 +81,7 @@ namespace POS_Final_Year.Controller
                 return NotFound();
             }
 
-            await _customerServices.DeleteCustomer(customer_id);
+            await _customerServices.DeleteCustomer(comapny_id,customer_id);
 
             return NoContent();
         }
