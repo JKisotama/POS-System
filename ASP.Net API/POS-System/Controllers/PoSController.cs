@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using POS_System_BAL.Services.POS;
 using POS_System_DAL.Data;
 using POS_System_DAL.Models;
 
@@ -16,17 +17,24 @@ namespace POS_Final_Year.Controller
     public class PoSController : ControllerBase
     {
         private readonly OnlinePosContext _context;
+        private readonly IPosServices _posServices;
 
-        public PoSController(OnlinePosContext context)
+        public PoSController(OnlinePosContext context, IPosServices services)
         {
             _context = context;
+            _posServices = services;
         }
 
         // GET: api/PoS
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<TblPo>>> GetTblPos()
+        [HttpGet("GetGoodsList")]
+        public async Task<ActionResult> GetGoodsList(string store_id)
         {
-            return await _context.TblPos.ToListAsync();
+            var goodsList = await _posServices.GetGoodListAsync(store_id);
+            if (goodsList == null)
+            {
+                return NotFound();
+            }
+            return Ok(goodsList);
         }
 
         // GET: api/PoS/5
@@ -77,26 +85,16 @@ namespace POS_Final_Year.Controller
         // POST: api/PoS
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TblPo>> PostTblPo(TblPo tblPo)
+        public async Task<ActionResult<TblPo>> PostPo(string store_id,TblPo tblPo)
         {
-            _context.TblPos.Add(tblPo);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (TblPoExists(tblPo.PosNumber))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetTblPo", new { id = tblPo.PosNumber }, tblPo);
+            await _posServices.SavePo(store_id,tblPo);
+            return StatusCode(201);
+        } 
+        [HttpPost("SAVEPOSITEM")]
+        public async Task<ActionResult> PostPOSItem(string store_id,[FromBody]TblReceiptdetail tblReceiptdetail,[FromQuery]TblPosdetail tblPosdetail)
+        {
+            await _posServices.SavePoItem(store_id,tblReceiptdetail, tblPosdetail);
+            return StatusCode(201);
         }
 
         // DELETE: api/PoS/5

@@ -28,7 +28,7 @@ namespace POS_Final_Year.Controller
         }
 
         // GET: api/Users
-        [HttpGet("Get All User")]
+        [HttpGet("GetAllUser")]
         public async Task<ActionResult<IEnumerable<TblUser>>> GetTblUsers(string store_id)
         {
             var userList = await _userServices.GetAllUser(store_id);
@@ -39,8 +39,8 @@ namespace POS_Final_Year.Controller
             return Ok(userList);
         }
 
-        // GET: api/Users/5
-        [HttpGet("Get Userr by Id")]
+     
+        [HttpGet("GetUserById")]
         public async Task<ActionResult<TblUser>> GetTblUser(string store_id, string login_name)
         {
             var tblUser = await _userServices.GetUser(store_id, login_name);
@@ -53,9 +53,8 @@ namespace POS_Final_Year.Controller
             return tblUser;
         }
 
-        // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("Update User")]
+        
+        [HttpPut("UpdateUser")]
         public async Task<ActionResult> PutTblUser([FromQuery]UserDTO userDTO,string store_id, string login_name)
         {
 
@@ -64,9 +63,20 @@ namespace POS_Final_Year.Controller
             return NoContent();
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("Create User")]
+        [HttpPut("UpdateUserLevel")]
+        public async Task<ActionResult> PutUserLevel(string store_id, string login_name, int? userLevel)
+        {
+            var updateUser = await _userServices.CreateUserLevelAsync(store_id, login_name, userLevel);
+            if (updateUser == null)
+            {
+                return NotFound("No User Found");
+            }
+            return NoContent();
+        }
+
+
+        
+        [HttpPost("CreateUser")]
         public async Task<ActionResult<TblUser>> PostTblUser([FromQuery]TblUser tblUser)
         {
             var newUser = await _userServices
@@ -74,6 +84,8 @@ namespace POS_Final_Year.Controller
             return CreatedAtAction("GetTblUser", new { id = tblUser.LoginName }, newUser);
         }
 
+
+        
 
         [HttpPost("Login")]
         public async Task<ActionResult<TblUser>> Login (string store_id, string login_name, string password)

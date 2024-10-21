@@ -15,7 +15,7 @@ public partial class TblSellprice
 
     public int? SellNumber { get; set; }
 
-    public int? SellPrice { get; set; }
+    public int SellPrice { get; set; }
 
     public string? StoreId { get; set; }
 

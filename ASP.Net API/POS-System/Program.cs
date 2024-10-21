@@ -15,6 +15,7 @@ using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using dotenv.net;
 using Microsoft.Extensions.DependencyInjection;
+using POS_System_BAL.Services.POS;
 
 namespace POS_System
 {
@@ -61,6 +62,7 @@ namespace POS_System
             builder.Services.AddScoped<IGoodsServices, GoodsServices>();
             builder.Services.AddScoped<ISupplierServices, SupplierServices>();
             builder.Services.AddScoped<ICustomerServices, CustomerServices>();
+            builder.Services.AddScoped<IPosServices, PosServices>();
             builder.Services.AddScoped<IAuthenticate, Authenticate>();
 
 

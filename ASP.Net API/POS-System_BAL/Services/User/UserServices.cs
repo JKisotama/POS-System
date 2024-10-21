@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using POS_System_BAL.DTOs;
+using POS_System_BAL.Exceptions;
 using POS_System_DAL.Authentication;
 using POS_System_DAL.Data;
 using POS_System_DAL.Models;
@@ -36,6 +37,21 @@ namespace POS_System_BAL.Services.User
 
         public async Task<TblUser> CreateUser(TblUser user)
         {
+            if(user == null)
+            {
+                throw new ArgumentException(nameof(user), "User can not be null");
+            }
+            // Validate user properties
+            if (string.IsNullOrWhiteSpace(user.LoginName))
+            {
+                throw new ArgumentException ("Login name is required.");
+            }
+
+            if (string.IsNullOrWhiteSpace(user.PassWord))
+            {
+                throw new ArgumentException ( "Password is required.");
+            }
+
             try
             {
                 var newUser = new TblUser
@@ -52,18 +68,23 @@ namespace POS_System_BAL.Services.User
                 };
                 _onlinePosContext.TblUsers.Add(newUser);
                 await _onlinePosContext.SaveChangesAsync();
-                
-               
+
+
 
                 return newUser;
+
+            }
+            catch (DbUpdateException dbEx)
+            {
+                Console.WriteLine(dbEx);
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 return null;
-                
             }
+            return user;
         }
 
         public async Task<UserDTO> UpdateUser(UserDTO userDTO, string store_id, string login_name)
@@ -84,6 +105,29 @@ namespace POS_System_BAL.Services.User
                 await _onlinePosContext.SaveChangesAsync();
             }
             return entity;
+        }
+
+        public async Task<TblUser> CreateUserLevelAsync(string store_id, string login_name, int? user_level)
+        {
+            var existUser = await GetUser(store_id, login_name);
+            if (existUser == null)
+            {
+               throw new UserExecptions("No User found.");
+            }
+            try
+            {
+                existUser.UserLevel = user_level;
+                _onlinePosContext.TblUsers.Update(existUser);
+                await _onlinePosContext.SaveChangesAsync();
+
+                return existUser;
+            }
+            catch(UserExecptions ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
+            
         }
 
         public async Task<TblUser> Login(string store_id, string login_name, string password)
