@@ -26,8 +26,10 @@ namespace POS_System_BAL.Mapping
                 .ReverseMap();
             CreateMap<TblUser, UserDTO>()
                 .ReverseMap();
-            CreateMap<TblSellprice, SellPriceDTO>()
-                .ReverseMap();
+            CreateMap<TblSellprice, GoodsWithSellPriceDTO>()
+                .ForMember(dest => dest.GoodsId, opt => opt.MapFrom(src => src.GoodsId))
+                .ForMember(dest => dest.SellPrice, opt => opt.MapFrom(src => src.SellPrice));
+
         }
     }
 

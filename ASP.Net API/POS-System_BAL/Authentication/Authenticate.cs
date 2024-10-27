@@ -1,4 +1,5 @@
-﻿using POS_System_DAL.Data;
+﻿using POS_System_BAL.Exceptions;
+using POS_System_DAL.Data;
 using POS_System_DAL.Models;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace POS_System_DAL.Authentication
         {
             _onlinePosContext = onlinePosContext;
         }
+        
         public async Task<TblUser> CheckLogin(string store_id, string login_name, string pass_word)
         {
             string pass_encrypted = VerifyPasswordHash(pass_word);
@@ -27,9 +29,9 @@ namespace POS_System_DAL.Authentication
                         .FirstOrDefault();
             if (user != null)
             {
-                if (user.UserStatus == 1)
+                if (user.UserStatus != 1)
                 {
-                    return null;
+                    throw new UserExecptions("This User has been Deactivated");
                 }
                 else
                     return user;
