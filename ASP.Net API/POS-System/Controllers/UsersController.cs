@@ -91,7 +91,10 @@ namespace POS_Final_Year.Controller
         public async Task<ActionResult<TblUser>> Login (string store_id, string login_name, string password)
         {
             var loginUser = await _userServices.Login(store_id, login_name, password);
-            Console.WriteLine(loginUser);
+            if (loginUser == null)
+            {
+                return Unauthorized("Invalid login credentials."); 
+            }
             return Ok(loginUser);
         }
 

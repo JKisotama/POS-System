@@ -32,7 +32,8 @@ namespace POS_System_BAL.Services.User
 
         public async Task<TblUser> GetUser(string store_id, string login_name)
         {
-            return await _onlinePosContext.TblUsers.FirstOrDefaultAsync(s => s.StoreId == store_id && s.LoginName == login_name);
+            return await _onlinePosContext.TblUsers
+                .FirstOrDefaultAsync(s => s.StoreId == store_id && s.LoginName == login_name);
         }
 
         public async Task<TblUser> CreateUser(TblUser user)
@@ -64,12 +65,10 @@ namespace POS_System_BAL.Services.User
                     UserLanguage = user.UserLanguage,
                     UserType = user.UserType,
                     UserLevel = 1,
-                    UserStatus = 0
+                    UserStatus = 1
                 };
                 _onlinePosContext.TblUsers.Add(newUser);
                 await _onlinePosContext.SaveChangesAsync();
-
-
 
                 return newUser;
 

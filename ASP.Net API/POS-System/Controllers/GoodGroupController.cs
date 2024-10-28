@@ -9,6 +9,7 @@ using Azure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using POS_System_BAL.DTOs;
 using POS_System_BAL.Services.Goods;
 using POS_System_DAL.Data;
@@ -54,9 +55,13 @@ namespace POS_Final_Year.Controller
         }
 
         [HttpGet("GetGoodsByGroup")]
-        public async Task<ActionResult<IEnumerable<TblGood>>> GetGoodByGroup(string store_id,string group_id)
+        public async Task<ActionResult<IEnumerable<TblGood>>> GetGoodByGroup(
+            [FromQuery]string store_id, 
+            [FromQuery] string group_id = null, 
+            [FromQuery] string filter = null)
         {
-            var goods = await _goodsServices.GetGoodsByGroupAsync(store_id,group_id);
+            var query = _goodsServices.GetGoodsQueryable();
+            var goods = await _goodsServices.GetGoodsByGroupAsync(query,store_id,group_id,filter);
             return Ok(goods);
         }
 
@@ -117,14 +122,16 @@ namespace POS_Final_Year.Controller
         }
 
         [HttpGet("GetGoodPrices")]
-        public async Task<ActionResult<TblSellprice>>GetGoodPrice(string store_id,string goods_id, string unit, int quantity)
+        public async Task<ActionResult<IEnumerable<GoodsWithSellPriceDTO>>>GetGoodPrice(
+            [FromQuery] string store_id ,
+            [FromQuery] string filter = null,
+            [FromQuery] int? quantity = null,
+            [FromQuery] int? prices = null)
         {
-            var prices = await _goodsServices.GetSellpricesAsync(store_id,goods_id, unit, quantity); 
-            if(prices == null)
-            {
-                return NotFound();
-            }
-            return Ok(prices);
+            var goodsQuery = _goodsServices.GetGoodsQueryable();
+            var priceQuery = _goodsServices.GetSelPriceQueryable();
+            var goods = await _goodsServices.GetGoodsWithSellPricesAsync(goodsQuery, priceQuery, store_id, filter, quantity, prices);
+            return Ok(goods);
         }
 
         #endregion

@@ -7,21 +7,19 @@ using System.Threading.Tasks;
 
 namespace POS_System_BAL.DTOs
 {
-    public class SellPriceDTO
+    public class GoodsWithSellPriceDTO
     {
-        public int Id { get; set; }
-
-        public string GoodsId { get; set; }
-
+        public string StoreId { get; set; }
+        public string GoodsId { get; set; } = null!;
+        public string? GoodsName { get; set; }
         public string? Barcode { get; set; }
 
         public string? GoodsUnit { get; set; }
 
-        public int SellNumber { get; set; }
+        public int? SellNumber { get; set; }
 
-        public int SellPrice { get; set; }
+        public int? SellPrice { get; set; }
 
-        public string StoreId { get; set; }
 
     }
 }
