@@ -12,15 +12,15 @@ using POS_System_DAL.Data;
 namespace POS_System_DAL.Migrations
 {
     [DbContext(typeof(OnlinePosContext))]
-    [Migration("20240915140718_Initial")]
-    partial class Initial
+    [Migration("20241028033924_setPropPrimaryKey")]
+    partial class setPropPrimaryKey
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -43,7 +43,7 @@ namespace POS_System_DAL.Migrations
                         .HasColumnType("varchar(5)")
                         .HasColumnName("company_id");
 
-                    b.Property<DateTime?>("CreatedDate")
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime")
                         .HasColumnName("created_date");
 
@@ -52,7 +52,7 @@ namespace POS_System_DAL.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("customer_address");
 
-                    b.Property<int?>("CustomerCounter")
+                    b.Property<int>("CustomerCounter")
                         .HasColumnType("int")
                         .HasColumnName("customer_counter");
 
@@ -92,7 +92,7 @@ namespace POS_System_DAL.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("goods_brand");
 
-                    b.Property<int?>("GoodsCounter")
+                    b.Property<int>("GoodsCounter")
                         .HasColumnType("int")
                         .HasColumnName("goods_counter");
 
@@ -106,18 +106,20 @@ namespace POS_System_DAL.Migrations
                         .HasColumnName("goods_status");
 
                     b.Property<string>("GroupId")
+                        .IsRequired()
                         .HasMaxLength(12)
                         .IsUnicode(false)
                         .HasColumnType("varchar(12)")
                         .HasColumnName("group_id");
 
-                    b.Property<byte[]>("Picture")
+                    b.Property<string>("Picture")
                         .IsRequired()
                         .HasMaxLength(1)
-                        .HasColumnType("varbinary(1)")
+                        .HasColumnType("nvarchar(1)")
                         .HasColumnName("picture");
 
                     b.Property<string>("StoreId")
+                        .IsRequired()
                         .HasMaxLength(5)
                         .IsUnicode(false)
                         .HasColumnType("varchar(5)")
@@ -139,7 +141,7 @@ namespace POS_System_DAL.Migrations
                         .HasColumnType("varchar(12)")
                         .HasColumnName("group_id");
 
-                    b.Property<int?>("GroupCounter")
+                    b.Property<int>("GroupCounter")
                         .HasColumnType("int")
                         .HasColumnName("group_counter");
 
@@ -153,6 +155,7 @@ namespace POS_System_DAL.Migrations
                         .HasColumnName("group_status");
 
                     b.Property<string>("StoreId")
+                        .IsRequired()
                         .HasMaxLength(5)
                         .IsUnicode(false)
                         .HasColumnType("varchar(5)")
@@ -166,32 +169,14 @@ namespace POS_System_DAL.Migrations
 
             modelBuilder.Entity("POS_System_DAL.Models.TblGoodsproperty", b =>
                 {
-                    b.Property<string>("EnglishValue")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)")
-                        .HasColumnName("english_value");
-
-                    b.Property<string>("GoodsId")
-                        .HasMaxLength(16)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(16)")
-                        .HasColumnName("goods_id");
-
-                    b.Property<string>("InvestValue")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)")
-                        .HasColumnName("invest_value");
-
-                    b.Property<string>("LocalValue")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)")
-                        .HasColumnName("local_value");
-
                     b.Property<string>("PropertyId")
                         .HasMaxLength(3)
                         .IsUnicode(false)
                         .HasColumnType("varchar(3)")
                         .HasColumnName("property_id");
+
+                    b.Property<string>("GoodsId")
+                        .HasColumnType("varchar(16)");
 
                     b.Property<string>("PropertyName")
                         .HasMaxLength(20)
@@ -204,9 +189,9 @@ namespace POS_System_DAL.Migrations
                         .HasColumnType("varchar(5)")
                         .HasColumnName("store_id");
 
-                    b.HasIndex("GoodsId");
+                    b.HasKey("PropertyId");
 
-                    b.HasIndex("PropertyId");
+                    b.HasIndex("GoodsId");
 
                     b.ToTable("tbl_goodsproperty", (string)null);
                 });
@@ -543,7 +528,7 @@ namespace POS_System_DAL.Migrations
                         .HasColumnType("varchar(3)")
                         .HasColumnName("property_id");
 
-                    b.Property<int?>("PropertyCounter")
+                    b.Property<int>("PropertyCounter")
                         .HasColumnType("int")
                         .HasColumnName("property_counter");
 
@@ -604,7 +589,7 @@ namespace POS_System_DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("paymeny_status");
 
-                    b.Property<int?>("ReceiptCounter")
+                    b.Property<int>("ReceiptCounter")
                         .HasColumnType("int")
                         .HasColumnName("receipt_counter");
 
@@ -944,7 +929,7 @@ namespace POS_System_DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("allow_debt");
 
-                    b.Property<DateTime?>("CreatedDate")
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime")
                         .HasColumnName("created_date");
 
@@ -954,36 +939,36 @@ namespace POS_System_DAL.Migrations
                         .HasColumnType("varchar(5)")
                         .HasColumnName("store_id");
 
-                    b.Property<string>("SupllierAddress")
+                    b.Property<string>("SupplierAddress")
                         .HasMaxLength(100)
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)")
-                        .HasColumnName("supllier_address");
+                        .HasColumnName("supplier_address");
 
-                    b.Property<string>("SupllierEmail")
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("supllier_email");
-
-                    b.Property<string>("SupllierPhone")
-                        .HasMaxLength(20)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(20)")
-                        .HasColumnName("supllier_phone");
-
-                    b.Property<int?>("SupllierType")
-                        .HasColumnType("int")
-                        .HasColumnName("supllier_type");
-
-                    b.Property<int?>("SupplierCounter")
+                    b.Property<int>("SupplierCounter")
                         .HasColumnType("int")
                         .HasColumnName("supplier_counter");
+
+                    b.Property<string>("SupplierEmail")
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("supplier_email");
 
                     b.Property<string>("SupplierName")
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)")
                         .HasColumnName("supplier_name");
+
+                    b.Property<string>("SupplierPhone")
+                        .HasMaxLength(20)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(20)")
+                        .HasColumnName("supplier_phone");
+
+                    b.Property<int?>("SupplierType")
+                        .HasColumnType("int")
+                        .HasColumnName("supplier_type");
 
                     b.HasKey("SupplierId")
                         .HasName("PK__tbl_supp__6EE594E835736B89");
@@ -1033,11 +1018,11 @@ namespace POS_System_DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("user_level");
 
-                    b.Property<int?>("UserStatus")
+                    b.Property<int>("UserStatus")
                         .HasColumnType("int")
                         .HasColumnName("user_status");
 
-                    b.Property<int?>("UserType")
+                    b.Property<int>("UserType")
                         .HasColumnType("int")
                         .HasColumnName("user_type");
 
@@ -1087,6 +1072,8 @@ namespace POS_System_DAL.Migrations
                     b.HasOne("POS_System_DAL.Models.TblGoodsgroup", "Group")
                         .WithMany("TblGoods")
                         .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK__tbl_goods__group__693CA210");
 
                     b.Navigation("Group");
@@ -1102,6 +1089,8 @@ namespace POS_System_DAL.Migrations
                     b.HasOne("POS_System_DAL.Models.TblPropertygroup", "Property")
                         .WithMany()
                         .HasForeignKey("PropertyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK__tbl_goods__prope__6A30C649");
 
                     b.Navigation("Goods");

@@ -99,7 +99,10 @@ namespace POS_Final_Year.Controller
         }
 
         [HttpGet("GetGoodUnit")]
-        public async Task<ActionResult<IEnumerable<TblGoodsunit>>> GetUnit(string store_id, string goods_id,int type)
+        public async Task<ActionResult<IEnumerable<TblGoodsunit>>> GetUnit(
+            string store_id, 
+            string goods_id,
+            int type)
         {
             var unit = await _goodsServices.GetGoodsUnitAsync(store_id, goods_id, type);
             if (store_id != null && goods_id != null && type != null)
@@ -111,10 +114,14 @@ namespace POS_Final_Year.Controller
         }
 
         [HttpGet("GetGoodProperty")]
-        public async Task<ActionResult<IEnumerable<TblGoodsproperty>>> GetProperty(string store_id,string goods_id, string property_id, string user_language)
+        public async Task<ActionResult<IEnumerable<TblGoodsproperty>>> GetProperty(
+            string store_id,
+            string goods_id, 
+            string property_id, 
+            string user_language = null)
         {
-            var property = await _goodsServices.GetGoodsPropertyAsync(store_id,goods_id, property_id, user_language);
-            if (property != null )
+            var property = await _goodsServices.GetGoodsPropertyAsync(store_id,goods_id, property_id);
+            if (property == null )
             {
                 return NotFound("No Property found");
             }
@@ -183,7 +190,7 @@ namespace POS_Final_Year.Controller
         {
             await _goodsServices.SaveProperty(store_id,goods_id, property_id, property_value);
 
-            return CreatedAtAction(nameof(TblGoodsproperty), property_id);
+            return StatusCode(201, property_id);
         }
         [HttpPost("SaveSellingPrice")]
         public async Task<ActionResult<TblSellprice>> PostTblSellPrice(string goods_id, string unit, string barcode, int quantity, int selling_price)

@@ -2,6 +2,7 @@
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using POS_System_BAL.DTOs;
 using POS_System_DAL;
@@ -103,11 +104,10 @@ namespace POS_System_BAL.Services.Goods
             string store_id, 
             string goods_id, 
             string property_group, 
-            string user_language)
+            string user_language = null)
         {
             return await _onlinePosContext.TblGoodsproperties
                 .Where(s => s.StoreId == store_id && s.GoodsId == goods_id && s.PropertyId == property_group)
-                .Include(s =>s.LocalValue == user_language)
                 .ToListAsync();
         }
         public async Task<IEnumerable<GoodsWithSellPriceDTO>> GetGoodsWithSellPricesAsync(
@@ -221,16 +221,31 @@ namespace POS_System_BAL.Services.Goods
 
         public async Task SaveProperty(string store_id, string goods_id, string property_id, string property_value)
         {
-            var newProperty = new TblGoodsproperty
+            try
             {
-                StoreId = store_id,
-                GoodsId = goods_id,
-                PropertyId = property_id,
-                PropertyName = property_value
-            };
-            _onlinePosContext.TblGoodsproperties
-                .Add(newProperty);
-            await _onlinePosContext.SaveChangesAsync();
+                var newProperty = new TblGoodsproperty
+                {
+                    StoreId = store_id,
+                    GoodsId = goods_id,
+                    PropertyId = property_id,
+                    PropertyName = property_value
+                };
+                _onlinePosContext.TblGoodsproperties
+                    .Add(newProperty);
+                await _onlinePosContext.SaveChangesAsync();
+            }
+            catch(DbUpdateException ex)
+            {
+                if(ex.InnerException is SqlException sqlException)
+                {
+                        throw new Exception("Check Property ID !");            
+                }
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while saving the property.", ex);
+            }
         }
 
         public async Task SaveSellingPrices(TblSellprice tblSellprice)

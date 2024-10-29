@@ -29,7 +29,7 @@ namespace POS_System_BAL.Services.Goods
             string store_id, 
             string goods_id, 
             string property_group, 
-            string user_language);
+            string user_language = null);
         Task<IEnumerable<GoodsWithSellPriceDTO>> GetGoodsWithSellPricesAsync(
         IQueryable<TblGood> query,
         IQueryable<TblSellprice> sellPriceQuery, // Added parameter for TblSellPrice
