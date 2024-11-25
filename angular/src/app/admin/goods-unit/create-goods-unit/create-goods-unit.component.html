@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Create New Good Unit</h2>
+
+<div mat-dialog-content>
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="form">
+        <div class="mt-2">
+          <label>Good Id</label>
+          <input type="text" class="form-control" formControlName="goodsId" />
+        </div>
+
+        <div class="mt-2">
+          <label>Bar Code</label>
+          <input type="text" class="form-control" formControlName="barcode" />
+        </div>
+
+        <div class="mt-2">
+          <label>Good Unit</label>
+          <input type="text" class="form-control" formControlName="goodsUnit" />
+        </div>
+
+        <div class="mt-2">
+          <label>Unit Size</label>
+          <input type="text" class="form-control" formControlName="unitSize" />
+        </div>
+
+        <div class="mt-2">
+          <label>Unit Stock</label>
+          <input type="text" class="form-control" formControlName="unitStock" />
+        </div>
+
+        <div class="mt-2">
+          <label>Unit Status</label>
+          <select class="form-select" formControlName="unitStatus">
+            <option [value]="0">Available</option>
+            <option [value]="1">Unavailable</option>
+          </select>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <div class="card">
+    <div class="card-body">
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-button type="submit" (click)="Save()">Save</button>
+    </div>
+  </div>
+</div>

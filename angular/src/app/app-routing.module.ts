@@ -10,17 +10,19 @@ import { GoodsGroupComponent } from './admin/goods-group/goods-group.component';
 import { PropertyGroupComponent } from './admin/property-group/property-group.component';
 import { SupplierComponent } from './admin/supplier/supplier.component';
 import { CustomerComponent } from './admin/customer/customer.component';
+import { GoodsUnitComponent } from './admin/goods-unit/goods-unit.component';
 
 const routes: Routes = [
   { path: 'goods-page', component: GoodsPageComponent, canActivate: [AuthenticationGuard]},
   { path: 'pos', component: PosMainComponent},
   { path: 'admin', component: AdminPageComponent , canActivate: [AuthenticationGuard]},
   { path: 'user', component: UserControllerComponent, canActivate: [AuthenticationGuard]},
-  { path: 'login', component: LoginComponent},
+  { path: '', component: LoginComponent},
   { path: 'good-group', component: GoodsGroupComponent, canActivate: [AuthenticationGuard]},
   { path: 'property-group', component: PropertyGroupComponent, canActivate: [AuthenticationGuard]},
   {path: 'supplier', component: SupplierComponent, canActivate: [AuthenticationGuard]},
   { path: 'customer', component: CustomerComponent, canActivate: [AuthenticationGuard]},
+  { path: 'goodsUnit', component: GoodsUnitComponent, canActivate: [AuthenticationGuard]},
 ];
 
 @NgModule({

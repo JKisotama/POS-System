@@ -34,6 +34,7 @@ export class GoodsPageComponent implements OnInit {
   displayedColumns: string[] = ['expandArrow','action','groupId', 'groupName', 'groupStatus','storeId'];
   childDisplayedColumns: string[] = ['goodsId', 'goodsName', 'goodsBrand',  'picture', 'goodsStatus'];
   storeId: string | null = null;
+  userLevel: number | null = null;
 
   constructor(
     private goodsService: GoodsService,
@@ -44,9 +45,15 @@ export class GoodsPageComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.storeId = this.authenticationService.getStoreIdUser()
+    this.storeId = this.authenticationService.getStoreIdUser();
+    this.userLevel = this.authenticationService.getUserRole();
     console.log(this.storeId);
+    console.log(this.userLevel);
     this.buildForm();
+
+    // this.form.get('filterText')?.valueChanges.subscribe(filterText => {
+    //   this.getGoodByGroup();
+    // });
 
   }
 
@@ -54,15 +61,17 @@ export class GoodsPageComponent implements OnInit {
     this.form = this.fb.group({
       groupId: ['', [Validators.required]],
       storeId: [this.storeId, [Validators.required]],
+      filterText: [''],
     });
   }
 
   getGoodByGroup(){
     const groupId = this.form.get('groupId')?.value;
+    const filterText = this.form.get('filterText')?.value;
     if(this.storeId){
-      this.goodsService.GetProduct(this.storeId, groupId ).subscribe((response) => {
+      this.goodsService.GetProduct(this.storeId, groupId).subscribe((response) => {
         this.dataSource.data = response;
-      })
+      });
     }
   }
 

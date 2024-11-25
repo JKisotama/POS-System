@@ -46,6 +46,9 @@ import { SupplierComponent } from './admin/supplier/supplier.component';
 import { CreateSupplierComponent } from './admin/supplier/create-supplier/create-supplier.component';
 import { CustomerComponent } from './admin/customer/customer.component';
 import { CreateCustomerComponent } from './admin/customer/create-customer/create-customer.component';
+import { GoodsUnitComponent } from './admin/goods-unit/goods-unit.component';
+import { CreateGoodsUnitComponent } from './admin/goods-unit/create-goods-unit/create-goods-unit.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +72,8 @@ import { CreateCustomerComponent } from './admin/customer/create-customer/create
     CreateSupplierComponent,
     CustomerComponent,
     CreateCustomerComponent,
+    GoodsUnitComponent,
+    CreateGoodsUnitComponent,
 
   ],
   imports: [
@@ -83,6 +88,7 @@ import { CreateCustomerComponent } from './admin/customer/create-customer/create
     MatTableModule,
     MatMenuModule,
     MatSelectModule,
+    MatSnackBarModule,
 
 
     ToolbarModule, ButtonModule, SplitButtonModule,InputTextModule,AvatarModule,CarouselModule, ButtonModule, TagModule,

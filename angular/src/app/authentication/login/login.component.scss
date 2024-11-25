@@ -11,3 +11,18 @@
     background-attachment: fixed;
     background-size: auto;
 }
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+    margin: 20px auto;
+  }
+  
+  .spinner-border .visually-hidden {
+    display: none;
+  }
+  
+  .alert-danger {
+    color: red;
+    font-weight: bold;
+  }

@@ -32,5 +32,26 @@
   background-color: #007bff; /* Bootstrap blue */
   color: white;
 }
+.sub-menu {
+  background-color: #333; /* Different background for dropdown */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #444; /* Add border for separation */
+  
+  li {
+    a {
+      color: white; /* Dropdown link color */
+      padding: 5px 10px;
+      display: block;
+      text-decoration: none;
+
+      &:hover {
+        background-color: #444; /* Change background on hover */
+        color: #fff;
+      }
+    }
+  }
+}
+
 .admin-sidebar {
 }

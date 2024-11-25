@@ -13,8 +13,14 @@
           <div class="card-body p-4 p-sm-5">
             <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
 
+            <div *ngIf="loading" class="text-center">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
 
-            <form [formGroup]="form">
+
+            <form *ngIf="!loading" [formGroup]="form">
 
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="storeId" formControlName="storeId" placeholder="Please input Store ID...">
@@ -35,6 +41,10 @@
                   in</button>
               </div>
             </form>
+
+            <div *ngIf="loginError" class="alert alert-danger mt-3">
+              {{ loginError }}
+            </div>
 
 
           </div>

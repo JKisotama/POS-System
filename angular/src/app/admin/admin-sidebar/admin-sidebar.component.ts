@@ -8,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AdminSidebarComponent {
 
+  isDropdownOpen = false;
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
 }
