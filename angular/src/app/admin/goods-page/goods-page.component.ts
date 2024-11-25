@@ -53,14 +53,15 @@ export class GoodsPageComponent implements OnInit {
   buildForm(){
     this.form = this.fb.group({
       groupId: ['', [Validators.required]],
-      storeId: [this.storeId, [Validators.required]],
+      storeId: ['', [Validators.required]],
     });
   }
 
   getGoodByGroup(){
     const groupId = this.form.get('groupId')?.value;
+    const storeId = this.form.get('storeId')?.value;
     if(this.storeId){
-      this.goodsService.GetProduct(this.storeId, groupId ).subscribe((response) => {
+      this.goodsService.GetProduct(storeId, groupId ).subscribe((response) => {
         this.dataSource.data = response;
       })
     }

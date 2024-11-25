@@ -1,13 +1,31 @@
 @import "../../../styles.scss";
 
-.login-header-bg{
-    background-color: $Greenwich;
-    padding: 50px 25px 50px 25px !important;
-    border-radius: 0px 0px 40px 40px;
-}
 .login-page{
-    background-image: url("../../../assets/Image/login-bg.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: auto;
+    background-color: $Dark-Void;
+    padding-top: 50px ;
+    padding-bottom: 400px;
+
+    form{
+        padding-left: 50px;
+        .login-input-data{
+            padding-top: 30px;
+            small{
+                a{
+                    color: $Dusty-Grey;
+                }
+                color: $Dusty-Grey
+            }
+        }
+        label{
+            color: $White-Snow;
+        }
+        .btn-login{
+            background-color: $Liquid-Lava;
+            margin-top: 15px;
+            color: $White-Snow;
+            padding: 15px;
+            
+        }
+    }
+
 }

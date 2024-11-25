@@ -46,6 +46,8 @@ import { SupplierComponent } from './admin/supplier/supplier.component';
 import { CreateSupplierComponent } from './admin/supplier/create-supplier/create-supplier.component';
 import { CustomerComponent } from './admin/customer/customer.component';
 import { CreateCustomerComponent } from './admin/customer/create-customer/create-customer.component';
+import { AdminComponent } from './admin/admin.component';
+import { POSComponent } from './pos/pos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +71,8 @@ import { CreateCustomerComponent } from './admin/customer/create-customer/create
     CreateSupplierComponent,
     CustomerComponent,
     CreateCustomerComponent,
+    AdminComponent,
+    POSComponent,
 
   ],
   imports: [

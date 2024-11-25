@@ -41,7 +41,7 @@ export class LoginComponent {
       this.authservice.setLoggedIn(true, loginName, storeId );
       this.loginSuccess.emit();
 
-      this.router.navigate(['goods-page']);
+      this.router.navigate(['Admin']);
     })
   }
 
