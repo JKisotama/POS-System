@@ -49,6 +49,8 @@ import { CreateCustomerComponent } from './admin/customer/create-customer/create
 import { GoodsUnitComponent } from './admin/goods-unit/goods-unit.component';
 import { CreateGoodsUnitComponent } from './admin/goods-unit/create-goods-unit/create-goods-unit.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AdminComponent } from './admin/admin.component';
+import { POSComponent } from './POS/pos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +76,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     CreateCustomerComponent,
     GoodsUnitComponent,
     CreateGoodsUnitComponent,
+    AdminComponent,
+    POSComponent,
 
   ],
   imports: [

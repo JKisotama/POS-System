@@ -1,0 +1,16 @@
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\bin\Debug\net8.0\POS-System_BAL.deps.json
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\bin\Debug\net8.0\POS-System_BAL.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\bin\Debug\net8.0\POS-System_BAL.pdb
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\bin\Debug\net8.0\POS-System_DAL.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\bin\Debug\net8.0\POS-System_DAL.pdb
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.csproj.AssemblyReference.cache
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.GeneratedMSBuildEditorConfig.editorconfig
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.AssemblyInfoInputs.cache
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.AssemblyInfo.cs
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.csproj.CoreCompileInputs.cache
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.sourcelink.json
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.csproj.CopyComplete
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\refint\POS-System_BAL.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.pdb
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\ref\POS-System_BAL.dll

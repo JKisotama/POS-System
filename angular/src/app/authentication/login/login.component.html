@@ -1,54 +1,67 @@
-<div class="container-fuild login-header-bg">
-    <div class="row justify-content-center">
-        <div class="col-2 login-header-logo">
-            <img src="../../../assets/Image/Greenwich-logo.png" class="w-100" alt="">
-        </div>
-    </div>
-</div>
-
-<div class="container-fuild login-page">
+<div class="login-page">
+  <div class="container">
     <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card border-0 shadow rounded-3 my-5">
-          <div class="card-body p-4 p-sm-5">
-            <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
-
-            <div *ngIf="loading" class="text-center">
-              <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
+      <div class="col-6">
+        <div class="login-page-img">
+          <img src="../../../assets/Image/login.svg" alt="" class="w-100" />
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="row justify-content-center">
+          <form [formGroup]="form">
+            <div class="col-8 login-from">
+              <h3>Sign in</h3>
+              <div class="login-input-data">
+                <div class="mb-3">
+                  <label for="" class="form-label">Store Id</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="storeId"
+                    formControlName="storeId"
+                    placeholder="Enter your User Name"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">User Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="loginName"
+                    formControlName="loginName"
+                    aria-describedby=""
+                    placeholder="Enter your User Name"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="passWord"
+                    formControlName="passWord"
+                    placeholder="Password"
+                  />
+                  <small id="helpId" class="form-text"
+                    ><a href="" class="text-decoration-underline">Contact Us</a>
+                    when you forgot password
+                  </small>
+                </div>
               </div>
             </div>
-
-
-            <form *ngIf="!loading" [formGroup]="form">
-
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="storeId" formControlName="storeId" placeholder="Please input Store ID...">
-                <label for="storeId">Store ID</label>
-              </div>
-
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="loginName" formControlName="loginName" placeholder="Please input Login Name....">
-                <label for="loginName">Login Name</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="passWord" formControlName="passWord" placeholder="Please input Password...">
-                <label for="passWord">Password</label>
-              </div>
-
-              <div class="d-grid">
-                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" (click)="login()">Sign
-                  in</button>
-              </div>
-            </form>
-
-            <div *ngIf="loginError" class="alert alert-danger mt-3">
-              {{ loginError }}
+            <div class="col-8">
+              <input
+                name=""
+                id=""
+                class="btn btn-login w-100"
+                type="submit"
+                (click)="login()"
+                value="Login"
+              />
             </div>
-
-
-          </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>

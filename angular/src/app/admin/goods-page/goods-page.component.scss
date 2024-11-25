@@ -2,34 +2,38 @@
 @import "../../../styles.scss";
 @import "../../../_globals.scss";
 
-.admin-sidebar {
-    background-color: $Greenwich;
-}
-.ad-background{
-    margin-top: 10px;
-    background-color: #D9D9D9;
-    height: 1345px;
-    border-radius: 15px;
-    .ad-btn-function{
-        padding: 30px 0 0 25px;
-        button{
-            margin-right: 10px;
-        }
-    }
-
-    .ad-table{
-        margin-top: 25px;
-        padding: 0 25px;
-        table{
-            thead{
-                tr{
-                    border-radius: 20px 20px 0px 0px;
-
-                }
-                
+.ad-main-content{
+    .ad-main-search{
+        padding: 22px 50px;
+        background-color: $Slate-Grey;
+        border-radius: 14px;
+        margin-top: 10px;
+        .ad-main-btn{
+            button{
+                margin-right: 20px;
             }
         }
     }
+    .search-bar{
+        width: 770px;
+        background-color: $Gluon-Grey;
+        border-radius: 100px;
+        border: $Dusty-Grey solid 1px;
+        color: $White-Snow;
+        &::placeholder{
+            color: $Dusty-Grey;
+        }
+    }
+    .ad-main-data{
+        background-color: $Slate-Grey;
+        border-radius: 14px;
+        margin-top: 15px;
+        padding: 21px 23px;
+
+        .table-responsive {
+            max-height: 650px;  // Set the maximum height for the table container
+            overflow-y: auto;   // Enable vertical scrolling
+            overflow-x: auto;   // Enable horizontal scrolling if needed
     
 }
 
@@ -81,6 +85,33 @@
     border: 1px solid #ccc;
     margin-bottom: 1rem;
 }
+            .table {
+                width: 100%;   // Make the table stretch to full width
+                border-collapse: collapse;  // Collapse borders for a cleaner look
+    
+                thead {
+                    position: sticky;  // Sticky header at the top
+                    top: 0;
+                    background-color: #f1f1f1;  // Background color for the sticky header
+                    z-index: 1;  // Ensure the header is above the table rows
+                }
+    
+                th, td {
+                    padding: 8px;  // Padding inside table cells
+                    border: 1px solid #ddd;  // Border around cells
+                    text-align: left;  // Align text to the left
+                }
+            }
+        }
+
+
+    }
+}
+
+
+
+
+
 .mat-elevation-z8 {
     box-shadow: none;
 }

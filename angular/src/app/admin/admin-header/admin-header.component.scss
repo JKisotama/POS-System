@@ -1,5 +1,9 @@
+@import "../../../styles.scss";
 
 
+.ad-header-component{
+    margin: 65px 0 125px 0;
+}
 
 .ad-header{
     margin: 15px 25px 0 0;
@@ -40,4 +44,42 @@
         border: 1px solid;
     }
     
+}
+
+.ad-header-detail{
+    margin-bottom: 50px !important;
+    .POS-logo{
+        img{
+            height: 70px;
+            width: 300px;
+        }
+    }
+    .POS-user{
+        button{
+            width: 168px;
+            height: 66px;
+            
+        }
+        img{
+            height: 70px;
+            width: 70px;
+            border-radius: 100px;
+        }
+        i{
+            color: $Dusty-Grey;
+            padding-right: 30px;
+        }
+
+        .POs-user-infor{
+            padding: 9px 15px;
+            p{
+                color: $Dusty-Grey;
+                span{
+                    color: $White-Snow;
+                    font-weight: bold !important;
+                }
+            }
+        }
+    }
+
 }

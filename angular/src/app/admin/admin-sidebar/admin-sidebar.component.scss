@@ -1,57 +1,24 @@
 @import "../../../_variables.scss";
 
-.ad-infor {
-  padding: 50px 0 0 10px;
-  img {
-    height: 80px;
-    border-radius: 15px;
-  }
-  .ad-detail {
-    margin: 5px 0 0 20px;
-    h4,
-    p {
-      color: $White-Snow;
-    }
-  }
-}
 
-.ad-sidemenu {
-  margin: 40px 0 0 10px;
-  ul {
-    // padding: 0 10px 0 0;
-    li {
-      // border: 1px solid;
-      a {
+.ad-sidenav{
+  .nav{
+      .nav-link{
         color: $White-Snow;
+        
+          padding: 20px 31px 20px 30px;
+          i{
+              padding-right: 15px;
+          }
+          &.active { // Fix: Apply `.active` directly to `.nav-link`
+            background-color: $White-Snow !important; // Background for active link
+            color: $Dark-Void; // Optional: Adjust text color for active state
+            font-weight: bold;
+          }
+          &:hover {
+              background-color: $Dusty-Grey; // Change background on hover (example)
+              color: $Dark-Void; // Change text color on hover (example)
+          }
       }
-    }
   }
-}
-
-.nav-link.active {
-  background-color: #007bff; /* Bootstrap blue */
-  color: white;
-}
-.sub-menu {
-  background-color: #333; /* Different background for dropdown */
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #444; /* Add border for separation */
-  
-  li {
-    a {
-      color: white; /* Dropdown link color */
-      padding: 5px 10px;
-      display: block;
-      text-decoration: none;
-
-      &:hover {
-        background-color: #444; /* Change background on hover */
-        color: #fff;
-      }
-    }
-  }
-}
-
-.admin-sidebar {
 }
