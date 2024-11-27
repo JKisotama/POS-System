@@ -56,7 +56,7 @@ export class LoginComponent {
         this.loading = false;
   
         // Redirect to 'goods-page' or any other page after successful login
-        this.router.navigate(['goods-page']);
+        this.router.navigate(['Admin']);
       },
       (error) => {
         // Handle login error

@@ -21,7 +21,7 @@ export class AdminComponent implements OnInit {
       const currentRoute = this.router.url;
       this.isGoodsPage = currentRoute === '/Admin'
       this.isGoodGroup = currentRoute === '/Admin/good-group'
-      this.isPOS = currentRoute === '/POS'
+      this.isPOS = currentRoute === '/Admin/POS'
     });
   }
 }

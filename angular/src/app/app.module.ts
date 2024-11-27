@@ -5,9 +5,9 @@ import {
   provideClientHydration,
 } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
-import { AdminPageComponent } from './admin/admin-page/admin-page.component';
-import { AdminSidebarComponent } from './admin/admin-sidebar/admin-sidebar.component';
+import { AdminHeaderComponent } from './staff/admin-header/admin-header.component'; 
+import { AdminPageComponent } from './staff/admin-page/admin-page.component'; 
+import { AdminSidebarComponent } from './staff/admin-sidebar/admin-sidebar.component'; 
 import { PosHeaderComponent } from './POS/pos-header/pos-header.component';
 import { PosFooterComponent } from './POS/pos-footer/pos-footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -17,7 +17,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
-import { DashboardComponent } from './admin/admin-page/dashboard/dashboard.component';
+import { DashboardComponent } from './staff/dashboard/dashboard.component'; 
 
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
@@ -29,27 +29,27 @@ import { PosMainComponent } from './POS/pos-main/pos-main.component';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
 import { MatIconModule} from '@angular/material/icon'
-import { GoodsPageComponent } from './admin/goods-page/goods-page.component';
+import { GoodsPageComponent } from './staff/goods-page/goods-page.component';
 import {  MatMenuModule} from '@angular/material/menu'
 import { MatSelectModule } from '@angular/material/select';
-import { UserControllerComponent } from './admin/user-controller/user-controller.component';
-import { CreateStaffComponent } from './admin/user-controller/create-staff/create-staff.component';
+import { UserControllerComponent } from './staff/user-controller/user-controller.component'; 
+import { CreateStaffComponent } from './staff/user-controller/create-staff/create-staff.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { AuthenticationService } from './API/Admin/authentication.service';
 import { AuthenticationGuard } from './authentication.guard';
-import { GoodsGroupComponent } from './admin/goods-group/goods-group.component';
-import { CreateGoodGroupComponent } from './admin/goods-group/create-good-group/create-good-group.component';
-import { PropertyGroupComponent } from './admin/property-group/property-group.component';
-import { CreatePropertyGroupComponent } from './admin/property-group/create-property-group/create-property-group.component';
-import { CreateGoodsComponent } from './admin/goods-page/create-goods/create-goods.component';
-import { SupplierComponent } from './admin/supplier/supplier.component';
-import { CreateSupplierComponent } from './admin/supplier/create-supplier/create-supplier.component';
-import { CustomerComponent } from './admin/customer/customer.component';
-import { CreateCustomerComponent } from './admin/customer/create-customer/create-customer.component';
-import { GoodsUnitComponent } from './admin/goods-unit/goods-unit.component';
-import { CreateGoodsUnitComponent } from './admin/goods-unit/create-goods-unit/create-goods-unit.component';
+import { GoodsGroupComponent } from './staff/goods-group/goods-group.component'; 
+import { CreateGoodGroupComponent } from './staff/goods-group/create-good-group/create-good-group.component';
+import { PropertyGroupComponent } from './staff/property-group/property-group.component'; 
+import { CreatePropertyGroupComponent } from './staff/property-group/create-property-group/create-property-group.component'; 
+import { CreateGoodsComponent } from './staff/goods-page/create-goods/create-goods.component'; 
+import { SupplierComponent } from './staff/supplier/supplier.component'; 
+import { CreateSupplierComponent } from './staff/supplier/create-supplier/create-supplier.component';
+import { CustomerComponent } from './staff/customer/customer.component'; 
+import { CreateCustomerComponent } from './staff/customer/create-customer/create-customer.component'; 
+import { GoodsUnitComponent } from './staff/goods-unit/goods-unit.component'; 
+import { CreateGoodsUnitComponent } from './staff/goods-unit/create-goods-unit/create-goods-unit.component'; 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AdminComponent } from './admin/admin.component';
+import { AdminComponent } from './staff/admin.component';
 import { POSComponent } from './POS/pos.component';
 @NgModule({
   declarations: [

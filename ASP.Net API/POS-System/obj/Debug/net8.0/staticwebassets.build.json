@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Q6Gie2DEbdAQQhnUvGVvcCeRKap0DBq718oShrvzMks=",
+  "Hash": "12BjvbbQF1NgpyGJ5ryaG63Vxsu77y8lO0tB/UVtTcs=",
   "Source": "POS-System",
   "BasePath": "_content/POS-System",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "POS-System\\wwwroot",
       "Source": "POS-System",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001.jpg",
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "RelativePath": "image/stores/001/001001.jpg",
       "AssetKind": "All",
@@ -36,10 +36,29 @@
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001001.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001004.jpg",
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001.png",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "BasePath": "_content/POS-System",
+      "RelativePath": "image/stores/001/001001.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001001.png"
+    },
+    {
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001004.jpg",
+      "SourceId": "POS-System",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "RelativePath": "image/stores/001/001001004.jpg",
       "AssetKind": "All",
@@ -55,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001001004.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001005.jpg",
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001005.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "RelativePath": "image/stores/001/001001005.jpg",
       "AssetKind": "All",
@@ -74,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001001005.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001006.jpg",
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001006.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "RelativePath": "image/stores/001/001001006.jpg",
       "AssetKind": "All",
@@ -93,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001001006.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001007.jpg",
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001007.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "RelativePath": "image/stores/001/001001007.jpg",
       "AssetKind": "All",
@@ -112,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001001007.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001008.jpg",
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001008.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "RelativePath": "image/stores/001/001001008.jpg",
       "AssetKind": "All",
@@ -131,10 +150,10 @@
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001001008.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001002.jpg",
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001002.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "RelativePath": "image/stores/001/001002.jpg",
       "AssetKind": "All",
@@ -150,10 +169,29 @@
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001002.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001003.jpg",
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001002.png",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "BasePath": "_content/POS-System",
+      "RelativePath": "image/stores/001/001002.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001002.png"
+    },
+    {
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001003.jpg",
+      "SourceId": "POS-System",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "RelativePath": "image/stores/001/001003.jpg",
       "AssetKind": "All",
@@ -169,10 +207,29 @@
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001003.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001004.jpg",
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001003.png",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "BasePath": "_content/POS-System",
+      "RelativePath": "image/stores/001/001003.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001003.png"
+    },
+    {
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001004.jpg",
+      "SourceId": "POS-System",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "RelativePath": "image/stores/001/001004.jpg",
       "AssetKind": "All",
@@ -188,10 +245,29 @@
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001004.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001005.jpg",
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001004.png",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "BasePath": "_content/POS-System",
+      "RelativePath": "image/stores/001/001004.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001004.png"
+    },
+    {
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001005.jpg",
+      "SourceId": "POS-System",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "RelativePath": "image/stores/001/001005.jpg",
       "AssetKind": "All",
@@ -207,10 +283,10 @@
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001005.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001006.jpg",
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001006.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "RelativePath": "image/stores/001/001006.jpg",
       "AssetKind": "All",
@@ -226,10 +302,10 @@
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001006.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001007.jpg",
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001007.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "RelativePath": "image/stores/001/001007.jpg",
       "AssetKind": "All",
@@ -245,10 +321,10 @@
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001007.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001008.png",
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001008.png",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "RelativePath": "image/stores/001/001008.png",
       "AssetKind": "All",
@@ -264,10 +340,10 @@
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001008.png"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001001.jpg",
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001001.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "RelativePath": "image/stores/001001.jpg",
       "AssetKind": "All",
@@ -283,10 +359,10 @@
       "OriginalItemSpec": "wwwroot\\image\\stores\\001001.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\002\\002001.jpg",
+      "Identity": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\002\\002001.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "D:\\Thinh Workplace\\POS\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "RelativePath": "image/stores/002/002001.jpg",
       "AssetKind": "All",

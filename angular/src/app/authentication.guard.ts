@@ -19,7 +19,7 @@ export class AuthenticationGuard implements CanActivate {
       map(isLoggedIn => {
         if (isLoggedIn) {
           const userRole = this.authService.getUserRole();
-          const allowedPagesForStaff = ['goods-page', 'good-group', 'pos', 'supplier'];
+          const allowedPagesForStaff = ['goods-page', 'good-group', 'POS', 'supplier', 'Admin', 'customer'];
 
           // Check if user is staff and if the route is allowed
           if (userRole === 1 && !allowedPagesForStaff.includes(next.routeConfig?.path || '')) {
