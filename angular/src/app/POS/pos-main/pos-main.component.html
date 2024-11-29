@@ -1,82 +1,112 @@
-<app-pos-header></app-pos-header>
+<div class="col-xl-12 col-lg-12 col-md-12">
+  <div class="new-order-zone">
+    <div class="row">
+      //TODO: have to limmit order holding tab!
+      <div class="col-xl-12 col-lg-12 col-md-12 order-information">
+        <a href="" class="text-capitalize">
+          New Order New OrderNew Order New Order
+        </a><a href="" class="text-capitalize">
+          New Order
+        </a><a href="" class="text-capitalize">
+          New Order
+        </a><a href="" class="text-capitalize">
+          New Order
+        </a><a href="" class="text-capitalize">
+          New Order
+        </a><a href="" class="text-capitalize">
+          New Order
+        </a><a href="" class="text-capitalize">
+          New Order
+        </a>
+        <button>
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+      <div class="col-xl-8 col-lg-8 col-md-8 product-card  mt-5">
+        <div class="card-item">
+          <h2>Product</h2>
 
-<div class="row">
-    <div class="col-12 pos-main-top">
-        <h4 class="">Bills Pending:</h4>
+          //TODO: do limit rows
+          <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-    </div>
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
 
-    <div class="col-8">
-        <div class="card-table">
-          <h3>Data Table:</h3>
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Products Name</th>
-                    <th scope="col">Prices</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>mdo</td>
-                    <td>mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>mdo</td>
-                    <td>mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>mdo</td>
-                    <td>mdo</td>
-                    <td>mdo</td>
-                    <td>mdo</td>
+            <!-- Quantity Column -->
+            <ng-container matColumnDef="quantity">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+              <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+            </ng-container>
 
-                  </tr>
-                </tbody>
-            </table>            
+            <!-- Price Column -->
+            <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+              <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+            </ng-container>
+
+            <!-- Total Column -->
+            <ng-container matColumnDef="total">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
+              <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+            </ng-container>
+
+            <!-- Header and Row Definitions -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
 
         </div>
 
-    </div>
-    <div class="col-4">
-        <div class="prodcut-edit ">
-            <p class="">Product Name: <span class="fw-bold">Boobaa milk mlem mlem</span></p>
-            <p>Prices: <input type="number" class="text-center" id="pd-price" min="0" step="1000"  pattern="\d*" ><span class="fw-bold">VND</span></p>
-            <p>Quantity: <input type="number" class="text-center" id="pd-quantity" min="1" step="1"></p>                
+      </div>
+      <div class="col-4"></div>
+      <div class="col-xl-4 col-lg-4 col-md-4 note-card mt-3">
+        <div class="card-item">
+          <h2 class="text-capitalize">Note:</h2>
+
+          <textarea name="note" id="note" cols="30" rows="10"></textarea>
+
         </div>
-        <div class="member">
-          <div class="mem-title d-flex justify-content-between">
-            <h4 class="">Member information: </h4>
-            <button type="button" class="btn btn-success">
-              <i class="fa-solid fa-plus"></i>
+
+      </div>
+      <div class="col-xxl-4 xol-xl-4 col-lg-4 col-md-4 checkout-card mt-3">
+        <div class="card-item">
+          <h2 class="text-capitalize">Check Out:</h2>
+          //TODO: responsive button
+          <div class="payment-type">
+          
+            <button class="btn">
+              <i class="fa-solid fa-money-bill"></i>
+              Cash
             </button>
-
+            <button class="btn ">
+              <i class="fa-solid fa-qrcode"></i>
+              QR Code
+            </button>
+           
           </div>
-          <p>Name: <span class="fw-bold"> WhoTillBunReal</span></p>
-          <button type="button" class="btn btn-danger">
-            Remove
-          </button>
-          
+          <div class="checkout-info">
+            <div class="checkout-info-item d-flex justify-content-between">
+              <p class="Checkout-title">Subtotal:</p>
+              <p class="Checkout-price">$0.00</p>
+            </div>
+            <div class="checkout-info-item d-flex justify-content-between">
+              <p class="Checkout-title">Discount:</p>
+              <p class="Checkout-price">$0.00</p>
+            </div>
+            <div class="checkout-info-item d-flex justify-content-between">
+              <p class="Checkout-title">Tax:</p>
+              <p class="Checkout-price">$0.00</p>
+            </div>
+            <div class="checkout-info-item d-flex justify-content-between">
+              <p class="Checkout-title">Total:</p>
+              <p class="Checkout-price">$0.00</p>
+            </div>
+          </div>
         </div>
-        <div class="btn-zone d-flex justify-content-evenly">
-          <button type="button" class="btn btn-danger">
-            Button
-          </button>
-          <button type="button" class="btn btn-success">
-            Button
-          </button>
-          
-        </div>
-    </div>
 
-</div>    
+      </div>
+    </div>
+  </div>

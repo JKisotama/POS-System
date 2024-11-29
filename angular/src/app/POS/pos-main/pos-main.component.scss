@@ -1,32 +1,95 @@
 @import "../../../styles.scss";
 
-.card-table{
-    padding: 20px;
-    background-color: #D9D9D9;
-    border-radius: 30px;
-    
-}
-.prodcut-edit{
-    
-    padding: 20px;
-    background-color: #D9D9D9;
-    border-radius: 30px;
-    p{
-        margin: 5px 0;
-    }
-    #pd-quantity{
-        width: 50px;
-        
+.new-order-zone {
+  .order-information {
+    a {
+      padding: 14px 40px;
+      color: $White-Snow;
+      border-radius: 5px;
+      border: 1px dashed $White-Snow;
+      transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+      &:hover{
+        background-color: $White-Snow;
+        color: $Dark-Void;
+        border: 1px solid $White-Snow;
+      }
+
+      &:nth-of-type(n + 2) {
+        margin-left: 20px;
+      }
     }
 
-}
-.member{
-    margin-top: 15px;
-    padding: 20px;
-    background-color: #D9D9D9;
-    border-radius: 30px;
+    button {
+      margin-left: 20px;
+      background-color: $Liquid-Lava;
+      color: $White-Snow;
+      border-radius: 4px;
+      padding: 7px 13px;
 
-}
-.btn-zone{
-    margin-top: 50px;
+      &:nth-of-type(2) {
+        // Styles for the second button
+        height: auto;
+        width: auto;
+      }
+    }
+  }
+
+  .product-card{
+    
+  }
+
+  .note-card{
+    textarea{
+        background-color: $Dusty-Grey;
+        color: $White-Snow;
+        font-size: 20px;
+        width: 100%;
+        height: 100px;
+        border-radius: 5px;
+        border: 1px solid $White-Snow;
+        padding: 10px;
+        margin-top: 20px;
+    }
+  }
+
+  .checkout-card{
+    .payment-type{
+        button{
+            padding: 20px 90px;
+            border-radius: 5px;
+            border: 1px solid $White-Snow;
+            color: $White-Snow;
+            background-color: $Gluon-Grey;
+            transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+            &:hover{
+                background-color: $White-Snow;
+                color: $Dark-Void;
+                border: 1px solid $White-Snow;
+            }
+            &:nth-of-type(n + 2){
+                margin-left: 20px;
+            }
+            i{
+                padding-right: 5px;
+            }
+        }
+
+    }
+    .checkout-info{
+        margin-top: 15px;
+        .checkout-info-item{
+            border-bottom: 1px solid $White-Snow;
+            .Checkout-title{
+                color: $White-Snow;
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            &:nth-child(n +2){
+                padding-top: 20px;
+            }
+        }
+    }
+  }
+
+
 }

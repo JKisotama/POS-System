@@ -15,7 +15,7 @@
 }
 
 body{
-    background-color: $White-Snow;
+    background-color: $Dark-Void;
     font-family: 'Manrope', sans-serif;
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
@@ -47,7 +47,35 @@ li{
 a{
     text-decoration: none;
     color: $White-Snow; 
-
+}
+span{
+    color: $White-Snow;
+}
+tr{
+    th{
+        color: $White-Snow;
+    }
+    td{
+        color: $White-Snow;
+    }
 }
 
+.card-item{
+    background-color: $Gluon-Grey;
+    padding: 10px 20px;
+    border-radius: 12px;
+    
+}
 
+.mat-elevation-z8 {
+    box-shadow: none; // Remove the shadow if needed
+    background-color: transparent; // Remove the background color
+  }
+  
+  .mat-header-cell, .mat-cell {
+    background-color: transparent; // Remove the background color for header and cells
+  }
+  
+  .mat-table {
+    background-color: transparent; // Ensure the table itself has no background color
+  }
