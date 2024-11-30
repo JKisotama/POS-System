@@ -1,7 +1,9 @@
 <div class="col-xl-12 col-lg-12 col-md-12">
   <div class="new-order-zone">
     <div class="row">
-      //TODO: have to limmit order holding tab!
+
+      <!-- Order Holder -->
+      <!-- TODO: Reponsive  -->
       <div class="col-xl-12 col-lg-12 col-md-12 order-information">
         <a href="" class="text-capitalize">
           New Order New OrderNew Order New Order
@@ -22,12 +24,16 @@
           <i class="fas fa-plus"></i>
         </button>
       </div>
+
+      <!-- Product Card -->
+      <!-- TODO: Limited rows can show (4-5 rows) -->
       <div class="col-xl-8 col-lg-8 col-md-8 product-card  mt-5">
         <div class="card-item">
           <h2>Product</h2>
 
-          //TODO: do limit rows
+
           <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
 
             <!-- Name Column -->
             <ng-container matColumnDef="name">
@@ -56,12 +62,40 @@
             <!-- Header and Row Definitions -->
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+
           </table>
 
         </div>
 
       </div>
-      <div class="col-4"></div>
+
+      <!-- Bill Information Card -->
+      <div class="col-xxl-4 xol-xl-4 col-lg-4 col-md-4 bill-information-cart mt-5">
+        <div class="card-item">
+          <h2>Bill Information:</h2>
+          <div class="bill-information-item d-flex justify-content-between">
+            <p class="text-capitalize bill-infor-title">Seller:</p>
+            <p class="text-capitalize bill-infor-detail">WhoTillBunReal</p>
+          </div>
+          <div class="bill-information-item d-flex justify-content-between">
+            <p class="text-capitalize bill-infor-title">Store:</p>
+            <p class="text-capitalize bill-infor-detail">Location</p>
+          </div>
+          <div class="bill-information-item d-flex justify-content-between">
+            <p class="text-capitalize bill-infor-title">Bill Date:</p>
+            <p class="text-capitalize bill-infor-detail">dd/mm/yyyy</p>
+          </div>
+          <div class="bill-information-item d-flex justify-content-between">
+            <p class="text-capitalize bill-infor-title">Bill Date:</p>
+            <p class="text-capitalize bill-infor-detail">dd/mm/yyyy</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Note Card -->
       <div class="col-xl-4 col-lg-4 col-md-4 note-card mt-3">
         <div class="card-item">
           <h2 class="text-capitalize">Note:</h2>
@@ -71,12 +105,14 @@
         </div>
 
       </div>
+
+      <!-- Checkout Card -->
       <div class="col-xxl-4 xol-xl-4 col-lg-4 col-md-4 checkout-card mt-3">
         <div class="card-item">
           <h2 class="text-capitalize">Check Out:</h2>
-          //TODO: responsive button
+
           <div class="payment-type">
-          
+
             <button class="btn">
               <i class="fa-solid fa-money-bill"></i>
               Cash
@@ -85,7 +121,7 @@
               <i class="fa-solid fa-qrcode"></i>
               QR Code
             </button>
-           
+
           </div>
           <div class="checkout-info">
             <div class="checkout-info-item d-flex justify-content-between">
@@ -108,5 +144,27 @@
         </div>
 
       </div>
+
+      <!-- Customer Card -->
+      <!-- TODO: Open Dialog user -->
+      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 customer-card mt-3">
+        <div class="card-item">
+          <div class="customer-title d-flex justify-content-between">
+            <h2>Customer:</h2>
+            <button (click)="openCustomerDialog()">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+
+
+          <div class="customer-item">
+            <p class="text-capitalize">Customer name: <span>WhoTillBunReal</span></p>
+            <p class="text-capitalize">Email: <span>WhoTillBunReal</span></p>
+            <p class="text-capitalize">Phone number: <span>WhoTillBunReal</span></p>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
+</div>

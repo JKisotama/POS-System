@@ -62,20 +62,27 @@ tr{
 
 .card-item{
     background-color: $Gluon-Grey;
-    padding: 10px 20px;
+    padding: 15px 20px;
     border-radius: 12px;
+    height: 100%;
     
 }
 
 .mat-elevation-z8 {
     box-shadow: none; // Remove the shadow if needed
     background-color: transparent; // Remove the background color
-  }
-  
-  .mat-header-cell, .mat-cell {
+}
+
+.mat-header-cell,
+.mat-cell {
     background-color: transparent; // Remove the background color for header and cells
-  }
-  
-  .mat-table {
+}
+
+.mat-table {
     background-color: transparent; // Ensure the table itself has no background color
-  }
+}
+
+
+
+
+

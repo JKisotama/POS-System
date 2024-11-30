@@ -114,6 +114,7 @@
 
 .mat-elevation-z8 {
     box-shadow: none;
+    background-color: $Slate-Grey !important;
 }
 
 tr[matNoDataRow] td {
@@ -132,4 +133,27 @@ tr[matNoDataRow] td {
 .example-element-row td {
     border-bottom-width: 0;
 }
+
+.cdk-overlay-pane{
+    background-color: $Slate-Grey !important;
+    color: $White-Snow;
+    border-radius: 14px;
+    .mat-mdc-menu-content{
+        padding: 10px;
+    }
+}
+
+.ad-main-content{
+    .ad-main-data{
+        .color_table_background{
+            background-color: transparent !important;
+        }
+        .boder_table{
+            border: none !important;
+        }
+    }
+}
+
+
+
 

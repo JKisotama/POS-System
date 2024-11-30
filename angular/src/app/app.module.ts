@@ -51,6 +51,10 @@ import { CreateGoodsUnitComponent } from './staff/goods-unit/create-goods-unit/c
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AdminComponent } from './staff/admin.component';
 import { POSComponent } from './POS/pos.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+import {MatInputModule} from '@angular/material/input';
+import { DialogCustomerComponent } from './POS/pos-main/dialog-customer/dialog-customer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +82,8 @@ import { POSComponent } from './POS/pos.component';
     CreateGoodsUnitComponent,
     AdminComponent,
     POSComponent,
-
+    DialogCustomerComponent,
+    
   ],
   imports: [
     BrowserModule, 
@@ -95,7 +100,10 @@ import { POSComponent } from './POS/pos.component';
     MatSnackBarModule,
 
 
-    ToolbarModule, ButtonModule, SplitButtonModule,InputTextModule,AvatarModule,CarouselModule, ButtonModule, TagModule,
+    ToolbarModule, ButtonModule, SplitButtonModule,InputTextModule,AvatarModule,CarouselModule, ButtonModule, TagModule, 
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule
     
 ],
   providers: [

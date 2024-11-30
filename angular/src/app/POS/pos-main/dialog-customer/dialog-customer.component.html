@@ -1,0 +1,63 @@
+<div class="container dialog">
+    <div class="header">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Customer List</h2>
+            </div>
+            <div class="col-md-4 text-center search-bar">
+                <input type="text" class="form-control" placeholder="Search...">
+            </div>
+            <div class="col-md-4 text-right">
+
+            </div>
+        </div>
+
+
+    </div>
+
+    
+    <!-- TODO: border dialog (contact UI dev to improve more) -->
+    <!-- TODO: if: found customer -> show data below| else: add new -->
+    <!-- <div class="customer-list">
+        <div class="customer-item">
+            <p><strong>ID:</strong> 1</p>
+            <p><strong>Name:</strong> John Doe</p>
+            <p><strong>Email:</strong> john.doe.example.com</p>
+            <p><strong>Phone Number:</strong> (123) 456-7890</p>
+        </div>
+        <div class="customer-item">
+            <p><strong>ID:</strong> 2</p>
+            <p><strong>Name:</strong> Jane Smith</p>
+            <p><strong>Email:</strong> jane.smith.example.com</p>
+            <p><strong>Phone Number:</strong> (987) 654-3210</p>
+        </div>
+        <div class="customer-item">
+            <p><strong>ID:</strong> 3</p>
+            <p><strong>Name:</strong> Alice Johnson</p>
+            <p><strong>Email:</strong> alice.johnson.example.com</p>
+            <p><strong>Phone Number:</strong> (555) 123-4567</p>
+        </div>
+    </div> -->
+    <div class="customer-input">
+        <form>
+            <div class="form-group">
+                
+                <input type="hidden" class="form-control" id="customerId" placeholder="Enter customer ID">
+            </div>
+            <div class="form-group">
+                <label for="customerName">Customer Name</label>
+                <input type="text" class="form-control" id="customerName" placeholder="Enter customer name">
+            </div>
+            <div class="form-group">
+                <label for="customerEmail">Customer Email</label>
+                <input type="email" class="form-control" id="customerEmail" placeholder="Enter customer email">
+            </div>
+            <div class="form-group">
+                <label for="customerPhone">Customer Phone Number</label>
+                <input type="text" class="form-control" id="customerPhone" placeholder="Enter customer phone number">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    
+</div>

@@ -12,6 +12,7 @@
                 margin-right: 10px ;
             }
         }
+        
     }
 
 
@@ -51,12 +52,21 @@
     }
     .POS-user{
         button{
-            height: auto;
-            width: auto;
-            padding: 6px 42px !important;
-            border-radius: 50px;
-            line-height: 160%;
-            font-size: 14px;
+            padding: 14px 42px !important;
+            border-radius: 12px;
+            
+            transition: background-color 0.3s ease;
+            i{
+                font-size: 18px;
+            }
+
+            &:hover {
+                background-color: $Liquid-Lava;
+                i{
+                    color: $White-Snow;
+                }
+                
+            }
             
         }
         img{
@@ -66,7 +76,9 @@
         }
         i{
             color: $Dusty-Grey;
-            padding-right: 30px;
+            font-size: 16px;
+            
+            
         }
 
         .POs-user-infor{
