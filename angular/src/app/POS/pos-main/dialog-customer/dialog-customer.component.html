@@ -1,24 +1,122 @@
 <div class="container dialog">
-    <div class="header">
-        <div class="row">
-            <div class="col-md-4">
-                <h2>Customer List</h2>
-            </div>
-            <div class="col-md-4 text-center search-bar">
-                <input type="text" class="form-control" placeholder="Search...">
-            </div>
-            <div class="col-md-4 text-right">
-
-            </div>
-        </div>
-
-
+  <div class="header">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Customer List</h2>
+      </div>
+      <div class="col-md-4 text-center search-bar">
+        <form [formGroup]="form">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="companyId"
+            placeholder="Search..."
+          />
+        </form>
+      </div>
+      <div class="col-md-4 text-right">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="getCustomerByCompanyId()"
+        >
+          Search
+        </button>
+      </div>
     </div>
 
-    
-    <!-- TODO: border dialog (contact UI dev to improve more) -->
-    <!-- TODO: if: found customer -> show data below| else: add new -->
-    <!-- <div class="customer-list">
+    <div class="table-responsive">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="mat-elevation-z8 parent-table"
+      >
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>Select</th>
+          <td mat-cell *matCellDef="let customer">
+            <mat-checkbox
+              [checked]="selectedCustomer === customer"
+              (change)="onRowSelect(customer, $event.checked)"
+            >
+            </mat-checkbox>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <td mat-cell *matCellDef="let goods">
+            <button
+              mat-stroked-button
+              [matMenuTriggerFor]="actionsMenu"
+              color="primary"
+              class="detail-btn"
+            >
+              Actions
+              <mat-icon>arrow_drop_down</mat-icon>
+            </button>
+            <mat-menu #actionsMenu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>edit</mat-icon>
+                <span>Edit</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="companyId">
+          <th mat-header-cell *matHeaderCellDef>Company Id</th>
+          <td mat-cell *matCellDef="let customer">
+            {{ customer.companyId }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customerId">
+          <th mat-header-cell *matHeaderCellDef>Customer Id</th>
+          <td mat-cell *matCellDef="let customer">
+            {{ customer.customerId }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customerName">
+          <th mat-header-cell *matHeaderCellDef>Customer Name</th>
+          <td mat-cell *matCellDef="let customer">
+            {{ customer.customerName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customerAddress">
+          <th mat-header-cell *matHeaderCellDef>Customer Address</th>
+          <td mat-cell *matCellDef="let customer">
+            {{ customer.customerAddress }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customerPhone">
+          <th mat-header-cell *matHeaderCellDef>Customer Phone</th>
+          <td mat-cell *matCellDef="let customer">
+            {{ customer.customerPhone }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customerEmail">
+          <th mat-header-cell *matHeaderCellDef>Customer Email</th>
+          <td mat-cell *matCellDef="let customer">
+            {{ customer.customerEmail }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- TODO: border dialog (contact UI dev to improve more) -->
+  <!-- TODO: if: found customer -> show data below| else: add new -->
+  <!-- <div class="customer-list">
         <div class="customer-item">
             <p><strong>ID:</strong> 1</p>
             <p><strong>Name:</strong> John Doe</p>
@@ -38,26 +136,77 @@
             <p><strong>Phone Number:</strong> (555) 123-4567</p>
         </div>
     </div> -->
-    <div class="customer-input">
-        <form>
-            <div class="form-group">
-                
-                <input type="hidden" class="form-control" id="customerId" placeholder="Enter customer ID">
-            </div>
-            <div class="form-group">
-                <label for="customerName">Customer Name</label>
-                <input type="text" class="form-control" id="customerName" placeholder="Enter customer name">
-            </div>
-            <div class="form-group">
-                <label for="customerEmail">Customer Email</label>
-                <input type="email" class="form-control" id="customerEmail" placeholder="Enter customer email">
-            </div>
-            <div class="form-group">
-                <label for="customerPhone">Customer Phone Number</label>
-                <input type="text" class="form-control" id="customerPhone" placeholder="Enter customer phone number">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-    
+  <div class="customer-input">
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label for="customerId">Customer Id</label>
+        <input
+          type="text"
+          class="form-control"
+          id="customerId"
+          formControlName="customerId"
+          placeholder="Enter customer ID"
+        />
+      </div>
+      <div class="form-group">
+        <label for="customerName">Customer Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="customerName"
+          formControlName="customerName"
+          placeholder="Enter customer name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="customerAddress">Customer Address</label>
+        <input
+          type="text"
+          class="form-control"
+          id="customerAddress"
+          formControlName="customerAddress"
+          placeholder="Enter customer Address"
+        />
+      </div>
+      <div class="form-group">
+        <label for="customerEmail">Customer Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="customerEmail"
+          placeholder="Enter customer email"
+          formControlName="customerEmail"
+        />
+      </div>
+      <div class="form-group">
+        <label for="customerPhone">Customer Phone Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="customerPhone"
+          formControlName="customerPhone"
+          placeholder="Enter customer phone number"
+        />
+      </div>
+      <div class="form-group">
+        <label for="companyId">Company Id</label>
+        <input
+          type="text"
+          class="form-control"
+          id="companyId"
+          formControlName="companyId"
+          placeholder="Enter customer company Id"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="Save()">
+        Create Customer
+      </button>
+
+      <button class="btn btn-primary" (click)="saveSelectedCustomer()">
+        Save
+      </button>
+
+      <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
 </div>

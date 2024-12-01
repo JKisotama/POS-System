@@ -2,47 +2,39 @@
 @import "../../../styles.scss";
 @import "../../../_globals.scss";
 
-.admin-sidebar {
-    background-color: $Greenwich;
-}
-.ad-background{
-    margin-top: 10px;
-    background-color: #D9D9D9;
-    height: 1345px;
-    border-radius: 15px;
-    .ad-btn-function{
-        padding: 30px 0 0 25px;
-        button{
-            margin-right: 10px;
-        }
-    }
-
-    .ad-table{
-        margin-top: 25px;
-        padding: 0 25px;
-        table{
-            thead{
-                tr{
-                    border-radius: 20px 20px 0px 0px;
-
-                }
-                
+.ad-main-content{
+    .ad-main-search{
+        padding: 22px 50px;
+        background-color: $Slate-Grey;
+        border-radius: 14px;
+        margin-top: 10px;
+        .ad-main-btn{
+            button{
+                margin-right: 20px;
             }
         }
     }
+    .search-bar{
+        width: 770px;
+        background-color: $Gluon-Grey;
+        border-radius: 100px;
+        border: $Dusty-Grey solid 1px;
+        color: $White-Snow;
+        &::placeholder{
+            color: $Dusty-Grey;
+        }
+    }
+    .ad-main-data{
+        background-color: $Slate-Grey;
+        border-radius: 14px;
+        margin-top: 15px;
+        padding: 21px 23px;
+
+        .table-responsive {
+            max-height: 650px;  // Set the maximum height for the table container
+            overflow-y: auto;   // Enable vertical scrolling
+            overflow-x: auto;   // Enable horizontal scrolling if needed
     
+        }
+    }
 }
-
-tr[matNoDataRow] td {
-    font-size: 1.5rem;
-  }
-  
-  /* Center the text in the table */
-  tr[matNoDataRow] td {
-    text-align: center;
-  }
-
-  .mat-elevation-z8 {
-    box-shadow: none;
-}
-

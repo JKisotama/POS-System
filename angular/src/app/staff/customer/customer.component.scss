@@ -2,49 +2,42 @@
 @import "../../../styles.scss";
 @import "../../../_globals.scss";
 
-.admin-sidebar {
-  background-color: $Greenwich;
-}
-.ad-background {
-  margin-top: 10px;
-  background-color: #d9d9d9;
-  height: 1345px;
-  border-radius: 15px;
-  .ad-btn-function {
-    padding: 30px 0 0 25px;
-    button {
-      margin-right: 10px;
-    }
-  }
 
-  .ad-table {
-    margin-top: 25px;
-    padding: 0 25px;
-    table {
-      thead {
-        tr {
-          border-radius: 20px 20px 0px 0px;
-        }
+
+.ad-main-content{
+  .ad-main-search{
+      padding: 22px 50px;
+      background-color: $Slate-Grey;
+      border-radius: 14px;
+      margin-top: 10px;
+      .ad-main-btn{
+          button{
+              margin-right: 20px;
+          }
       }
-    }
   }
-}
-
-.search-bar {
-  margin: auto;
-  padding: 0 120px;
-
-  button {
-    margin: 0 10px 0 0;
-    span {
-      .mat-mdc-button-touch-target {
-        margin-right: 10px !important;
+  .search-bar{
+      width: 770px;
+      background-color: $Gluon-Grey;
+      border-radius: 100px;
+      border: $Dusty-Grey solid 1px;
+      color: $White-Snow;
+      &::placeholder{
+          color: $Dusty-Grey;
       }
-    }
   }
+  .ad-main-data{
+      background-color: $Slate-Grey;
+      border-radius: 14px;
+      margin-top: 15px;
+      padding: 21px 23px;
 
-  input {
-    border-radius: 50px;
-    border: 1px solid;
+      .table-responsive {
+          max-height: 650px;  // Set the maximum height for the table container
+          overflow-y: auto;   // Enable vertical scrolling
+          overflow-x: auto;   // Enable horizontal scrolling if needed
+  
+      }
   }
 }
+

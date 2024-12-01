@@ -1,78 +1,71 @@
 <div class="col-xl-12 col-lg-12 col-md-12">
   <div class="new-order-zone">
     <div class="row">
-
       <!-- Order Holder -->
       <!-- TODO: Reponsive  -->
       <div class="col-xl-12 col-lg-12 col-md-12 order-information">
         <a href="" class="text-capitalize">
-          New Order New OrderNew Order New Order
-        </a><a href="" class="text-capitalize">
-          New Order
-        </a><a href="" class="text-capitalize">
-          New Order
-        </a><a href="" class="text-capitalize">
-          New Order
-        </a><a href="" class="text-capitalize">
-          New Order
-        </a><a href="" class="text-capitalize">
-          New Order
-        </a><a href="" class="text-capitalize">
-          New Order
-        </a>
-        <button>
+          New Order New OrderNew Order New Order </a
+        ><a href="" class="text-capitalize"> New Order </a
+        ><a href="" class="text-capitalize"> New Order </a
+        ><a href="" class="text-capitalize"> New Order </a
+        ><a href="" class="text-capitalize"> New Order </a
+        ><a href="" class="text-capitalize"> New Order </a
+        ><a href="" class="text-capitalize"> New Order </a>
+        <button (click)="createOrder()">
           <i class="fas fa-plus"></i>
         </button>
       </div>
 
       <!-- Product Card -->
       <!-- TODO: Limited rows can show (4-5 rows) -->
-      <div class="col-xl-8 col-lg-8 col-md-8 product-card  mt-5">
+      <div class="col-xl-8 col-lg-8 col-md-8 product-card mt-5">
         <div class="card-item">
           <h2>Product</h2>
 
-
-          <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
-
+          <table
+            mat-table
+            [dataSource]="dataSource"
+            matSort
+            class="mat-elevation-z8"
+          >
             <!-- Name Column -->
             <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
             </ng-container>
 
             <!-- Quantity Column -->
             <ng-container matColumnDef="quantity">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
-              <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Quantity
+              </th>
+              <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
             </ng-container>
 
             <!-- Price Column -->
             <ng-container matColumnDef="price">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-              <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+              <td mat-cell *matCellDef="let element">{{ element.price }}</td>
             </ng-container>
 
             <!-- Total Column -->
             <ng-container matColumnDef="total">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
-              <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+              <td mat-cell *matCellDef="let element">{{ element.total }}</td>
             </ng-container>
 
             <!-- Header and Row Definitions -->
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-
-
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </table>
-
         </div>
-
       </div>
 
       <!-- Bill Information Card -->
-      <div class="col-xxl-4 xol-xl-4 col-lg-4 col-md-4 bill-information-cart mt-5">
+      <div
+        class="col-xxl-4 xol-xl-4 col-lg-4 col-md-4 bill-information-cart mt-5"
+      >
         <div class="card-item">
           <h2>Bill Information:</h2>
           <div class="bill-information-item d-flex justify-content-between">
@@ -91,7 +84,6 @@
             <p class="text-capitalize bill-infor-title">Bill Date:</p>
             <p class="text-capitalize bill-infor-detail">dd/mm/yyyy</p>
           </div>
-
         </div>
       </div>
 
@@ -101,9 +93,7 @@
           <h2 class="text-capitalize">Note:</h2>
 
           <textarea name="note" id="note" cols="30" rows="10"></textarea>
-
         </div>
-
       </div>
 
       <!-- Checkout Card -->
@@ -112,16 +102,14 @@
           <h2 class="text-capitalize">Check Out:</h2>
 
           <div class="payment-type">
-
             <button class="btn">
               <i class="fa-solid fa-money-bill"></i>
               Cash
             </button>
-            <button class="btn ">
+            <button class="btn">
               <i class="fa-solid fa-qrcode"></i>
               QR Code
             </button>
-
           </div>
           <div class="checkout-info">
             <div class="checkout-info-item d-flex justify-content-between">
@@ -142,7 +130,6 @@
             </div>
           </div>
         </div>
-
       </div>
 
       <!-- Customer Card -->
@@ -156,13 +143,20 @@
             </button>
           </div>
 
-
-          <div class="customer-item">
-            <p class="text-capitalize">Customer name: <span>WhoTillBunReal</span></p>
-            <p class="text-capitalize">Email: <span>WhoTillBunReal</span></p>
-            <p class="text-capitalize">Phone number: <span>WhoTillBunReal</span></p>
+          <div class="customer-item" *ngIf="selectedCustomer">
+            <p class="text-capitalize">
+              Customer name: <span>{{ selectedCustomer.customerName }}</span>
+            </p>
+            <p class="text-capitalize">
+              Email: <span>{{ selectedCustomer.customerEmail }}</span>
+            </p>
+            <p class="text-capitalize">
+              Phone number: <span>{{ selectedCustomer.customerPhone }}</span>
+            </p>
           </div>
-
+          <div class="customer-item" *ngIf="!selectedCustomer">
+            <p>Select a customer to display their details.</p>
+          </div>
         </div>
       </div>
     </div>

@@ -56,6 +56,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { DialogCustomerComponent } from './POS/pos-main/dialog-customer/dialog-customer.component';
 import { CreateSellPriceComponent } from './staff/goods-page/create-sell-price/create-sell-price.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +102,7 @@ import { CreateSellPriceComponent } from './staff/goods-page/create-sell-price/c
     MatMenuModule,
     MatSelectModule,
     MatSnackBarModule,
-
+    MatCheckboxModule,
 
     ToolbarModule, ButtonModule, SplitButtonModule,InputTextModule,AvatarModule,CarouselModule, ButtonModule, TagModule, 
     MatFormFieldModule,
