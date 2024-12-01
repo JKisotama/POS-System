@@ -2,6 +2,7 @@
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using POS_System_BAL.DTOs;
 using POS_System_DAL;
@@ -57,16 +58,18 @@ namespace POS_System_BAL.Services.Goods
         public async Task<IEnumerable<TblGood>> GetGoodsByGroupAsync(
             IQueryable<TblGood> query,
             string store_id = null,
-            string goods_id = null,  
+            string group_id = null,  
             string searchTerm = null)
         {
-            query = query
+            
+            var goods = await query.Include(g =>g.Group)
                 .Where(g => string.IsNullOrEmpty(store_id) || g.StoreId.Contains(store_id))
-                .Where(g => string.IsNullOrEmpty(goods_id) || g.GoodsId.Contains(goods_id))
+                .Where(g => string.IsNullOrEmpty(g.Group.GroupId) || g.Group.GroupId == group_id)
                 .Where(g => string.IsNullOrEmpty(searchTerm) ||
-                (g.GoodsBrand != null && g.GoodsBrand.Contains(searchTerm) == true || g.GoodsName.Contains(searchTerm)));
-
-            return await query.ToListAsync();
+                (g.GoodsBrand != null && g.GoodsBrand.Contains(searchTerm) == true || 
+                 g.GoodsName.Contains(searchTerm)))
+                .ToListAsync();
+            return goods;
         }
 
         public async Task<IEnumerable<TblPropertygroup>> GetAllPropertyGroupAsync(string store_id)
@@ -103,16 +106,15 @@ namespace POS_System_BAL.Services.Goods
             string store_id, 
             string goods_id, 
             string property_group, 
-            string user_language)
+            string user_language = null)
         {
             return await _onlinePosContext.TblGoodsproperties
                 .Where(s => s.StoreId == store_id && s.GoodsId == goods_id && s.PropertyId == property_group)
-                .Include(s =>s.LocalValue == user_language)
                 .ToListAsync();
         }
         public async Task<IEnumerable<GoodsWithSellPriceDTO>> GetGoodsWithSellPricesAsync(
         IQueryable<TblGood> query,
-        IQueryable<TblSellprice> sellPriceQuery, // Added parameter for TblSellPrice
+        IQueryable<TblSellprice> sellPriceQuery, 
         string store_id = null,
         string searchTerm = null,
         int? sellNumber = null,
@@ -145,7 +147,7 @@ namespace POS_System_BAL.Services.Goods
                         GoodsName = good.Goods.GoodsName,
                         Barcode = good.Barcode,
                         GoodsUnit = good.GoodsUnit,
-                        SellNumber = sellPrices.FirstOrDefault().SellNumber, // Assuming you want the first sell price
+                        SellNumber = sellPrices.FirstOrDefault().SellNumber, 
                         SellPrice = sellPrices.FirstOrDefault().SellPrice
                     })
                 .ToListAsync();
@@ -193,7 +195,7 @@ namespace POS_System_BAL.Services.Goods
             
                 var entity = _mapper.Map<TblGood>(goodsDTO);
                 var goodsCounter = GenerateGoodId(entity.StoreId);
-                entity.GoodsId = entity.StoreId + entity.GroupId+ goodsCounter;
+                entity.GoodsId = entity.StoreId + entity.GroupId + goodsCounter;
                 entity.GoodsCounter = GetGoodsCounterByStoreId(entity.StoreId) + 1;
                 var imageName = $"{entity.StoreId}-{entity.GroupId}-{goodsCounter}";
                 var uploadResult = await UploadImageToCloudinary(imageFile, entity.StoreId, goodsCounter, imageName);
@@ -221,16 +223,31 @@ namespace POS_System_BAL.Services.Goods
 
         public async Task SaveProperty(string store_id, string goods_id, string property_id, string property_value)
         {
-            var newProperty = new TblGoodsproperty
+            try
             {
-                StoreId = store_id,
-                GoodsId = goods_id,
-                PropertyId = property_id,
-                PropertyName = property_value
-            };
-            _onlinePosContext.TblGoodsproperties
-                .Add(newProperty);
-            await _onlinePosContext.SaveChangesAsync();
+                var newProperty = new TblGoodsproperty
+                {
+                    StoreId = store_id,
+                    GoodsId = goods_id,
+                    PropertyId = property_id,
+                    PropertyName = property_value
+                };
+                _onlinePosContext.TblGoodsproperties
+                    .Add(newProperty);
+                await _onlinePosContext.SaveChangesAsync();
+            }
+            catch(DbUpdateException ex)
+            {
+                if(ex.InnerException is SqlException sqlException)
+                {
+                        throw new Exception("Check Property ID !");            
+                }
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while saving the property.", ex);
+            }
         }
 
         public async Task SaveSellingPrices(TblSellprice tblSellprice)
@@ -313,8 +330,8 @@ namespace POS_System_BAL.Services.Goods
         #endregion
 
         private async Task<ImageUploadResult> UploadImageToCloudinary(
-            IFormFile imageFile, 
-            string id, 
+            IFormFile imageFile,
+            string id,
             string idenID,
             string imageName)
         {

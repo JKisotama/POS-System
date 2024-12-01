@@ -21,8 +21,8 @@ public partial class TblGood
     public int GoodsCounter { get; set; }
 
     public string Picture { get; set; } = null;
-
     [JsonIgnore]
+    
     public virtual TblGoodsgroup? Group { get; set; }
 
     public virtual ICollection<TblSellprice> TblSellprices { get; set; } = new List<TblSellprice>();

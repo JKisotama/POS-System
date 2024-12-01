@@ -158,22 +158,9 @@ public partial class OnlinePosContext : DbContext
         modelBuilder.Entity<TblGoodsproperty>(entity =>
         {
             entity
-                .HasNoKey()
+                .HasKey(e => e.PropertyId);
+            entity
                 .ToTable("tbl_goodsproperty");
-
-            entity.Property(e => e.EnglishValue)
-                .HasMaxLength(30)
-                .HasColumnName("english_value");
-            entity.Property(e => e.GoodsId)
-                .HasMaxLength(16)
-                .IsUnicode(false)
-                .HasColumnName("goods_id");
-            entity.Property(e => e.InvestValue)
-                .HasMaxLength(30)
-                .HasColumnName("invest_value");
-            entity.Property(e => e.LocalValue)
-                .HasMaxLength(30)
-                .HasColumnName("local_value");
             entity.Property(e => e.PropertyId)
                 .HasMaxLength(3)
                 .IsUnicode(false)
@@ -185,6 +172,8 @@ public partial class OnlinePosContext : DbContext
                 .HasMaxLength(5)
                 .IsUnicode(false)
                 .HasColumnName("store_id");
+            entity.Property(e => e.GoodsId)
+                .HasColumnName("goods_id");
 
             entity.HasOne(d => d.Goods).WithMany()
                 .HasForeignKey(d => d.GoodsId)
@@ -686,6 +675,8 @@ public partial class OnlinePosContext : DbContext
             entity.Property(e => e.SupplierName)
                 .HasMaxLength(200)
                 .HasColumnName("supplier_name");
+            entity.Property(e => e.SupplierType)
+                .HasColumnName("supplier_type");
         });
 
         modelBuilder.Entity<TblUser>(entity =>

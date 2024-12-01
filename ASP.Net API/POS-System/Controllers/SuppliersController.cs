@@ -55,9 +55,9 @@ namespace POS_Final_Year.Controller
             }
             await _supplierServices.UpdateSupplier(supplierDTO);
             return NoContent();
-        } 
+        }
 
-      
+
         [HttpPost("CreateSupplier")]
         public async Task<ActionResult<TblSupplier>> PostTblSupplier(SupplierDTO supplierDTO)
         {
@@ -65,23 +65,5 @@ namespace POS_Final_Year.Controller
 
             return StatusCode(201, supplierDTO);
         }
-
-        // DELETE: api/Suppliers/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteTblSupplier(string id)
-        //{
-        //    var tblSupplier = await _context.TblSuppliers.FindAsync(id);
-        //    if (tblSupplier == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.TblSuppliers.Remove(tblSupplier);
-        //    await _context.SaveChangesAsync();
-
-        //    return NoContent();
-        //}
-
-        
     }
 }

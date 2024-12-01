@@ -11,12 +11,6 @@ public partial class TblGoodsproperty
 
     public string? PropertyName { get; set; }
 
-    public string? EnglishValue { get; set; }
-
-    public string? LocalValue { get; set; }
-
-    public string? InvestValue { get; set; }
-
     public string? StoreId { get; set; }
 
     public virtual TblGood? Goods { get; set; }

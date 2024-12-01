@@ -47,6 +47,12 @@ namespace POS_System
             services.AddCors();
             services.AddDistributedMemoryCache();
             services.AddSession();
+            builder.Services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; // Prevents infinite loop
+                options.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects; // Keeps references
+            });
+            
             builder.Services.AddDbContext<OnlinePosContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 

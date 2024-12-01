@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using POS_System_DAL.Data;
 
@@ -11,9 +12,11 @@ using POS_System_DAL.Data;
 namespace POS_System_DAL.Migrations
 {
     [DbContext(typeof(OnlinePosContext))]
-    partial class OnlinePosContextModelSnapshot : ModelSnapshot
+    [Migration("20241028040312_updateGoodsId")]
+    partial class updateGoodsId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,8 +176,7 @@ namespace POS_System_DAL.Migrations
                         .HasColumnName("property_id");
 
                     b.Property<string>("GoodsId")
-                        .HasColumnType("varchar(16)")
-                        .HasColumnName("goods_id");
+                        .HasColumnType("varchar(16)");
 
                     b.Property<string>("PropertyName")
                         .HasMaxLength(20)

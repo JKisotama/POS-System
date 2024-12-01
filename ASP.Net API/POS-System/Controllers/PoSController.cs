@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using POS_System_BAL.Helper;
 using POS_System_BAL.Services.POS;
 using POS_System_DAL.Data;
 using POS_System_DAL.Models;
@@ -25,93 +26,80 @@ namespace POS_Final_Year.Controller
             _posServices = services;
         }
 
-        // GET: api/PoS
+
         [HttpGet("GetGoodsList")]
-        public async Task<ActionResult> GetGoodsList(string store_id)
+        public async Task<ActionResult> GetGoodsList(string store_id, [FromQuery]PagingParameters paging)
         {
-            var goodsList = await _posServices.GetGoodListAsync(store_id);
-            if (goodsList == null)
-            {
-                return NotFound();
-            }
-            return Ok(goodsList);
+            var pageResult = await _posServices.GetGoodListAsync(store_id, paging);
+            return Ok(pageResult);
+        }
+        
+        [HttpGet("GenerateTempHeader")]
+        public IActionResult GenerateTempHeader(string storeId, string cashierId, string posCreator)
+        {
+            var tempHeader = _posServices.CreateTemporaryPoHeader(storeId, cashierId, posCreator);
+            return Ok(tempHeader);
         }
 
-        // GET: api/PoS/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<TblPo>> GetTblPo(string id)
+
+        [HttpPost("AddItem")]
+        public async Task<IActionResult> AddItem(string storeId, string posNumber, string goodsId, string goodsUnit, double quantity)
         {
-            var tblPo = await _context.TblPos.FindAsync(id);
-
-            if (tblPo == null)
-            {
-                return NotFound();
-            }
-
-            return tblPo;
-        }
-
-        // PUT: api/PoS/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTblPo(string id, TblPo tblPo)
-        {
-            if (id != tblPo.PosNumber)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(tblPo).State = EntityState.Modified;
-
             try
             {
+                await _posServices.SavePoItemAsync(storeId, posNumber, goodsId, goodsUnit, quantity);
+                return Ok("Item added successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error adding item: {ex.Message}");
+            }
+        }
+
+        [HttpPost("FinalizeTransaction")]
+        public async Task<IActionResult> FinalizeTransaction(string storeId, string posNumber, double customerPay, int paymentType, string payer)
+        {
+            try
+            {
+                var po = await _context.TblPos
+                    .FirstOrDefaultAsync(p => p.StoreId == storeId && p.PosNumber == posNumber);
+
+                if (po == null)
+                {
+                    return NotFound("POS header not found.");
+                }
+
+                po.PosStatus = 1; 
+                po.PosCustomerpay = customerPay;
+                po.PosExchange = customerPay - po.PosTopay;
+                po.PosPaymenttype = paymentType;
+                po.Payer = payer;
+                po.Paymentdate = DateTime.Now;
+
                 await _context.SaveChangesAsync();
+                return Ok("Transaction finalized successfully.");
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!TblPoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return StatusCode(500, $"Error finalizing transaction: {ex.Message}");
             }
-
-            return NoContent();
         }
-
-        // POST: api/PoS
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<TblPo>> PostPo(string store_id,TblPo tblPo)
+        
+        [HttpPost("CreatePoHeader")]
+        public async Task<IActionResult> CreatePoHeader(string storeId, string cashierId, string posCreator)
         {
-            await _posServices.SavePo(store_id,tblPo);
-            return StatusCode(201);
-        } 
-        [HttpPost("SAVEPOSITEM")]
-        public async Task<ActionResult> PostPOSItem(string store_id,[FromBody]TblReceiptdetail tblReceiptdetail,[FromQuery]TblPosdetail tblPosdetail)
-        {
-            await _posServices.SavePoItem(store_id,tblReceiptdetail, tblPosdetail);
-            return StatusCode(201);
-        }
-
-        // DELETE: api/PoS/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTblPo(string id)
-        {
-            var tblPo = await _context.TblPos.FindAsync(id);
-            if (tblPo == null)
+            try
             {
-                return NotFound();
+                await _posServices.CreatePoHeaderAsync(storeId, cashierId, posCreator);
+                
+                return StatusCode(201, "PO Header created successfully.");
             }
-
-            _context.TblPos.Remove(tblPo);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
+
 
         private bool TblPoExists(string id)
         {
