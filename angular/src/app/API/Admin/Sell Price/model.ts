@@ -3,7 +3,7 @@ export interface SellPriceDTO {
     barCode?: string;
     goodsUnit?: string;
     sellNumber?: string;
-    sellPrice?: string;
+    sellPrice?: number;
     quantity?: number;
     storeId?: string;
     

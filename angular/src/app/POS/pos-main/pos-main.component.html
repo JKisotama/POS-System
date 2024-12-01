@@ -4,17 +4,28 @@
       <!-- Order Holder -->
       <!-- TODO: Reponsive  -->
       <div class="col-xl-12 col-lg-12 col-md-12 order-information">
-        <a href="" class="text-capitalize">
-          New Order New OrderNew Order New Order </a
-        ><a href="" class="text-capitalize"> New Order </a
-        ><a href="" class="text-capitalize"> New Order </a
-        ><a href="" class="text-capitalize"> New Order </a
-        ><a href="" class="text-capitalize"> New Order </a
-        ><a href="" class="text-capitalize"> New Order </a
-        ><a href="" class="text-capitalize"> New Order </a>
-        <button (click)="createOrder()">
-          <i class="fas fa-plus"></i>
-        </button>
+        <div class="col-xl-12 col-lg-12 col-md-12 order-information">
+          <ng-container *ngIf="orders.length > 0; else noOrders">
+            <a
+              *ngFor="let order of orders"
+              href="javascript:void(0)"
+              class="text-capitalize"
+              (click)="fetchOrderDetails(order.cashierId, order.posCreator)"
+            >
+              {{ order.posNumber }}
+            </a>
+          </ng-container>
+
+          <!-- Show this if no orders are available -->
+          <ng-template #noOrders>
+            <p>No orders available</p>
+          </ng-template>
+
+          <!-- Button to create a new order -->
+          <button (click)="createOrder()">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
       </div>
 
       <!-- Product Card -->
@@ -32,27 +43,55 @@
             <!-- Name Column -->
             <ng-container matColumnDef="name">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+              <td mat-cell *matCellDef="let good">{{ good.goodsName }}</td>
             </ng-container>
 
+            <ng-container matColumnDef="unit">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Unit</th>
+              <td mat-cell *matCellDef="let good">
+                <select
+                  class="form-select"
+                  (change)="onUnitChange(good, $event)"
+                >
+                  <option
+                    *ngFor="let price of good.tblSellprices"
+                    [value]="price.goodsUnit"
+                  >
+                    {{ price.goodsUnit }}
+                  </option>
+                </select>
+              </td>
+            </ng-container>
             <!-- Quantity Column -->
             <ng-container matColumnDef="quantity">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>
                 Quantity
               </th>
-              <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+              <td mat-cell *matCellDef="let good">
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="good.quantity"
+                  (ngModelChange)="updateTotal(good)"
+                  min="1"
+                />
+              </td>
             </ng-container>
 
             <!-- Price Column -->
             <ng-container matColumnDef="price">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
-              <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+              <td mat-cell *matCellDef="let good">
+                {{ good.selectedPrice | number : "1.0-2" }}
+              </td>
             </ng-container>
 
             <!-- Total Column -->
             <ng-container matColumnDef="total">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
-              <td mat-cell *matCellDef="let element">{{ element.total }}</td>
+              <td mat-cell *matCellDef="let good">
+                {{ good.total | number : "1.0-2" }}
+              </td>
             </ng-container>
 
             <!-- Header and Row Definitions -->
@@ -78,11 +117,15 @@
           </div>
           <div class="bill-information-item d-flex justify-content-between">
             <p class="text-capitalize bill-infor-title">Bill Date:</p>
-            <p class="text-capitalize bill-infor-detail">dd/mm/yyyy</p>
+            <p class="text-capitalize bill-infor-detail">
+              {{ posHeader?.posDate | date : "dd/MM/yyyy" }}
+            </p>
           </div>
           <div class="bill-information-item d-flex justify-content-between">
-            <p class="text-capitalize bill-infor-title">Bill Date:</p>
-            <p class="text-capitalize bill-infor-detail">dd/mm/yyyy</p>
+            <p class="text-capitalize bill-infor-title">POS Number</p>
+            <p class="text-capitalize bill-infor-detail">
+              {{ posHeader?.posNumber }}
+            </p>
           </div>
         </div>
       </div>
