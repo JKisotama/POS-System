@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using POS_System_DAL.Data;
 
@@ -11,9 +12,11 @@ using POS_System_DAL.Data;
 namespace POS_System_DAL.Migrations
 {
     [DbContext(typeof(OnlinePosContext))]
-    partial class OnlinePosContextModelSnapshot : ModelSnapshot
+    [Migration("20241201094505_UpdateTblPosDetails")]
+    partial class UpdateTblPosDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -397,7 +400,7 @@ namespace POS_System_DAL.Migrations
                         .HasColumnType("float")
                         .HasColumnName("pos_customerpay");
 
-                    b.Property<DateTime?>("PosDate")
+                    b.Property<DateTime>("PosDate")
                         .HasColumnType("datetime")
                         .HasColumnName("pos_date");
 

@@ -7,7 +7,7 @@ public partial class TblPo
 {
     public string PosNumber { get; set; } = null!;
 
-    public DateTime PosDate { get; set; }
+    public DateTime? PosDate { get; set; }
 
     public string? CashierId { get; set; }
 
