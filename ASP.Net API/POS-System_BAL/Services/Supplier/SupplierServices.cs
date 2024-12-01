@@ -26,6 +26,7 @@ namespace POS_System_BAL.Services.Supplier
         {
             return await _onlinePosContext.TblSuppliers.
                 Where(s => s.StoreId == store_id)
+                .Include(s =>s.TblGoodssupplieds)
                 .ToListAsync();
         }
 

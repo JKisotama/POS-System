@@ -7,7 +7,7 @@ public partial class TblPo
 {
     public string PosNumber { get; set; } = null!;
 
-    public DateTime? PosDate { get; set; }
+    public DateTime PosDate { get; set; }
 
     public string? CashierId { get; set; }
 
@@ -31,7 +31,7 @@ public partial class TblPo
 
     public int? PosPaymentmethod { get; set; }
 
-    public int? PosCounter { get; set; }
+    public int PosCounter { get; set; }
 
     public string? PosCreator { get; set; }
 
@@ -43,5 +43,5 @@ public partial class TblPo
 
     public string? CancelPerson { get; set; }
 
-    public string? StoreId { get; set; }
+    public string StoreId { get; set; }
 }

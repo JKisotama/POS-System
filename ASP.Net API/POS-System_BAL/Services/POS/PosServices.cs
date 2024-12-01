@@ -2,30 +2,43 @@
 using POS_System_BAL.DTOs;
 using POS_System_DAL.Data;
 using POS_System_DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using POS_System_BAL.Helper;
+using POS_System_BAL.Services.Customer;
+using POS_System_BAL.Services.Goods;
+using POS_System_BAL.Services.Receipt;
 
 namespace POS_System_BAL.Services.POS
 {
     public class PosServices : IPosServices
     {
         private readonly OnlinePosContext _onlinePosContext;
-        public PosServices(OnlinePosContext onlinePosContext)
+        private readonly ICustomerServices _customerServices;
+        private readonly IGoodsServices _goodsServices;
+
+        public PosServices(
+            OnlinePosContext onlinePosContext, 
+            ICustomerServices customerServices, 
+            IGoodsServices goodsServices)
         {
             _onlinePosContext = onlinePosContext;
+            _customerServices = customerServices;
+            _goodsServices = goodsServices;
         }
 
-        public async Task<IEnumerable<TblGood>> GetGoodListAsync(string store_id)
+        public async Task<PageResult<TblGood>> GetGoodListAsync(string store_id, PagingParameters paging)
         {
+            var count = await _onlinePosContext
+                .TblGoods
+                .CountAsync(s => s.StoreId == store_id);
+
             var list = await _onlinePosContext.TblGoods
                 .Where(s => s.StoreId == store_id)
                 .Include(g => g.Group)
                 .Include(s => s.TblSellprices)
+                .Skip((paging.PageNumber - 1) * paging.PageSize)
+                .Take(paging.PageSize)
                 .ToListAsync();
-            return list.Select(g => new TblGood
+            var goods = list.Select(g => new TblGood
             {
                 GroupId = g.GroupId,
                 GoodsId = g.GoodsId,
@@ -37,44 +50,313 @@ namespace POS_System_BAL.Services.POS
                 Picture = g.Picture,
                 TblSellprices = g.TblSellprices.Select(sp => new TblSellprice
                 {
-                    SellPrice = sp.SellPrice
+                    Id = sp.Id,
+                    GoodsId = sp.GoodsId,
+                    Barcode = sp.Barcode,
+                    GoodsUnit = sp.GoodsUnit,
+                    SellNumber = sp.SellNumber,
+                    SellPrice = sp.SellPrice,
+                    StoreId = sp.StoreId,
                 }).ToList()
             });
+
+            return new PageResult<TblGood>(goods, count);
+        }
+
+
+        public async Task GetGoodsByBarcode(string store_id, string barcode)
+        {
+            
         }
 
         public async Task GetPoAsync(string store_id, int status)
         {
-
+            var purchaseOrders = await _onlinePosContext.TblPos
+                .Where(po => po.StoreId == store_id && po.PosStatus == status)
+                .ToListAsync();
         }
 
-        public async Task GetPoDetailsAsync(string store_id, string po_number)
+        public async Task GetPoDetailsAsync(
+            string store_id, string po_number)
         {
 
         }
 
-        public async Task SavePo(string store_id, TblPo tblPo)
+        public async Task CreatePoHeaderAsync(string storeId, string cashierId, string posCreator)
         {
-            await _onlinePosContext.TblPos.AddAsync(tblPo);
+            // Generate the POS number and counter
+            var posNumber = GerenatePosNumber(storeId, cashierId, DateTime.Now);
+            var posCounter = GetPosCounterByStoreId(storeId, cashierId, DateTime.Now);
+
+            // Create a new PO header
+            var newPo = new TblPo
+            {
+                StoreId = storeId,
+                PosNumber = posNumber,
+                CashierId = cashierId,
+                PosDate = DateTime.Now.Date,
+                PosTotal = 0, 
+                PosDiscount = 0,
+                PosTopay = 0,
+                PosCreator = posCreator,
+                PosCounter = posCounter + 1,
+                PosStatus = 0 // Status: Pending
+            };
+            
+            try
+            {
+                await _onlinePosContext.TblPos.AddAsync(newPo);
+                await _onlinePosContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error creating PO header: {ex.Message}");
+            }
         }
 
-        public async Task SavePoItem(string store_id, TblReceiptdetail tblReceiptdetail, TblPosdetail tblPosdetail)
+        public async Task SavePoItemAsync(string storeId, string posNumber, string goodsId, string goodsUnit, double quantity)
+        {
+            var totalPrice = await CalculateSellingPriceAsync(storeId, goodsId, quantity, goodsUnit);
+
+            var existingDetail = await _onlinePosContext.TblPosdetails
+                .FirstOrDefaultAsync(detail => detail.StoreId == storeId &&
+                                               detail.PosNumber == posNumber &&
+                                               detail.GoodsId == goodsId &&
+                                               detail.ItemUnit == goodsUnit);
+
+            if (existingDetail != null)
+            {
+                existingDetail.ItemQuantity += quantity;
+                existingDetail.LineTotal += totalPrice;
+            }
+            else
+            {
+                var newDetail = new TblPosdetail
+                {
+                    StoreId = storeId,
+                    PosNumber = posNumber,
+                    GoodsId = goodsId,
+                    ItemUnit = goodsUnit,
+                    ItemQuantity = quantity,
+                    LineTotal = totalPrice
+                };
+
+                await _onlinePosContext.TblPosdetails.AddAsync(newDetail);
+            }
+
+            await UpdatePoTotalsAsync(storeId, posNumber);
+        }
+
+
+
+        public async Task SavePoItem(string storeId, string posNumber, string goodsId, string goodsUnit, double quantity)
+        {
+            var totalPrice = await CalculateSellingPriceAsync(storeId, goodsId, quantity, goodsUnit);
+            var existingDetail = await _onlinePosContext.TblPosdetails
+                .FirstOrDefaultAsync(detail => detail.StoreId == storeId &&
+                                               detail.PosNumber == posNumber &&
+                                               detail.GoodsId == goodsId &&
+                                               detail.ItemUnit == goodsUnit);
+
+            if (existingDetail != null)
+            {
+                existingDetail.ItemQuantity += quantity;
+                existingDetail.LineTotal += totalPrice;
+            }
+            else
+            {
+                var newDetail = new TblPosdetail
+                {
+                    StoreId = storeId,
+                    PosNumber = posNumber,
+                    GoodsId = goodsId,
+                    ItemUnit = goodsUnit,
+                    ItemQuantity= quantity,
+                    LineTotal = totalPrice
+                };
+
+                await _onlinePosContext.TblPosdetails.AddAsync(newDetail);
+            }
+
+            try
+            {
+                await _onlinePosContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error saving PO detail: {ex.Message}");
+            }
+        }
+
+        public async Task UpdatePoTotalsAsync(string storeId, string posNumber)
+        {
+            var poDetails = await _onlinePosContext.TblPosdetails
+                .Where(detail => detail.StoreId == storeId && detail.PosNumber == posNumber)
+                .ToListAsync();
+
+            var posTotal = poDetails.Sum(detail => detail.LineTotal );
+            var posDiscount = 0.0; // Giảm giá mặc định là 0
+            var posTopay = posTotal - posDiscount;
+
+            var po = await _onlinePosContext.TblPos
+                .FirstOrDefaultAsync(p => p.StoreId == storeId && p.PosNumber == posNumber);
+
+            if (po != null)
+            {
+                po.PosTotal = posTotal;
+                po.PosDiscount = posDiscount;
+                po.PosTopay = posTopay;
+
+                try
+                {
+                    await _onlinePosContext.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Lỗi khi cập nhật tổng giá trị PO: {ex.Message}");
+                }
+            }
+        }
+
+        
+        public async Task UpdateStatus(
+            string store_id, 
+            string po_number, 
+            int status)
         {
 
         }
 
-        public async Task UpdateStatus(string store_id, string po_number, int status)
+        public async Task PayPO(
+            string store_id,
+            string po_number,
+            double customer_pay,
+            string payer,
+            int payment_type,
+            double money_return)
+        {
+            var po = await _onlinePosContext.TblPos
+                .FirstOrDefaultAsync(p => p.StoreId == store_id && p.PosNumber == po_number);
+
+            if (po != null)
+            {
+                po.PosStatus = 1; 
+                po.Payer = payer;
+                po.PosTotal = customer_pay - po.PosTopay;
+                po.PosPaymentmethod = payment_type;
+
+                try
+                {
+                    await _onlinePosContext.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Error to Pay POS: {ex.Message}");
+                }
+            }
+        }
+
+        public async Task GetDataByShift(
+            string store_id, string shift_number)
         {
 
         }
 
-        public async Task PayPO(string store_id, string po_number, double customer_pay, int payment_type, double money_return)
+        public TblPo CreateTemporaryPoHeader(
+            string storeId, 
+            string cashierId, 
+            string posCreator)
         {
 
+            var posNumber = GerenatePosNumber(storeId, cashierId, DateTime.Now);
+            var posCounter = GetPosCounterByStoreId(storeId, cashierId, DateTime.Now);
+
+    
+            return new TblPo
+            {
+                StoreId = storeId,
+                PosNumber = posNumber,
+                CashierId = cashierId,
+                PosDate = DateTime.Now.Date,
+                PosTotal = 0, 
+                PosDiscount = 0,
+                PosTopay = 0,
+                PosCreator = posCreator,
+                PosCounter = posCounter + 1,
+                PosStatus = 0 
+            };
         }
 
-        public async Task GetDataByShift(string store_id, string shift_number)
+        
+        private string GerenatePosNumber(
+            string store_id, 
+            string cashier_id, 
+            DateTime created_date)
         {
-
+            int counter=GetPosCounterByStoreId(store_id,cashier_id,created_date);
+            var nCounter = counter + 1;
+            string pos_number = "P" + cashier_id + created_date.ToString("yyMMdd") + new string('0', 3 - counter.ToString().Length) + nCounter.ToString();
+            return pos_number;
         }
+
+        private int GetPosCounterByStoreId(string store_id, string cashier_id, DateTime created_date)
+        {
+            var posCounter = _onlinePosContext.TblPos
+                .Where(p => p.StoreId == store_id 
+                            && p.PosDate.Date == created_date.Date
+                            && p.CashierId == cashier_id)
+                .OrderBy(p => p.StoreId)
+                .ThenByDescending(p => p.PosCounter)
+                .Select(p => p.PosCounter)
+                .FirstOrDefault();
+            return posCounter;
+        }
+        
+        
+        public async Task<double> CalculateSellingPriceAsync(string storeId, string goodsId, double quantity, string unit)
+        {
+            double totalPrice = 0;
+
+            var priceTiers = await _onlinePosContext.TblSellprices
+                .Where(bg => bg.StoreId == storeId &&
+                             bg.GoodsId == goodsId &&
+                             bg.GoodsUnit == unit)
+                .OrderByDescending(bg => bg.SellNumber)
+                .Select(bg => new
+                {
+                    bg.SellNumber,
+                    SellPrice = bg.SellPrice ?? 0.0 
+                })
+                .ToListAsync();
+
+            if (!priceTiers.Any())
+            {
+                return 0; 
+            }
+
+            int wholeQuantity = (int)quantity;
+            double fractionalPart = quantity - wholeQuantity;
+            
+            double? remainingQuantity = wholeQuantity;
+            foreach (var tier in priceTiers)
+            {
+                if (remainingQuantity >= tier.SellNumber)
+                {
+                    int applicableUnits = (int)(remainingQuantity / tier.SellNumber);
+                    totalPrice += applicableUnits * tier.SellPrice;
+                    remainingQuantity %= tier.SellNumber;
+                }
+            }
+
+
+            if (fractionalPart > 0)
+            {
+                var basePrice = priceTiers.Last().SellPrice;
+                totalPrice += fractionalPart * basePrice;
+            }
+
+            return totalPrice;
+        }
+
     }
 }

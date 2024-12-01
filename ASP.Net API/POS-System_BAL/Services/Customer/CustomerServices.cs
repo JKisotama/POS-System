@@ -49,19 +49,18 @@ namespace POS_System_BAL.Services.Customer
             await _onlinePosContext.SaveChangesAsync();
         }
 
-        public async Task UpdateCustomer(CustomerDTO customerDTO)
+        public async Task UpdateCustomer(CustomerDTO customerDto)
         {
-            var existCustomer = await GetCustomer(customerDTO.CompanyId, customerDTO.CustomerId);
-            if (existCustomer != null)
+            if (customerDto.CompanyId != null)
             {
-                _mapper.Map(customerDTO, existCustomer);
-                 _onlinePosContext.Update(existCustomer);
+                var existCustomer = await GetCustomer(customerDto.CompanyId, customerDto.CustomerId);
+                    _mapper.Map(customerDto, existCustomer);
+                    _onlinePosContext.Update(existCustomer);
             }
-            
-            
         }
-
-        public string GenerateCustomerID(string company_id, DateTime created_date)
+        
+        private string GenerateCustomerID(
+            string company_id, DateTime created_date)
         {
             int counter = GetCustomerCounterByStoreId(company_id, created_date);
             var nCounter = counter + 1;
@@ -70,10 +69,12 @@ namespace POS_System_BAL.Services.Customer
         }
 
 
-        public int GetCustomerCounterByStoreId(string company_id, DateTime created_date)
+        private int GetCustomerCounterByStoreId(
+            string company_id, DateTime created_date)
         {
                 var customerCounter = _onlinePosContext.TblCustomers
-                  .Where(g => g.CompanyId == company_id && g.CreatedDate.Date == created_date.Date)
+                  .Where(g => g.CompanyId == company_id 
+                              && g.CreatedDate.Date == created_date.Date)
                   .OrderBy(g => g.CompanyId)
                   .ThenByDescending(g => g.CustomerCounter)
                   .Select(g => g.CustomerCounter)

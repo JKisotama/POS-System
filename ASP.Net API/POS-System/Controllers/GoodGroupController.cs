@@ -102,10 +102,10 @@ namespace POS_Final_Year.Controller
         public async Task<ActionResult<IEnumerable<TblGoodsunit>>> GetUnit(
             string store_id, 
             string goods_id,
-            int type)
+            int status)
         {
-            var unit = await _goodsServices.GetGoodsUnitAsync(store_id, goods_id, type);
-            if (store_id != null && goods_id != null && type != null)
+            var unit = await _goodsServices.GetGoodsUnitAsync(store_id, goods_id, status);
+            if (store_id != null && goods_id != null && status != null)
             {
                 return Ok(unit);
             }
@@ -145,7 +145,7 @@ namespace POS_Final_Year.Controller
 
         #region PUT
         [HttpPut("Chưa đụng nha ")]
-        public async Task<IActionResult> PutTblGoodsgroup(string id, TblGoodsgroup tblGoodsgroup)
+        private async Task<IActionResult> PutTblGoodsgroup(string id, TblGoodsgroup tblGoodsgroup)
         {
             
 
