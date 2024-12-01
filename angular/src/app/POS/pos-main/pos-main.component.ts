@@ -8,6 +8,8 @@ import { POSDto } from '../../API/Admin/POS/model';
 import { POSService } from '../../API/Admin/POS/pos.service';
 import { AuthenticationService } from '../../API/Admin/authentication.service';
 import { CustomerDTO } from '../../API/Admin/Customer/model';
+import { GoodsDTO } from '../../API/Admin/goods/model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-pos-main',
@@ -20,23 +22,25 @@ export class PosMainComponent implements OnInit {
   constructor(public dialog: MatDialog, 
     private posService: POSService,
     private authenticationService : AuthenticationService,
-
+    private fb: FormBuilder
    ) {}
 
 
   // Define columns to be displayed in the table
-  displayedColumns: string[] = ['name', 'quantity', 'price', 'total'];
+  displayedColumns: string[] = ['name', 'unit', 'quantity', 'price', 'total'];
   
   // Data source for the table
-  dataSource = new MatTableDataSource<Product>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<GoodsDTO>();
   storeId: string | null = null;
 
   showCards: boolean = false; // Controls the visibility of the cards
   currentCashierId: number = 1; // Tracks the cashier ID
   currentPosCreator: number = 1; // Tracks the POS creator
   posHeader?: POSDto; // Stores the response from API
+  orders: POSDto[] = [];
 
   selectedCustomer?: CustomerDTO;
+  form: FormGroup;
 
   // ViewChild to bind paginator and sort
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
@@ -47,6 +51,59 @@ export class PosMainComponent implements OnInit {
     this.storeId = this.authenticationService.getStoreIdUser();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    const storedCashierId = localStorage.getItem('currentCashierId');
+    const storedPosCreator = localStorage.getItem('currentPosCreator');
+  
+    // Parse stored values or fallback to 1 if they are not available or invalid
+    this.currentCashierId = storedCashierId ? parseInt(storedCashierId, 10) : 1;
+    this.currentPosCreator = storedPosCreator ? parseInt(storedPosCreator, 10) : 1;
+    this.fetchOrders();
+    this.getGoodsList();
+    this.buildForm();
+    
+  }
+
+  buildForm(){
+    this.form = this.fb.group({
+      quantity: ['', [Validators.required]],
+    });
+  }
+
+  getGoodsList(): void {
+   if(this.storeId){
+    this.posService.getGoodsList(this.storeId).subscribe(
+      (response) => {
+        // Initialize the selectedPrice for each good
+        this.dataSource.data = response.items.map((item: GoodsDTO) => ({
+          ...item,
+          selectedPrice: item.tblSellprices[0]?.sellPrice || 0,
+        }));
+      },
+      (error) => {
+        console.error('Error fetching goods list:', error);
+      }
+    );
+   }
+  }
+   onUnitChange(good: GoodsDTO, event: Event): void {
+    const selectedUnit = (event.target as HTMLSelectElement).value;
+    const matchingPrice = good.tblSellprices.find(
+      (price) => price.goodsUnit === selectedUnit
+    );
+    good.selectedPrice = matchingPrice ? matchingPrice.sellPrice : 0;
+  }
+
+  fetchOrders(): void {
+    if(this.storeId){
+      this.posService.getPoHeadersPaged(this.storeId).subscribe(
+        (response) => {
+          this.orders = response.items; // Assign the items array to orders
+        },
+        (error) => {
+          console.error('Error fetching orders:', error);
+        }
+      );
+    }
   }
 
   openCustomerDialog(): void {
@@ -63,22 +120,46 @@ export class PosMainComponent implements OnInit {
     });
   }
 
+  fetchOrderDetails(cashierId: string, posCreator: string): void {
+    if(this.storeId){
+      this.posService.generatePoHeader(this.storeId, cashierId, posCreator).subscribe(
+        (data: POSDto) => {
+          this.posHeader = data; // Assign the fetched order details
+          console.log('Fetched Order Details:', data);
+        },
+        (error) => {
+          console.error('Error fetching order details:', error);
+        }
+      );
+    }
+  }
+
   createOrder(): void {
     const cashierId = this.currentCashierId.toString();
     const posCreator = this.currentPosCreator.toString();
   
-    // Step 1: Create the POS header
-    if(this.storeId){
+    if (this.storeId) {
+      // Step 1: Create the POS header
       this.posService.createPoHeader(this.storeId, cashierId, posCreator).subscribe(
         () => {
-          // Step 2: Fetch the generated POS header
-          if(this.storeId){
+          if (this.storeId) {
+            // Step 2: Fetch the generated POS header
             this.posService.generatePoHeader(this.storeId, cashierId, posCreator).subscribe(
               (data: POSDto) => {
                 this.posHeader = data; // Assign the returned data
                 this.showCards = true; // Show the cards after a successful creation
                 console.log('POS Header:', this.posHeader);
-                this.incrementIds(); // Increment cashierId and posCreator
+  
+                // Increment IDs only after a successful order
+                this.incrementIds();
+  
+                // Step 3: Fetch all orders again
+                if (this.posHeader?.id) {
+                  // Ensure `id` is defined
+                  this.fetchOrdersAndSelectOrder(this.posHeader.id);
+                } else {
+                  console.error('POS Header ID is undefined.');
+                }
               },
               (error) => {
                 console.error('Error fetching POS header:', error);
@@ -92,16 +173,48 @@ export class PosMainComponent implements OnInit {
       );
     }
   }
+  
+  fetchOrdersAndSelectOrder(orderId: string): void {
+    if (this.storeId) {
+      this.posService.getPoHeadersPaged(this.storeId).subscribe(
+        (response) => {
+          this.orders = response.items; // Update the orders list
+          console.log('Updated Orders:', this.orders);
+  
+          // Step 4: Retrieve the specific order
+          const selectedOrder = this.orders.find(order => order.id === orderId);
+  
+          if (selectedOrder) {
+            console.log('Selected Order:', selectedOrder);
+            this.posHeader = selectedOrder; // Update the POS header with the specific order
+          } else {
+            console.error('Order not found in the updated list.');
+          }
+        },
+        (error) => {
+          console.error('Error fetching orders:', error);
+        }
+      );
+    }
+  }
 
   // Increment the IDs for the next order
   incrementIds(): void {
     this.currentCashierId += 1;
     this.currentPosCreator += 1;
+  
+    // Persist updated IDs in localStorage
+    localStorage.setItem('currentCashierId', this.currentCashierId.toString());
+    localStorage.setItem('currentPosCreator', this.currentPosCreator.toString());
   }
-
   updateCustomerInfo(customer: CustomerDTO): void {
     this.selectedCustomer = customer;
   }
+
+  updateTotal(good: GoodsDTO): void {
+    good.total = (good.quantity ?? 1) * (good.selectedPrice ?? 0);
+  }
+  
 }
 
 // Define the Product interface outside the component class

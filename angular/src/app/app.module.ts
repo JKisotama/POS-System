@@ -10,7 +10,7 @@ import { AdminPageComponent } from './staff/admin-page/admin-page.component';
 import { AdminSidebarComponent } from './staff/admin-sidebar/admin-sidebar.component'; 
 import { PosHeaderComponent } from './POS/pos-header/pos-header.component';
 import { PosFooterComponent } from './POS/pos-footer/pos-footer.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -103,7 +103,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSelectModule,
     MatSnackBarModule,
     MatCheckboxModule,
-
+    FormsModule,
     ToolbarModule, ButtonModule, SplitButtonModule,InputTextModule,AvatarModule,CarouselModule, ButtonModule, TagModule, 
     MatFormFieldModule,
     MatInputModule,

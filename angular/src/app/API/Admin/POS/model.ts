@@ -1,7 +1,7 @@
 export interface POSDto {
     id?: string; // Optional because JSON property uses $id, can be mapped in transformation
     posNumber: string;
-    posDate: string;
+    posDate?: string;
     cashierId: string;
     customerId?: string;
     customerName?: string;

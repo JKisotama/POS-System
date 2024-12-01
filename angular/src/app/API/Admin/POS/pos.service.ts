@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { POSDto } from './model';
+import { GoodsDTO } from '../goods/model';
 
 @Injectable({
     providedIn: 'root',
@@ -14,14 +15,6 @@ export class POSService {
 
     private baseUrl = 'https://localhost:5000/api/PoS';
 
-
-     /**
-     * Creates a new POS order header.
-     * @param storeId The ID of the store where the order is being created.
-     * @param cashierId The ID of the cashier creating the order.
-     * @param posCreator The creator of the POS order.
-     * @returns An observable of the created POSDto object.
-     */
     createPoHeader(storeId: string, cashierId: string, posCreator: string): Observable<POSDto> {
         const url = `${this.baseUrl}/CreatePoHeader`;
         const params = { storeId, cashierId, posCreator };
@@ -34,5 +27,18 @@ export class POSService {
         const params = { storeId, cashierId, posCreator };
     
         return this.http.get<POSDto>(url, { params });
+    }
+
+    getPoHeadersPaged(storeId: string): Observable<{ items: POSDto[]; totalCount: number }> {
+        const url = `${this.baseUrl}/GetPoHeadersPaged`;
+        const params = { storeId };
+      
+        return this.http.get<{ items: POSDto[]; totalCount: number }>(url, { params });
+    }
+
+    getGoodsList(storeId: string): Observable<{ items: GoodsDTO[]; totalCount: number }> {
+        const url = `${this.baseUrl}/GetGoodsList`;
+        const params = { store_id: storeId };
+        return this.http.get<{ items: GoodsDTO[]; totalCount: number }>(url, { params });
     }
 }

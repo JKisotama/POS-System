@@ -5,6 +5,7 @@ namespace POS_System_DAL.Models;
 
 public partial class TblPosdetail
 {
+    public int id { get; set; }
     public string PosNumber { get; set; } = null!;
 
     public int? ItemOrder { get; set; }

@@ -1,3 +1,4 @@
+import { SellPriceDTO } from "../Sell Price/model";
 
 
 
@@ -12,4 +13,8 @@ export interface GoodsDTO {
     goodsStatus?: string,
     picture?: string,
     storeId?: string,
+    tblSellprices: SellPriceDTO[];
+    selectedPrice?: number;
+    quantity?: number;
+    total?: number;
 }
