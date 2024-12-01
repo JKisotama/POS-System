@@ -343,8 +343,9 @@ public partial class OnlinePosContext : DbContext
         modelBuilder.Entity<TblPosdetail>(entity =>
         {
             entity
-                .HasNoKey()
                 .ToTable("tbl_posdetail");
+            entity
+                .HasKey(e =>e.id);
 
             entity.Property(e => e.Barcode)
                 .HasMaxLength(20)

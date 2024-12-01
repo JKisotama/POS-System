@@ -76,19 +76,13 @@ namespace POS_System_BAL.Services.POS
                 .ToListAsync();
         }
 
-        public async Task GetPoDetailsAsync(
-            string store_id, string po_number)
-        {
-
-        }
 
         public async Task CreatePoHeaderAsync(string storeId, string cashierId, string posCreator)
         {
-            // Generate the POS number and counter
+ 
             var posNumber = GerenatePosNumber(storeId, cashierId, DateTime.Now);
             var posCounter = GetPosCounterByStoreId(storeId, cashierId, DateTime.Now);
 
-            // Create a new PO header
             var newPo = new TblPo
             {
                 StoreId = storeId,
@@ -100,7 +94,7 @@ namespace POS_System_BAL.Services.POS
                 PosTopay = 0,
                 PosCreator = posCreator,
                 PosCounter = posCounter + 1,
-                PosStatus = 0 // Status: Pending
+                PosStatus = 0 
             };
             
             try
@@ -116,7 +110,19 @@ namespace POS_System_BAL.Services.POS
 
         public async Task SavePoItemAsync(string storeId, string posNumber, string goodsId, string goodsUnit, double quantity)
         {
+            // Fetch the good details from the database
+            var good = await _onlinePosContext.TblGoods
+                .Include(g => g.TblSellprices)
+                .FirstOrDefaultAsync(g => g.StoreId == storeId && g.GoodsId == goodsId);
+
+            if (good == null)
+            {
+                throw new Exception("Goods not found in the store.");
+            }
+
+
             var totalPrice = await CalculateSellingPriceAsync(storeId, goodsId, quantity, goodsUnit);
+
 
             var existingDetail = await _onlinePosContext.TblPosdetails
                 .FirstOrDefaultAsync(detail => detail.StoreId == storeId &&
@@ -126,67 +132,36 @@ namespace POS_System_BAL.Services.POS
 
             if (existingDetail != null)
             {
+
                 existingDetail.ItemQuantity += quantity;
                 existingDetail.LineTotal += totalPrice;
             }
             else
             {
+
                 var newDetail = new TblPosdetail
                 {
                     StoreId = storeId,
                     PosNumber = posNumber,
                     GoodsId = goodsId,
+                    GoodsName = good.GoodsName,
                     ItemUnit = goodsUnit,
                     ItemQuantity = quantity,
-                    LineTotal = totalPrice
+                    LineTotal = totalPrice,
                 };
 
-                await _onlinePosContext.TblPosdetails.AddAsync(newDetail);
+                 await  _onlinePosContext.TblPosdetails.AddAsync(newDetail);
+                 await _onlinePosContext.SaveChangesAsync();
             }
 
+            // Update the total for the PO header
             await UpdatePoTotalsAsync(storeId, posNumber);
         }
 
 
 
-        public async Task SavePoItem(string storeId, string posNumber, string goodsId, string goodsUnit, double quantity)
-        {
-            var totalPrice = await CalculateSellingPriceAsync(storeId, goodsId, quantity, goodsUnit);
-            var existingDetail = await _onlinePosContext.TblPosdetails
-                .FirstOrDefaultAsync(detail => detail.StoreId == storeId &&
-                                               detail.PosNumber == posNumber &&
-                                               detail.GoodsId == goodsId &&
-                                               detail.ItemUnit == goodsUnit);
 
-            if (existingDetail != null)
-            {
-                existingDetail.ItemQuantity += quantity;
-                existingDetail.LineTotal += totalPrice;
-            }
-            else
-            {
-                var newDetail = new TblPosdetail
-                {
-                    StoreId = storeId,
-                    PosNumber = posNumber,
-                    GoodsId = goodsId,
-                    ItemUnit = goodsUnit,
-                    ItemQuantity= quantity,
-                    LineTotal = totalPrice
-                };
-
-                await _onlinePosContext.TblPosdetails.AddAsync(newDetail);
-            }
-
-            try
-            {
-                await _onlinePosContext.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error saving PO detail: {ex.Message}");
-            }
-        }
+       
 
         public async Task UpdatePoTotalsAsync(string storeId, string posNumber)
         {
@@ -195,7 +170,7 @@ namespace POS_System_BAL.Services.POS
                 .ToListAsync();
 
             var posTotal = poDetails.Sum(detail => detail.LineTotal );
-            var posDiscount = 0.0; // Giảm giá mặc định là 0
+            var posDiscount = 0.0;
             var posTopay = posTotal - posDiscount;
 
             var po = await _onlinePosContext.TblPos
@@ -209,7 +184,9 @@ namespace POS_System_BAL.Services.POS
 
                 try
                 {
+                    Console.WriteLine("Attempting to save PO detail...");
                     await _onlinePosContext.SaveChangesAsync();
+                    Console.WriteLine("PO detail saved successfully.");
                 }
                 catch (Exception ex)
                 {
@@ -286,6 +263,22 @@ namespace POS_System_BAL.Services.POS
                 PosStatus = 0 
             };
         }
+        
+        public async Task<PageResult<TblPo>> GetPoHeadersWithPagingAsync(string storeId, PagingParameters paging)
+        {
+            var totalCount = await _onlinePosContext.TblPos
+                .CountAsync(p => p.StoreId == storeId);
+
+            var headers = await _onlinePosContext.TblPos
+                .Where(p => p.StoreId == storeId)
+                .OrderByDescending(p => p.PosDate)
+                .Skip((paging.PageNumber - 1) * paging.PageSize)
+                .Take(paging.PageSize)
+                .ToListAsync();
+
+            return new PageResult<TblPo>(headers, totalCount);
+        }
+
 
         
         private string GerenatePosNumber(
@@ -303,7 +296,7 @@ namespace POS_System_BAL.Services.POS
         {
             var posCounter = _onlinePosContext.TblPos
                 .Where(p => p.StoreId == store_id 
-                            && p.PosDate.Date == created_date.Date
+                            && p.PosDate == created_date.Date
                             && p.CashierId == cashier_id)
                 .OrderBy(p => p.StoreId)
                 .ThenByDescending(p => p.PosCounter)

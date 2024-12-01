@@ -39,5 +39,9 @@ namespace POS_System_BAL.Services.POS
             string storeId,
             string cashierId,
             string posCreator);
+
+        Task<PageResult<TblPo>> GetPoHeadersWithPagingAsync(
+            string storeId, PagingParameters paging);
     }
+    
 }

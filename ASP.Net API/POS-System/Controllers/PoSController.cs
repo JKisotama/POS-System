@@ -40,6 +40,21 @@ namespace POS_Final_Year.Controller
             var tempHeader = _posServices.CreateTemporaryPoHeader(storeId, cashierId, posCreator);
             return Ok(tempHeader);
         }
+        
+        [HttpGet("GetPoHeadersPaged")]
+        public async Task<IActionResult> GetPoHeadersPaged(string storeId, [FromQuery] PagingParameters paging)
+        {
+            try
+            {
+                var pageResult = await _posServices.GetPoHeadersWithPagingAsync(storeId, paging);
+                return Ok(pageResult);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
+
 
 
         [HttpPost("AddItem")]
