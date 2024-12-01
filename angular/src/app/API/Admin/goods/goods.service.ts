@@ -14,8 +14,15 @@ export class GoodsService {
 
   private baseUrl = 'https://localhost:5000/api/GoodGroup';
 
-  GetProduct(storeId: string, groupId: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/GetGoodsByGroup?store_id=${storeId}&group_id=${groupId}`);
+  GetProduct(storeId: string, groupId: string, filterText?: string): Observable<any> {
+    let url = `${this.baseUrl}/GetGoodsByGroup?store_id=${storeId}`;
+    if (groupId) {
+      url += `&group_id=${groupId}`;
+    }
+    if (filterText) {
+      url += `&filter=${filterText}`;
+    }
+    return this.http.get(url);
   }
 
   GetImage(storeId: string, goodsId: string): Observable<any> {

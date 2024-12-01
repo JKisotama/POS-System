@@ -55,6 +55,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 import {MatInputModule} from '@angular/material/input';
 import { DialogCustomerComponent } from './POS/pos-main/dialog-customer/dialog-customer.component';
+import { CreateSellPriceComponent } from './staff/goods-page/create-sell-price/create-sell-price.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,6 +84,7 @@ import { DialogCustomerComponent } from './POS/pos-main/dialog-customer/dialog-c
     AdminComponent,
     POSComponent,
     DialogCustomerComponent,
+    CreateSellPriceComponent,
     
   ],
   imports: [

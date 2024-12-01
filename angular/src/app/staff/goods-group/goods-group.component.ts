@@ -21,6 +21,8 @@ export class GoodsGroupComponent implements OnInit {
 
   storeId: string | null = null;
 
+
+
   constructor(
     private goodGroupService: GoodsGroupService,
     private authenticationService: AuthenticationService,

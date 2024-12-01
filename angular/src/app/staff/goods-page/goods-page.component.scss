@@ -80,6 +80,11 @@
     flex-direction: column;
 }
 
+.parent-table {
+    border-radius: 12px; /* Adjust radius as needed */
+    overflow: hidden; /* Ensures that content doesn't overflow the rounded corners */
+}
+
 .detail-table {
     text-align: center;
     border: 1px solid #ccc;

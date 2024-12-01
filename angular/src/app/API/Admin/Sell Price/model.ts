@@ -4,6 +4,7 @@ export interface SellPriceDTO {
     goodsUnit?: string;
     sellNumber?: string;
     sellPrice?: string;
-    [key: string]: any; 
-
+    quantity?: number;
+    storeId?: string;
+    
 }
