@@ -5,5 +5,6 @@
     padding: 16px 20px;
     .customer-input {
         @include input-text-field;
+        
     }
 }

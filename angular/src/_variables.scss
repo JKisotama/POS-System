@@ -30,7 +30,30 @@ $desktop: 1440px;
             }
             
         }
-
+        select{
+            background-color: transparent !important;
+            color: $White-Snow;
+            option{
+              background-color: $Dusty-Grey;
+              color: $White-Snow;
+            }
+            &::placeholder{
+                color: $Dusty-Grey;
+            }
+        
+          }
+    }
+}
+@mixin double-btn-zone {
+    display: flex;
+    justify-content: center;
+    button {
+        padding: 10px 20px;
+        margin-top: 16px;
+        margin-right: 10px;
+        &:last-child {
+            margin-right: 0;
+        }
     }
 }
 
@@ -100,4 +123,20 @@ $desktop: 1440px;
         }
 
     
+}
+
+@mixin btn-gray-border {
+    
+        border-radius: 5px;
+        border: 1px solid $Dusty-Grey;
+        color: $Dusty-Grey;
+        background-color: $Gluon-Grey;
+        transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+
+        &:hover {
+            background-color: $Dusty-Grey;
+            color: $White-Snow;
+            border: 1px solid $Dusty-Grey;
+        }
+
 }

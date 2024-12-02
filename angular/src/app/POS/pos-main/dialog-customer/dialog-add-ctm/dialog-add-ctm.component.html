@@ -51,10 +51,12 @@
           placeholder="Enter customer company Id"
         />
       </div>
+      <div class="btn-zone">
+          <button class="btn" (click)="Save()">Save</button>
+          
+          <button class="btn" (click)="onCancel()">Cancel</button>
 
-      <button class="btn btn-primary" (click)="Save()">Save</button>
-
-      <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+      </div>
     </form>
   </div>
 </div>

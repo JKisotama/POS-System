@@ -66,11 +66,36 @@ form{
     }
 }
 
+.btn-zone {
+    @include double-btn-zone;
+    button {
+        @include btn-orange-border;
+        &:last-child {
+            @include btn-gray-border;
+        }
+    }
+}
+
 .card-item{
     background-color: $Gluon-Grey;
     padding: 15px 20px;
     border-radius: 12px;
     height: 100%;
+    
+}
+
+.dialog-form{
+    background-color: $Gluon-Grey !important;
+    padding: 16px 20px;
+    .form-input {
+        @include input-text-field;
+        form{
+            select{
+                border: 1px dashed $White-Snow;
+            }
+        }
+        
+    }
     
 }
 
