@@ -4,7 +4,7 @@
       <!-- Order Holder -->
       <!-- TODO: Reponsive  -->
       <div class="col-xl-12 col-lg-12 col-md-12 order-information">
-        <div class=" d-flex justify-content-between">
+        <div class="d-flex justify-content-between">
           <div class="order-holder">
             <ng-container *ngIf="orders.length > 0; else noOrders">
               <a
@@ -16,24 +16,22 @@
                 {{ order.posNumber }}
               </a>
             </ng-container>
-  
+
             <!-- Show this if no orders are available -->
             <ng-template #noOrders>
               <p>No orders available</p>
             </ng-template>
-  
+
             <!-- Button to create a new order -->
-            <button (click)="createOrder()">
+            <button (click)="openProductDialog()">
               <i class="fas fa-plus"></i>
             </button>
           </div>
           <div class="order-deleted">
-            <button >
+            <button>
               <i class="fas fa-trash"></i>
             </button>
-            
           </div>
-
         </div>
       </div>
 
@@ -43,13 +41,12 @@
         <div class="card-item">
           <h2>Product</h2>
 
-          <table
+          <!-- <table
             mat-table
             [dataSource]="dataSource"
             matSort
             class="mat-elevation-z8"
           >
-            <!-- Name Column -->
             <ng-container matColumnDef="name" class="pd-name">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
               <td mat-cell *matCellDef="let good">{{ good.goodsName }}</td>
@@ -71,7 +68,6 @@
                 </select>
               </td>
             </ng-container>
-            <!-- Quantity Column -->
             <ng-container matColumnDef="quantity">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>
                 Quantity
@@ -84,11 +80,9 @@
                   (ngModelChange)="updateTotal(good)"
                   min="1"
                 />
-
               </td>
             </ng-container>
 
-            <!-- Price Column -->
             <ng-container matColumnDef="price">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
               <td mat-cell *matCellDef="let good">
@@ -96,7 +90,6 @@
               </td>
             </ng-container>
 
-            <!-- Total Column -->
             <ng-container matColumnDef="total">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
               <td mat-cell *matCellDef="let good">
@@ -104,10 +97,9 @@
               </td>
             </ng-container>
 
-            <!-- Header and Row Definitions -->
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-          </table>
+          </table> -->
         </div>
       </div>
 
@@ -195,8 +187,6 @@
               <button (click)="openCustomerDialog()">
                 <i class="fas fa-plus"></i>
               </button>
-             
-
             </div>
           </div>
 

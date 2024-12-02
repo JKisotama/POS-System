@@ -10,6 +10,7 @@ import { AuthenticationService } from '../../API/Admin/authentication.service';
 import { CustomerDTO } from '../../API/Admin/Customer/model';
 import { GoodsDTO } from '../../API/Admin/goods/model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DialogProductComponent } from './dialog-product/dialog-product.component';
 
 @Component({
   selector: 'app-pos-main',
@@ -118,6 +119,17 @@ export class PosMainComponent implements OnInit {
       }
     });
   }
+
+  openProductDialog(): void {
+    const dialogRef = this.dialog.open(DialogProductComponent, {
+      panelClass: 'custom-dialog-container'
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      
+    })
+  }
+
+  
 
   fetchOrderDetails(cashierId: string, posCreator: string): void {
     if (this.storeId) {
