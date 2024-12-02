@@ -1,0 +1,20 @@
+@import '../../../styles.scss';
+
+.pos-footer{
+    background-color: $Gluon-Grey;
+    border-radius: 5px;
+    padding: 20px 10px;
+    margin-top: 10px;
+    .checkout-btn{
+        button{
+            @include btn-gray-bg;
+            padding: 10px 20px;
+            border-radius: 5px;
+            &:nth-child(n + 2){
+                @include btn-orange-bg;
+                margin-left: 20px;
+            }
+        }
+        
+    }
+}

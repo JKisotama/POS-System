@@ -1,7 +1,20 @@
 @import "../../../../styles.scss";
 
 
+.mat-elevation-z8 {
+    box-shadow: none; // Remove the shadow if needed
+    background-color: transparent !important; // Remove the background color
+    color: $White-Snow !important;
 
+}
+.mat-menu-item {
+    color: $Dark-Void !important; // Customize the text color
+    font-size: 16px; // Customize the font size
+    padding: 10px 20px; // Customize the padding
+    border-radius: 4px; // Customize the border radius
+    
+    
+}
 .dialog {
     background-color: $Dark-Void !important;
     padding: 25px 30px;
@@ -64,10 +77,8 @@
     }
 }
 
-.button-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px; /* Optional: Add some space above the buttons */
-  }
+.btn-zone{
+    padding: 14px 20px;
+}
   
 

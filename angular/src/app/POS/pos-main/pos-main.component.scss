@@ -56,6 +56,66 @@
   }
 
   .product-card {
+    .header {
+
+        h2 {
+            color: $White-Snow;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        button{
+          padding: 9px 42px;
+          @include btn-white-border;
+        }
+        .search-bar {
+            @include search-bar-input;
+            form{
+                input{
+                    border-right: none;
+                    border-radius: 5px 0 0 5px!important;
+                    &::placeholder{
+                        color: $Dusty-Grey;
+                    }
+                    &:focus {
+                        outline: none;
+                        box-shadow: none; // For Bootstrap-specific focus shadows
+                      }
+                }
+                button{
+                    @include btn-white-border;
+                    border-radius: 0 5px 5px 0!important;
+                    border-left: none;
+                }
+            }
+            
+        }
+
+        .add-new-ctm{
+            button{
+                @include btn-green-border;
+                padding: 10px 20px;
+                border-radius: 5px;
+                
+            }
+        }
+    }
+    .empty-card{
+      border: 1px dashed $White-Snow;
+      border-radius: 12px;
+      width: 100%;
+      margin-top: 25px;
+      padding: 34px 0;
+      i{
+        font-size: 50px;
+        color: $White-Snow;
+        margin-top: 20px;
+      }
+      p{
+        color: $White-Snow;
+        font-size: 20px;
+        margin-top: 20px;
+      }
+    }
     table{
       .pd-name{
         td{

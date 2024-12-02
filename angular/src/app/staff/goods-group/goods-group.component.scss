@@ -3,6 +3,13 @@
 @import "../../../_globals.scss";
 
 .ad-main-content{
+    .ad-main-btn{
+        button{
+            @include btn-orange-bg;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+    }
     .ad-main-search{
         padding: 22px 50px;
         background-color: $Slate-Grey;

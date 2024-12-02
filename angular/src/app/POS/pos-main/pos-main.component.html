@@ -39,9 +39,18 @@
       <!-- TODO: Limited rows can show (4-5 rows) -->
       <div class="col-xl-8 col-lg-8 col-md-8 product-card mt-5">
         <div class="card-item">
-          <h2>Product</h2>
+          <div class="header d-flex justify-content-between">
+            <h2>Product</h2>
+            <button>
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
 
-          <!-- <table
+            <div class="empty-card d-flex flex-column align-items-center justify-content-center">
+              <i class="fas fa-box-open"></i>
+              <p class="">There is no item in card yet!</p>
+            </div>
+          <table
             mat-table
             [dataSource]="dataSource"
             matSort
@@ -99,7 +108,7 @@
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-          </table> -->
+          </table>
         </div>
       </div>
 

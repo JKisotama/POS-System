@@ -1,26 +1,116 @@
 @import "../../../styles.scss";
 
 
-.pos-header-bg{
-    background-color: $Greenwich;
-    padding: 50px 25px 50px 25px !important;
-    border-radius: 0px 0px 40px 40px;
-    margin-bottom: 30px;
 
-    .pos-header-who{
-        img{
-            height: 75px;
-            border: $Gluon-Grey solid 1px;
-            border-radius: 50px;
+
+.POS-user-btn{
+    button{
+        padding: 14px 42px !important;
+        border-radius: 12px;
+        
+        transition: background-color 0.3s ease;
+        i{
+            font-size: 18px;
         }
 
+        &:hover {
+            background-color: $Liquid-Lava;
+            i{
+                color: $White-Snow;
+            }
+            
+        }
+        
+    }
+}
+.ad-head-btn{
+
+    button{
+        margin: 0 10px 0 0;
+        span{
+            .mat-mdc-button-touch-target{
+                margin-right: 10px ;
+            }
+        }
+        
     }
 
-    .pos-header-logo{
+
+}
+
+
+
+.search-bar{
+    margin: auto;
+    padding: 0 120px;
+
+    button{
+        margin: 0 10px 0 0;
+        span{
+            .mat-mdc-button-touch-target{
+                margin-right: 10px !important;
+            }
+        }
+    }
+    
+    input{
+        border-radius: 50px;
+        border: 1px solid;
+    }
+    
+}
+
+.ad-header-detail{
+    margin-bottom: 50px !important;
+    .POS-logo{
         img{
-            height: 70px;
-            width: 273px;
+            height: 80px;
+            
+            
             
         }
     }
+    .POS-user{
+        button{
+            padding: 14px 42px !important;
+            border-radius: 12px;
+            
+            transition: background-color 0.3s ease;
+            i{
+                font-size: 18px;
+            }
+
+            &:hover {
+                background-color: $Liquid-Lava;
+                i{
+                    color: $White-Snow;
+                }
+                
+            }
+            
+        }
+        img{
+            height: 70px;
+            width: 70px;
+            border-radius: 100px;
+        }
+        i{
+            color: $Dusty-Grey;
+            font-size: 16px;
+            
+            
+        }
+
+        .POs-user-infor{
+            padding: 9px 15px;
+            p{
+                color: $Dusty-Grey;
+                span{
+                    color: $White-Snow;
+                    font-weight: bold !important;
+                }
+            }
+        }
+    }
+
 }

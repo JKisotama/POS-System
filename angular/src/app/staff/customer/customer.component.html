@@ -1,46 +1,37 @@
 <div class="ad-main-content">
   <h2 class="">Goods Group Information</h2>
 
-  <div class="ad-main-search d-flex justify-content-between">
-    <div class="ad-main-btn">
-      <button
-        type="button"
-        mat-stroked-button
-        (click)="openCreateCustomer()"
-        class="btn btn-warning"
-      >
-        Create Good
-      </button>
-      <button type="button" class="btn btn-primary">Primary</button>
-    </div>
-    <form [formGroup]="form">
-      <input
-        type="text"
-        class="form-control search-bar"
-        formControlName="companyId"
-        aria-describedby="helpId"
-        placeholder="Search"
-      />
-      <!-- <input
-        type="text"
-        class="form-control search-bar"
-        formControlName="filterText"
-        aria-describedby="helpId"
-        placeholder="Search"
-      /> -->
-    </form>
+  <div class="ad-main-search">
+    <div class="row">
+      <div class="col-md-3 ad-main-btn">
+        <button
+          type="button"
+          
+          (click)="openCreateCustomer()"
+          class="btn btn-orange-bg"
+        >
+          Create Customer
+        </button>
+        
+      </div>
+      <div class="col-md-6">
+        <form>
+          
+          <input
+            type="text"
+            class="form-control search-bar"
+            formControlName="filterText"
+            aria-describedby="helpId"
+            placeholder="Search"
+          />
+        </form>
+    
 
-    <div class="ad-main-btn">
-      <button type="button" mat-stroked-button class="btn btn-danger">
-        Primary
-      </button>
-      <button
-        type="button"
-        class="btn btn-primary"
-        (click)="getCustomerByCompanyId()"
-      >
-        Search
-      </button>
+      </div>
+      <div class="col-md-3 ad-main-btn">
+        <input type="hidden">
+      </div>
+
     </div>
   </div>
 
