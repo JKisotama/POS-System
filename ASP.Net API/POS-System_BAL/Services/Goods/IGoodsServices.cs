@@ -44,6 +44,7 @@ namespace POS_System_BAL.Services.Goods
         Task SaveUnit(GoodUnitDTO goodUnitDTO);
         Task SaveGoods(GoodsDTO goodsDTO, IFormFile imageFile);
         Task SaveProperty(string store_id, string goods_id, string property_id, string property_value);
+        Task UpdateGoodsImage(string storeId, string goodsId, IFormFile imageFile);
         string GenerateGoodGroupID(string store_id);
         string GenerateGoodId(string store_id);
         string GenerateGoodGroupProperty(string store_id);
