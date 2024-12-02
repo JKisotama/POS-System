@@ -75,6 +75,19 @@ form{
         }
     }
 }
+.btn-orange-bg{
+    background-color: $Liquid-Lava;
+    color: $White-Snow;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 16px;
+
+    &:hover {
+        background-color: $White-Snow;
+        color: $Liquid-Lava;
+    }
+}
 
 .card-item{
     background-color: $Gluon-Grey;
@@ -96,12 +109,23 @@ form{
         }
         
     }
+    .form-table{
+        table{
+            tr{
+                td{
+                    select{
+                        border: 1px dashed $White-Snow;
+                    }
+                }
+            }
+        }
+    }
     
 }
 
 .mat-elevation-z8 {
     box-shadow: none; // Remove the shadow if needed
-    background-color: transparent; // Remove the background color
+    background-color: transparent ; // Remove the background color
 }
 
 .mat-header-cell,

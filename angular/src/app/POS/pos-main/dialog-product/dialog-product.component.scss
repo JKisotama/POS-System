@@ -1,8 +1,8 @@
-@import "../../../../styles.scss";
+@import '../../../../styles.scss';
 
 
 
-.dialog {
+.dialog-form {
     background-color: $Dark-Void !important;
     padding: 25px 30px;
 
@@ -91,10 +91,6 @@
       }
 }
 
-.button-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px; /* Optional: Add some space above the buttons */
-  }
+
   
 

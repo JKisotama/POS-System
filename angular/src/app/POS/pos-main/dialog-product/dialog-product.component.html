@@ -1,11 +1,11 @@
-<div class="container dialog">
+<div class="container dialog-form">
   <div class="header">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <h2>Product List</h2>
       </div>
 
-      <div class="col-md-6 text-center search-bar">
+      <div class="col-md-5 text-center search-bar">
         <form [formGroup]="form" class="search-form">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search..." />
@@ -19,8 +19,8 @@
       </div>
     </div>
 
-    <div class="table-responsive">
-      <h2>Product</h2>
+    <div class="table-responsive form-input">
+      
 
       <table
         mat-table
@@ -54,7 +54,7 @@
             <div class="col-md-4">
               <input
                 type="number"
-                class="form-control"
+                class="form-control-lg"
                 [(ngModel)]="good.quantity"
                 (ngModelChange)="updateTotal(good)"
                 min="1"
@@ -86,7 +86,9 @@
     </div>
   </div>
 
-  <div class="button-container">
-    <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+  <div class="btn-zone">
+    <button class="btn" >Save</button>
+    <button class="btn" (click)="onCancel()">Cancel</button>
+    
   </div>
 </div>
