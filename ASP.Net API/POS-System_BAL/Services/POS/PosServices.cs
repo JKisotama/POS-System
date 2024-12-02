@@ -25,14 +25,14 @@ namespace POS_System_BAL.Services.POS
             _goodsServices = goodsServices;
         }
 
-        public async Task<PageResult<TblGood>> GetGoodListAsync(string store_id, PagingParameters paging)
+        public async Task<PageResult<TblGood>> GetGoodListAsync(string goodsName, PagingParameters paging)
         {
             var count = await _onlinePosContext
                 .TblGoods
-                .CountAsync(s => s.StoreId == store_id);
+                .CountAsync(s => s.GoodsName == goodsName);
 
             var list = await _onlinePosContext.TblGoods
-                .Where(s => s.StoreId == store_id)
+                .Where(s => s.StoreId == goodsName)
                 .Include(g => g.Group)
                 .Include(s => s.TblSellprices)
                 .Skip((paging.PageNumber - 1) * paging.PageSize)
@@ -121,10 +121,10 @@ namespace POS_System_BAL.Services.POS
                 .Include(g => g.TblSellprices)
                 .FirstOrDefaultAsync(g => g.StoreId == storeId && g.GoodsId == goodsId);
 
-            if (good == null)
-            {
-                throw new Exception("Goods not found in the store.");
-            }
+            var itemPrice = await _onlinePosContext.TblSellprices
+                .Where(sp => sp.StoreId == storeId && sp.GoodsId == goodsId && sp.GoodsUnit == goodsUnit && sp.SellNumber == 1)
+                .Select(sp => sp.SellPrice)
+                .FirstOrDefaultAsync();
 
             //Kiểm tra xem trong PODetails của storeId, posNumber có mã hàng trùng goodId, goodsUnit, goodPropertyName, groupPropertyName
             //Nếu có thì lấy số lượng của dòng đó + quantity rồi tính giá bán của số lượng mới sau đó cập nhật vào trong PoDetails
@@ -149,12 +149,15 @@ namespace POS_System_BAL.Services.POS
                                                detail.ItemUnit == goodsUnit &&
                                                detail.Property == groupPropertyName &&
                                                detail.PropertyValue == goodsPropertyName);
-
             if (existingDetail != null)
             {
                 existingDetail.ItemQuantity += quantity;
+                var sub_total = itemPrice * existingDetail.ItemQuantity;
                 double? newTotalPrice = await CalculateSellingPriceAsync(storeId, goodsId, existingDetail.ItemQuantity, goodsUnit);
                 existingDetail.LineTotal = newTotalPrice ?? 0;
+                existingDetail.SubTotal = sub_total;
+                existingDetail.ItemPrice = itemPrice;
+                existingDetail.LineDiscount = sub_total - newTotalPrice;
             }
             else
             {
@@ -209,9 +212,19 @@ namespace POS_System_BAL.Services.POS
                 .Where(detail => detail.StoreId == storeId && detail.PosNumber == posNumber)
                 .ToListAsync();
 
-            var posTotal = poDetails.Sum(detail => detail.LineTotal);
-            var posDiscount = 0.0;
-            var posTopay = posTotal - posDiscount;
+         
+            double? posTotal = 0;
+            double? posDiscount = 0;
+
+            foreach (var detail in poDetails)
+            {
+                posTotal += detail.LineTotal; 
+                posDiscount += (detail.LineDiscount ?? 0); 
+            }
+
+            double posTopay = (posTotal ?? 0) - (posDiscount ?? 0); 
+            
+
 
             var po = await _onlinePosContext.TblPos
                 .FirstOrDefaultAsync(p => p.StoreId == storeId && p.PosNumber == posNumber);
@@ -230,7 +243,7 @@ namespace POS_System_BAL.Services.POS
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Lỗi khi cập nhật tổng giá trị PO: {ex.Message}");
+                    throw new Exception($"Error when update PO: {ex.Message}");
                 }
             }
         }

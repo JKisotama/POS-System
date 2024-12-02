@@ -144,13 +144,26 @@ namespace POS_Final_Year.Controller
         #endregion
 
         #region PUT
-        [HttpPut("Chưa đụng nha ")]
-        private async Task<IActionResult> PutTblGoodsgroup(string id, TblGoodsgroup tblGoodsgroup)
+        [HttpPut("Update Goods Image")]
+        public async Task<IActionResult> PutTblGoodsgroup(string store_id, string goods_id,  IFormFile imageFile = null)
         {
-            
-
-            return NoContent();
+            try
+            {
+                await _goodsServices.UpdateGoodsImage(store_id, goods_id, imageFile);
+                return NoContent(); // Return a NoContent response to indicate success
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound("Goods not found.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return NoContent(); 
         }
+        
+        
         #endregion
 
         #region POST
@@ -161,7 +174,6 @@ namespace POS_Final_Year.Controller
             return StatusCode(201, goodsGroupDTO);
         }
 
-        // DELETE: api/GoodGroup/5
         [HttpPost("SavePropertyGroup")]
         public async Task<ActionResult<TblPropertygroup>> PostTblPropertyGroup(TblPropertygroup group_name)
         {
