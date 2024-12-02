@@ -1,39 +1,60 @@
 <div class="add-new-ctm">
-    <div class="customer-input">
-        <form>
-            <div class="form-group">
-                <label for="customerName">Customer Name</label>
-                <input type="text" class="form-control" id="customerName" formControlName="customerName"
-                    placeholder="Enter customer name" />
-            </div>
-            <div class="form-group">
-                <label for="customerAddress">Customer Address</label>
-                <input type="text" class="form-control" id="customerAddress" formControlName="customerAddress"
-                    placeholder="Enter customer Address" />
-            </div>
-            <div class="form-group">
-                <label for="customerEmail">Customer Email</label>
-                <input type="email" class="form-control" id="customerEmail" placeholder="Enter customer email"
-                    formControlName="customerEmail" />
-            </div>
-            <div class="form-group">
-                <label for="customerPhone">Customer Phone Number</label>
-                <input type="text" class="form-control" id="customerPhone" formControlName="customerPhone"
-                    placeholder="Enter customer phone number" />
-            </div>
-            <div class="form-group">
-                <label for="companyId">Company Id</label>
-                <input type="text" class="form-control" id="companyId" formControlName="companyId"
-                    placeholder="Enter customer company Id" />
-            </div>
-            
-    
-          <button class="btn btn-primary" >
-            Save
-          </button>
-    
-          <button class="btn btn-secondary" >Cancel</button>
-        </form>
-    </div>
+  <div class="customer-input">
+    <form>
+      <div class="form-group">
+        <label for="customerName">Customer Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="customerName"
+          formControlName="customerName"
+          placeholder="Enter customer name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="customerAddress">Customer Address</label>
+        <input
+          type="text"
+          class="form-control"
+          id="customerAddress"
+          formControlName="customerAddress"
+          placeholder="Enter customer Address"
+        />
+      </div>
+      <div class="form-group">
+        <label for="customerEmail">Customer Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="customerEmail"
+          placeholder="Enter customer email"
+          formControlName="customerEmail"
+        />
+      </div>
+      <div class="form-group">
+        <label for="customerPhone">Customer Phone Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="customerPhone"
+          formControlName="customerPhone"
+          placeholder="Enter customer phone number"
+        />
+      </div>
+      <div class="form-group">
+        <label for="companyId">Company Id</label>
+        <input
+          type="text"
+          class="form-control"
+          id="companyId"
+          formControlName="companyId"
+          placeholder="Enter customer company Id"
+        />
+      </div>
 
+      <button class="btn btn-primary" (click)="Save()">Save</button>
+
+      <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
 </div>

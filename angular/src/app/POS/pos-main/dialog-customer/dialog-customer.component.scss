@@ -63,3 +63,11 @@
         overflow-x: auto; // Enable horizontal scrolling if needed
     }
 }
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px; /* Optional: Add some space above the buttons */
+  }
+  
+
