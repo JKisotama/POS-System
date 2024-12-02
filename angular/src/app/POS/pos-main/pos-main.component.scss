@@ -1,159 +1,182 @@
 @import "../../../styles.scss";
 
+.custom-dialog-container {
+  .mat-dialog-container {
+    padding: 25px 30px;
+    background-color: $Dusty-Grey;
+    border: 2px solid $White-Snow; // Add border to the dialog
+    border-radius: 20px; // Add border radius for rounded corners
+  }
+}
+
 .new-order-zone {
   .order-information {
-    a {
-      padding: 14px 40px;
-      color: $White-Snow;
-      border-radius: 5px;
-      border: 1px dashed $White-Snow;
-      transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
-      &:hover{
-        background-color: $White-Snow;
-        color: $Dark-Void;
-        border: 1px solid $White-Snow;
+    .order-holder{
+      a {
+        padding: 14px 40px;
+        color: $White-Snow;
+        border-radius: 5px;
+        border: 1px dashed $White-Snow;
+        transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+  
+        &:hover {
+          background-color: $White-Snow;
+          color: $Dark-Void;
+          border: 1px solid $White-Snow;
+        }
+  
+        &:nth-of-type(n + 2) {
+          margin-left: 20px;
+        }
+        :active{
+          background-color: $White-Snow;
+          color: $Dark-Void;
+          border: 1px solid $White-Snow;
+        }
       }
-
-      &:nth-of-type(n + 2) {
+      
+      button {
+        @include btn-white-border;
         margin-left: 20px;
+        padding: 14px 20px;
+  
+        &:nth-of-type(2) {
+          // Styles for the second button
+          height: auto;
+          width: auto;
+        }
       }
     }
-
-    button {
-      margin-left: 20px;
-      background-color: $Liquid-Lava;
-      color: $White-Snow;
-      border-radius: 4px;
-      padding: 7px 13px;
-
-      &:nth-of-type(2) {
-        // Styles for the second button
-        height: auto;
-        width: auto;
+    .order-deleted{
+      button{
+        padding: 14px 40px;
+        @include btn-orange-border;
       }
     }
   }
 
-  .product-card{
-    
-    
+  .product-card {
+    table{
+      .pd-name{
+        td{
+          color: $Dark-Void !important;
+        }
+      }
+      td{
+        select{
+          background-color: transparent !important;
+          color: $White-Snow;
+          option{
+            background-color: $Dusty-Grey;
+            color: $White-Snow;
+          }
+        }
+        input{
+          background-color: transparent;
+          color: $White-Snow;
+          border-radius: 5px;
+          border: 1px dashed $White-Snow;
+          :focus{
+            border: 1px solid $White-Snow !important;
+          }
+        }
+      }
+    }
+
   }
 
-  .bill-information-cart{
-    .bill-information-item{
+  .bill-information-cart {
+    .bill-information-item {
       margin-top: 10px;
       border-bottom: 1px solid $White-Snow;
-            .bill-infor-title{
-                color: $White-Snow;
-                font-size: 20px;
-                margin-bottom: 10px;
-            }
-            &:nth-child(n +2){
-                padding-top: 20px;
-            }
+      .bill-infor-title {
+        color: $White-Snow;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      &:nth-child(n + 2) {
+        padding-top: 20px;
+      }
     }
     padding-bottom: 20px;
   }
 
-  .note-card{
-    textarea{
-        background-color: $Dusty-Grey;
-        color: $White-Snow;
-        font-size: 20px;
-        width: 100%;
-        resize: none;
+  .note-card {
+    textarea {
+      background-color: $Dusty-Grey;
+      color: $White-Snow;
+      font-size: 20px;
+      width: 100%;
+      resize: none;
+      border-radius: 5px;
+      border: 1px solid $White-Snow;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  }
+
+  .checkout-card {
+    .payment-type {
+      button {
+        @include btn-white-border;
+        padding: 20px 90px;
         border-radius: 5px;
-        border: 1px solid $White-Snow;
-        padding: 10px;
-        margin-top: 20px;
+
+        &:nth-of-type(n + 2) {
+          margin-left: 20px;
+        }
+
+        i {
+          padding-right: 5px;
+        }
+      }
+    }
+    .checkout-info {
+      margin-top: 15px;
+      .checkout-info-item {
+        border-bottom: 1px solid $White-Snow;
+        .Checkout-title {
+          color: $White-Snow;
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+        &:nth-child(n + 2) {
+          padding-top: 20px;
+        }
+      }
     }
   }
 
-  .checkout-card{
-    .payment-type{
-        button{
-            padding: 20px 90px;
-            border-radius: 5px;
-            border: 1px solid $White-Snow;
-            color: $White-Snow;
-            background-color: $Gluon-Grey;
-            transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
-            &:hover{
-                background-color: $White-Snow;
-                color: $Dark-Void;
-                border: 1px solid $White-Snow;
-            }
-            &:nth-of-type(n + 2){
-                margin-left: 20px;
-            }
-            i{
-                padding-right: 5px;
-            }
-        }
-
-    }
-    .checkout-info{
-        margin-top: 15px;
-        .checkout-info-item{
-            border-bottom: 1px solid $White-Snow;
-            .Checkout-title{
-                color: $White-Snow;
-                font-size: 20px;
-                margin-bottom: 10px;
-            }
-            &:nth-child(n +2){
-                padding-top: 20px;
-            }
-        }
-    }
-  }
-
-  .customer-card{
-    .customer-title{
-      h2{
-        span{
+  .customer-card {
+    .customer-title {
+      h2 {
+        span {
           color: $Dusty-Grey;
           padding-left: 10px;
         }
       }
-      button{
+      button {
         padding: 9px 42px;
-        border-radius: 5px;
-            border: 1px solid $White-Snow;
-            color: $White-Snow;
-            background-color: $Gluon-Grey;
-            transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
-            &:hover{
-                background-color: $White-Snow;
-                color: $Dark-Void;
-                border: 1px solid $White-Snow;
-            }
-        
+        @include btn-white-border;
       }
     }
-    .customer-item{
+    .customer-item {
       margin-top: 30px;
-      p{
+      p {
         font-size: medium;
-        margin-top: 10px;
-            .bill-infor-title{
-                color: $White-Snow;
-                font-size: 20px;
-                margin-bottom: 10px;
-            }
-            &:nth-child(n +2){
-                padding-top: 20px;
-            }
-        span{
+        .bill-infor-title {
+          color: $White-Snow;
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+        &:nth-child(n + 2) {
+          padding-top: 20px;
+        }
+        span {
           color: $Dusty-Grey;
           padding-left: 10px;
         }
-    
-
       }
-
     }
   }
-
-
 }

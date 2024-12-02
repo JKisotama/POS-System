@@ -3,14 +3,15 @@ import { MatTableDataSource } from '@angular/material/table';
 import { CustomerDTO } from '../../../API/Admin/Customer/model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomerService } from '../../../API/Admin/Customer/customer.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { DialogAddCtmComponent } from './dialog-add-ctm/dialog-add-ctm.component';
 
 @Component({
   selector: 'app-dialog-customer',
   templateUrl: './dialog-customer.component.html',
-  styleUrl: './dialog-customer.component.scss',
+  styleUrls: ['./dialog-customer.component.scss'],
   encapsulation: ViewEncapsulation.None 
 })
 export class DialogCustomerComponent implements OnInit {
@@ -26,7 +27,7 @@ export class DialogCustomerComponent implements OnInit {
     private customerService: CustomerService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -52,6 +53,7 @@ export class DialogCustomerComponent implements OnInit {
       this.dataSource.data = response;
     });
   }
+
   getCurrentDate(): string {
     return new Date().toISOString(); // Returns the date in ISO format
   }
@@ -90,7 +92,6 @@ export class DialogCustomerComponent implements OnInit {
     });
   }
 
-  
   onRowSelect(customer: CustomerDTO, isChecked: boolean): void {
     if (isChecked) {
       this.selectedCustomer = customer; // Select the new customer
@@ -107,7 +108,16 @@ export class DialogCustomerComponent implements OnInit {
     }
   }
 
+  openAddCustomerDialog(): void {
+    const dialogRef = this.dialog.open(DialogAddCtmComponent, {
+      width: '400px',
+    });
 
-
-
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Handle the result if needed
+        console.log('Dialog result:', result);
+      }
+    });
+  }
 }

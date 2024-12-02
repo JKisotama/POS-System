@@ -1,0 +1,9 @@
+@import '../../../../../styles.scss';
+
+.add-new-ctm {
+    background-color: $Gluon-Grey;
+    padding: 16px 20px;
+    .customer-input {
+        @include input-text-field;
+    }
+}

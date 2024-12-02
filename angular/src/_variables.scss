@@ -12,3 +12,92 @@ $ipad-mini: 992px;
 $laptop: 1024px;
 $desktop: 1440px;
 
+@mixin input-text-field {
+    form{
+        label{
+            margin-top: 15px;
+        }
+        input{
+            background-color: $Gluon-Grey;
+            color: $White-Snow;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid $White-Snow;
+            padding: 6px;
+            
+            &::placeholder{
+                color: $Dusty-Grey;
+            }
+            
+        }
+
+    }
+}
+
+@mixin search-bar-input{
+    form{
+        input{
+            background-color: $Gluon-Grey;
+            color: $White-Snow;
+            
+            border-radius: 5px;
+            border: 1px solid $White-Snow;
+            
+            padding: 6px;
+            
+            
+        }
+
+    }
+}
+
+@mixin btn-white-border {
+    
+        border-radius: 5px;
+        border: 1px solid $White-Snow;
+        color: $White-Snow;
+        background-color: $Gluon-Grey;
+        transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+
+        &:hover {
+            background-color: $White-Snow;
+            color: $Dark-Void;
+            border: 1px solid $White-Snow;
+        }
+
+    
+}
+
+@mixin btn-green-border {
+    
+        border-radius: 5px;
+        border: 1px solid $Greenwich;
+        color: $Greenwich;
+        background-color: $Gluon-Grey;
+        transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+
+        &:hover {
+            background-color: $Greenwich;
+            color: $White-Snow;
+            border: 1px solid $Greenwich;
+        }
+
+    
+}
+
+@mixin btn-orange-border {
+    
+        border-radius: 5px;
+        border: 1px solid $Liquid-Lava;
+        color: $Liquid-Lava;
+        background-color: $Gluon-Grey;
+        transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+
+        &:hover {
+            background-color: $Liquid-Lava;
+            color: $White-Snow;
+            border: 1px solid $Liquid-Lava;
+        }
+
+    
+}

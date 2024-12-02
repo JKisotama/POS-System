@@ -57,6 +57,7 @@ import {MatInputModule} from '@angular/material/input';
 import { DialogCustomerComponent } from './POS/pos-main/dialog-customer/dialog-customer.component';
 import { CreateSellPriceComponent } from './staff/goods-page/create-sell-price/create-sell-price.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DialogAddCtmComponent } from './POS/pos-main/dialog-customer/dialog-add-ctm/dialog-add-ctm.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     POSComponent,
     DialogCustomerComponent,
     CreateSellPriceComponent,
+    DialogAddCtmComponent,
     
   ],
   imports: [

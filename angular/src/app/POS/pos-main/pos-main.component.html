@@ -4,27 +4,36 @@
       <!-- Order Holder -->
       <!-- TODO: Reponsive  -->
       <div class="col-xl-12 col-lg-12 col-md-12 order-information">
-        <div class="col-xl-12 col-lg-12 col-md-12 order-information">
-          <ng-container *ngIf="orders.length > 0; else noOrders">
-            <a
-              *ngFor="let order of orders"
-              href="javascript:void(0)"
-              class="text-capitalize"
-              (click)="fetchOrderDetails(order.cashierId, order.posCreator)"
-            >
-              {{ order.posNumber }}
-            </a>
-          </ng-container>
+        <div class=" d-flex justify-content-between">
+          <div class="order-holder">
+            <ng-container *ngIf="orders.length > 0; else noOrders">
+              <a
+                *ngFor="let order of orders"
+                href="javascript:void(0)"
+                class="text-capitalize"
+                (click)="fetchOrderDetails(order.cashierId, order.posCreator)"
+              >
+                {{ order.posNumber }}
+              </a>
+            </ng-container>
+  
+            <!-- Show this if no orders are available -->
+            <ng-template #noOrders>
+              <p>No orders available</p>
+            </ng-template>
+  
+            <!-- Button to create a new order -->
+            <button (click)="createOrder()">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+          <div class="order-deleted">
+            <button >
+              <i class="fas fa-trash"></i>
+            </button>
+            
+          </div>
 
-          <!-- Show this if no orders are available -->
-          <ng-template #noOrders>
-            <p>No orders available</p>
-          </ng-template>
-
-          <!-- Button to create a new order -->
-          <button (click)="createOrder()">
-            <i class="fas fa-plus"></i>
-          </button>
         </div>
       </div>
 
@@ -41,7 +50,7 @@
             class="mat-elevation-z8"
           >
             <!-- Name Column -->
-            <ng-container matColumnDef="name">
+            <ng-container matColumnDef="name" class="pd-name">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
               <td mat-cell *matCellDef="let good">{{ good.goodsName }}</td>
             </ng-container>
@@ -75,6 +84,7 @@
                   (ngModelChange)="updateTotal(good)"
                   min="1"
                 />
+
               </td>
             </ng-container>
 
@@ -181,9 +191,13 @@
         <div class="card-item">
           <div class="customer-title d-flex justify-content-between">
             <h2>Customer:</h2>
-            <button (click)="openCustomerDialog()">
-              <i class="fas fa-plus"></i>
-            </button>
+            <div class="customer-btn">
+              <button (click)="openCustomerDialog()">
+                <i class="fas fa-plus"></i>
+              </button>
+             
+
+            </div>
           </div>
 
           <div class="customer-item" *ngIf="selectedCustomer">
