@@ -1,0 +1,100 @@
+@import "../../../../styles.scss";
+
+
+
+.dialog {
+    background-color: $Dark-Void !important;
+    padding: 25px 30px;
+
+    .header {
+        h2 {
+            color: $White-Snow;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        .search-bar {
+            @include search-bar-input;
+            form{
+                input{
+                    border-right: none;
+                    border-radius: 5px 0 0 5px!important;
+                    &::placeholder{
+                        color: $Dusty-Grey;
+                    }
+                    &:focus {
+                        outline: none;
+                        box-shadow: none; // For Bootstrap-specific focus shadows
+                      }
+                }
+                button{
+                    @include btn-white-border;
+                    border-radius: 0 5px 5px 0!important;
+                    border-left: none;
+                }
+            }
+            
+        }
+
+        .add-new-ctm{
+            button{
+                @include btn-green-border;
+                padding: 10px 20px;
+                border-radius: 5px;
+                
+            }
+        }
+    }
+
+    .dialog-main{
+        border-top: 1px solid $White-Snow;
+        .dialog-main-left{
+
+        }
+        .dialog-main-right{
+            .customer-input{
+                @include input-text-field;
+            }
+        }
+    }
+
+    .table-responsive {
+        max-height: 650px; // Set the maximum height for the table container
+        overflow-y: auto; // Enable vertical scrolling
+        overflow-x: auto; // Enable horizontal scrolling if needed
+    }
+
+    table{
+        .pd-name{
+          td{
+            color: $Dark-Void !important;
+          }
+        }
+        td{
+          select{
+            background-color: transparent !important;
+            color: $White-Snow;
+            option{
+              background-color: $Dusty-Grey;
+              color: $White-Snow;
+            }
+          }
+          input{
+            background-color: transparent;
+            color: $White-Snow;
+            border-radius: 5px;
+            border: 1px dashed $White-Snow;
+            :focus{
+              border: 1px solid $White-Snow !important;
+            }
+          }
+        }
+      }
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px; /* Optional: Add some space above the buttons */
+  }
+  
+
