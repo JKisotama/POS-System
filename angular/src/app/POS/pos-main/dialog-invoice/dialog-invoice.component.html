@@ -1,0 +1,73 @@
+<div class="invoice-container">
+  <div class="invoice-header">
+    <h1 class="invoice-title">Invoice</h1>
+    <div class="invoice-meta">
+      <p>Invoice Date: {{ "2024-12-02" | date : "dd/MM/yyyy" }}</p>
+      <p>Invoice Number: INV-20241202-001</p>
+    </div>
+  </div>
+
+  <div class="invoice-customer-info">
+    <h2>Customer Information</h2>
+    <p><strong>Name:</strong> Hoang Minh Giam</p>
+    <p><strong>Address:</strong> 40 Nguyễn Huệ Phường Bến Nghé</p>
+    <p><strong>Email:</strong>HMGgmail.com</p>
+    <p><strong>Phone:</strong> 0908727404</p>
+  </div>
+
+  <div class="invoice-product-list">
+    <h2>Product List</h2>
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Quantity</th>
+          <th>Unit</th>
+          <th>Unit Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Vinamilk Milk Bag 220ml</td>
+          <td>2</td>
+          <td>Barriel</td>
+          <td>416.000 VND</td>
+          <td>832.000 VND</td>
+        </tr>
+        <tr>
+          <td>Vinamilk Milk Box 110ml</td>
+          <td>2</td>
+          <td>Barriel</td>
+          <td>324.000 VND</td>
+          <td>648.000 VND</td>
+        </tr>
+        <tr>
+          <td>Vinamilk Milk Box 180ml</td>
+          <td>2</td>
+          <td>Box</td>
+          <td>10.000 VND</td>
+          <td>20.000 VND</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="invoice-summary">
+    <h2>Summary</h2>
+    <p><strong>Subtotal:</strong>1.500.000 VND</p>
+    <p><strong>Discount:</strong> 50.000 VND</p>
+    <p><strong>Tax (10%):</strong>15.000 VND</p>
+    <p><strong>Total:</strong>1.465.000 VND</p>
+  </div>
+
+  <div class="invoice-footer">
+    <p>Thank you for your business!</p>
+    <p>If you have any questions about this invoice, please contact us.</p>
+
+    <button class="btn">
+      <i class="fa-solid fa-print"></i>
+      Print
+    </button>
+  </div>
+</div>

@@ -6,32 +6,28 @@
       <div class="col-md-3 ad-main-btn">
         <button
           type="button"
-          
           (click)="openCreateCustomer()"
           class="btn btn-orange-bg"
         >
           Create Customer
         </button>
-        
       </div>
       <div class="col-md-6">
-        <form>
-          
+        <form [formGroup]="form">
           <input
             type="text"
             class="form-control search-bar"
-            formControlName="filterText"
+            formControlName="companyId"
             aria-describedby="helpId"
             placeholder="Search"
           />
         </form>
-    
-
       </div>
       <div class="col-md-3 ad-main-btn">
-        <input type="hidden">
+        <button class="btn btn-zone" (click)="getCustomerByCompanyId()">
+          Search
+        </button>
       </div>
-
     </div>
   </div>
 

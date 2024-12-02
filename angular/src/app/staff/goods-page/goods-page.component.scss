@@ -162,3 +162,16 @@ tr[matNoDataRow] td {
 
 
 
+.custom-select {
+    background-color: grey;
+    color: white; /* Optional: to ensure text is visible */
+    border: 1px solid #ccc; /* Optional: adds a border */
+    padding: 8px; /* Optional: for spacing */
+    border-radius: 4px; /* Optional: for rounded corners */
+  }
+
+  .mat-mdc-menu-content {
+    background-color: grey !important;
+    color: white !important; /* Replace with your desired color */
+  }
+

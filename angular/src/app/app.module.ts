@@ -59,6 +59,7 @@ import { CreateSellPriceComponent } from './staff/goods-page/create-sell-price/c
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DialogAddCtmComponent } from './POS/pos-main/dialog-customer/dialog-add-ctm/dialog-add-ctm.component';
 import { DialogProductComponent } from './POS/pos-main/dialog-product/dialog-product.component';
+import { DialogInvoiceComponent } from './POS/pos-main/dialog-invoice/dialog-invoice.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { DialogProductComponent } from './POS/pos-main/dialog-product/dialog-pro
     CreateSellPriceComponent,
     DialogAddCtmComponent,
     DialogProductComponent,
+    DialogInvoiceComponent,
     
   ],
   imports: [

@@ -6,16 +6,9 @@
       <div class="col-xl-12 col-lg-12 col-md-12 order-information">
         <div class="d-flex justify-content-between">
           <div class="order-holder">
-            <ng-container *ngIf="orders.length > 0; else noOrders">
-              <a
-                *ngFor="let order of orders"
-                href="javascript:void(0)"
-                class="text-capitalize"
-                (click)="fetchOrderDetails(order.cashierId, order.posCreator)"
-              >
-                {{ order.posNumber }}
-              </a>
-            </ng-container>
+            <a href="javascript:void(0)" class="text-capitalize">
+              {{ posHeader?.posNumber }}
+            </a>
 
             <!-- Show this if no orders are available -->
             <ng-template #noOrders>
@@ -46,10 +39,12 @@
             </button>
           </div>
 
-            <div class="empty-card d-flex flex-column align-items-center justify-content-center">
-              <i class="fas fa-box-open"></i>
-              <p class="">There is no item in card yet!</p>
-            </div>
+          <!-- <div
+            class="empty-card d-flex flex-column align-items-center justify-content-center"
+          >
+            <i class="fas fa-box-open"></i>
+            <p class="">There is no item in card yet!</p>
+          </div> -->
           <table
             mat-table
             [dataSource]="dataSource"
@@ -168,19 +163,19 @@
           <div class="checkout-info">
             <div class="checkout-info-item d-flex justify-content-between">
               <p class="Checkout-title">Subtotal:</p>
-              <p class="Checkout-price">$0.00</p>
+              <p class="Checkout-price">1.500.000 VND</p>
             </div>
             <div class="checkout-info-item d-flex justify-content-between">
               <p class="Checkout-title">Discount:</p>
-              <p class="Checkout-price">$0.00</p>
+              <p class="Checkout-price">50.000 VND</p>
             </div>
             <div class="checkout-info-item d-flex justify-content-between">
               <p class="Checkout-title">Tax:</p>
-              <p class="Checkout-price">$0.00</p>
+              <p class="Checkout-price">15.000 VND</p>
             </div>
             <div class="checkout-info-item d-flex justify-content-between">
               <p class="Checkout-title">Total:</p>
-              <p class="Checkout-price">$0.00</p>
+              <p class="Checkout-price">1.465.000 VND</p>
             </div>
           </div>
         </div>
@@ -202,6 +197,10 @@
           <div class="customer-item" *ngIf="selectedCustomer">
             <p class="text-capitalize">
               Customer name: <span>{{ selectedCustomer.customerName }}</span>
+            </p>
+            <p class="text-capitalize">
+              Customer Address:
+              <span>{{ selectedCustomer.customerAddress }}</span>
             </p>
             <p class="text-capitalize">
               Email: <span>{{ selectedCustomer.customerEmail }}</span>

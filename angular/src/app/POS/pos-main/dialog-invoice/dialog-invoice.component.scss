@@ -1,0 +1,90 @@
+@import "../../../../styles.scss";
+
+p, h1, h2 {
+    color: $Dark-Void !important; 
+    strong {
+        color: $Dark-Void !important; 
+    }
+}
+
+table {
+    tr {
+        th {
+            color: $Dark-Void !important; 
+        }
+
+        td {
+            color: $Dark-Void !important; 
+        }
+    }
+   
+}
+
+.invoice-container {
+    font-family: Arial, sans-serif;
+    width: 794px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .invoice-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .invoice-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .invoice-meta {
+    text-align: right;
+  }
+  
+  .invoice-customer-info {
+    margin-bottom: 20px;
+  }
+  
+  .invoice-customer-info h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .invoice-product-list {
+    margin-bottom: 20px;
+  }
+  
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .product-table th,
+  .product-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .product-table th {
+    background: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .invoice-summary {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+  
+  .invoice-summary p {
+    margin: 5px 0;
+  }
+  
+  .invoice-footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+  }

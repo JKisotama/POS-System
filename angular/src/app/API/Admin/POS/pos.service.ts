@@ -22,9 +22,9 @@ export class POSService {
         return this.http.post<POSDto>(url, null, { params });
     }
 
-    generatePoHeader(storeId: string, cashierId: string, posCreator: string): Observable<POSDto> {
+    generatePoHeader(storeId: string, posCreator: string): Observable<POSDto> {
         const url = `${this.baseUrl}/GenerateTempHeader`;
-        const params = { storeId, cashierId, posCreator };
+        const params = { storeId, posCreator };
     
         return this.http.get<POSDto>(url, { params });
     }
@@ -38,7 +38,7 @@ export class POSService {
 
     getGoodsList(storeId: string): Observable<{ items: GoodsDTO[]; totalCount: number }> {
         const url = `${this.baseUrl}/GetGoodsList`;
-        const params = { store_id: storeId };
+        const params = { goodsName: storeId };
         return this.http.get<{ items: GoodsDTO[]; totalCount: number }>(url, { params });
     }
 }

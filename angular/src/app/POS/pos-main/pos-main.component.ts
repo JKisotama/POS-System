@@ -11,6 +11,7 @@ import { CustomerDTO } from '../../API/Admin/Customer/model';
 import { GoodsDTO } from '../../API/Admin/goods/model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DialogProductComponent } from './dialog-product/dialog-product.component';
+import { DialogInvoiceComponent } from './dialog-invoice/dialog-invoice.component';
 
 @Component({
   selector: 'app-pos-main',
@@ -31,6 +32,7 @@ export class PosMainComponent implements OnInit {
   // Data source for the table
   dataSource = new MatTableDataSource<GoodsDTO>();
   storeId: string | null = null;
+  loginName: string | null = null;
 
   showCards: boolean = false; // Controls the visibility of the cards
   currentCashierId: number = 1; // Tracks the cashier ID
@@ -51,6 +53,7 @@ export class PosMainComponent implements OnInit {
   // Lifecycle hook to initialize data
   ngOnInit(): void {
     this.storeId = this.authenticationService.getStoreIdUser();
+    this.loginName = this.authenticationService.getLoggedInUserName();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     const storedCashierId = localStorage.getItem('currentCashierId');
@@ -59,9 +62,9 @@ export class PosMainComponent implements OnInit {
     // Parse stored values or fallback to 1 if they are not available or invalid
     this.currentCashierId = storedCashierId ? parseInt(storedCashierId, 10) : 1;
     this.currentPosCreator = storedPosCreator ? parseInt(storedPosCreator, 10) : 1;
-    this.fetchOrders();
     this.getGoodsList();
     this.buildForm();
+    this.fetchOrderDetails();
   }
 
   buildForm() {
@@ -95,18 +98,6 @@ export class PosMainComponent implements OnInit {
     good.selectedPrice = matchingPrice ? matchingPrice.sellPrice : 0;
   }
 
-  fetchOrders(): void {
-    if (this.storeId) {
-      this.posService.getPoHeadersPaged(this.storeId).subscribe(
-        (response) => {
-          this.orders = response.items; // Assign the items array to orders
-        },
-        (error) => {
-          console.error('Error fetching orders:', error);
-        }
-      );
-    }
-  }
 
   openCustomerDialog(): void {
     const dialogRef = this.dialog.open(DialogCustomerComponent, {
@@ -131,9 +122,11 @@ export class PosMainComponent implements OnInit {
 
   
 
-  fetchOrderDetails(cashierId: string, posCreator: string): void {
-    if (this.storeId) {
-      this.posService.generatePoHeader(this.storeId, cashierId, posCreator).subscribe(
+  
+
+  fetchOrderDetails(): void {
+    if (this.storeId && this.loginName) {
+      this.posService.generatePoHeader(this.storeId, this.loginName).subscribe(
         (data: POSDto) => {
           this.posHeader = data; // Assign the fetched order details
           console.log('Fetched Order Details:', data);
@@ -145,45 +138,6 @@ export class PosMainComponent implements OnInit {
     }
   }
 
-  createOrder(): void {
-    const cashierId = this.currentCashierId.toString();
-    const posCreator = this.currentPosCreator.toString();
-
-    if (this.storeId) {
-      // Step 1: Create the POS header
-      this.posService.createPoHeader(this.storeId, cashierId, posCreator).subscribe(
-        () => {
-          if (this.storeId) {
-            // Step 2: Fetch the generated POS header
-            this.posService.generatePoHeader(this.storeId, cashierId, posCreator).subscribe(
-              (data: POSDto) => {
-                this.posHeader = data; // Assign the returned data
-                this.showCards = true; // Show the cards after a successful creation
-                console.log('POS Header:', this.posHeader);
-
-                // Increment IDs only after a successful order
-                this.incrementIds();
-
-                // Step 3: Fetch all orders again
-                if (this.posHeader?.id) {
-                  // Ensure `id` is defined
-                  this.fetchOrdersAndSelectOrder(this.posHeader.id);
-                } else {
-                  console.error('POS Header ID is undefined.');
-                }
-              },
-              (error) => {
-                console.error('Error fetching POS header:', error);
-              }
-            );
-          }
-        },
-        (error) => {
-          console.error('Error creating POS header:', error);
-        }
-      );
-    }
-  }
 
   fetchOrdersAndSelectOrder(orderId: string): void {
     if (this.storeId) {

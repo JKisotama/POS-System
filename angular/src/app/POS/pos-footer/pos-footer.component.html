@@ -1,13 +1,11 @@
-<div class="container-fluid pos-footer ">
-    <div class="row">
-        <div class="col-xl-10 col-md-8 blank"></div>
-        <div class="col-xl-2 col-md-4 checkout-btn text-end">
-            <button class="btn">
-                <i class="fa-solid fa-print"></i>
-                Print</button>
-            <button class="btn">
-                <i class="fa-solid fa-receipt"></i>
-                Check Out</button>
-        </div>
+<div class="container-fluid pos-footer">
+  <div class="row">
+    <div class="col-xl-10 col-md-8 blank"></div>
+    <div class="col-xl-2 col-md-4 checkout-btn text-end">
+      <button class="btn" (click)="openInvoiceDialog()">
+        <i class="fa-solid fa-receipt"></i>
+        Check Out
+      </button>
     </div>
+  </div>
 </div>
