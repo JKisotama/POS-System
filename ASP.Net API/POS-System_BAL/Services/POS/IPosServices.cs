@@ -21,7 +21,9 @@ namespace POS_System_BAL.Services.POS
             string posNumber, 
             string goodsId, 
             string goodsUnit, 
-            double quantity);
+            double quantitystring, 
+            string goodsPropertyName, 
+            string groupPropertyName);
         Task UpdateStatus(
             string store_id, 
             string po_number, 

@@ -22,7 +22,7 @@ public partial class TblPosdetail
 
     public string? PropertyValue { get; set; }
 
-    public double? ItemQuantity { get; set; }
+    public double ItemQuantity { get; set; }
 
     public double? ItemPrice { get; set; }
 

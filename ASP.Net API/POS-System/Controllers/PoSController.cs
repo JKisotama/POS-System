@@ -28,41 +28,38 @@ namespace POS_Final_Year.Controller
 
 
         [HttpGet("GetGoodsList")]
-        public async Task<ActionResult> GetGoodsList(string store_id, [FromQuery]PagingParameters paging)
+        public async Task<ActionResult> GetGoodsList(
+            string store_id, 
+            [FromQuery]PagingParameters paging)
         {
             var pageResult = await _posServices.GetGoodListAsync(store_id, paging);
             return Ok(pageResult);
         }
         
         [HttpGet("GenerateTempHeader")]
-        public IActionResult GenerateTempHeader(string storeId, string cashierId, string posCreator)
+        public IActionResult GenerateTempHeader(
+            string storeId, 
+            string posCreator,
+            string cashierId = null)
         {
             var tempHeader = _posServices.CreateTemporaryPoHeader(storeId, cashierId, posCreator);
             return Ok(tempHeader);
         }
         
-        [HttpGet("GetPoHeadersPaged")]
-        public async Task<IActionResult> GetPoHeadersPaged(string storeId, [FromQuery] PagingParameters paging)
-        {
-            try
-            {
-                var pageResult = await _posServices.GetPoHeadersWithPagingAsync(storeId, paging);
-                return Ok(pageResult);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"An error occurred: {ex.Message}");
-            }
-        }
-
-
 
         [HttpPost("AddItem")]
-        public async Task<IActionResult> AddItem(string storeId, string posNumber, string goodsId, string goodsUnit, double quantity)
+        public async Task<IActionResult> AddItem(
+            string storeId, 
+            string posNumber, 
+            string goodsId, 
+            string groupProperty, 
+            string goodProperty,
+            string goodsUnit, 
+            double quantity)
         {
             try
             {
-                await _posServices.SavePoItemAsync(storeId, posNumber, goodsId, goodsUnit, quantity);
+                await _posServices.SavePoItemAsync(storeId, posNumber, goodsId, goodsUnit, quantity,goodProperty,groupProperty);
                 return Ok("Item added successfully.");
             }
             catch (Exception ex)
@@ -72,7 +69,12 @@ namespace POS_Final_Year.Controller
         }
 
         [HttpPost("FinalizeTransaction")]
-        public async Task<IActionResult> FinalizeTransaction(string storeId, string posNumber, double customerPay, int paymentType, string payer)
+        public async Task<IActionResult> FinalizeTransaction(
+            string storeId, 
+            string posNumber, 
+            double customerPay, 
+            int paymentType, 
+            string payer)
         {
             try
             {
@@ -99,22 +101,6 @@ namespace POS_Final_Year.Controller
                 return StatusCode(500, $"Error finalizing transaction: {ex.Message}");
             }
         }
-        
-        [HttpPost("CreatePoHeader")]
-        public async Task<IActionResult> CreatePoHeader(string storeId, string cashierId, string posCreator)
-        {
-            try
-            {
-                await _posServices.CreatePoHeaderAsync(storeId, cashierId, posCreator);
-                
-                return StatusCode(201, "PO Header created successfully.");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"An error occurred: {ex.Message}");
-            }
-        }
-
 
         private bool TblPoExists(string id)
         {
