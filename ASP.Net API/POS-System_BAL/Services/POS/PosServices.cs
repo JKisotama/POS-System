@@ -25,14 +25,14 @@ namespace POS_System_BAL.Services.POS
             _goodsServices = goodsServices;
         }
 
-        public async Task<PageResult<TblGood>> GetGoodListAsync(string store_id, PagingParameters paging)
+        public async Task<PageResult<TblGood>> GetGoodListAsync(string goodsName, PagingParameters paging)
         {
             var count = await _onlinePosContext
                 .TblGoods
-                .CountAsync(s => s.StoreId == store_id);
+                .CountAsync(s => s.GoodsName == goodsName);
 
             var list = await _onlinePosContext.TblGoods
-                .Where(s => s.StoreId == store_id)
+                .Where(s => s.StoreId == goodsName)
                 .Include(g => g.Group)
                 .Include(s => s.TblSellprices)
                 .Skip((paging.PageNumber - 1) * paging.PageSize)

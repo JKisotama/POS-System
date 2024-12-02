@@ -62,14 +62,20 @@ namespace POS_System_BAL.Services.Goods
             string searchTerm = null)
         {
             
-            var goods = await query.Include(g =>g.Group)
-                .Where(g => string.IsNullOrEmpty(store_id) || g.StoreId.Contains(store_id))
-                .Where(g => string.IsNullOrEmpty(g.Group.GroupId) || g.Group.GroupId == group_id)
-                .Where(g => string.IsNullOrEmpty(searchTerm) ||
-                (g.GoodsBrand != null && g.GoodsBrand.Contains(searchTerm) == true || 
-                 g.GoodsName.Contains(searchTerm)))
+            // var goods = await query.Include(g =>g.Group)
+            //     .Where(g => string.IsNullOrEmpty(store_id) || g.StoreId.Contains(store_id))
+            //     .Where(g => string.IsNullOrEmpty(group_id) || g.Group.GroupId == group_id)
+            //     .Where(g => string.IsNullOrEmpty(searchTerm) ||
+            //     (g.GoodsBrand != null && g.GoodsBrand.Contains(searchTerm) == true || 
+            //      g.GoodsName.Contains(searchTerm)))
+            //     .ToListAsync();
+            // return goods;
+            var goods = await _onlinePosContext.TblGoods
+                .Where(g => string.IsNullOrEmpty(store_id) || g.StoreId == store_id)
+                .Where(g => string.IsNullOrEmpty(group_id) || g.GroupId == group_id)
                 .ToListAsync();
             return goods;
+
         }
 
         public async Task<IEnumerable<TblPropertygroup>> GetAllPropertyGroupAsync(string store_id)
