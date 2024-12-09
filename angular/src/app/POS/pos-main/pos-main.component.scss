@@ -196,9 +196,23 @@
     }
     .checkout-info {
       margin-top: 15px;
+      
       .checkout-info-item {
         border-bottom: 1px solid $White-Snow;
-        .Checkout-title {
+        input{
+          background-color: $Gluon-Grey;
+          color: $White-Snow;
+          width: 100%;
+          border-radius: 5px;
+          border: 1px dashed $White-Snow;
+          padding: 6px;
+          
+          &::placeholder{
+              color: $Dusty-Grey;
+          }
+          
+      }
+        .checkout-title {
           color: $White-Snow;
           font-size: 20px;
           margin-bottom: 10px;

@@ -114,9 +114,8 @@ export class PosMainComponent implements OnInit {
   }
 
   fetchPOList(): void {
-    const posNumber = "P1241210001"
-    if (this.storeId) {
-      this.posService.getPOList(this.storeId, posNumber).subscribe(
+    if (this.storeId && this.currentPosNumber) {
+      this.posService.getPOList(this.storeId, this.currentPosNumber).subscribe(
         (data: POSDetailDto[]) => {
           const mappedData = data.map(item => {
             const propertyId = item.property;
