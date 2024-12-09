@@ -38,8 +38,7 @@ namespace POS_System_BAL.Services.POS
             string po_number, 
             double customer_pay,
             string payer,
-            int payment_type, 
-            double money_return);
+            int pay_method);
         Task GetDataByShift(string store_id, string shift_number);
 
         public TblPo CreateTemporaryPoHeader(
@@ -47,6 +46,7 @@ namespace POS_System_BAL.Services.POS
             string cashierId,
             string posCreator);
 
+        Task HangPo(string storeId, string posNumber);
         Task<PageResult<TblPo>> GetPoHeadersWithPagingAsync(
             string storeId, PagingParameters paging);
     }
