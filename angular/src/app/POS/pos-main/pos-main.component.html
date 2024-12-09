@@ -7,7 +7,7 @@
         <div class="d-flex justify-content-between">
           <div class="order-holder">
             <a href="javascript:void(0)" class="text-capitalize">
-              {{ posHeader?.posNumber }}
+              {{ currentPosNumber }}
             </a>
 
             <!-- Show this if no orders are available -->
@@ -39,13 +39,15 @@
             </button>
           </div>
 
-          <!-- <div
+          <div
+            *ngIf="!dataSource || dataSource.data.length === 0"
             class="empty-card d-flex flex-column align-items-center justify-content-center"
           >
             <i class="fas fa-box-open"></i>
-            <p class="">There is no item in card yet!</p>
-          </div> -->
+            <p>There is no item in the card yet!</p>
+          </div>
           <table
+            *ngIf="dataSource && dataSource.data.length > 0"
             mat-table
             [dataSource]="dataSource"
             matSort
@@ -138,7 +140,7 @@
           <div class="bill-information-item d-flex justify-content-between">
             <p class="text-capitalize bill-infor-title">POS Number</p>
             <p class="text-capitalize bill-infor-detail">
-              {{ posHeader?.posNumber }}
+              {{ currentPosNumber }}
             </p>
           </div>
         </div>
@@ -159,7 +161,7 @@
           <h2 class="text-capitalize">Check Out:</h2>
 
           <div class="payment-type">
-            <button class="btn">
+            <button class="btn" (click)="setPaymentMethod(0)">
               <i class="fa-solid fa-money-bill"></i>
               Cash
             </button>
@@ -182,12 +184,20 @@
               </p>
             </div>
             <div class="checkout-info-item d-flex justify-content-between">
-              <p class="Checkout-title">Tax:</p>
-              <p class="Checkout-price">{{ tax | number : "1.0-2" }} VND</p>
-            </div>
-            <div class="checkout-info-item d-flex justify-content-between">
               <p class="Checkout-title">Total:</p>
               <p class="Checkout-price">{{ total | number : "1.0-2" }} VND</p>
+            </div>
+            <div
+              class="checkout-info-item d-flex justify-content-between"
+              [formGroup]="form"
+            >
+              <p class="Checkout-title">Customer Pay:</p>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Enter amount"
+                formControlName="customerPay"
+              />
             </div>
           </div>
         </div>

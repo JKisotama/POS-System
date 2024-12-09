@@ -43,7 +43,7 @@ export class DialogProductComponent implements OnInit{
     this.storeId = this.authenticationService.getStoreIdUser();
     this.loginName = this.authenticationService.getLoggedInUserName();
     this.buildForm();
-    this.getGoodsList();
+    
     this.fetchOrderDetails();
     this.getAllPropertyGroup();
   }
@@ -51,12 +51,14 @@ export class DialogProductComponent implements OnInit{
   buildForm() {
     this.form = this.fb.group({
       barcode: ['', [Validators.required]],
+      goodsName: ['', [Validators.required]],
     });
   }
 
   getGoodsList(): void {
+    const goodsName = this.form.get('goodsName')?.value;
     if (this.storeId) {
-      this.posService.getGoodsList(this.storeId).subscribe(
+      this.posService.getGoodsList(this.storeId, goodsName).subscribe(
         (response) => {
           // Initialize the selectedPrice for each good
           this.dataSource.data = response.items.map((item: GoodsDTO) => ({

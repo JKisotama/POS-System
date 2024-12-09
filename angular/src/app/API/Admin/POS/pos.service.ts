@@ -29,9 +29,9 @@ export class POSService {
         return this.http.get<{ items: POSDto[]; totalCount: number }>(url, { params });
     }
 
-    getGoodsList(storeId: string): Observable<{ items: GoodsDTO[]; totalCount: number }> {
+    getGoodsList(storeId: string, goodsName: string): Observable<{ items: GoodsDTO[]; totalCount: number }> {
         const url = `${this.baseUrl}/GetGoodsList`;
-        const params = { store_id: storeId };
+        const params = { store_id: storeId, goodName: goodsName };
         return this.http.get<{ items: GoodsDTO[]; totalCount: number }>(url, { params });
     }
 
@@ -52,11 +52,34 @@ export class POSService {
     }
 
 
-    getPOList(storeId: string): Observable<POSDetailDto[]> {
+    getPOList(storeId: string, posNumber: string): Observable<POSDetailDto[]> {
         const url = `${this.baseUrl}/GetPOList`;
-        const params = new HttpParams().set('store_id', storeId);
+        const params = new HttpParams()
+        .set('store_id', storeId)
+        .set('posNumber', posNumber);
 
         return this.http.get<POSDetailDto[]>(url, { params });
+    }
+
+    finalizeTransaction(
+        storeId: string,
+        posNumber: string,
+        customerPay: number,
+        payer: string,
+        paymentMethod: number
+    ): Observable<string> {
+        const url = `${this.baseUrl}/FinalizeTransaction`;
+    
+        // Create HttpParams with the required parameters
+        const params = new HttpParams()
+            .set('storeId', storeId)
+            .set('posNumber', posNumber)
+            .set('customerPay', customerPay.toString()) // Convert to string
+            .set('payer', payer)
+            .set('paymentMethod', paymentMethod.toString()); // Convert to string
+    
+        // Send the params in the POST request
+        return this.http.post(url, {}, { params, responseType: 'text' });
     }
     
 

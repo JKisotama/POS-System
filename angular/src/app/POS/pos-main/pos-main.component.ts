@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogCustomerComponent } from './dialog-customer/dialog-customer.component';
@@ -42,6 +42,8 @@ export class PosMainComponent implements OnInit {
   currentPosCreator: number = 1; // Tracks the POS creator
   posHeader?: POSDto; // Stores the response from API
   orders: POSDto[] = [];
+  currentPosNumber: string | null = null;
+
 
   selectedCustomer?: CustomerDTO;
   form: FormGroup;
@@ -52,13 +54,21 @@ export class PosMainComponent implements OnInit {
 
   subtotal: number = 0;
   discount: number = 0;
-  tax: number = 0;
   total: number = 0;
   propertyGroups: Map<string, string> = new Map();
+  paymentMethod: number = 0;
+
 
   // ViewChild to bind paginator and sort
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
+
+  @Output() checkoutData = new EventEmitter<{
+    customerName: string | null;
+    posNumber: string | null;
+    paymentMethod: number;
+    customerPay: number;
+  }>();
 
   // Lifecycle hook to initialize data
   ngOnInit(): void {
@@ -76,11 +86,16 @@ export class PosMainComponent implements OnInit {
     this.fetchOrderDetails();
     this.getAllPropertyGroup();
     this.fetchPOList();
+    this.emitCheckoutData();
+    this.form.get('customerPay')?.valueChanges.subscribe(() => {
+      this.emitCheckoutData();
+    });
   }
 
   buildForm() {
     this.form = this.fb.group({
       quantity: ['', [Validators.required]],
+      customerPay: ['', [Validators.required]],
     });
   }
 
@@ -99,25 +114,27 @@ export class PosMainComponent implements OnInit {
   }
 
   fetchPOList(): void {
+    const posNumber = "P1241210001"
     if (this.storeId) {
-      this.posService.getPOList(this.storeId).subscribe(
+      this.posService.getPOList(this.storeId, posNumber).subscribe(
         (data: POSDetailDto[]) => {
-          // Map groupProperty to propertyName based on propertyValue
           const mappedData = data.map(item => {
-            // Get the propertyId based on the propertyValue
-            const propertyId = item.property; // Assuming this is the propertyValue
-            console.log('Property ID:', propertyId); // Log the propertyId
-            
+            const propertyId = item.property;
             const propertyName = this.propertyGroups.get(propertyId || '') || 'Unknown';
-            console.log('Property Name:', propertyName); // Log the propertyName
-  
-            return {
-              ...item,
-              propertyName: propertyName,
-            };
+            return { ...item, propertyName: propertyName };
           });
+  
           this.dataSource.data = mappedData;
+  
+          // Update currentPosNumber
+          if (this.dataSource.data.length > 0) {
+            this.currentPosNumber = this.dataSource.data[0].posNumber || null;
+          } else {
+            this.fetchOrderDetails(); // Fallback to fetchOrderDetails if no data
+          }
+  
           this.calculateCheckoutValues();
+          this.emitCheckoutData();
         },
         (error) => {
           console.error('Error fetching PO List:', error);
@@ -126,16 +143,20 @@ export class PosMainComponent implements OnInit {
     }
   }
 
+  incrementPosNumber(posNumber: string): string {
+    const prefix = posNumber.match(/^[A-Za-z]+/)?.[0] || '';
+    const numberPart = posNumber.replace(/^[A-Za-z]+/, ''); // Extract the number part
+    const incrementedNumber = (parseInt(numberPart, 10) + 1).toString().padStart(numberPart.length, '0'); // Increment and pad back
+    return `${prefix}${incrementedNumber}`;
+  }
   calculateCheckoutValues(): void {
     this.subtotal = this.dataSource.data.reduce((acc, good) => acc + (good.subTotal || 0), 0);
     this.discount = this.dataSource.data.reduce((acc, good) => acc + (good.lineDiscount || 0), 0);
-    this.tax = this.subtotal * 0.10; // 10% tax
-    this.total = this.subtotal - this.discount + this.tax;
+    this.total = this.subtotal - this.discount
 
     // Log the calculated values for debugging
     console.log('Subtotal:', this.subtotal);
     console.log('Discount:', this.discount);
-    console.log('Tax:', this.tax);
     console.log('Total:', this.total);
   }
 
@@ -169,8 +190,8 @@ export class PosMainComponent implements OnInit {
     if (this.storeId && this.loginName) {
       this.posService.generatePoHeader(this.storeId, this.loginName).subscribe(
         (data: POSDto) => {
-          this.posHeader = data; // Assign the fetched order details
-          
+          this.posHeader = data;
+          this.currentPosNumber = data.posNumber || null; // Update currentPosNumber
         },
         (error) => {
           console.error('Error fetching order details:', error);
@@ -181,5 +202,21 @@ export class PosMainComponent implements OnInit {
 
   updateCustomerInfo(customer: CustomerDTO): void {
     this.selectedCustomer = customer;
+    this.emitCheckoutData();
+  }
+
+  setPaymentMethod(method: number): void {
+    this.paymentMethod = method;
+    this.emitCheckoutData();
+    
+  }
+
+  emitCheckoutData(): void {
+    this.checkoutData.emit({
+      customerName: this.selectedCustomer?.customerName || null,
+      posNumber: this.currentPosNumber,
+      paymentMethod: this.paymentMethod,
+      customerPay: this.form.get('customerPay')?.value,
+    });
   }
 }

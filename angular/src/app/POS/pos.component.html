@@ -1,20 +1,25 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="pos-page">
-            <div class="pos-header">
-                <!-- TODO: redesign POS header (UI updated in figma) -->
-                <app-pos-header></app-pos-header>
-            </div>
+  <div class="row">
+    <div class="pos-page">
+      <div class="pos-header">
+        <!-- TODO: redesign POS header (UI updated in figma) -->
+        <app-pos-header></app-pos-header>
+      </div>
 
+      <div class="pos-main">
+        <app-pos-main
+          (checkoutData)="handleCheckoutData($event)"
+        ></app-pos-main>
+      </div>
 
-            <div class="pos-main">
-                <app-pos-main></app-pos-main>
-            </div>
-
-            <div class="pos-footer">
-                <app-pos-footer></app-pos-footer>
-            </div>
-
-        </div>
+      <div class="pos-footer">
+        <app-pos-footer
+          [customerName]="checkoutData.customerName"
+          [posNumber]="checkoutData.posNumber"
+          [paymentMethod]="getPaymentMethod()"
+          [customerPay]="getCustomerPay()"
+        ></app-pos-footer>
+      </div>
     </div>
+  </div>
 </div>
