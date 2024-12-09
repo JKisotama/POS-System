@@ -66,7 +66,6 @@ namespace POS_System_BAL.Services.Goods
                 .Where(g => string.IsNullOrEmpty(group_id) || g.GroupId == group_id)
                 .ToListAsync();
             return goods;
-
         }
 
         public async Task<IEnumerable<TblPropertygroup>> GetAllPropertyGroupAsync(string store_id)

@@ -12,7 +12,8 @@ namespace POS_System_BAL.Services.POS
     public interface IPosServices
     {
         Task<PageResult<TblGood>> GetGoodListAsync(
-            string store_id, 
+            string goodName,
+            string barcodeFilter,
             PagingParameters paging);
 
         Task<TblPo> CreatePoHeaderAsync(string storeId, string cashierId, string posCreator);
@@ -29,10 +30,6 @@ namespace POS_System_BAL.Services.POS
             string goodsPropertyName, 
             string groupPropertyName,
             string posCreator);
-        Task UpdateStatus(
-            string store_id, 
-            string po_number, 
-            int status);
         Task PayPO(
             string store_id, 
             string po_number, 

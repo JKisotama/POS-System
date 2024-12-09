@@ -25,19 +25,29 @@ namespace POS_System_BAL.Services.POS
             _goodsServices = goodsServices;
         }
 
-        public async Task<PageResult<TblGood>> GetGoodListAsync(string goodsName, PagingParameters paging)
+        public async Task<PageResult<TblGood>> GetGoodListAsync(string goodsName, string barcodeFilter, PagingParameters paging)
         {
-            var count = await _onlinePosContext
-                .TblGoods
-                .CountAsync(s => s.GoodsName == goodsName);
-
-            var list = await _onlinePosContext.TblGoods
-                .Where(s => s.StoreId == goodsName)
+            var query = _onlinePosContext.TblGoods
                 .Include(g => g.Group)
-                .Include(s => s.TblSellprices)
+                .Include(g => g.TblSellprices)
+                .AsQueryable();
+            
+            if (!string.IsNullOrEmpty(goodsName))
+            {
+                query = query.Where(g => g.GoodsName.Contains(goodsName));
+            }
+            if (!string.IsNullOrEmpty(barcodeFilter))
+            {
+                query = query.Where(g => g.TblSellprices.Any(sp => sp.Barcode.Contains(barcodeFilter)));
+            }
+            
+            var count = await query.CountAsync();
+            
+            var list = await query
                 .Skip((paging.PageNumber - 1) * paging.PageSize)
                 .Take(paging.PageSize)
                 .ToListAsync();
+
             var goods = list.Select(g => new TblGood
             {
                 GroupId = g.GroupId,
