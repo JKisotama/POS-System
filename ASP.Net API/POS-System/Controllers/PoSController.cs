@@ -52,14 +52,16 @@ namespace POS_Final_Year.Controller
             string storeId, 
             string posNumber, 
             string goodsId, 
+            string barcode,
             string groupProperty, 
             string goodProperty,
             string goodsUnit, 
-            double quantity)
+            double quantity,
+            string posCreator)
         {
             try
             {
-                await _posServices.SavePoItemAsync(storeId, posNumber, goodsId, goodsUnit, quantity,goodProperty,groupProperty);
+                await _posServices.SavePoItemAsync(storeId, posNumber, goodsId, barcode,goodsUnit, quantity,goodProperty,groupProperty, posCreator);
                 return Ok("Item added successfully.");
             }
             catch (Exception ex)

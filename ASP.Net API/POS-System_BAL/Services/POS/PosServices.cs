@@ -100,10 +100,12 @@ namespace POS_System_BAL.Services.POS
             string storeId,
             string posNumber,
             string goodsId,
+            string barcode,
             string goodsUnit,
             double quantity,
             string goodsPropertyName,
-            string groupPropertyName
+            string groupPropertyName,
+            string posCreator
         )
         {
             var good = await _onlinePosContext.TblGoods
@@ -126,17 +128,14 @@ namespace POS_System_BAL.Services.POS
             }
 
             
-            
-            // Check if the PO header already exists
             var poHeader = await _onlinePosContext.TblPos
                 .FirstOrDefaultAsync(p => p.StoreId == storeId && p.PosNumber == posNumber);
 
             if (poHeader == null)
             {
-                // Create new PO header if not exists
-                poHeader = CreateTemporaryPoHeader(storeId, "1", "Test");
+                poHeader = CreateTemporaryPoHeader(storeId, "1", posCreator);
                 await _onlinePosContext.TblPos.AddAsync(poHeader);
-                await _onlinePosContext.SaveChangesAsync(); // Ensure PO header is saved first
+                await _onlinePosContext.SaveChangesAsync(); 
             }
             
             var existingDetail = await _onlinePosContext.TblPosdetails
@@ -179,6 +178,7 @@ namespace POS_System_BAL.Services.POS
                              StoreId = storeId,
                              PosNumber = posNumber,
                              GoodsId = goodsId,
+                             Barcode = barcode,
                              GoodsName = good.GoodsName,
                              ItemUnit = goodsUnit,
                              ItemQuantity = quantity,
