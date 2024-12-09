@@ -9,7 +9,6 @@ E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.AssemblyInfo.cs
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.csproj.CoreCompileInputs.cache
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.sourcelink.json
-E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.csproj.CopyComplete
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.dll
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\refint\POS-System_BAL.dll
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.pdb
@@ -30,3 +29,4 @@ D:\Thinh Workplace\POS\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\PO
 D:\Thinh Workplace\POS\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\refint\POS-System_BAL.dll
 D:\Thinh Workplace\POS\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.pdb
 D:\Thinh Workplace\POS\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\ref\POS-System_BAL.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-Syst.5A5E3FF7.Up2Date

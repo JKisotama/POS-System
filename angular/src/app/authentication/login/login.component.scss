@@ -29,3 +29,15 @@
     }
 
 }
+.hidden-content {
+    display: none;
+  }
+  @media screen and (max-width: 1200px) {
+    .hidden-content {
+      display: block;
+    }
+    .login-page{
+      display: none;
+    }
+    
+  }

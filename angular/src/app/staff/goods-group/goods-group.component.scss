@@ -21,16 +21,7 @@
             }
         }
     }
-    .search-bar{
-        width: 770px;
-        background-color: $Gluon-Grey;
-        border-radius: 100px;
-        border: $Dusty-Grey solid 1px;
-        color: $White-Snow;
-        &::placeholder{
-            color: $Dusty-Grey;
-        }
-    }
+    
     .ad-main-data{
         background-color: $Slate-Grey;
         border-radius: 14px;
