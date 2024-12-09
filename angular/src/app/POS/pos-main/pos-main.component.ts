@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogCustomerComponent } from './dialog-customer/dialog-customer.component';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { POSDto } from '../../API/Admin/POS/model';
+import { POSDetailDto, POSDto } from '../../API/Admin/POS/model';
 import { POSService } from '../../API/Admin/POS/pos.service';
 import { AuthenticationService } from '../../API/Admin/authentication.service';
 import { CustomerDTO } from '../../API/Admin/Customer/model';
@@ -12,6 +12,8 @@ import { GoodsDTO } from '../../API/Admin/goods/model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DialogProductComponent } from './dialog-product/dialog-product.component';
 import { DialogInvoiceComponent } from './dialog-invoice/dialog-invoice.component';
+import { PropertyGroupDTO } from '../../API/Admin/Property Group/model';
+import { PropertyGroupService } from '../../API/Admin/Property Group/propertyGroup.service';
 
 @Component({
   selector: 'app-pos-main',
@@ -23,14 +25,15 @@ export class PosMainComponent implements OnInit {
     public dialog: MatDialog,
     private posService: POSService,
     private authenticationService: AuthenticationService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private propertyService: PropertyGroupService,
   ) {}
 
   // Define columns to be displayed in the table
-  displayedColumns: string[] = ['name', 'unit', 'quantity', 'price', 'total'];
+  displayedColumns: string[] = ['goodsName', 'barcode', 'unit', 'propertyName' , 'propertyValue' ,'quantity', 'itemPrice', 'subTotal', 'lineDiscount', 'lineTotal'];
 
   // Data source for the table
-  dataSource = new MatTableDataSource<GoodsDTO>();
+  dataSource = new MatTableDataSource<POSDetailDto>();
   storeId: string | null = null;
   loginName: string | null = null;
 
@@ -45,6 +48,13 @@ export class PosMainComponent implements OnInit {
 
   // Property to track the active order
   activeOrderId: string | null = null;
+
+
+  subtotal: number = 0;
+  discount: number = 0;
+  tax: number = 0;
+  total: number = 0;
+  propertyGroups: Map<string, string> = new Map();
 
   // ViewChild to bind paginator and sort
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
@@ -62,9 +72,10 @@ export class PosMainComponent implements OnInit {
     // Parse stored values or fallback to 1 if they are not available or invalid
     this.currentCashierId = storedCashierId ? parseInt(storedCashierId, 10) : 1;
     this.currentPosCreator = storedPosCreator ? parseInt(storedPosCreator, 10) : 1;
-    this.getGoodsList();
     this.buildForm();
     this.fetchOrderDetails();
+    this.getAllPropertyGroup();
+    this.fetchPOList();
   }
 
   buildForm() {
@@ -73,30 +84,64 @@ export class PosMainComponent implements OnInit {
     });
   }
 
-  getGoodsList(): void {
+  getAllPropertyGroup(): void {
     if (this.storeId) {
-      this.posService.getGoodsList(this.storeId).subscribe(
-        (response) => {
-          // Initialize the selectedPrice for each good
-          this.dataSource.data = response.items.map((item: GoodsDTO) => ({
-            ...item,
-            selectedPrice: item.tblSellprices[0]?.sellPrice || 0,
-          }));
+      this.propertyService.GetAllPropertyGroup(this.storeId).subscribe(
+        (response: PropertyGroupDTO[]) => {
+          this.propertyGroups = new Map(response.map(prop => [prop.propertyId || '', prop.propertyName || '']));
+          console.log('Property Groups:', Array.from(this.propertyGroups.entries())); // Log the propertyGroups
         },
         (error) => {
-          console.error('Error fetching goods list:', error);
+          console.error('Error fetching property groups:', error);
         }
       );
     }
   }
 
-  onUnitChange(good: GoodsDTO, event: Event): void {
-    const selectedUnit = (event.target as HTMLSelectElement).value;
-    const matchingPrice = good.tblSellprices.find(
-      (price) => price.goodsUnit === selectedUnit
-    );
-    good.selectedPrice = matchingPrice ? matchingPrice.sellPrice : 0;
+  fetchPOList(): void {
+    if (this.storeId) {
+      this.posService.getPOList(this.storeId).subscribe(
+        (data: POSDetailDto[]) => {
+          // Map groupProperty to propertyName based on propertyValue
+          const mappedData = data.map(item => {
+            // Get the propertyId based on the propertyValue
+            const propertyId = item.property; // Assuming this is the propertyValue
+            console.log('Property ID:', propertyId); // Log the propertyId
+            
+            const propertyName = this.propertyGroups.get(propertyId || '') || 'Unknown';
+            console.log('Property Name:', propertyName); // Log the propertyName
+  
+            return {
+              ...item,
+              propertyName: propertyName,
+            };
+          });
+  
+          this.dataSource.data = mappedData;
+        },
+        (error) => {
+          console.error('Error fetching PO List:', error);
+        }
+      );
+    }
   }
+
+  calculateCheckoutValues(): void {
+    this.subtotal = this.dataSource.data.reduce((acc, good) => acc + (good.subTotal || 0), 0);
+    this.discount = this.dataSource.data.reduce((acc, good) => acc + (good.lineDiscount || 0), 0);
+    this.tax = this.subtotal * 0.10; // 10% tax
+    this.total = this.subtotal - this.discount + this.tax;
+
+    // Log the calculated values for debugging
+    console.log('Subtotal:', this.subtotal);
+    console.log('Discount:', this.discount);
+    console.log('Tax:', this.tax);
+    console.log('Total:', this.total);
+  }
+
+  
+
+ 
 
 
   openCustomerDialog(): void {
@@ -115,21 +160,17 @@ export class PosMainComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogProductComponent, {
       panelClass: 'custom-dialog-container'
     });
-    dialogRef.afterClosed().subscribe(() => {
-      
-    })
+    dialogRef.componentInstance.itemAdded.subscribe(() => {
+      this.fetchPOList(); // Refresh the product list
+    });
   }
-
-  
-
-  
 
   fetchOrderDetails(): void {
     if (this.storeId && this.loginName) {
       this.posService.generatePoHeader(this.storeId, this.loginName).subscribe(
         (data: POSDto) => {
           this.posHeader = data; // Assign the fetched order details
-          console.log('Fetched Order Details:', data);
+          
         },
         (error) => {
           console.error('Error fetching order details:', error);
@@ -138,32 +179,7 @@ export class PosMainComponent implements OnInit {
     }
   }
 
-
-  
-
-  // Increment the IDs for the next order
-  incrementIds(): void {
-    this.currentCashierId += 1;
-    this.currentPosCreator += 1;
-
-    // Persist updated IDs in localStorage
-    localStorage.setItem('currentCashierId', this.currentCashierId.toString());
-    localStorage.setItem('currentPosCreator', this.currentPosCreator.toString());
-  }
-
   updateCustomerInfo(customer: CustomerDTO): void {
     this.selectedCustomer = customer;
-  }
-
-  updateTotal(good: GoodsDTO): void {
-    good.total = (good.quantity ?? 1) * (good.selectedPrice ?? 0);
-  }
-
-  setActiveOrder(orderId: string): void {
-    this.activeOrderId = orderId;
-  }
-
-  isActiveOrder(orderId: string): boolean {
-    return this.activeOrderId === orderId;
   }
 }

@@ -51,53 +51,61 @@
             matSort
             class="mat-elevation-z8"
           >
-            <ng-container matColumnDef="name" class="pd-name">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <ng-container matColumnDef="goodsName">
+              <th mat-header-cell *matHeaderCellDef>Goods Name</th>
               <td mat-cell *matCellDef="let good">{{ good.goodsName }}</td>
             </ng-container>
 
+            <ng-container matColumnDef="barcode">
+              <th mat-header-cell *matHeaderCellDef>Barcode</th>
+              <td mat-cell *matCellDef="let good">{{ good.barcode }}</td>
+            </ng-container>
+
             <ng-container matColumnDef="unit">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Unit</th>
-              <td mat-cell *matCellDef="let good">
-                <select
-                  class="form-select"
-                  (change)="onUnitChange(good, $event)"
-                >
-                  <option
-                    *ngFor="let price of good.tblSellprices"
-                    [value]="price.goodsUnit"
-                  >
-                    {{ price.goodsUnit }}
-                  </option>
-                </select>
-              </td>
+              <th mat-header-cell *matHeaderCellDef>Unit</th>
+              <td mat-cell *matCellDef="let good">{{ good.itemUnit }}</td>
             </ng-container>
+
+            <ng-container matColumnDef="propertyName">
+              <th mat-header-cell *matHeaderCellDef>Property Name</th>
+              <td mat-cell *matCellDef="let good">{{ good.propertyName }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="propertyValue">
+              <th mat-header-cell *matHeaderCellDef>Property Value</th>
+              <td mat-cell *matCellDef="let good">{{ good.propertyValue }}</td>
+            </ng-container>
+
             <ng-container matColumnDef="quantity">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                Quantity
-              </th>
+              <th mat-header-cell *matHeaderCellDef>Quantity</th>
+              <td mat-cell *matCellDef="let good">{{ good.itemQuantity }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="itemPrice">
+              <th mat-header-cell *matHeaderCellDef>Price</th>
               <td mat-cell *matCellDef="let good">
-                <input
-                  type="number"
-                  class="form-control"
-                  [(ngModel)]="good.quantity"
-                  (ngModelChange)="updateTotal(good)"
-                  min="1"
-                />
+                {{ good.itemPrice | number : "1.0-2" }} VND
               </td>
             </ng-container>
 
-            <ng-container matColumnDef="price">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+            <ng-container matColumnDef="subTotal">
+              <th mat-header-cell *matHeaderCellDef>Subtotal</th>
               <td mat-cell *matCellDef="let good">
-                {{ good.selectedPrice | number : "1.0-2" }}
+                {{ good.subTotal | number : "1.0-2" }} VND
               </td>
             </ng-container>
 
-            <ng-container matColumnDef="total">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+            <ng-container matColumnDef="lineDiscount">
+              <th mat-header-cell *matHeaderCellDef>Line Discount</th>
               <td mat-cell *matCellDef="let good">
-                {{ good.total | number : "1.0-2" }}
+                {{ good.lineDiscount | number : "1.0-2" }} VND
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lineTotal">
+              <th mat-header-cell *matHeaderCellDef>Line Total</th>
+              <td mat-cell *matCellDef="let good">
+                {{ good.lineTotal | number : "1.0-2" }} VND
               </td>
             </ng-container>
 
@@ -163,19 +171,23 @@
           <div class="checkout-info">
             <div class="checkout-info-item d-flex justify-content-between">
               <p class="Checkout-title">Subtotal:</p>
-              <p class="Checkout-price">1.500.000 VND</p>
+              <p class="Checkout-price">
+                {{ subtotal | number : "1.0-2" }} VND
+              </p>
             </div>
             <div class="checkout-info-item d-flex justify-content-between">
               <p class="Checkout-title">Discount:</p>
-              <p class="Checkout-price">50.000 VND</p>
+              <p class="Checkout-price">
+                {{ discount | number : "1.0-2" }} VND
+              </p>
             </div>
             <div class="checkout-info-item d-flex justify-content-between">
               <p class="Checkout-title">Tax:</p>
-              <p class="Checkout-price">15.000 VND</p>
+              <p class="Checkout-price">{{ tax | number : "1.0-2" }} VND</p>
             </div>
             <div class="checkout-info-item d-flex justify-content-between">
               <p class="Checkout-title">Total:</p>
-              <p class="Checkout-price">1.465.000 VND</p>
+              <p class="Checkout-price">{{ total | number : "1.0-2" }} VND</p>
             </div>
           </div>
         </div>

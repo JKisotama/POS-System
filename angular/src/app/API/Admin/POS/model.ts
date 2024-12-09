@@ -29,7 +29,7 @@ export interface POSDetailDto {
     goodsId?: string;
     barCode?: string;
     goodsName?: string;
-    groupPropterty?: string;
+    property?: string;
     goodProperty?: string;
     goodsUnit?: string;
     quantity?: number;
@@ -38,7 +38,7 @@ export interface POSDetailDto {
     lineDiscount?: number;
     lineTotal?: number;
     storeId?: string;
-
+    propertyName?: string;
 
 }
 

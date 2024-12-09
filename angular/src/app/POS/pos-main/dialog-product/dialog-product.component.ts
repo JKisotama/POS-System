@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { GoodsDTO } from '../../../API/Admin/goods/model';
@@ -27,7 +27,7 @@ export class DialogProductComponent implements OnInit{
     private snackBar: MatSnackBar
   ) {}
 
-
+  @Output() itemAdded = new EventEmitter<void>();
   form: FormGroup;
   dataSource = new MatTableDataSource<GoodsDTO>();
   displayedColumns: string[] = ['name', 'unit', 'propertyGroup', 'goodProperty', 'quantity', 'price', 'total' , 'addcart'];
@@ -165,7 +165,7 @@ export class DialogProductComponent implements OnInit{
       posNumber: this.posHeader?.posNumber,
       goodsId: good.goodsId,
       barCode: barcode,
-      groupPropterty: good.selectedProperty,
+      property: good.selectedProperty,
       goodProperty: good.selectedGoodProperty,
       goodsUnit: good.selectedUnit,
       quantity: good.quantity || 0,
@@ -180,6 +180,7 @@ export class DialogProductComponent implements OnInit{
               duration: 3000, // Duration in milliseconds
               panelClass: ['success-snackbar'], // Use the success class
           });
+          this.itemAdded.emit();
       },
       (error) => {
           console.error('Error adding item:', error);

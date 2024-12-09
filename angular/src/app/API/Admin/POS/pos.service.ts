@@ -42,13 +42,21 @@ export class POSService {
             .set('posNumber', item.posNumber || '')
             .set('goodsId', item.goodsId || '')
             .set('barcode', item.barCode || '')
-            .set('groupProperty', item.groupPropterty || '')
+            .set('groupProperty', item.property || '')
             .set('goodProperty', item.goodProperty || '')
             .set('goodsUnit', item.goodsUnit || '')
             .set('quantity', item.quantity || '0')
             .set('posCreator', item.posCreator || ''); // Adjust dynamically as needed
     
         return this.http.post(url, {}, { params, responseType: 'text' });
+    }
+
+
+    getPOList(storeId: string): Observable<POSDetailDto[]> {
+        const url = `${this.baseUrl}/GetPOList`;
+        const params = new HttpParams().set('store_id', storeId);
+
+        return this.http.get<POSDetailDto[]>(url, { params });
     }
     
 
