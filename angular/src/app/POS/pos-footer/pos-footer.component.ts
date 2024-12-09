@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogInvoiceComponent } from '../pos-main/dialog-invoice/dialog-invoice.component';
 import { AuthenticationService } from '../../API/Admin/authentication.service';
 import { POSService } from '../../API/Admin/POS/pos.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pos-footer',
@@ -22,6 +23,7 @@ export class PosFooterComponent implements OnInit {
     public dialog: MatDialog,
     private authenticationService: AuthenticationService,
     private posService: POSService,
+    private snackBar: MatSnackBar
 
   ) {}
 
@@ -44,11 +46,18 @@ export class PosFooterComponent implements OnInit {
             this.customerName, // This is the payer
             this.paymentMethod
         ).subscribe({
-            next: (response) => console.log('Transaction finalized:', response),
-            error: (error) => console.error('Error finalizing transaction:', error),
+          next: (response) => {
+            console.log('Transaction finalized:', response);
+            this.snackBar.open('Check out successfully!', 'Close', { duration: 3000 }); // Success
+          },
+          error: (error) => {
+            console.error('Error finalizing transaction:', error);
+            this.snackBar.open('Check out failed.', 'Close', { duration: 3000 }); // Error
+          },
         });
     } else {
         console.error('Missing required data for finalizing transaction.');
+        this.snackBar.open('Check out failed due to missing data.', 'Close', { duration: 3000 });
     }
 }
 
