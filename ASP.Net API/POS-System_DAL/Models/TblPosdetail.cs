@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace POS_System_DAL.Models;
 
-public partial class TblPosdetail
+public  class TblPosdetail
 {
+    [JsonIgnore]
     public int id { get; set; }
     public string PosNumber { get; set; } = null!;
 

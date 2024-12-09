@@ -34,6 +34,22 @@ namespace POS_Final_Year.Controller
         {
             var pageResult = await _posServices.GetGoodListAsync(store_id, paging);
             return Ok(pageResult);
+        } 
+        
+        [HttpGet("GetPOSDetails")]
+        public async Task<ActionResult> GetDetails(
+            string store_id, 
+            string pos_number)
+        {
+            var items = await _posServices.GetPoItemsAsync(store_id, pos_number);
+            return Ok(items);
+        }
+        
+        [HttpGet("GetPOList")]
+        public async Task<ActionResult> GetDetailList(string store_id)
+        {
+            var list = await _posServices.GetPoItemsListAsync(store_id);
+            return Ok(list);
         }
         
         [HttpGet("GenerateTempHeader")]
