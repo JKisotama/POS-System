@@ -116,8 +116,8 @@ export class PosMainComponent implements OnInit {
               propertyName: propertyName,
             };
           });
-  
           this.dataSource.data = mappedData;
+          this.calculateCheckoutValues();
         },
         (error) => {
           console.error('Error fetching PO List:', error);
