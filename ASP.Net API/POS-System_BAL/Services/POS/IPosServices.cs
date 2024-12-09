@@ -14,7 +14,8 @@ namespace POS_System_BAL.Services.POS
         Task<PageResult<TblGood>> GetGoodListAsync(
             string store_id, 
             PagingParameters paging);
-        Task CreatePoHeaderAsync(string storeId, string cashierId, string posCreator);
+
+        Task<TblPo> CreatePoHeaderAsync(string storeId, string cashierId, string posCreator);
         
         Task SavePoItemAsync(
             string storeId, 

@@ -29,10 +29,10 @@ namespace POS_Final_Year.Controller
 
         [HttpGet("GetGoodsList")]
         public async Task<ActionResult> GetGoodsList(
-            string goodsName, 
+            string store_id, 
             [FromQuery]PagingParameters paging)
         {
-            var pageResult = await _posServices.GetGoodListAsync(goodsName, paging);
+            var pageResult = await _posServices.GetGoodListAsync(store_id, paging);
             return Ok(pageResult);
         }
         

@@ -61,15 +61,6 @@ namespace POS_System_BAL.Services.Goods
             string group_id = null,  
             string searchTerm = null)
         {
-            
-            // var goods = await query.Include(g =>g.Group)
-            //     .Where(g => string.IsNullOrEmpty(store_id) || g.StoreId.Contains(store_id))
-            //     .Where(g => string.IsNullOrEmpty(group_id) || g.Group.GroupId == group_id)
-            //     .Where(g => string.IsNullOrEmpty(searchTerm) ||
-            //     (g.GoodsBrand != null && g.GoodsBrand.Contains(searchTerm) == true || 
-            //      g.GoodsName.Contains(searchTerm)))
-            //     .ToListAsync();
-            // return goods;
             var goods = await _onlinePosContext.TblGoods
                 .Where(g => string.IsNullOrEmpty(store_id) || g.StoreId == store_id)
                 .Where(g => string.IsNullOrEmpty(group_id) || g.GroupId == group_id)
@@ -200,16 +191,15 @@ namespace POS_System_BAL.Services.Goods
         {
             
                 var entity = _mapper.Map<TblGood>(goodsDTO);
-                var goodsCounter = GenerateGoodId(entity.StoreId);
-                entity.GoodsId = entity.StoreId + entity.GroupId + goodsCounter;
-                entity.GoodsCounter = GetGoodsCounterByStoreId(entity.StoreId) + 1;
+                var goodsCounter = GenerateGoodId(entity.StoreId, entity.GroupId);
+                entity.GoodsId =  entity.GroupId + goodsCounter;
+                entity.GoodsCounter = GetGoodsCounterByStoreId(entity.StoreId, entity.GroupId) + 1;
                 var imageName = $"{entity.StoreId}-{entity.GroupId}-{goodsCounter}";
                 var uploadResult = await UploadImageToCloudinary(imageFile, entity.StoreId, goodsCounter, imageName);
                 if (uploadResult.Error != null)
                 {
                     throw new Exception(uploadResult.Error.Message);
                 }
-
                 entity.Picture = uploadResult.SecureUrl.ToString();
 
                 _onlinePosContext.TblGoods.Add(entity);
@@ -285,11 +275,11 @@ namespace POS_System_BAL.Services.Goods
             return group_id;
         }
 
-        public string GenerateGoodId(string store_id)
+        public string GenerateGoodId(string store_id, string groupId)
         {
-            int counter = GetGoodsCounterByStoreId(store_id);
+            int counter = GetGoodsCounterByStoreId(store_id, groupId);
             var nCounter = counter + 1;
-            string good_id = new string('0', 3 - nCounter.ToString().Length) + nCounter.ToString();
+            string good_id = new string('0', 4 - nCounter.ToString().Length) + nCounter.ToString();
             return good_id;
         }
 
@@ -312,10 +302,10 @@ namespace POS_System_BAL.Services.Goods
                 return groupCounter;
         }
 
-        public int GetGoodsCounterByStoreId(string storeId)
+        public int GetGoodsCounterByStoreId(string storeId, string groupId)
         {
                 var goodsCounter = _onlinePosContext.TblGoods
-                    .Where(g => g.StoreId == storeId)
+                    .Where(g => g.StoreId == storeId && g.GroupId == groupId)
                     .OrderBy(g => g.StoreId)
                     .ThenByDescending (g => g.GoodsCounter)
                     .Select(g => g.GoodsCounter)
@@ -338,7 +328,6 @@ namespace POS_System_BAL.Services.Goods
         
         public async Task UpdateGoodsImage(string storeId, string goodsId, IFormFile imageFile)
         {
-            // Retrieve the existing goods entity from the database
             var existingGoods = await _onlinePosContext.TblGoods
                 .FirstOrDefaultAsync(g => g.GoodsId == goodsId && g.StoreId == storeId);
 
@@ -349,20 +338,16 @@ namespace POS_System_BAL.Services.Goods
             
             if (imageFile != null)
             {
-                var goodsCounter = GenerateGoodId(existingGoods.StoreId);
-                var imageName = $"{existingGoods.StoreId}-{existingGoods.GroupId}-{goodsCounter}";
-                var uploadResult = await UploadImageToCloudinary(imageFile, existingGoods.StoreId, goodsCounter.ToString(), imageName);
-
+                var imageName = $"{existingGoods.StoreId}-{existingGoods.GroupId}-{goodsId}";
+                var uploadResult = await UploadImageToCloudinary(imageFile, storeId, goodsId, imageName);
                 if (uploadResult.Error != null)
                 {
                     throw new Exception(uploadResult.Error.Message);
                 }
 
-                // Update the Picture property with the new image URL
                 existingGoods.Picture = uploadResult.SecureUrl.ToString();
             }
 
-            // Save changes to the database
             await _onlinePosContext.SaveChangesAsync();
         }
         

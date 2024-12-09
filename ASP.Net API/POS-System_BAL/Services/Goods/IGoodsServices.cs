@@ -46,10 +46,10 @@ namespace POS_System_BAL.Services.Goods
         Task SaveProperty(string store_id, string goods_id, string property_id, string property_value);
         Task UpdateGoodsImage(string storeId, string goodsId, IFormFile imageFile);
         string GenerateGoodGroupID(string store_id);
-        string GenerateGoodId(string store_id);
+        string GenerateGoodId(string store_id, string groupId);
         string GenerateGoodGroupProperty(string store_id);
         int GetGroupCounterByStoreId(string storerId);
-        int GetGoodsCounterByStoreId(string storeId);
+        int GetGoodsCounterByStoreId(string storeId, string groupId);
         int GetPropertyCounterByStoreId(string storeId);
     }
 }
