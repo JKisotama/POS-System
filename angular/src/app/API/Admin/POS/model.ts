@@ -1,5 +1,5 @@
 export interface POSDto {
-    id?: string; // Optional because JSON property uses $id, can be mapped in transformation
+    id?: string; 
     posNumber: string;
     posDate?: string;
     cashierId: string;
@@ -21,3 +21,27 @@ export interface POSDto {
     cancelPerson?: string;
     storeId: string;
 }
+
+export interface POSDetailDto {
+    posNumber?: string;
+    posCreator?: string;
+    itemOrder?: string;
+    goodsId?: string;
+    barCode?: string;
+    goodsName?: string;
+    groupPropterty?: string;
+    goodProperty?: string;
+    goodsUnit?: string;
+    quantity?: number;
+    itemPrice?: number;
+    subTotal?: number;
+    lineDiscount?: number;
+    lineTotal?: number;
+    storeId?: string;
+
+
+}
+
+
+
+

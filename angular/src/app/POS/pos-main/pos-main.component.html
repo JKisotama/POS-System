@@ -16,7 +16,7 @@
             </ng-template>
 
             <!-- Button to create a new order -->
-            <button (click)="openProductDialog()">
+            <button>
               <i class="fas fa-plus"></i>
             </button>
           </div>
@@ -34,7 +34,7 @@
         <div class="card-item">
           <div class="header d-flex justify-content-between">
             <h2>Product</h2>
-            <button>
+            <button (click)="openProductDialog()">
               <i class="fas fa-plus"></i>
             </button>
           </div>

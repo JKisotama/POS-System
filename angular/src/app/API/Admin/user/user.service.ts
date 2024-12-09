@@ -27,3 +27,8 @@ export class UserService {
         return this.http.get(`${this.baseUrl}/Get All User?store_id=${storeId}`);
     }
 }
+
+
+
+
+

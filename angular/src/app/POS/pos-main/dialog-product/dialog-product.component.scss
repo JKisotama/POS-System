@@ -91,6 +91,28 @@
       }
 }
 
+.addItem {
+  @include btn-white-border;
+  margin-left: 20px;
+  padding: 14px 20px;
+
+  &:nth-of-type(2) {
+    // Styles for the second button
+    height: auto;
+    width: auto;
+  }
+}
+
+.success-snackbar {
+  background-color: green; /* Change to your desired success color */
+  color: green; /* Text color */
+}
+
+.error-snackbar {
+  background-color: red; /* Change to your desired error color */
+  color: red /* Text color */
+}
+
 
   
 

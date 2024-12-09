@@ -29,12 +29,10 @@ export class GoodsPageComponent implements OnInit {
 
   dataSource = new MatTableDataSource<GoodsGroupDTO>();
   expandedGroup: GoodsGroupDTO | null = null;
-  innerDataSource = new MatTableDataSource<GoodsDTO>();
 
     form: FormGroup;
 
   displayedColumns: string[] = ['action','groupId', 'goodsId', 'goodsName', 'goodsBrand',  'picture', 'goodsStatus', 'storeId'];
-  childDisplayedColumns: string[] = ['goodsId', 'goodsName', 'goodsBrand',  'picture', 'goodsStatus'];
   storeId: string | null = null;
   userLevel: number | null = null;
   groupList: { groupId: string; groupName: string }[] = [];
@@ -52,8 +50,6 @@ export class GoodsPageComponent implements OnInit {
   ngOnInit(): void {
     this.storeId = this.authenticationService.getStoreIdUser();
     this.userLevel = this.authenticationService.getUserRole();
-    console.log(this.storeId);
-    console.log(this.userLevel);
     this.buildForm();
     this.getGoodByGroup();
     this.getAllGoodGroup();
@@ -96,7 +92,6 @@ export class GoodsPageComponent implements OnInit {
 
   toggleRow(group: GoodsGroupDTO) {
     group.expanded = !group.expanded;
-    this.innerDataSource.data = group.tblGoods;
   }
 
   // Check if a group is expanded

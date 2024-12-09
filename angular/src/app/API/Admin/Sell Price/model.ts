@@ -1,6 +1,6 @@
 export interface SellPriceDTO {
     goodsId?: string;
-    barCode?: string;
+    barcode?: string;
     goodsUnit?: string;
     sellNumber?: string;
     sellPrice?: number;

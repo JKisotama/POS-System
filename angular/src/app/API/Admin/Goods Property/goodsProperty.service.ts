@@ -13,11 +13,13 @@ export class GoodsPropertyService {
         private http : HttpClient
     ){}
 
-    private baseUrl = 'http://localhost:3000/goodsProperty';
+    private baseUrl = 'https://localhost:5000/api/GoodGroup';
 
-    GetAllGoodsProperty(): Observable<any>{
-        return this.http.get(`${this.baseUrl}`);
-    }
+    GetGoodProperty(storeId: string, goodsId: string, propertyId: string): Observable<any> {
+        return this.http.get(
+          `${this.baseUrl}/GetGoodProperty?store_id=${storeId}&goods_id=${goodsId}&property_id=${propertyId}`
+        );
+      }
     createGoodsProperty(GoodsPropertyData: GoodsPropertyDTO): Observable<any> {
         return this.http.post(`${this.baseUrl}`, GoodsPropertyData);
     }

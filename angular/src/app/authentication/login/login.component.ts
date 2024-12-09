@@ -35,9 +35,7 @@ export class LoginComponent {
     if (this.form.invalid) {
       return;
     }
-  
     this.loading = true;
-  
     const storeId = this.form.get('storeId')?.value;
     const loginName = this.form.get('loginName')?.value;
     const passWord = this.form.get('passWord')?.value;
@@ -45,21 +43,17 @@ export class LoginComponent {
     // Call login service
     this.userService.LoginUser(storeId, loginName, passWord).subscribe(
       (response) => {
-        // Extract userLevel from the response (indicating the role of the user)
-        const userLevel = response.userLevel; // Assuming userLevel is provided in the response
+        const userLevel = response.userLevel; 
   
-        // Set the logged-in state and store userLevel
         this.authservice.setLoggedIn(true, loginName, storeId, userLevel);
   
         // Emit login success and stop loading
         this.loginSuccess.emit();
         this.loading = false;
   
-        // Redirect to 'goods-page' or any other page after successful login
         this.router.navigate(['Admin']);
       },
       (error) => {
-        // Handle login error
         this.loginError = 'Login Failed. Please try again.';
         this.loading = false;
       }

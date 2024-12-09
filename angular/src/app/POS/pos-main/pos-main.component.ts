@@ -139,29 +139,7 @@ export class PosMainComponent implements OnInit {
   }
 
 
-  fetchOrdersAndSelectOrder(orderId: string): void {
-    if (this.storeId) {
-      this.posService.getPoHeadersPaged(this.storeId).subscribe(
-        (response) => {
-          this.orders = response.items; // Update the orders list
-          console.log('Updated Orders:', this.orders);
-
-          // Step 4: Retrieve the specific order
-          const selectedOrder = this.orders.find(order => order.id === orderId);
-
-          if (selectedOrder) {
-            console.log('Selected Order:', selectedOrder);
-            this.posHeader = selectedOrder; // Update the POS header with the specific order
-          } else {
-            console.error('Order not found in the updated list.');
-          }
-        },
-        (error) => {
-          console.error('Error fetching orders:', error);
-        }
-      );
-    }
-  }
+  
 
   // Increment the IDs for the next order
   incrementIds(): void {

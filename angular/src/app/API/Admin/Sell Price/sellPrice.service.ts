@@ -19,7 +19,7 @@ export class SellPriceService {
     //     return this.http.get(`${this.baseUrl}`);
     // }
     createSellPrice(SellPriceData: SellPriceDTO): Observable<any> {
-        return this.http.post(`${this.baseUrl}/SaveSellingPrice?goods_id=${SellPriceData.goodsId}&unit=${SellPriceData.goodsUnit}&barcode=${SellPriceData.barCode}&quantity=${SellPriceData.quantity}&selling_price=${SellPriceData.sellPrice}`, SellPriceData);
+        return this.http.post(`${this.baseUrl}/SaveSellingPrice?goods_id=${SellPriceData.goodsId}&unit=${SellPriceData.goodsUnit}&barcode=${SellPriceData.barcode}&quantity=${SellPriceData.quantity}&selling_price=${SellPriceData.sellPrice}`, SellPriceData);
     }
     // updateSellPrice(SellPriceData: SellPriceDTO): Observable<any> {
     //     return this.http.put(`${this.baseUrl}/${SellPriceData['id']}`, SellPriceData);

@@ -36,16 +36,16 @@ export class GoodsService {
     return this.http.post(`${this.baseUrl}/SaveGoods?GroupId=${goodsData.groupId}&GoodsName=${goodsData.goodsName}&GoodsBrand=${goodsData.goodsBrand}&GoodsStatus=${goodsData.goodsStatus}&StoreId=${goodsData.storeId}`, formData);
   }
 
-  // updateProduct(productData: GoodsDTO): Observable<any> {
-  //     return this.http.put(`${this.baseUrl}/${productData['id']}`, productData);
-  // }
-  // deleteProduct(id: string): Observable<any> {
-  //     return this.http.delete(`${this.baseUrl}/${id}`);
-  // }
+  updateProduct(productData: GoodsDTO, id: string): Observable<any> {
+      return this.http.put(`${this.baseUrl}/${id}}`, productData);
+  }
+  deleteProduct(id: string): Observable<any> {
+      return this.http.delete(`${this.baseUrl}/${id}`);
+  }
 
-  // GetProductById(id: string): Observable<any>{
-  //     return this.http.get(`${this.baseUrl}/${id}`);
-  // }
+  GetProductById(id: string): Observable<any>{
+      return this.http.get(`${this.baseUrl}/${id}`);
+  }
 
 
 

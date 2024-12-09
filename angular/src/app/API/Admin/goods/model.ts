@@ -17,4 +17,8 @@ export interface GoodsDTO {
     selectedPrice?: number;
     quantity?: number;
     total?: number;
+    selectedProperty?: string; 
+    selectedGoodProperty?: string;
+    selectedUnit?: string;
+    barcode?: string;
 }

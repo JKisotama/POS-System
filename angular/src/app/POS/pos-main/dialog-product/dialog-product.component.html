@@ -35,12 +35,47 @@
         <ng-container matColumnDef="unit">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Unit</th>
           <td mat-cell *matCellDef="let good">
-            <select class="form-select" (change)="onUnitChange(good, $event)">
+            <select
+              class="form-select"
+              (change)="onUnitChange(good, $event)"
+              [(ngModel)]="good.selectedUnit"
+            >
               <option
                 *ngFor="let price of good.tblSellprices"
                 [value]="price.goodsUnit"
               >
                 {{ price.goodsUnit }}
+              </option>
+            </select>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="propertyGroup">
+          <th mat-header-cell *matHeaderCellDef>Property Group</th>
+          <td mat-cell *matCellDef="let good; let i = index">
+            <select
+              class="form-select"
+              [(ngModel)]="good.selectedProperty"
+              (ngModelChange)="onPropertyGroupChange(good, $event)"
+            >
+              <option
+                *ngFor="let group of propertyGroups"
+                [value]="group.propertyId"
+              >
+                {{ group.propertyName }}
+              </option>
+            </select>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="goodProperty">
+          <th mat-header-cell *matHeaderCellDef>Good Property</th>
+          <td mat-cell *matCellDef="let good">
+            <select class="form-select" [(ngModel)]="good.selectedGoodProperty">
+              <option
+                *ngFor="let property of goodProperties[good.goodsId]"
+                [value]="property.propertyName"
+              >
+                {{ property.propertyName }}
               </option>
             </select>
           </td>
@@ -74,6 +109,15 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
           <td mat-cell *matCellDef="let good">
             {{ good.total | number : "1.0-2" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="addcart">
+          <th mat-header-cell *matHeaderCellDef>Add Cart</th>
+          <td mat-cell *matCellDef="let good; let i = index">
+            <button class="addItem" mat-icon-button (click)="onAddItem(good)">
+              <mat-icon>add</mat-icon>
+            </button>
           </td>
         </ng-container>
 
