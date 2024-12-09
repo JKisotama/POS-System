@@ -83,11 +83,19 @@ namespace POS_System_BAL.Services.POS
                 return item;
         } 
         
-        public async Task<IEnumerable<TblPosdetail>> GetPoItemsListAsync(string storeId)
+        public async Task<IEnumerable<TblPosdetail>> GetPoItemsListAsync(string storeId, string posNumber)
         {
             var items = await _onlinePosContext
                 .TblPosdetails
-                .Where(s => s.StoreId == storeId)
+                .Where(s => s.StoreId == storeId && s.PosNumber == posNumber)
+                .Join(
+                    _onlinePosContext.TblPos,
+                    detail => new { detail.StoreId, detail.PosNumber },
+                    header => new { header.StoreId, header.PosNumber },
+                    (detail, header) => new { detail, header }
+                )
+                .Where(joined => joined.header.PosStatus != 3) // Exclude finished PO if status = 3
+                .Select(joined => joined.detail)
                 .ToListAsync();
             return items;
         }
@@ -185,13 +193,17 @@ namespace POS_System_BAL.Services.POS
             }
             else
             {
-                 // existingDetail = await _onlinePosContext.TblPosdetails
-                 //    .FirstOrDefaultAsync(detail => detail.StoreId == storeId &&
-                 //                                   detail.PosNumber == posNumber &&
-                 //                                   detail.GoodsId == goodsId &&
-                 //                                   detail.ItemUnit == goodsUnit);
-                 // if (existingDetail == null)
-                 // {
+                
+                int? maxItemOrder  = await _onlinePosContext.TblPosdetails
+                    .Where(detail => detail.StoreId == storeId && detail.PosNumber == posNumber)
+                    .Select(detail => detail.ItemOrder)
+                    .OrderByDescending(order => order)
+                    .FirstOrDefaultAsync();
+
+                int nextItemOrder = (maxItemOrder ?? 0) + 1;
+
+                
+                
                      double? totalPrice = await CalculateSellingPriceAsync(storeId, goodsId, quantity, goodsUnit);
    
                      // if (existingDetail != null)
@@ -215,7 +227,8 @@ namespace POS_System_BAL.Services.POS
                              LineTotal = totalPrice,
                              LineDiscount = (itemPrice * quantity) - totalPrice,
                              Property = groupPropertyName,
-                             PropertyValue = goodsPropertyName
+                             PropertyValue = goodsPropertyName,
+                             ItemOrder = nextItemOrder
                          };
 
                          await _onlinePosContext.TblPosdetails.AddAsync(newDetail);
