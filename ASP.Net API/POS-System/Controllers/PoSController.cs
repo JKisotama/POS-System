@@ -29,10 +29,11 @@ namespace POS_Final_Year.Controller
 
         [HttpGet("GetGoodsList")]
         public async Task<ActionResult> GetGoodsList(
-            string store_id, 
-            [FromQuery]PagingParameters paging)
+            string goodName,
+            [FromQuery]PagingParameters paging,
+            string filter = null)
         {
-            var pageResult = await _posServices.GetGoodListAsync(store_id, paging);
+            var pageResult = await _posServices.GetGoodListAsync(goodName, filter,paging);
             return Ok(pageResult);
         } 
         
@@ -88,36 +89,28 @@ namespace POS_Final_Year.Controller
 
         [HttpPost("FinalizeTransaction")]
         public async Task<IActionResult> FinalizeTransaction(
-            string storeId, 
-            string posNumber, 
-            double customerPay, 
-            int paymentType, 
-            string payer)
+            string storeId,
+            string posNumber,
+            double customerPay,
+            string payer,
+            int paymentMethod)
         {
             try
             {
-                var po = await _context.TblPos
-                    .FirstOrDefaultAsync(p => p.StoreId == storeId && p.PosNumber == posNumber);
+                await _posServices.PayPO(storeId, posNumber, customerPay, payer, paymentMethod);
+                return Ok("Payment Processed Successfully");
 
-                if (po == null)
-                {
-                    return NotFound("POS header not found.");
-                }
-
-                po.PosStatus = 1; 
-                po.PosCustomerpay = customerPay;
-                po.PosExchange = customerPay - po.PosTopay;
-                po.PosPaymenttype = paymentType;
-                po.Payer = payer;
-                po.Paymentdate = DateTime.Now;
-
-                await _context.SaveChangesAsync();
-                return Ok("Transaction finalized successfully.");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Error finalizing transaction: {ex.Message}");
+                return BadRequest(new { Message = ex.Message });
             }
+        }
+
+        [HttpPut("HangPO")]
+        public async Task HangPo(string storeId, string posNumber)
+        {
+            await _posServices.HangPo(storeId, posNumber);
         }
 
         private bool TblPoExists(string id)

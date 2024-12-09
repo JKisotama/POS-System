@@ -25,19 +25,29 @@ namespace POS_System_BAL.Services.POS
             _goodsServices = goodsServices;
         }
 
-        public async Task<PageResult<TblGood>> GetGoodListAsync(string goodsName, PagingParameters paging)
+        public async Task<PageResult<TblGood>> GetGoodListAsync(string goodsName, string barcodeFilter, PagingParameters paging)
         {
-            var count = await _onlinePosContext
-                .TblGoods
-                .CountAsync(s => s.GoodsName == goodsName);
-
-            var list = await _onlinePosContext.TblGoods
-                .Where(s => s.StoreId == goodsName)
+            var query = _onlinePosContext.TblGoods
                 .Include(g => g.Group)
-                .Include(s => s.TblSellprices)
+                .Include(g => g.TblSellprices)
+                .AsQueryable();
+            
+            if (!string.IsNullOrEmpty(goodsName))
+            {
+                query = query.Where(g => g.GoodsName.Contains(goodsName));
+            }
+            if (!string.IsNullOrEmpty(barcodeFilter))
+            {
+                query = query.Where(g => g.TblSellprices.Any(sp => sp.Barcode.Contains(barcodeFilter)));
+            }
+            
+            var count = await query.CountAsync();
+            
+            var list = await query
                 .Skip((paging.PageNumber - 1) * paging.PageSize)
                 .Take(paging.PageSize)
                 .ToListAsync();
+
             var goods = list.Select(g => new TblGood
             {
                 GroupId = g.GroupId,
@@ -166,31 +176,31 @@ namespace POS_System_BAL.Services.POS
             if (existingDetail != null)
             {
                 existingDetail.ItemQuantity += quantity;
-                var sub_total = itemPrice * existingDetail.ItemQuantity;
+                var subTotal = itemPrice * existingDetail.ItemQuantity;
                 double? newTotalPrice = await CalculateSellingPriceAsync(storeId, goodsId, existingDetail.ItemQuantity, goodsUnit);
                 existingDetail.LineTotal = newTotalPrice ?? 0;
-                existingDetail.SubTotal = sub_total;
+                existingDetail.SubTotal = subTotal;
                 existingDetail.ItemPrice = itemPrice;
-                existingDetail.LineDiscount = sub_total - newTotalPrice;
+                existingDetail.LineDiscount = subTotal - newTotalPrice;
             }
             else
             {
-                 existingDetail = await _onlinePosContext.TblPosdetails
-                    .FirstOrDefaultAsync(detail => detail.StoreId == storeId &&
-                                                   detail.PosNumber == posNumber &&
-                                                   detail.GoodsId == goodsId &&
-                                                   detail.ItemUnit == goodsUnit);
-                 if (existingDetail == null)
-                 {
+                 // existingDetail = await _onlinePosContext.TblPosdetails
+                 //    .FirstOrDefaultAsync(detail => detail.StoreId == storeId &&
+                 //                                   detail.PosNumber == posNumber &&
+                 //                                   detail.GoodsId == goodsId &&
+                 //                                   detail.ItemUnit == goodsUnit);
+                 // if (existingDetail == null)
+                 // {
                      double? totalPrice = await CalculateSellingPriceAsync(storeId, goodsId, quantity, goodsUnit);
-                     totalPrice = totalPrice ?? 0;
-                     if (existingDetail != null)
-                     {
-                         existingDetail.ItemQuantity += quantity;
-                         existingDetail.LineTotal += totalPrice;
-                     }
-                     else
-                     {
+   
+                     // if (existingDetail != null)
+                     // {
+                     //     existingDetail.ItemQuantity += quantity;
+                     //     existingDetail.LineTotal += totalPrice;
+                     // }
+                     // else
+                     // {
                          var newDetail = new TblPosdetail
                          {
                              StoreId = storeId,
@@ -200,15 +210,18 @@ namespace POS_System_BAL.Services.POS
                              GoodsName = good.GoodsName,
                              ItemUnit = goodsUnit,
                              ItemQuantity = quantity,
+                             ItemPrice = itemPrice,
+                             SubTotal = itemPrice * quantity,
                              LineTotal = totalPrice,
+                             LineDiscount = (itemPrice * quantity) - totalPrice,
                              Property = groupPropertyName,
                              PropertyValue = goodsPropertyName
                          };
 
                          await _onlinePosContext.TblPosdetails.AddAsync(newDetail);
                      }
-                 }
-            }
+                 
+            
             await _onlinePosContext.SaveChangesAsync();
             await UpdatePoTotalsAsync(storeId, posNumber);
         }
@@ -270,29 +283,45 @@ namespace POS_System_BAL.Services.POS
             string po_number,
             double customer_pay,
             string payer,
-            int payment_type,
-            double money_return)
+            int pay_method)
         {
             var po = await _onlinePosContext.TblPos
                 .FirstOrDefaultAsync(p => p.StoreId == store_id && p.PosNumber == po_number);
 
-            if (po != null)
+            if (po == null)
             {
-                po.PosStatus = 1;
-                po.Payer = payer;
-                po.PosTotal = customer_pay - po.PosTopay;
-                po.PosPaymentmethod = payment_type;
+                throw new Exception("POS record not found.");
+            }
 
-                try
-                {
-                    await _onlinePosContext.SaveChangesAsync();
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Error to Pay POS: {ex.Message}");
-                }
+            if (po.PosStatus == 2)
+            {
+                throw new Exception("Cannot pay for a canceled PO.");
+            }
+
+            if (po.PosPaymentmethod == 1 && customer_pay != po.PosTopay)
+            {
+                throw new Exception("For banking payments, the customer payment amount must be equal to the total amount to pay.");
+            }
+
+            po.PosStatus = 3;
+            po.Payer = payer;
+            po.PosPaymentmethod = pay_method;
+            po.PosTotal = po.PosTopay; 
+            po.PosDiscount = po.PosDiscount; 
+            po.PosCustomerpay = customer_pay;
+            po.PosPaymenttype = 1;
+            po.PosExchange = customer_pay - po.PosTotal;
+
+            try
+            {
+                await _onlinePosContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error processing payment: {ex.Message}");
             }
         }
+
 
         public async Task GetDataByShift(
             string store_id, string shift_number)
@@ -421,13 +450,13 @@ namespace POS_System_BAL.Services.POS
                 throw new Exception("POS record not found.");
             }
             
-            if (po.PosStatus == 2)
+            if (po.PosStatus == 0)
             {
                 po.PosStatus = 1;
             }
             else
             {
-                po.PosStatus = 2;
+                po.PosStatus = 0;
             }
 
             try
