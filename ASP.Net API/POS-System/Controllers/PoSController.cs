@@ -47,9 +47,9 @@ namespace POS_Final_Year.Controller
         }
         
         [HttpGet("GetPOList")]
-        public async Task<ActionResult> GetDetailList(string store_id)
+        public async Task<ActionResult> GetDetailList(string store_id, string posNumber)
         {
-            var list = await _posServices.GetPoItemsListAsync(store_id);
+            var list = await _posServices.GetPoItemsListAsync(store_id, posNumber);
             return Ok(list);
         }
         
