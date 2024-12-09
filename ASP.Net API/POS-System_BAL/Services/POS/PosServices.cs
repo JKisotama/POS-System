@@ -64,19 +64,7 @@ namespace POS_System_BAL.Services.POS
         }
 
 
-        public async Task GetGoodsByBarcode(string store_id, string barcode)
-        {
-        }
-
-        public async Task GetPoAsync(string store_id, int status)
-        {
-            var purchaseOrders = await _onlinePosContext.TblPos
-                .Where(po => po.StoreId == store_id && po.PosStatus == status)
-                .ToListAsync();
-        }
-
-
-        public async Task CreatePoHeaderAsync(string storeId, string cashierId, string posCreator)
+        public async Task<TblPo> CreatePoHeaderAsync(string storeId, string cashierId, string posCreator)
         {
             var posNumber = GerenatePosNumber(storeId, cashierId, DateTime.Now);
             var posCounter = GetPosCounterByStoreId(storeId, cashierId, DateTime.Now);
@@ -99,24 +87,27 @@ namespace POS_System_BAL.Services.POS
             {
                 await _onlinePosContext.TblPos.AddAsync(newPo);
                 await _onlinePosContext.SaveChangesAsync();
+                return  newPo;
             }
             catch (Exception ex)
             {
                 throw new Exception($"Error creating PO header: {ex.Message}");
             }
+
         }
 
         public async Task SavePoItemAsync(
             string storeId,
             string posNumber,
             string goodsId,
+            string barcode,
             string goodsUnit,
             double quantity,
             string goodsPropertyName,
-            string groupPropertyName
+            string groupPropertyName,
+            string posCreator
         )
         {
-            // Fetch the goods with related sell prices
             var good = await _onlinePosContext.TblGoods
                 .Include(g => g.TblSellprices)
                 .FirstOrDefaultAsync(g => g.StoreId == storeId && g.GoodsId == goodsId);
@@ -125,10 +116,6 @@ namespace POS_System_BAL.Services.POS
                 .Where(sp => sp.StoreId == storeId && sp.GoodsId == goodsId && sp.GoodsUnit == goodsUnit && sp.SellNumber == 1)
                 .Select(sp => sp.SellPrice)
                 .FirstOrDefaultAsync();
-
-            //Kiểm tra xem trong PODetails của storeId, posNumber có mã hàng trùng goodId, goodsUnit, goodPropertyName, groupPropertyName
-            //Nếu có thì lấy số lượng của dòng đó + quantity rồi tính giá bán của số lượng mới sau đó cập nhật vào trong PoDetails
-            //Nếu ko có thì insert vào PoDetails
 
             var unitName = await _onlinePosContext.TblGoodsunits
                 .Where(u => u.StoreId == storeId && u.GoodsUnit == goodsUnit)
@@ -140,8 +127,17 @@ namespace POS_System_BAL.Services.POS
                 throw new Exception("Unit name not found for the specified unit.");
             }
 
+            
+            var poHeader = await _onlinePosContext.TblPos
+                .FirstOrDefaultAsync(p => p.StoreId == storeId && p.PosNumber == posNumber);
 
-            // Check if the item already exists in POS details
+            if (poHeader == null)
+            {
+                poHeader = CreateTemporaryPoHeader(storeId, "1", posCreator);
+                await _onlinePosContext.TblPos.AddAsync(poHeader);
+                await _onlinePosContext.SaveChangesAsync(); 
+            }
+            
             var existingDetail = await _onlinePosContext.TblPosdetails
                 .FirstOrDefaultAsync(detail => detail.StoreId == storeId &&
                                                detail.PosNumber == posNumber &&
@@ -182,6 +178,7 @@ namespace POS_System_BAL.Services.POS
                              StoreId = storeId,
                              PosNumber = posNumber,
                              GoodsId = goodsId,
+                             Barcode = barcode,
                              GoodsName = good.GoodsName,
                              ItemUnit = goodsUnit,
                              ItemQuantity = quantity,
@@ -193,13 +190,6 @@ namespace POS_System_BAL.Services.POS
                          await _onlinePosContext.TblPosdetails.AddAsync(newDetail);
                      }
                  }
-                 else
-                 {
-                     // var az = existingDetail.ItemQuantity + quantity;
-                     // double? newTotalPrice = await CalculateSellingPriceAsync(storeId, goodsId, az, goodsUnit);
-                     // chưa làm
-                 }
-                
             }
             await _onlinePosContext.SaveChangesAsync();
             await UpdatePoTotalsAsync(storeId, posNumber);
@@ -234,7 +224,7 @@ namespace POS_System_BAL.Services.POS
                 po.PosTotal = posTotal;
                 po.PosDiscount = posDiscount;
                 po.PosTopay = posTopay;
-
+                po.CustomerName = "visitor";
                 try
                 {
                     Console.WriteLine("Attempting to save PO detail...");
@@ -405,7 +395,6 @@ namespace POS_System_BAL.Services.POS
 
         public async Task HangPo(string storeId, string posNumber)
         {
-            // Fetch the PO record based on store ID and POS number
             var po = await _onlinePosContext.TblPos
                 .FirstOrDefaultAsync(p => p.StoreId == storeId && p.PosNumber == posNumber);
 
@@ -413,8 +402,7 @@ namespace POS_System_BAL.Services.POS
             {
                 throw new Exception("POS record not found.");
             }
-
-            // Check and toggle the status
+            
             if (po.PosStatus == 2)
             {
                 po.PosStatus = 1;
@@ -426,7 +414,6 @@ namespace POS_System_BAL.Services.POS
 
             try
             {
-                // Save the changes
                 await _onlinePosContext.SaveChangesAsync();
             }
             catch (Exception ex)

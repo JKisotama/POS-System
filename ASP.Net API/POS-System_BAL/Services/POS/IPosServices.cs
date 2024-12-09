@@ -14,16 +14,19 @@ namespace POS_System_BAL.Services.POS
         Task<PageResult<TblGood>> GetGoodListAsync(
             string store_id, 
             PagingParameters paging);
-        Task CreatePoHeaderAsync(string storeId, string cashierId, string posCreator);
+
+        Task<TblPo> CreatePoHeaderAsync(string storeId, string cashierId, string posCreator);
         
         Task SavePoItemAsync(
             string storeId, 
             string posNumber, 
             string goodsId, 
+            string barcode,
             string goodsUnit, 
             double quantitystring, 
             string goodsPropertyName, 
-            string groupPropertyName);
+            string groupPropertyName,
+            string posCreator);
         Task UpdateStatus(
             string store_id, 
             string po_number, 
