@@ -2,3 +2,16 @@
 .pos-page{
     padding: 40px;
 }
+
+.hidden-content {
+    display: none;
+  }
+  @media screen and (max-width: 1200px) {
+    .hidden-content {
+      display: block;
+    }
+    .pos-page{
+      display: none;
+    }
+    
+  }

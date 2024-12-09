@@ -4,15 +4,7 @@
 
 
 
-.darkmode{
-    body{
-        background-color: $Dark-Void;
-        font-family: 'Manrope', sans-serif;
-        font-family: "Inter", sans-serif;
-        font-optical-sizing: auto;
-        font-style: normal;
-    }    
-}
+
 
 body{
     background-color: $Dark-Void;
@@ -20,6 +12,7 @@ body{
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+    font-size: clamp(12px, 1.5vw, 16px);
 }
 
 
@@ -122,6 +115,16 @@ form{
     }
     
 }
+.search-bar-admin{
+    background-color: $Gluon-Grey;
+    border-radius: 100px;
+    border: $Dusty-Grey solid 1px;
+    color: $White-Snow;
+    &::placeholder{
+        color: $Dusty-Grey;
+    }
+}
+
 
 .mat-elevation-z8 {
     box-shadow: none; // Remove the shadow if needed

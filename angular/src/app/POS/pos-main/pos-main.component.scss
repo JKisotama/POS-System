@@ -9,6 +9,8 @@
   }
 }
 
+
+
 .new-order-zone {
   .order-information {
     .order-holder{
@@ -177,15 +179,16 @@
 
   .checkout-card {
     .payment-type {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+
       button {
         @include btn-white-border;
         padding: 20px 90px;
         border-radius: 5px;
-
-        &:nth-of-type(n + 2) {
-          margin-left: 20px;
-        }
-
+        flex: 1 1 auto;
         i {
           padding-right: 5px;
         }
@@ -240,3 +243,4 @@
     }
   }
 }
+

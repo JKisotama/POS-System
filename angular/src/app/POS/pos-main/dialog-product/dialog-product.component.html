@@ -29,7 +29,7 @@
         mat-table
         [dataSource]="dataSource"
         matSort
-        class="mat-elevation-z8"
+        class="mat-elevation-z8 custom-table"
       >
         <!-- Name Column -->
         <ng-container matColumnDef="name" class="pd-name">
@@ -120,7 +120,7 @@
         <ng-container matColumnDef="addcart">
           <th mat-header-cell *matHeaderCellDef>Add Cart</th>
           <td mat-cell *matCellDef="let good; let i = index">
-            <button class="addItem" (click)="onAddItem(good)">
+            <button class="addItem" mat-icon-button (click)="onAddItem(good)">
               <i class="fas fa-plus"></i>
             </button>
           </td>

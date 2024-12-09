@@ -59,7 +59,6 @@ E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\System.
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\System.Runtime.Caching.dll
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\System.Security.Permissions.dll
-E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\System.Text.Json.dll
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\System.Windows.Extensions.dll
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
@@ -145,7 +144,6 @@ E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\staticw
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.POS-System.props
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\staticwebassets.pack.json
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\scopedcss\bundle\POS-System.styles.css
-E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS-System.csproj.CopyComplete
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS-System.dll
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\refint\POS-System.dll
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS-System.pdb
@@ -316,3 +314,23 @@ D:\Thinh Workplace\POS\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\refint
 D:\Thinh Workplace\POS\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS-System.pdb
 D:\Thinh Workplace\POS\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS-System.genruntimeconfig.cache
 D:\Thinh Workplace\POS\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\ref\POS-System.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\POS-System.staticwebassets.endpoints.json
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS_System.Properties.Resources.resources
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS-System.csproj.GenerateResource.cache
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\staticwebassets\msbuild.POS-System.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS-System.csproj.Up2Date
