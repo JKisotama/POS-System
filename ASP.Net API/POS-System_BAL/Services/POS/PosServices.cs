@@ -64,6 +64,24 @@ namespace POS_System_BAL.Services.POS
         }
 
 
+
+        public async Task<TblPosdetail> GetPoItemsAsync(string storeId,string posNumber)
+        {
+                var item = await _onlinePosContext
+                    .TblPosdetails
+                    .FirstOrDefaultAsync(s => s.PosNumber == posNumber);
+                return item;
+        } 
+        
+        public async Task<IEnumerable<TblPosdetail>> GetPoItemsListAsync(string storeId)
+        {
+            var items = await _onlinePosContext
+                .TblPosdetails
+                .Where(s => s.StoreId == storeId)
+                .ToListAsync();
+            return items;
+        }
+
         public async Task<TblPo> CreatePoHeaderAsync(string storeId, string cashierId, string posCreator)
         {
             var posNumber = GerenatePosNumber(storeId, cashierId, DateTime.Now);

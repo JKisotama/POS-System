@@ -16,6 +16,8 @@ namespace POS_System_BAL.Services.POS
             PagingParameters paging);
 
         Task<TblPo> CreatePoHeaderAsync(string storeId, string cashierId, string posCreator);
+        Task<TblPosdetail> GetPoItemsAsync(string storeId, string posNumber);
+        Task<IEnumerable<TblPosdetail>> GetPoItemsListAsync(string storeId);
         
         Task SavePoItemAsync(
             string storeId, 
