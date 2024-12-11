@@ -169,7 +169,7 @@ namespace POS_System_BAL.Services.POS
 
             if (poHeader == null)
             {
-                poHeader = CreateTemporaryPoHeader(storeId, "1", posCreator);
+                poHeader = await CreateTemporaryPoHeader(storeId, "1", posCreator);
                 await _onlinePosContext.TblPos.AddAsync(poHeader);
                 await _onlinePosContext.SaveChangesAsync(); 
             }
@@ -282,12 +282,19 @@ namespace POS_System_BAL.Services.POS
             }
         }
 
-
-        public async Task UpdateStatus(
-            string store_id,
-            string po_number,
-            int status)
+        public async Task<IEnumerable<TblPo>> GetPoHangList(string store_id)
         {
+           var hang_list =  await _onlinePosContext.TblPos
+                .Where(p => p.StoreId == store_id &&
+                            p.PosStatus == 3)
+                .ToListAsync();
+           return hang_list;
+        }
+
+        public async Task GetPoHeaderList(
+            string store_id)
+        {
+            
         }
 
 
@@ -341,12 +348,27 @@ namespace POS_System_BAL.Services.POS
         {
         }
 
-        public TblPo CreateTemporaryPoHeader(
+        public async Task<TblPo> CreateTemporaryPoHeader(
             string storeId,
             string cashierId,
             string posCreator)
         {
             cashierId = "1";
+            
+            var existingPoHeader = await _onlinePosContext.TblPos
+                .FirstOrDefaultAsync(p => p.StoreId == storeId && 
+                                          p.CashierId == cashierId && 
+                                          p.PosStatus == 0);
+            if (existingPoHeader != null)
+            {
+                return existingPoHeader;
+            }
+            
+            var previousPoHeader = await _onlinePosContext.TblPos
+                .FirstOrDefaultAsync(p => p.StoreId == storeId &&
+                                          p.CashierId == cashierId &&
+                                          (p.PosStatus == 1 || p.PosStatus == 2 || p.PosStatus == 3));
+            
             var posNumber = GerenatePosNumber(storeId, cashierId, DateTime.Now);
             var posCounter = GetPosCounterByStoreId(storeId, cashierId, DateTime.Now);
             return new TblPo
