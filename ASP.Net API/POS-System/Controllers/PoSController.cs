@@ -45,12 +45,12 @@ namespace POS_Final_Year.Controller
             return Ok(list);
         }
         
-        // [HttpGet("GetPoHeaderList")]
-        // public async Task<ActionResult> GetPoHeaderList(string store_id)
-        // {
-        //     var list = _posServices.(store_id);
-        //     return Ok(list);
-        // }
+        [HttpPut("CancelPo")]
+        public async Task<ActionResult> GetPoHeaderList(string store_id, string pos_number)
+        {
+            var list = _posServices.CancelPo(store_id,pos_number);
+            return NoContent();
+        }
         
         [HttpGet("GetPOSDetails")]
         public async Task<ActionResult> GetDetails(

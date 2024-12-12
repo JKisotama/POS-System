@@ -474,6 +474,34 @@ namespace POS_System_BAL.Services.POS
             return totalPrice;
         }
 
+        
+        public async Task CancelPo(string storeId, string posNumber)
+        {
+            var po = await _onlinePosContext.TblPos
+                .FirstOrDefaultAsync(p => p.StoreId == storeId && p.PosNumber == posNumber);
+
+            if (po == null)
+            {
+                throw new Exception("POS record not found.");
+            }
+
+            if (po.PosStatus == 1 && po.PosStatus == 2 && po.PosStatus == 3)
+            {
+                throw new Exception("Cannot cancel this PO.");
+            }
+
+            po.PosStatus = 2;
+            po.CancelDate = DateTime.Now;
+
+            try
+            {
+                await _onlinePosContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error canceling PO: {ex.Message}");
+            }
+        }
 
         public async Task HangPo(string storeId, string posNumber)
         {

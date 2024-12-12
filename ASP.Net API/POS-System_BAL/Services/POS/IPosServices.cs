@@ -39,6 +39,7 @@ namespace POS_System_BAL.Services.POS
             string payer,
             int pay_method);
         Task GetDataByShift(string store_id, string shift_number);
+        Task CancelPo(string storeId, string posNumber);
 
         Task<TblPo> CreateTemporaryPoHeader(
             string storeId,
