@@ -156,7 +156,7 @@ export class DialogProductComponent implements OnInit{
     if (errorMessages.length > 0) {
         this.snackBar.open(errorMessages.join(' '), 'Close', {
             duration: 3000,
-            panelClass: ['error-snackbar'],
+            panelClass: ['snackbar-error'],
         });
         return;
     }
@@ -180,7 +180,7 @@ export class DialogProductComponent implements OnInit{
           console.log('Successfully added item:', response);
           this.snackBar.open('Item added successfully!', 'Close', {
               duration: 3000, // Duration in milliseconds
-              panelClass: ['success-snackbar'], // Use the success class
+              panelClass: ['snackbar-success'], // Use the success class
           });
           this.itemAdded.emit();
       },
@@ -188,7 +188,7 @@ export class DialogProductComponent implements OnInit{
           console.error('Error adding item:', error);
           this.snackBar.open('Error adding item. Please try again.', 'Close', {
               duration: 3000,
-              panelClass: ['error-snackbar'], // Use the error class
+              panelClass: ['snackbar-error'], // Use the error class
           });
       }
   );

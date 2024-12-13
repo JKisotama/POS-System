@@ -52,7 +52,34 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+:root {
+  .snackbar-error {
+      --mdc-snackbar-container-color: red;   
+      --mdc-snackbar-supporting-text-color: #fff;     
+  }
+  .snackbar-success {
+    --mdc-snackbar-container-color: green;  
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+  .custom-dialog-container {
+    --mdc-dialog-container-color: $Dusty-Grey;
+    --mdc-dialog-container-shape: 20px;
+    
 
-// .mat-mdc-dialog-container {
-//   --mdc-dialog-container-shape: 20px;
-// }
+  }
+}
+
+.mat-mdc-cell {
+  padding: 15px;
+}
+
+
+.custom-table .mat-mdc-cell {
+  padding: 15px;
+  width: 10%;
+}
+
+
+.custom-dialog-container .cdk-overlay-pane.mat-mdc-dialog-panel {
+  max-width: 200% !important;
+}

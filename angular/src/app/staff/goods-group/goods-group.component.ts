@@ -47,7 +47,7 @@ export class GoodsGroupComponent implements OnInit {
   openCreateGoodGroup(){
     const dialogRef = this.dialog.open(CreateGoodGroupComponent, {
       width: '700px',
-
+      panelClass: 'custom-dialog-container',
     });
 
     dialogRef.afterClosed().subscribe(result => {

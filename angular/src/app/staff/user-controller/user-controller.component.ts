@@ -73,6 +73,7 @@ export class UserControllerComponent implements OnInit {
   openCreateStaffDialog() {
     const dialogRef = this.dialog.open(CreateStaffComponent, {
       width: '700px',
+      panelClass: 'custom-dialog-container',
       data: { newStaff: this.newStaff }
     });
 
@@ -87,6 +88,7 @@ export class UserControllerComponent implements OnInit {
     this.editStaff = { ...staff };
     const dialogRef = this.dialog.open(EditStaffComponent, {
       width: '400px',
+      panelClass: 'custom-dialog-container',
       data: { editStaff: this.editStaff }
     });
 

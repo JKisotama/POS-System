@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { GoodsService } from '../../../API/Admin/goods/goods.service';
 import { AuthenticationService } from '../../../API/Admin/authentication.service';
 import { GoodsDTO } from '../../../API/Admin/goods/model';
+import { GoodsGroupService } from '../../../API/Admin/Goods Group/goodsGroup.service';
 
 @Component({
   selector: 'app-create-goods',
@@ -18,16 +19,20 @@ export class CreateGoodsComponent implements OnInit {
 
   selectedFile: File | null = null;
 
+  groupList: { groupId: string; groupName: string }[] = [];
+
   constructor(
     public dialogRef: MatDialogRef<CreateGoodsComponent>,
     private goodService: GoodsService,
     private authenticationService: AuthenticationService,
     private fb: FormBuilder,
+    private goodGroupService: GoodsGroupService
   ){}
 
   ngOnInit(): void {
     this.storeId = this.authenticationService.getStoreIdUser();
     this.buildForm();
+    this.getAllGoodGroup();
   }
 
   buildForm(){
@@ -39,6 +44,18 @@ export class CreateGoodsComponent implements OnInit {
       storeId: [this.storeId, [Validators.required]],
       file: ['', [Validators.required]],
     });
+  }
+  getAllGoodGroup() {
+    if (this.storeId) {
+      this.goodGroupService.GetAllGoodsGroup(this.storeId).subscribe((response) => {
+        this.groupList = response; // Assuming response is an array of groups
+      });
+    }
+  }
+
+  onGroupChange(event: any) {
+    const selectedGroupId = event.target.value;
+    this.form.patchValue({ groupId: selectedGroupId });
   }
 
   Save(){

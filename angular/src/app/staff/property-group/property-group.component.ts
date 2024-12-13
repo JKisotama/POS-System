@@ -41,7 +41,7 @@ export class PropertyGroupComponent implements OnInit {
   openCreatePropertyGroup(){
     const dialogRef = this.dialog.open(CreatePropertyGroupComponent, {
       width: '700px',
-
+      panelClass: 'custom-dialog-container',
     });
 
     dialogRef.afterClosed().subscribe(result => {

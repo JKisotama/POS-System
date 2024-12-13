@@ -14,6 +14,7 @@ import { DialogProductComponent } from './dialog-product/dialog-product.componen
 import { DialogInvoiceComponent } from './dialog-invoice/dialog-invoice.component';
 import { PropertyGroupDTO } from '../../API/Admin/Property Group/model';
 import { PropertyGroupService } from '../../API/Admin/Property Group/propertyGroup.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pos-main',
@@ -27,6 +28,7 @@ export class PosMainComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private fb: FormBuilder,
     private propertyService: PropertyGroupService,
+    private snackBar: MatSnackBar,
   ) {}
 
   // Define columns to be displayed in the table
@@ -36,11 +38,13 @@ export class PosMainComponent implements OnInit {
   dataSource = new MatTableDataSource<POSDetailDto>();
   storeId: string | null = null;
   loginName: string | null = null;
+  fullName: string | null = null;
 
   showCards: boolean = false; // Controls the visibility of the cards
   currentCashierId: number = 1; // Tracks the cashier ID
   currentPosCreator: number = 1; // Tracks the POS creator
-  posHeader?: POSDto; // Stores the response from API
+  posHeader?: POSDto;
+  posHangList?: POSDto[];
   orders: POSDto[] = [];
   currentPosNumber: string | null = null;
 
@@ -74,6 +78,7 @@ export class PosMainComponent implements OnInit {
   ngOnInit(): void {
     this.storeId = this.authenticationService.getStoreIdUser();
     this.loginName = this.authenticationService.getLoggedInUserName();
+    this.fullName = this.authenticationService.getLoggedInFullName();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     const storedCashierId = localStorage.getItem('currentCashierId');
@@ -90,6 +95,8 @@ export class PosMainComponent implements OnInit {
     this.form.get('customerPay')?.valueChanges.subscribe(() => {
       this.emitCheckoutData();
     });
+    this.fetchPoHangList();
+    console.log(this.fullName);
   }
 
   buildForm() {
@@ -166,7 +173,8 @@ export class PosMainComponent implements OnInit {
 
   openCustomerDialog(): void {
     const dialogRef = this.dialog.open(DialogCustomerComponent, {
-      panelClass: 'custom-dialog-container'
+      panelClass: 'custom-dialog-container',
+
     });
 
     dialogRef.afterClosed().subscribe((result: CustomerDTO) => {
@@ -178,6 +186,8 @@ export class PosMainComponent implements OnInit {
 
   openProductDialog(): void {
     const dialogRef = this.dialog.open(DialogProductComponent, {
+      width: '80vw', // Set the width to 80% of the viewport width
+      height: '90vh',
       panelClass: 'custom-dialog-container'
     });
     dialogRef.componentInstance.itemAdded.subscribe(() => {
@@ -198,6 +208,45 @@ export class PosMainComponent implements OnInit {
       );
     }
   }
+
+  fetchPoHangList(): void {
+    if (this.storeId) {
+        this.posService.getPoHangList(this.storeId).subscribe({
+            next: (data: POSDto[]) => {
+                this.posHangList = data;
+                console.log('PO Hang List:', this.posHangList);
+            },
+            error: (error: any) => {
+                console.error('Error fetching PO Hang List:', error);
+            },
+        });
+    } else {
+        console.warn('Store ID is not provided');
+    }
+  }
+
+  hangPO(){
+    if(this.storeId && this.currentPosNumber) {
+      this.posService.hangPo(this.storeId, this.currentPosNumber).subscribe({
+        next: () => {
+          this.snackBar.open('Hang order successfully!', 'Close', {
+            duration: 3000, // Duration in milliseconds
+            panelClass: ['snackbar-success'], // Use the success class
+        });
+          console.log('PO successfully hung');
+      },
+      error: (error) => {
+        this.snackBar.open('Error Hanging item. Please try again.', 'Close', {
+          duration: 3000,
+          panelClass: ['snackbar-error'], // Use the error class
+      });
+          console.error('Error hanging PO:', error);
+      },
+      })
+    }
+  }
+
+
 
   updateCustomerInfo(customer: CustomerDTO): void {
     this.selectedCustomer = customer;

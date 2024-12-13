@@ -47,6 +47,7 @@ export class CustomerComponent implements OnInit {
   openCreateCustomer() {
     const dialogRef = this.dialog.open(CreateCustomerComponent, {
       width: '700px',
+      panelClass: 'custom-dialog-container',
     });
 
     dialogRef.afterClosed().subscribe(result => {

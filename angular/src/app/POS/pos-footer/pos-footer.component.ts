@@ -23,8 +23,7 @@ export class PosFooterComponent implements OnInit {
     public dialog: MatDialog,
     private authenticationService: AuthenticationService,
     private posService: POSService,
-    private snackBar: MatSnackBar
-
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -48,16 +47,17 @@ export class PosFooterComponent implements OnInit {
         ).subscribe({
           next: (response) => {
             console.log('Transaction finalized:', response);
-            this.snackBar.open('Check out successfully!', 'Close', { duration: 3000 }); // Success
+            this.snackBar.open('Check out successfully!', 'Close', { duration: 3000, panelClass: ['snackbar-success'] }); // Success
+            window.location.reload();
           },
           error: (error) => {
             console.error('Error finalizing transaction:', error);
-            this.snackBar.open('Check out failed.', 'Close', { duration: 3000 }); // Error
+            this.snackBar.open('Check out failed.', 'Close', { duration: 3000, panelClass: ['snackbar-error'] }); // Error
           },
         });
     } else {
         console.error('Missing required data for finalizing transaction.');
-        this.snackBar.open('Check out failed due to missing data.', 'Close', { duration: 3000 });
+        this.snackBar.open('Check out failed due to missing data.', 'Close', { duration: 3000 , panelClass: ['snackbar-error']});
     }
 }
 

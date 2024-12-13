@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {  Observable } from 'rxjs';
 import { POSDetailDto, POSDto } from './model';
 import { GoodsDTO } from '../goods/model';
+import { LoadingService } from '../../../loading.service';
+import { finalize } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',
@@ -10,16 +12,21 @@ import { GoodsDTO } from '../goods/model';
 
 export class POSService {
     constructor(
-        private http : HttpClient
+        private http : HttpClient,
+        private loadingService: LoadingService
     ){}
 
     private baseUrl = 'https://localhost:5000/api/PoS';
 
     generatePoHeader(storeId: string, posCreator: string): Observable<POSDto> {
         const url = `${this.baseUrl}/GenerateTempHeader`;
-        const params = { storeId, posCreator };
+        const params = { storeId, posCreator }; 
+
+        this.loadingService.show();
     
-        return this.http.get<POSDto>(url, { params });
+        return this.http.get<POSDto>(url, { params }).pipe(
+            finalize(() => this.loadingService.hide()) // Hide loading spinner
+          );
     }
 
     getPoHeadersPaged(storeId: string): Observable<{ items: POSDto[]; totalCount: number }> {
@@ -32,7 +39,11 @@ export class POSService {
     getGoodsList(storeId: string, goodsName: string): Observable<{ items: GoodsDTO[]; totalCount: number }> {
         const url = `${this.baseUrl}/GetGoodsList`;
         const params = { store_id: storeId, goodName: goodsName };
-        return this.http.get<{ items: GoodsDTO[]; totalCount: number }>(url, { params });
+
+        this.loadingService.show();
+        return this.http.get<{ items: GoodsDTO[]; totalCount: number }>(url, { params }).pipe(
+            finalize(() => this.loadingService.hide())
+        );
     }
 
     addItem(item: POSDetailDto): Observable<string> {
@@ -80,6 +91,25 @@ export class POSService {
     
         // Send the params in the POST request
         return this.http.post(url, {}, { params, responseType: 'text' });
+    }
+
+    getPoHangList(storeId: string): Observable<POSDto[]> {
+        const url = `${this.baseUrl}/GetPoHangList`;
+        const params = new HttpParams().set('store_id', storeId);
+
+        this.loadingService.show();
+        return this.http.get<POSDto[]>(url, { params }).pipe(
+            finalize(() => this.loadingService.hide())
+        );
+    }
+
+    hangPo(storeId: string, posNumber: string): Observable<void> {
+        const url = `${this.baseUrl}/HangPO`;
+        const params = new HttpParams()
+            .set('storeId', storeId)
+            .set('posNumber', posNumber);
+    
+        return this.http.put<void>(url, {}, { params });
     }
     
 

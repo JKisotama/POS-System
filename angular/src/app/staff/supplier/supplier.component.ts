@@ -44,7 +44,7 @@ export class SupplierComponent implements OnInit {
   openCreateSupplier() {
     const dialogRef = this.dialog.open(CreateSupplierComponent, {
       width: '700px',
-
+      panelClass: 'custom-dialog-container',
     });
 
     dialogRef.afterClosed().subscribe(result => {

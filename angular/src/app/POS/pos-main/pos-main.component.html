@@ -5,6 +5,28 @@
       <!-- TODO: Reponsive  -->
       <div class="col-xl-12 col-lg-12 col-md-12 order-information">
         <div class="d-flex justify-content-between">
+          <!-- Order Hang Holder -->
+          <div class="order-holder" *ngFor="let pos of posHangList">
+            <a href="javascript:void(0)" class="text-capitalize">
+              {{ pos.posNumber }}
+            </a>
+
+            <!-- Show this if no orders are hanging -->
+            <ng-template #noHangOrders>
+              <p>No hanging orders available</p>
+            </ng-template>
+          </div>
+
+          <!-- Order Hang Deleted -->
+          <div class="order-deleted">
+            <button>
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-md-12 order-information">
+        <div class="d-flex justify-content-between">
           <div class="order-holder">
             <a href="javascript:void(0)" class="text-capitalize">
               {{ currentPosNumber }}
@@ -21,9 +43,7 @@
             </button>
           </div>
           <div class="order-deleted">
-            <button>
-              <i class="fas fa-trash"></i>
-            </button>
+            <button (click)="hangPO()">Hang Order</button>
           </div>
         </div>
       </div>
@@ -125,7 +145,7 @@
           <h2>Bill Information:</h2>
           <div class="bill-information-item d-flex justify-content-between">
             <p class="text-capitalize bill-infor-title">Seller:</p>
-            <p class="text-capitalize bill-infor-detail">WhoTillBunReal</p>
+            <p class="text-capitalize bill-infor-detail">{{ fullName }}</p>
           </div>
           <div class="bill-information-item d-flex justify-content-between">
             <p class="text-capitalize bill-infor-title">Store:</p>
@@ -188,7 +208,7 @@
               <p class="Checkout-price">{{ total | number : "1.0-2" }} VND</p>
             </div>
             <div
-              class="checkout-info-item d-flex justify-content-between"
+              class="checkout-info-customer-pay d-flex justify-content-between"
               [formGroup]="form"
             >
               <p class="checkout-title">Customer Pay:</p>

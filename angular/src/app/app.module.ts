@@ -60,6 +60,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DialogAddCtmComponent } from './POS/pos-main/dialog-customer/dialog-add-ctm/dialog-add-ctm.component';
 import { DialogProductComponent } from './POS/pos-main/dialog-product/dialog-product.component';
 import { DialogInvoiceComponent } from './POS/pos-main/dialog-invoice/dialog-invoice.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { DialogInvoiceComponent } from './POS/pos-main/dialog-invoice/dialog-inv
     DialogAddCtmComponent,
     DialogProductComponent,
     DialogInvoiceComponent,
+    LoadingSpinnerComponent,
     
   ],
   imports: [

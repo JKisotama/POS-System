@@ -5,7 +5,7 @@
 .dialog-form {
   background-color: $Dark-Void !important;
   padding: 25px 30px;
-
+  height: 90vh;
   .custom-table {
     .mat-header-cell, .mat-cell {
       padding-bottom: 16px; // Customize the padding bottom
@@ -119,6 +119,7 @@
   
   
 }
+
 
 .success-snackbar {
   background-color: green; /* Change to your desired success color */

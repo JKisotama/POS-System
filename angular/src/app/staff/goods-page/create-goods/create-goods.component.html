@@ -1,11 +1,19 @@
-
 <div class="add-new-goods dialog-form">
   <h2>Add New Goods</h2>
   <div class="form-input">
     <form [formGroup]="form">
       <div class="mt-2">
-        <label>Group Id</label>
-        <input type="text" class="form-control" formControlName="groupId" />
+        <label>Group</label>
+        <select
+          class="form-select custom-select"
+          formControlName="groupId"
+          (change)="onGroupChange($event)"
+        >
+          <option value="">Select Group</option>
+          <option *ngFor="let group of groupList" [value]="group.groupId">
+            {{ group.groupName }}
+          </option>
+        </select>
       </div>
 
       <div class="mt-2">
@@ -15,11 +23,7 @@
 
       <div class="mt-2">
         <label>Good Brand</label>
-        <input
-          type="text"
-          class="form-control"
-          formControlName="goodsBrand"
-        />
+        <input type="text" class="form-control" formControlName="goodsBrand" />
       </div>
 
       <div class="mt-2">
@@ -41,12 +45,11 @@
       </div>
 
       <div class="btn-zone">
-        <button class="btn " (click)="Save()">
-          Save
-        </button>
-        <button class="btn " (click)="onCancel()">Cancel</button>
+        <button class="btn" (click)="Save()">Save</button>
+        <button class="btn" (click)="onCancel()">Cancel</button>
       </div>
-
     </form>
   </div>
 </div>
+
+<app-loading-spinner></app-loading-spinner>

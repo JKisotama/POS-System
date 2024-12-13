@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from './../../API/Admin/authentication.service';
 import { UserService } from '../../API/Admin/user/user.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent {
     private fb: FormBuilder, 
     private authservice: AuthenticationService,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private snackBar: MatSnackBar
   ){
     this.form = this.fb.group({
       storeId: ['', [Validators.required]],
@@ -36,6 +38,7 @@ export class LoginComponent {
       return;
     }
     this.loading = true;
+    this.loginError = null; 
     const storeId = this.form.get('storeId')?.value;
     const loginName = this.form.get('loginName')?.value;
     const passWord = this.form.get('passWord')?.value;
@@ -44,17 +47,23 @@ export class LoginComponent {
     this.userService.LoginUser(storeId, loginName, passWord).subscribe(
       (response) => {
         const userLevel = response.userLevel; 
+        const fullName = response.fullName;
   
-        this.authservice.setLoggedIn(true, loginName, storeId, userLevel);
-  
-        // Emit login success and stop loading
+        this.authservice.setLoggedIn(true, loginName, storeId, userLevel, fullName);
+        this.snackBar.open('Logged in successfully!', '', {
+          duration: 3000,
+          panelClass: ['snackbar-success']
+        });
         this.loginSuccess.emit();
         this.loading = false;
   
         this.router.navigate(['Admin']);
       },
       (error) => {
-        this.loginError = 'Login Failed. Please try again.';
+        this.snackBar.open('Login Failed. Please try again.', '', {
+          duration: 3000,
+          panelClass: ['snackbar-error']
+        });
         this.loading = false;
       }
     );

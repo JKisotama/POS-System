@@ -102,6 +102,7 @@ export class GoodsPageComponent implements OnInit {
   openCreateGoods(){
     const dialogRef = this.dialog.open(CreateGoodsComponent, {
       width: '700px',
+      panelClass: 'custom-dialog-container',
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -115,6 +116,7 @@ export class GoodsPageComponent implements OnInit {
   openCreateSellPrice(goodsId: string): void {
     const dialogRef = this.dialog.open(CreateSellPriceComponent, {
       width: '700px',
+      panelClass: 'custom-dialog-container',
       data: { goodsId } // Pass the goodsId to the dialog
     });
   

@@ -10,12 +10,17 @@ import { AuthenticationService } from '../../API/Admin/authentication.service';
 })
 export class AdminHeaderComponent  implements OnInit {
   items: MenuItem[] | undefined;
+  fullName: string | null = null;
+  userRole: number | null = null;
 
   constructor(private authenticationService: AuthenticationService,){
     
   }
 
   ngOnInit() {
+    this.fullName = this.authenticationService.getLoggedInFullName();
+    this.userRole = this.authenticationService.getUserRole();
+
       this.items = [
           {
               label: 'Update',
