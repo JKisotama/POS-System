@@ -69,12 +69,12 @@ namespace POS_Final_Year.Controller
         }
         
         [HttpGet("GenerateTempHeader")]
-        public IActionResult GenerateTempHeader(
+        public async Task<IActionResult> GenerateTempHeader(
             string storeId, 
             string posCreator,
             string cashierId = null)
         {
-            var tempHeader = _posServices.CreateTemporaryPoHeader(storeId, cashierId, posCreator);
+            var tempHeader = await _posServices.CreateTemporaryPoHeader(storeId, cashierId, posCreator);
             return Ok(tempHeader);
         }
         
