@@ -30,6 +30,8 @@ namespace POS_System_BAL.Services.POS
             string goodsPropertyName, 
             string groupPropertyName,
             string posCreator);
+
+        Task<IEnumerable<TblPo>> GetPoHangList(string store_id);
         Task PayPO(
             string store_id, 
             string po_number, 
@@ -37,8 +39,9 @@ namespace POS_System_BAL.Services.POS
             string payer,
             int pay_method);
         Task GetDataByShift(string store_id, string shift_number);
+        Task CancelPo(string storeId, string posNumber);
 
-        public TblPo CreateTemporaryPoHeader(
+        Task<TblPo> CreateTemporaryPoHeader(
             string storeId,
             string cashierId,
             string posCreator);

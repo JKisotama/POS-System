@@ -37,6 +37,21 @@ namespace POS_Final_Year.Controller
             return Ok(pageResult);
         } 
         
+        
+        [HttpGet("GetPoHangList")]
+        public async Task<ActionResult<IEnumerable<TblPo>>> GetPoHangList(string store_id)
+        {
+            var list = await  _posServices.GetPoHangList(store_id);
+            return Ok(list);
+        }
+        
+        [HttpPut("CancelPo")]
+        public async Task<ActionResult> GetPoHeaderList(string store_id, string pos_number)
+        {
+            var list = _posServices.CancelPo(store_id,pos_number);
+            return NoContent();
+        }
+        
         [HttpGet("GetPOSDetails")]
         public async Task<ActionResult> GetDetails(
             string store_id, 
@@ -46,7 +61,7 @@ namespace POS_Final_Year.Controller
             return Ok(items);
         }
         
-        [HttpGet("GetPOList")]
+        [HttpGet("GetPODetailsByPoHeader")]
         public async Task<ActionResult> GetDetailList(string store_id, string posNumber)
         {
             var list = await _posServices.GetPoItemsListAsync(store_id, posNumber);
@@ -111,11 +126,6 @@ namespace POS_Final_Year.Controller
         public async Task HangPo(string storeId, string posNumber)
         {
             await _posServices.HangPo(storeId, posNumber);
-        }
-
-        private bool TblPoExists(string id)
-        {
-            return _context.TblPos.Any(e => e.PosNumber == id);
         }
     }
 }
