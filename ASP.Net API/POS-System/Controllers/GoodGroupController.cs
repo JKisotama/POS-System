@@ -116,11 +116,22 @@ namespace POS_Final_Year.Controller
         [HttpGet("GetGoodProperty")]
         public async Task<ActionResult<IEnumerable<TblGoodsproperty>>> GetProperty(
             string store_id,
-            string goods_id, 
-            string property_id, 
-            string user_language = null)
+            string goods_id,
+            string property_id)
         {
-            var property = await _goodsServices.GetGoodsPropertyAsync(store_id,goods_id, property_id);
+            var property = await _goodsServices.GetGoodsPropertyAsync(store_id,goods_id,property_id);
+            if (property == null )
+            {
+                return NotFound("No Property found");
+            }
+            return Ok(property);
+        }
+        [HttpGet("GetGoodPropertyById")]
+        public async Task<ActionResult<IEnumerable<TblGoodsproperty>>> GetPropertyById(
+            string store_id,
+            string goods_id)
+        {
+            var property = await _goodsServices.GetGoodsPropertyByIdAsync(store_id,goods_id);
             if (property == null )
             {
                 return NotFound("No Property found");
@@ -141,16 +152,24 @@ namespace POS_Final_Year.Controller
             return Ok(goods);
         }
 
+        [HttpGet("GetSellPrice")]
+        public async Task<IActionResult> GetSellPrice(string store_id, string goods_id)
+        {
+            
+            var sellPrice = await _goodsServices.GetSellpricesAsync(store_id, goods_id);
+            return Ok(sellPrice);
+        }
+
         #endregion
 
         #region PUT
-        [HttpPut("Update Goods Image")]
-        public async Task<IActionResult> PutTblGoodsgroup(string store_id, string goods_id,  IFormFile imageFile = null)
+        [HttpPut("UpdateGoods")]
+        public async Task<IActionResult> UpdateGoods(string store_id, string goods_id, string good_name, string goods_brand, int goods_status, IFormFile imageFile = null)
         {
             try
             {
-                await _goodsServices.UpdateGoodsImage(store_id, goods_id, imageFile);
-                return NoContent(); // Return a NoContent response to indicate success
+                await _goodsServices.UpdateGoods(store_id, goods_id, good_name, goods_brand, goods_status,imageFile);
+                return NoContent(); 
             }
             catch (KeyNotFoundException)
             {
@@ -160,9 +179,98 @@ namespace POS_Final_Year.Controller
             {
                 return BadRequest(ex.Message);
             }
-            return NoContent(); 
         }
         
+        [HttpPut("UpdateGroup")]
+        public async Task<IActionResult> UpdateGroup(string store_id, string group_id, string group_name, int group_status)
+        {
+            try
+            {
+                await _goodsServices.UpdateGroup(store_id, group_id, group_name, group_status);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpPut("UpdateGoodsProperty")]
+        public async Task<IActionResult> UpdateGoodsProperty(string store_id, string property_id, string goods_id, string propert_name)
+        {
+            try
+            {
+                await _goodsServices.UpdateGoodsProperty(store_id, property_id, goods_id, propert_name);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpPut("UpdateGroupProperty")]
+        public async Task<IActionResult> UpdateGroupProperty(string store_id, string property_id, string property_name)
+        {
+            try
+            {
+                await _goodsServices.UpdateGroupProperty(store_id, property_id, property_name);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpPut("UpdateUnit")]
+        public async Task<IActionResult> UpdateUnit(string store_id, string goods_id, string unit, int size, int status, int stock)
+        {
+            try
+            {
+                await _goodsServices.UpdateGoodsUnit(store_id, goods_id, unit, size, status, stock);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        
+        [HttpPut("UpdateSellingPrice")]
+        public async Task<IActionResult> UpdateSellingPrice(string store_id, string goods_id, string unit, string barcode, int quantity, int selling_price)
+        {
+            try
+            {
+                await _goodsServices.UpdateSellingPrices(store_id, goods_id, unit, barcode, quantity, selling_price);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         
         #endregion
 
@@ -219,6 +327,134 @@ namespace POS_Final_Year.Controller
 
             return Ok(prices);
         }
+        #endregion
+
+        #region DELETE
+
+        [HttpDelete("DeleteGoods")]
+        public async Task<IActionResult> DeleteGoods(string store_id, string goods_id)
+        {
+            try
+            {
+                await _goodsServices.DeleteGoods(store_id, goods_id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpDelete("DeleteGroup")]
+        public async Task<IActionResult> DeleteGroup(string store_id, string group_id)
+        {
+            try
+            {
+                await _goodsServices.DeleteGroup(store_id, group_id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpDelete("DeleteGoodsProperty")]
+        public async Task<IActionResult> DeleteGoodsProperty(string store_id, string goods_id)
+        {
+            try
+            {
+                await _goodsServices.DeleteGoodsProperty(store_id, goods_id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpDelete("DeleteGroupProperty")]
+        public async Task<IActionResult> DeleteGroupProperty(string store_id, string group_id)
+        {
+            try
+            {
+                await _goodsServices.DeleteGroupProperty(store_id, group_id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpDelete("DeleteGoodsUnit")]
+        public async Task<IActionResult> DeleteGoodsUnit(string store_id, string goods_unit)
+        {
+            try
+            {
+                await _goodsServices.DeleteGoodsUnit(store_id, goods_unit);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpDelete("DeleteSellingPrice")]
+        public async Task<IActionResult> DeleteSellingPrice(string store_id, string goods_id, string unit)
+        {
+            try
+            {
+                await _goodsServices.DeleteSellPrice(store_id, goods_id, unit);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         #endregion
 
     }

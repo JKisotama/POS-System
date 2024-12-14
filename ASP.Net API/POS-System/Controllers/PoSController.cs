@@ -101,6 +101,12 @@ namespace POS_Final_Year.Controller
                 return StatusCode(500, $"Error adding item: {ex.Message}");
             }
         }
+                
+        [HttpDelete("DeleteItem")]
+        public async Task UnHangPo(string storeId, string posNumber)
+        {
+            await _posServices.DeletePoItemAsync(storeId, posNumber);
+        }
 
         [HttpPost("FinalizeTransaction")]
         public async Task<IActionResult> FinalizeTransaction(
@@ -127,5 +133,6 @@ namespace POS_Final_Year.Controller
         {
             await _posServices.HangPo(storeId, posNumber);
         }
+
     }
 }

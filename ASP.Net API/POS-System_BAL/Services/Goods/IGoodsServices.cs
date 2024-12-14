@@ -2,16 +2,13 @@
 using POS_System_BAL.DTOs;
 using POS_System_DAL.Data;
 using POS_System_DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace POS_System_BAL.Services.Goods
 {
     public interface IGoodsServices
     {
+        #region GET
         IQueryable<TblGood> GetGoodsQueryable();
         IQueryable<TblSellprice> GetSelPriceQueryable();
         Task<IEnumerable<TblGoodsgroup>> GetTblGoodsgroupsAsync(string store_id);
@@ -27,29 +24,53 @@ namespace POS_System_BAL.Services.Goods
         Task<IEnumerable<GoodUnitDTO>> GetGoodsUnitAsync(string store_id, string goods_id, int type);
         Task<IEnumerable<TblGoodsproperty>> GetGoodsPropertyAsync(
             string store_id, 
-            string goods_id, 
-            string property_group, 
-            string user_language = null);
+            string goods_id,
+            string property_group);
+
+        Task<IEnumerable<TblGoodsproperty>> GetGoodsPropertyByIdAsync(
+            string store_id,
+            string goods_id);
         Task<IEnumerable<GoodsWithSellPriceDTO>> GetGoodsWithSellPricesAsync(
-        IQueryable<TblGood> query,
-        IQueryable<TblSellprice> sellPriceQuery, // Added parameter for TblSellPrice
-        string store_id = null,
-        string searchTerm = null,
-        int? sellNumber = null,
-        int? sellPrice = null);
-        Task<IEnumerable<TblSellprice>> GetSellpricesAsync(string store_id, string goods_id, string unit, int quantity);
+            IQueryable<TblGood> query,
+            IQueryable<TblSellprice> sellPriceQuery,
+            string store_id = null,
+            string searchTerm = null,
+            int? sellNumber = null,
+            int? sellPrice = null);
+        Task<IEnumerable<TblSellprice>> GetSellpricesAsync(string store_id, string goods_id);
+        #endregion
+
+        #region POST
         Task SaveGoodsGroup(GoodsGroupDTO goodsGroupDTO);
         Task SavePropertyGroup(TblPropertygroup tblPropertygroup);
         Task SaveSellingPrices(TblSellprice tblSellprice);
         Task SaveUnit(GoodUnitDTO goodUnitDTO);
         Task SaveGoods(GoodsDTO goodsDTO, IFormFile imageFile);
         Task SaveProperty(string store_id, string goods_id, string property_id, string property_value);
-        Task UpdateGoodsImage(string storeId, string goodsId, IFormFile imageFile);
-        string GenerateGoodGroupID(string store_id);
-        string GenerateGoodId(string store_id, string groupId);
-        string GenerateGoodGroupProperty(string store_id);
-        int GetGroupCounterByStoreId(string storerId);
-        int GetGoodsCounterByStoreId(string storeId, string groupId);
-        int GetPropertyCounterByStoreId(string storeId);
+        #endregion
+
+        #region UPDATE
+
+        Task UpdateGoods(string storeId, string goodsId, string goodsName, string goodsBrand, int goodsStatus, IFormFile imageFile);
+        Task UpdateGroup(string storeId, string groupId, string groupName, int groupStatus);
+        Task UpdateGoodsProperty(string storeId, string propertyId, string goodsId, string propertyName);
+        Task UpdateGroupProperty(string storeId, string propertyId, string propertyName);
+        Task UpdateGoodsUnit(string storeId, string goodsId, string goodsUnit, int size, int status, int stock);
+        Task UpdateSellingPrices(string storeId, string goodsId, string barcode, string goodsUnit, int price, int sku);
+        
+        #endregion
+
+        #region DELETE
+
+        Task DeleteGoods(string storeId, string goodsId);
+        Task DeleteGroup(string storeId, string groupId);
+        Task DeleteGoodsProperty(string storeId, string propertyId);
+        Task DeleteGroupProperty(string storeId, string propertyId);
+
+        Task DeleteGoodsUnit(string storeId, string goodsUnit);
+        Task DeleteSellPrice(string storeId, string goodsId, string goodsUnit);
+
+        #endregion
+        
     }
 }

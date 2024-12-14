@@ -385,23 +385,7 @@ namespace POS_System_BAL.Services.POS
                 PosStatus = 0
             };
         }
-
-        public async Task<PageResult<TblPo>> GetPoHeadersWithPagingAsync(string storeId, PagingParameters paging)
-        {
-            var totalCount = await _onlinePosContext.TblPos
-                .CountAsync(p => p.StoreId == storeId);
-
-            var headers = await _onlinePosContext.TblPos
-                .Where(p => p.StoreId == storeId)
-                .OrderByDescending(p => p.PosDate)
-                .Skip((paging.PageNumber - 1) * paging.PageSize)
-                .Take(paging.PageSize)
-                .ToListAsync();
-
-            return new PageResult<TblPo>(headers, totalCount);
-        }
-
-
+        
         private string GerenatePosNumber(
             string store_id,
             string cashier_id,
@@ -531,5 +515,30 @@ namespace POS_System_BAL.Services.POS
                 throw new Exception($"Error updating POS status: {ex.Message}");
             }
         }
+        
+        public async Task DeletePoItemAsync(string storeId, string posNumber)
+        {
+            var item = await _onlinePosContext.TblPosdetails
+                .FirstOrDefaultAsync(detail =>
+                    detail.StoreId == storeId &&
+                    detail.PosNumber == posNumber);
+            if (item == null)
+            {
+                throw new Exception("Item not found for the given details.");
+            }
+
+            _onlinePosContext.TblPosdetails.Remove(item);
+
+            try
+            {
+                await _onlinePosContext.SaveChangesAsync();
+                await UpdatePoTotalsAsync(storeId, posNumber);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error deleting PO item: {ex.Message}");
+            }
+        }
+
     }
 }

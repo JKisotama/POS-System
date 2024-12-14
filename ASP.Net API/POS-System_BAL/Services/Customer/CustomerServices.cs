@@ -23,6 +23,8 @@ namespace POS_System_BAL.Services.Customer
             _onlinePosContext = onlinePosContext;
         }
 
+        #region GET
+
         public async Task<IEnumerable<TblCustomer>> GetAllCustomer(string company_id)
         {
             var customers = await _onlinePosContext.TblCustomers
@@ -39,6 +41,10 @@ namespace POS_System_BAL.Services.Customer
             return customer;
         }
 
+        #endregion
+
+        #region POST
+
         public async Task CreateCustomer(TblCustomer customer)
         {
             var customerCounter = GenerateCustomerID(customer.CompanyId, customer.CreatedDate);
@@ -49,16 +55,35 @@ namespace POS_System_BAL.Services.Customer
             await _onlinePosContext.SaveChangesAsync();
         }
 
+        #endregion
+
+        #region PUT
+
         public async Task UpdateCustomer(CustomerDTO customerDto)
         {
             if (customerDto.CompanyId != null)
             {
                 var existCustomer = await GetCustomer(customerDto.CompanyId, customerDto.CustomerId);
-                    _mapper.Map(customerDto, existCustomer);
-                    _onlinePosContext.Update(existCustomer);
+                _mapper.Map(customerDto, existCustomer);
+                _onlinePosContext.Update(existCustomer);
             }
         }
+
+        #endregion
+
+        #region DELETE
+
+        public async Task DeleteCustomer(string company_id,string customer_id)
+        {
+            var customer = GetCustomer(company_id, customer_id);
+            _onlinePosContext.Remove(customer);
+            await _onlinePosContext.SaveChangesAsync();
+        }
         
+        #endregion
+
+        #region AUTO-GEN
+
         private string GenerateCustomerID(
             string company_id, DateTime created_date)
         {
@@ -72,24 +97,21 @@ namespace POS_System_BAL.Services.Customer
         private int GetCustomerCounterByStoreId(
             string company_id, DateTime created_date)
         {
-                var customerCounter = _onlinePosContext.TblCustomers
-                  .Where(g => g.CompanyId == company_id 
-                              && g.CreatedDate.Date == created_date.Date)
-                  .OrderBy(g => g.CompanyId)
-                  .ThenByDescending(g => g.CustomerCounter)
-                  .Select(g => g.CustomerCounter)
-                  .FirstOrDefault();
-                return customerCounter;
+            var customerCounter = _onlinePosContext.TblCustomers
+                .Where(g => g.CompanyId == company_id 
+                            && g.CreatedDate.Date == created_date.Date)
+                .OrderBy(g => g.CompanyId)
+                .ThenByDescending(g => g.CustomerCounter)
+                .Select(g => g.CustomerCounter)
+                .FirstOrDefault();
+            return customerCounter;
         }
 
+        #endregion
+       
 
-        public async Task DeleteCustomer(string company_id,string customer_id)
-        {
-            var customer = GetCustomer(company_id, customer_id);
-            _onlinePosContext.Remove(customer);
-            await _onlinePosContext.SaveChangesAsync();
-        }
 
+      
 
     }
 }

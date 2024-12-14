@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using POS_System_BAL.DTOs;
 using POS_System_BAL.Services.User;
 using POS_System_DAL.Data;
@@ -27,7 +21,8 @@ namespace POS_Final_Year.Controller
             _userServices = userServices;
         }
 
-        // GET: api/Users
+        #region GET
+
         [HttpGet("GetAllUser")]
         public async Task<ActionResult<IEnumerable<TblUser>>> GetTblUsers(string store_id)
         {
@@ -53,29 +48,10 @@ namespace POS_Final_Year.Controller
             return tblUser;
         }
 
-        
-        [HttpPut("UpdateUser")]
-        public async Task<ActionResult> PutTblUser([FromQuery]UserDTO userDTO,string store_id, string login_name)
-        {
+        #endregion
 
-            var updateUser = await _userServices
-                .UpdateUser(userDTO,store_id, login_name);
-            return NoContent();
-        }
+        #region POST
 
-        [HttpPut("UpdateUserLevel")]
-        public async Task<ActionResult> PutUserLevel(string store_id, string login_name, int? userLevel)
-        {
-            var updateUser = await _userServices.CreateUserLevelAsync(store_id, login_name, userLevel);
-            if (updateUser == null)
-            {
-                return NotFound("No User Found");
-            }
-            return NoContent();
-        }
-
-
-        
         [HttpPost("CreateUser")]
         public async Task<ActionResult<TblUser>> PostTblUser([FromQuery]TblUser tblUser)
         {
@@ -97,6 +73,62 @@ namespace POS_Final_Year.Controller
             }
             return Ok(loginUser);
         }
+
+        #endregion
+        
+        #region PUT
+
+        [HttpPut("UpdateUser")]
+        public async Task<ActionResult> PutTblUser([FromQuery]UserDTO userDTO,string store_id, string login_name)
+        {
+
+            var updateUser = await _userServices
+                .UpdateUser(userDTO,store_id, login_name);
+            return NoContent();
+        }
+
+        [HttpPut("UpdateUserLevel")]
+        public async Task<ActionResult> PutUserLevel(string store_id, string login_name, int? userLevel)
+        {
+            var updateUser = await _userServices.CreateUserLevelAsync(store_id, login_name, userLevel);
+            if (updateUser == null)
+            {
+                return NotFound("No User Found");
+            }
+            return NoContent();
+        }
+
+        #endregion
+
+        #region DELETE
+
+        [HttpDelete("DeleteUser")]
+        public async Task<IActionResult> DeleteUser(string store_id, string login_name)
+        {
+            try
+            {
+                await _userServices.DeleteUser(store_id, login_name);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        #endregion
+
+
+        
+       
 
     
 
