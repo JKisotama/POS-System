@@ -47,8 +47,7 @@ namespace POS_System_BAL.Services.POS
             string posCreator);
 
         Task HangPo(string storeId, string posNumber);
-        Task<PageResult<TblPo>> GetPoHeadersWithPagingAsync(
-            string storeId, PagingParameters paging);
+        Task DeletePoItemAsync(string storeId, string posNumber);
     }
     
 }

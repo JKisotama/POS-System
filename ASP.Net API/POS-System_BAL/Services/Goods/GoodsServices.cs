@@ -324,8 +324,8 @@ namespace POS_System_BAL.Services.Goods
         }
         #endregion
 
-        
-        public async Task UpdateGoodsImage(string storeId, string goodsId, IFormFile imageFile)
+        #region UPDATE
+        public async Task UpdateGoods(string storeId, string goodsId, string goodsName, string goodsBrand, int goodsStatus, IFormFile imageFile)
         {
             var existingGoods = await _onlinePosContext.TblGoods
                 .FirstOrDefaultAsync(g => g.GoodsId == goodsId && g.StoreId == storeId);
@@ -334,6 +334,14 @@ namespace POS_System_BAL.Services.Goods
             {
                 throw new KeyNotFoundException("Goods not found.");
             }
+            
+            if (!string.IsNullOrEmpty(goodsName))
+                existingGoods.GoodsName = goodsName;
+
+            if (!string.IsNullOrEmpty(goodsBrand))
+                existingGoods.GoodsBrand = goodsBrand;
+
+            existingGoods.GoodsStatus = goodsStatus;
             
             if (imageFile != null)
             {
@@ -349,6 +357,131 @@ namespace POS_System_BAL.Services.Goods
 
             await _onlinePosContext.SaveChangesAsync();
         }
+        
+        public async Task UpdateGoodsProperty(string storeId, string propertyId, string goodsId,string propertyName)
+        {
+            var existingProperty = await _onlinePosContext.TblGoodsproperties
+                .FirstOrDefaultAsync(p => p.StoreId == storeId && p.GoodsId == goodsId && p.PropertyId == propertyId);
+
+            if (existingProperty == null)
+            {
+                throw new KeyNotFoundException("Goods property not found.");
+            }
+
+            if (!string.IsNullOrEmpty(propertyName))
+                existingProperty.PropertyName = propertyName;
+            
+            await _onlinePosContext.SaveChangesAsync();
+        }
+
+        
+        public async Task UpdateGroupProperty(string storeId,string propertyId, string propertyName)
+        {
+            var existingGroup = await _onlinePosContext.TblGoodsproperties
+                .FirstOrDefaultAsync(g => g.StoreId == storeId && g.PropertyId == propertyId);
+
+            if (existingGroup == null)
+            {
+                throw new KeyNotFoundException("Group property not found.");
+            }
+
+            if (!string.IsNullOrEmpty(propertyName))
+                existingGroup.PropertyName = propertyName;
+            
+            await _onlinePosContext.SaveChangesAsync();
+        }
+        
+        public async Task UpdateGoodsUnit(string storeId, string goodsId,string goodsUnit, int size, int status, int stock)
+        {
+            var existingUnit = await _onlinePosContext.TblGoodsunits
+                .FirstOrDefaultAsync(u => u.StoreId == storeId && u.GoodsUnit == goodsUnit);
+
+            if (existingUnit == null)
+            {
+                throw new KeyNotFoundException("Goods unit not found.");
+            }
+
+            if (!string.IsNullOrEmpty(goodsUnit))
+                existingUnit.GoodsUnit = goodsUnit;
+
+            if (!string.IsNullOrEmpty(goodsId))
+                existingUnit.GoodsId = goodsId;
+            
+            existingUnit.UnitSize = size;
+            existingUnit.UnitStatus = status;
+            existingUnit.UnitStock = stock;
+            
+
+            await _onlinePosContext.SaveChangesAsync();
+        }
+
+
+
+        #endregion
+
+        #region DELETE
+
+        public async Task DeleteGoodsProperty(string storeId, string propertyId)
+        {
+            var property = await _onlinePosContext.TblGoodsproperties
+                .FirstOrDefaultAsync(p => p.StoreId == storeId && p.PropertyId == propertyId);
+
+            if (property == null)
+            {
+                throw new KeyNotFoundException("Goods property not found.");
+            }
+
+            _onlinePosContext.TblGoodsproperties.Remove(property);
+            await _onlinePosContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteGroupProperty(string storeId, string propertyId)
+        {
+            var group = await _onlinePosContext.TblPropertygroups
+                .FirstOrDefaultAsync(g => g.StoreId == storeId && g.PropertyId == propertyId);
+
+            if (group == null)
+            {
+                throw new KeyNotFoundException("Group property not found.");
+            }
+            
+            bool validGoodsProperty = await _onlinePosContext.TblGoodsproperties
+                .AnyAsync(g => g.StoreId == storeId && g.PropertyId == propertyId);
+
+            if (validGoodsProperty)
+            {
+                throw new InvalidOperationException("Cannot delete group property because it has associated goods.");
+            }
+
+            _onlinePosContext.TblPropertygroups.Remove(group);
+            await _onlinePosContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteGoodsUnit(string storeId,string goodsUnit)
+        {
+            var unit = await _onlinePosContext.TblGoodsunits
+                .FirstOrDefaultAsync(u => u.StoreId == storeId && u.GoodsUnit == goodsUnit);
+
+            if (unit == null)
+            {
+                throw new KeyNotFoundException("Goods unit not found.");
+            }
+            
+            bool validUnit = await _onlinePosContext.TblSellprices
+                .AnyAsync(g => g.StoreId == storeId && g.GoodsUnit == goodsUnit);
+
+            if (validUnit)
+            {
+                throw new InvalidOperationException("Cannot delete group property because it has associated goods.");
+            }
+
+            _onlinePosContext.TblGoodsunits.Remove(unit);
+            await _onlinePosContext.SaveChangesAsync();
+        }
+
+
+        #endregion
+        
         
         private async Task<ImageUploadResult> UploadImageToCloudinary(
             IFormFile imageFile,

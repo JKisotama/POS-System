@@ -12,6 +12,7 @@ namespace POS_System_BAL.Services.Goods
 {
     public interface IGoodsServices
     {
+        #region GET
         IQueryable<TblGood> GetGoodsQueryable();
         IQueryable<TblSellprice> GetSelPriceQueryable();
         Task<IEnumerable<TblGoodsgroup>> GetTblGoodsgroupsAsync(string store_id);
@@ -31,25 +32,51 @@ namespace POS_System_BAL.Services.Goods
             string property_group, 
             string user_language = null);
         Task<IEnumerable<GoodsWithSellPriceDTO>> GetGoodsWithSellPricesAsync(
-        IQueryable<TblGood> query,
-        IQueryable<TblSellprice> sellPriceQuery, // Added parameter for TblSellPrice
-        string store_id = null,
-        string searchTerm = null,
-        int? sellNumber = null,
-        int? sellPrice = null);
+            IQueryable<TblGood> query,
+            IQueryable<TblSellprice> sellPriceQuery,
+            string store_id = null,
+            string searchTerm = null,
+            int? sellNumber = null,
+            int? sellPrice = null);
         Task<IEnumerable<TblSellprice>> GetSellpricesAsync(string store_id, string goods_id, string unit, int quantity);
+        #endregion
+
+        #region POST
         Task SaveGoodsGroup(GoodsGroupDTO goodsGroupDTO);
         Task SavePropertyGroup(TblPropertygroup tblPropertygroup);
         Task SaveSellingPrices(TblSellprice tblSellprice);
         Task SaveUnit(GoodUnitDTO goodUnitDTO);
         Task SaveGoods(GoodsDTO goodsDTO, IFormFile imageFile);
         Task SaveProperty(string store_id, string goods_id, string property_id, string property_value);
-        Task UpdateGoodsImage(string storeId, string goodsId, IFormFile imageFile);
+        #endregion
+
+        #region UPDATE
+
+        Task UpdateGoods(string storeId, string goodsId, string goodsName, string goodsBrand, int goodsStatus, IFormFile imageFile);
+        Task UpdateGoodsProperty(string storeId, string propertyId, string goodsId, string propertyName);
+        Task UpdateGroupProperty(string storeId, string propertyId, string propertyName);
+        Task UpdateGoodsUnit(string storeId, string goodsId, string goodsUnit, int size, int status, int stock);
+        
+        #endregion
+
+        #region DELETE
+
+        Task DeleteGoodsProperty(string storeId, string propertyId);
+        Task DeleteGroupProperty(string storeId, string propertyId);
+
+        Task DeleteGoodsUnit(string storeId, string goodsUnit);
+
+        #endregion
+        
+        
+        #region AUTO-GEN
         string GenerateGoodGroupID(string store_id);
         string GenerateGoodId(string store_id, string groupId);
         string GenerateGoodGroupProperty(string store_id);
         int GetGroupCounterByStoreId(string storerId);
         int GetGoodsCounterByStoreId(string storeId, string groupId);
         int GetPropertyCounterByStoreId(string storeId);
+        #endregion
+        
     }
 }

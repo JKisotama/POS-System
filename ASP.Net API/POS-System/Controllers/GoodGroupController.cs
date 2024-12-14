@@ -144,13 +144,13 @@ namespace POS_Final_Year.Controller
         #endregion
 
         #region PUT
-        [HttpPut("Update Goods Image")]
-        public async Task<IActionResult> PutTblGoodsgroup(string store_id, string goods_id,  IFormFile imageFile = null)
+        [HttpPut("UpdateGoods")]
+        public async Task<IActionResult> PutTblGoodsgroup(string store_id, string goods_id, string good_name, string goods_brand, int goods_status, IFormFile imageFile = null)
         {
             try
             {
-                await _goodsServices.UpdateGoodsImage(store_id, goods_id, imageFile);
-                return NoContent(); // Return a NoContent response to indicate success
+                await _goodsServices.UpdateGoods(store_id, goods_id, good_name, goods_brand, goods_status,imageFile);
+                return NoContent(); 
             }
             catch (KeyNotFoundException)
             {
@@ -160,7 +160,42 @@ namespace POS_Final_Year.Controller
             {
                 return BadRequest(ex.Message);
             }
-            return NoContent(); 
+        }
+        
+        [HttpPut("UpdateGoodsProperty")]
+        public async Task<IActionResult> UpdateGoodsProperty(string store_id, string property_id, string goods_id, string propert_name)
+        {
+            try
+            {
+                await _goodsServices.UpdateGoodsProperty(store_id, property_id, goods_id, propert_name);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpPut("UpdateGroupProperty")]
+        public async Task<IActionResult> UpdateGroupProperty(string store_id, string property_id, string property_name)
+        {
+            try
+            {
+                await _goodsServices.UpdateGroupProperty(store_id, property_id, property_name);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         
         
@@ -219,6 +254,72 @@ namespace POS_Final_Year.Controller
 
             return Ok(prices);
         }
+        #endregion
+
+        #region DELETE
+
+        [HttpDelete("DeleteGoodsProperty")]
+        public async Task<IActionResult> DeleteGoodsProperty(string store_id, string goods_id)
+        {
+            try
+            {
+                await _goodsServices.DeleteGoodsProperty(store_id, goods_id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpDelete("DeleteGroupProperty")]
+        public async Task<IActionResult> DeleteGroupProperty(string store_id, string group_id)
+        {
+            try
+            {
+                await _goodsServices.DeleteGroupProperty(store_id, group_id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpDelete("DeleteGoodsUnit")]
+        public async Task<IActionResult> DeleteGoodsUnit(string store_id, string goods_unit)
+        {
+            try
+            {
+                await _goodsServices.DeleteGoodsUnit(store_id, goods_unit);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         #endregion
 
     }
