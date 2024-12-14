@@ -27,7 +27,7 @@ namespace POS_System_BAL.Services.Goods
             string goods_id,
             string property_group);
 
-        Task<IEnumerable<TblGoodsproperty>> GetGoodsPropertyByIdAsync(
+        Task<TblGoodsproperty> GetGoodsPropertyByIdAsync(
             string store_id,
             string goods_id);
         Task<IEnumerable<GoodsWithSellPriceDTO>> GetGoodsWithSellPricesAsync(
