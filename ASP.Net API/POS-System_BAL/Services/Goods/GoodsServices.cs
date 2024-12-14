@@ -106,13 +106,13 @@ namespace POS_System_BAL.Services.Goods
             return _onlinePosContext.TblGoodsproperties
                 .Where(s => s.StoreId == store_id && s.GoodsId == goods_id && s.PropertyId == property_group);
         }
-        public async Task<IEnumerable<TblGoodsproperty>> GetGoodsPropertyByIdAsync(
+        public async Task<TblGoodsproperty> GetGoodsPropertyByIdAsync(
             string store_id, 
             string goods_id)
         {
             return await _onlinePosContext.TblGoodsproperties
                 .Where(s => s.StoreId == store_id && s.GoodsId == goods_id)
-                .ToListAsync();
+                .FirstOrDefaultAsync();
         }
         public async Task<IEnumerable<GoodsWithSellPriceDTO>> GetGoodsWithSellPricesAsync(
         IQueryable<TblGood> query,

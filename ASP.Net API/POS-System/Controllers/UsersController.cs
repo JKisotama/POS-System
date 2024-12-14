@@ -71,7 +71,7 @@ namespace POS_Final_Year.Controller
             {
                 return Unauthorized("Invalid login credentials."); 
             }
-            return Ok(loginUser);
+            return Ok(new { message = "Login successful.", user = loginUser });
         }
 
         #endregion
