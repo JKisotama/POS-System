@@ -24,7 +24,7 @@ namespace POS_Final_Year.Controller
             _supplierServices = supplierServices;
         }
 
-
+        #region GET
         [HttpGet("GetAllSupplier")]
         public async Task<ActionResult<IEnumerable<TblSupplier>>> GetTblSuppliers(string store_id)
         {
@@ -45,6 +45,22 @@ namespace POS_Final_Year.Controller
             return Ok(tblSupplier);
         }
 
+        #endregion
+
+        #region POST
+
+        [HttpPost("CreateSupplier")]
+        public async Task<ActionResult<TblSupplier>> PostTblSupplier(SupplierDTO supplierDTO)
+        {
+            await _supplierServices.CreateSupplier(supplierDTO);
+
+            return StatusCode(201, supplierDTO);
+        }
+
+        #endregion
+        
+        #region PUT
+
         [HttpPut("UpdateSupplier")]
         public async Task<IActionResult> PutTblSupplier(SupplierDTO supplierDTO)
         {
@@ -57,13 +73,37 @@ namespace POS_Final_Year.Controller
             return NoContent();
         }
 
+        #endregion
 
-        [HttpPost("CreateSupplier")]
-        public async Task<ActionResult<TblSupplier>> PostTblSupplier(SupplierDTO supplierDTO)
+        #region DELETE
+
+        [HttpDelete("DeleteSupplier")]
+        public async Task<IActionResult> DeleteSupplier(string store_id, string supplier_id)
         {
-            await _supplierServices.CreateSupplier(supplierDTO);
-
-            return StatusCode(201, supplierDTO);
+            try
+            {
+                await _supplierServices.DeleteSupplierAsync(store_id, supplier_id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
+
+        #endregion
+
+       
+
+
+      
     }
 }

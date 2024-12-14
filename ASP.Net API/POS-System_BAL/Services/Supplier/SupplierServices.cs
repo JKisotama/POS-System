@@ -22,6 +22,8 @@ namespace POS_System_BAL.Services.Supplier
             _mapper = mapper;
         }
 
+        #region GET
+
         public async Task<IEnumerable<TblSupplier>> GetAllSupplier(string store_id)
         {
             return await _onlinePosContext.TblSuppliers.
@@ -39,6 +41,11 @@ namespace POS_System_BAL.Services.Supplier
             return supplierList;
         }
 
+
+        #endregion
+
+        #region POST
+
         public async Task CreateSupplier(SupplierDTO supplier)
         {
             var entity = _mapper.Map<TblSupplier>(supplier);
@@ -50,17 +57,41 @@ namespace POS_System_BAL.Services.Supplier
             await _onlinePosContext.SaveChangesAsync();
         }
 
+        #endregion
+
+        #region PUT
+
         public async Task UpdateSupplier(SupplierDTO supplierDTO)
         {
             var existSupplier = await GetSupplier(supplierDTO.StoreId, supplierDTO.SupplierId);
             if (existSupplier != null)
             {
                 _mapper.Map(supplierDTO, existSupplier);
-                 _onlinePosContext.Update(existSupplier);
+                _onlinePosContext.Update(existSupplier);
                 
             }
             throw new InvalidOperationException("No Supplier found");
         }
+
+
+        #endregion
+
+        #region DELETE
+
+        public async Task<TblSupplier> DeleteSupplierAsync(string store_id, string supplier_id)
+        {
+            var supplier = await GetSupplier(store_id, supplier_id);
+            if (supplier != null)
+            {
+                _onlinePosContext.Remove(supplier);
+                return supplier;
+            }
+            throw new InvalidOperationException("no Supplier Found");
+        }
+
+        #endregion
+
+        #region AUTO-GEN
 
         public string GenerateSupplierID(string store_id)
         {
@@ -74,24 +105,18 @@ namespace POS_System_BAL.Services.Supplier
 
         public int GetSupplierCounterByStoreId(string storeId)
         {
-                var supplierCounetr = _onlinePosContext.TblSuppliers
-                    .Where(g => g.StoreId == storeId )
-                    .OrderBy(g => g.StoreId)
-                    .ThenByDescending(g => g.SupplierCounter)
-                    .Select(g => g.SupplierCounter)
-                    .FirstOrDefault();
-                return supplierCounetr;
+            var supplierCounetr = _onlinePosContext.TblSuppliers
+                .Where(g => g.StoreId == storeId )
+                .OrderBy(g => g.StoreId)
+                .ThenByDescending(g => g.SupplierCounter)
+                .Select(g => g.SupplierCounter)
+                .FirstOrDefault();
+            return supplierCounetr;
         }
 
-        public async Task<TblSupplier> DeleteAsync(string store_id, string supplier_id)
-        {
-            var supplier = await GetSupplier(store_id, supplier_id);
-            if (supplier != null)
-            {
-               _onlinePosContext.Remove(supplier);
-               return supplier;
-            }
-            throw new InvalidOperationException("no Supplier Found");
-        }
+        #endregion
+       
+
+        
     }
 }

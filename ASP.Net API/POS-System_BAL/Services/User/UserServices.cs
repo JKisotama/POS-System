@@ -25,6 +25,8 @@ namespace POS_System_BAL.Services.User
             _onlinePosContext = onlinePosContext;
         }
 
+        #region GET
+
         public async Task<IEnumerable<TblUser>> GetAllUser(string store_id)
         {
             return await _onlinePosContext.TblUsers.Where(s => s.StoreId == store_id).ToListAsync();
@@ -35,6 +37,10 @@ namespace POS_System_BAL.Services.User
             return await _onlinePosContext.TblUsers
                 .FirstOrDefaultAsync(s => s.StoreId == store_id && s.LoginName == login_name);
         }
+        
+        #endregion
+
+        #region POST
 
         public async Task<TblUser> CreateUser(TblUser user)
         {
@@ -42,7 +48,6 @@ namespace POS_System_BAL.Services.User
             {
                 throw new ArgumentException(nameof(user), "User can not be null");
             }
-            // Validate user properties
             if (string.IsNullOrWhiteSpace(user.LoginName))
             {
                 throw new ArgumentException ("Login name is required.");
@@ -86,32 +91,12 @@ namespace POS_System_BAL.Services.User
             return user;
         }
 
-        public async Task<UserDTO> UpdateUser(UserDTO userDTO, string store_id, string login_name)
-        {
-            var existUser = await GetUser(store_id,login_name);
-            var entity = _mapper.Map<UserDTO>(existUser);
-            if (existUser != null)
-            {
-                existUser.FullName = userDTO.FullName;
-                existUser.PassWord = _authenticate.VerifyPasswordHash(userDTO.PassWord);
-                existUser.IdentifyString = userDTO.IdentifyString;
-                existUser.UserLanguage = userDTO.UserLanguage;
-                existUser.UserType = userDTO.UserType;
-                existUser.UserLevel = userDTO.UserLevel;
-                existUser.UserStatus = userDTO.UserStatus;
-                
-                _onlinePosContext.TblUsers.Update(existUser);
-                await _onlinePosContext.SaveChangesAsync();
-            }
-            return entity;
-        }
-
         public async Task<TblUser> CreateUserLevelAsync(string store_id, string login_name, int? user_level)
         {
             var existUser = await GetUser(store_id, login_name);
             if (existUser == null)
             {
-               throw new UserExecptions("No User found.");
+                throw new UserExecptions("No User found.");
             }
             try
             {
@@ -135,6 +120,29 @@ namespace POS_System_BAL.Services.User
             return user;
         }
 
+        #endregion
+
+        #region PUT
+
+        public async Task<UserDTO> UpdateUser(UserDTO userDTO, string store_id, string login_name)
+        {
+            var existUser = await GetUser(store_id,login_name);
+            var entity = _mapper.Map<UserDTO>(existUser);
+            if (existUser != null)
+            {
+                existUser.FullName = userDTO.FullName;
+                existUser.PassWord = _authenticate.VerifyPasswordHash(userDTO.PassWord);
+                existUser.IdentifyString = userDTO.IdentifyString;
+                existUser.UserLanguage = userDTO.UserLanguage;
+                existUser.UserType = userDTO.UserType;
+                existUser.UserLevel = userDTO.UserLevel;
+                existUser.UserStatus = userDTO.UserStatus;
+                
+                _onlinePosContext.TblUsers.Update(existUser);
+                await _onlinePosContext.SaveChangesAsync();
+            }
+            return entity;
+        }
         public async Task<int> GrandRights(string store_id, string login_name, int menu_id)
         {
             var user = GetUser(store_id, login_name);
@@ -156,5 +164,26 @@ namespace POS_System_BAL.Services.User
             await _onlinePosContext.SaveChangesAsync();
             return 0;
         }
+
+        #endregion
+
+        #region DELETE
+
+        public async Task DeleteUser(string storeId, string loginName)
+        {
+            var user = await _onlinePosContext.TblUsers
+                .Where(u => u.StoreId == storeId && u.LoginName == loginName)
+                .FirstOrDefaultAsync();
+            if (user == null)
+            {
+                throw new KeyNotFoundException("Sell price not found.");
+            }
+
+            _onlinePosContext.TblUsers.Remove(user);
+            await _onlinePosContext.SaveChangesAsync();
+        }
+
+        #endregion
+        
     }
 }
