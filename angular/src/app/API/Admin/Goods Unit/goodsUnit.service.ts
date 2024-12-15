@@ -39,10 +39,17 @@ export class GoodsUnitService {
             finalize(() => this.loadingService.hide())
         );
     }
-    deleteGoodsUnit(id: string): Observable<any> {
+    deleteGoodsUnit(storeId: string, goodsUnit: string): Observable<any> {
+        const url = `${this.baseUrl}/DeleteGoodsUnit`;
+        const params = {
+            store_id: storeId,
+            goods_unit: goodsUnit,
+        };
+    
         this.loadingService.show();
-        return this.http.delete(`${this.baseUrl}/${id}`).pipe(
-            finalize(() => this.loadingService.hide())
+    
+        return this.http.delete(url, { params, responseType: 'text' }).pipe(
+            finalize(() => this.loadingService.hide()) // Ensure spinner hides after completion
         );
     }
 }       

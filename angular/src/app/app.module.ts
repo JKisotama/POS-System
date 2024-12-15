@@ -73,6 +73,8 @@ import { EditPropertyGroupComponent } from './staff/property-group/edit-property
 import { EditGoodGroupComponent } from './staff/goods-group/edit-good-group/edit-good-group.component';
 import { EditSupplierComponent } from './staff/supplier/edit-supplier/edit-supplier.component';
 import { EditCustomerComponent } from './staff/customer/edit-customer/edit-customer.component';
+import { EditGoodPropertyComponent } from './staff/goods-page/view-good-property/edit-good-property/edit-good-property.component';
+import { EditGoodSellPriceComponent } from './staff/goods-page/view-good-sell-price/edit-good-sell-price/edit-good-sell-price.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +121,8 @@ import { EditCustomerComponent } from './staff/customer/edit-customer/edit-custo
     EditGoodGroupComponent,
     EditSupplierComponent,
     EditCustomerComponent,
+    EditGoodPropertyComponent,
+    EditGoodSellPriceComponent,
   ],
   imports: [
     BrowserModule, 

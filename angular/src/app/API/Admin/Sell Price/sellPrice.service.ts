@@ -26,19 +26,26 @@ export class SellPriceService {
 
     createSellPrice(SellPriceData: SellPriceDTO): Observable<any> {
         this.loadingService.show();
-        return this.http.post(`${this.baseUrl}/SaveSellingPrice?goods_id=${SellPriceData.goodsId}&unit=${SellPriceData.goodsUnit}&barcode=${SellPriceData.barcode}&quantity=${SellPriceData.quantity}&selling_price=${SellPriceData.sellPrice}`, SellPriceData).pipe(
+        return this.http.post(`${this.baseUrl}/SaveSellingPrice?goods_id=${SellPriceData.goodsId}&unit=${SellPriceData.goodsUnit}&barcode=${SellPriceData.barcode}&quantity=${SellPriceData.sellNumber}&selling_price=${SellPriceData.sellPrice}`, SellPriceData).pipe(
             finalize(() => this.loadingService.hide())
         );
     }
-    // updateSellPrice(SellPriceData: SellPriceDTO): Observable<any> {
-    //     return this.http.put(`${this.baseUrl}/${SellPriceData['id']}`, SellPriceData);
-    // }
-    deleteSellPrice(id: string): Observable<any> {
+   
+    updateSellPrice(SellPriceData: SellPriceDTO): Observable<any> {
+    
         this.loadingService.show();
-        return this.http.delete(`${this.baseUrl}/${id}`).pipe(
+    
+        return this.http.put(`${this.baseUrl}/UpdateSellingPrice?store_id=${SellPriceData.storeId}&goods_id=${SellPriceData.goodsId}&unit=${SellPriceData.goodsUnit}&barcode=${SellPriceData.barcode}&quantity=${SellPriceData.sellNumber}&selling_price=${SellPriceData.sellPrice}`, SellPriceData).pipe(
             finalize(() => this.loadingService.hide())
         );
     }
+
+    deleteSellPrice(storeId: string, goodsId: string, unit: string): Observable<any> {
+        this.loadingService.show();
+        return this.http.delete(`${this.baseUrl}/DeleteSellingPrice?store_id=${storeId}&goods_id=${goodsId}&unit=${unit}`).pipe(
+          finalize(() => this.loadingService.hide())
+        );
+      }
 
     GetSellPriceById(id: string): Observable<any>{
         this.loadingService.show();

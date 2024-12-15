@@ -74,6 +74,8 @@ export class EditPropertyGroupComponent implements OnInit{
     }
   }
 
+  
+
   onCancel(){
     this.dialogRef.close(false);
   }

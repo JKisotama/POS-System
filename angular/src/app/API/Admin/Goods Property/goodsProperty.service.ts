@@ -65,6 +65,16 @@ export class GoodsPropertyService {
         );
     }
 
+    updateGoodsProperty(
+        goodPropertyData: GoodsPropertyDTO
+      ): Observable<any> {
+        this.loadingService.show();
+      
+        return this.http.put(`${this.baseUrl}/UpdateGoodsProperty?store_id=${goodPropertyData.storeId}&property_id=${goodPropertyData.propertyId}$goods_id=${goodPropertyData.goodsId}&propert_name=${goodPropertyData.propertyName}`, goodPropertyData).pipe(
+          finalize(() => this.loadingService.hide()) // Hide loading spinner after request completes
+        );
+    }
+
 
 
 }

@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { CreatePropertyGroupComponent } from '../../property-group/create-property-group/create-property-group.component';
 import { GoodsService } from '../../../API/Admin/goods/goods.service';
 import { PropertyGroupService } from '../../../API/Admin/Property Group/propertyGroup.service';
+import { EditGoodPropertyComponent } from './edit-good-property/edit-good-property.component';
 
 @Component({
   selector: 'app-view-good-property',
@@ -109,6 +110,29 @@ export class ViewGoodPropertyComponent implements OnInit {
       }
     });
   }
+
+  openEditGoodProperty(goodProperty: GoodsPropertyDTO){
+    const dialogRef = this.dialog.open(EditGoodPropertyComponent, {
+      width: '700px',
+      panelClass: 'custom-dialog-container',
+      data: { goodProperty }
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.snackBar.open('Good Property updated successfully!', 'Close', {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+          panelClass: ['snackbar-success']
+        });
+        
+        this.getGoodProperty();
+      }
+    });
+  }
+
+
   
 
 }

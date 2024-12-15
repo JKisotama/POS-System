@@ -8,6 +8,8 @@ import { GoodsService } from '../../../API/Admin/goods/goods.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { SellPriceDTO } from '../../../API/Admin/Sell Price/model';
 import { CreateSellPriceComponent } from './create-sell-price/create-sell-price.component';
+import { EditGoodSellPriceComponent } from './edit-good-sell-price/edit-good-sell-price.component';
+import { ConfirmDialogComponent } from '../../../confirm-dialog.component';
 
 @Component({
   selector: 'app-view-good-sell-price',
@@ -20,7 +22,7 @@ export class ViewGoodSellPriceComponent implements OnInit {
   form: FormGroup;
   storeId: string | null = null;
   dataSource = new MatTableDataSource<SellPriceDTO>([]);
-  displayedColumns: string[] = ['action', 'goodsName', 'barcode', 'sellNumber', 'sellPrice'];
+  displayedColumns: string[] = ['action', 'goodsName', 'barcode', 'goodsUnit' ,'sellNumber', 'sellPrice'];
 
   goodList: { goodsId: string; goodsName: string} [] = [];
 
@@ -78,24 +80,82 @@ export class ViewGoodSellPriceComponent implements OnInit {
 
 
   openCreateGoodSellPrice(goodsId: string): void {
-      const dialogRef = this.dialog.open(CreateSellPriceComponent, {
-        width: '700px',
-        panelClass: 'custom-dialog-container',
-        data: {goodsId}
-      });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.snackBar.open('Good Sell Price created successfully!', 'Close', {
-            duration: 3000,
-            verticalPosition: 'top',
-            horizontalPosition: 'right',
-            panelClass: ['snackbar-success']
+    const dialogRef = this.dialog.open(CreateSellPriceComponent, {
+      width: '700px',
+      panelClass: 'custom-dialog-container',
+      data: {goodsId}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.snackBar.open('Good Sell Price created successfully!', 'Close', {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+          panelClass: ['snackbar-success']
+        });
+        this.getGoodSellPrice();
+      }
+    });
+  }
+
+  openEditGoodSellPrice(sellPrice: SellPriceDTO) {
+    const dialogRef = this.dialog.open(EditGoodSellPriceComponent, {
+      width: '700px',
+      panelClass: 'custom-dialog-container',
+      data: { sellPrice }
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.snackBar.open('Good Sell Price Updated successfully!', 'Close', {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+          panelClass: ['snackbar-success']
+        });
+        this.getGoodSellPrice();
+      }
+    })
+  }
+
+  confirmDelete(sellPrice: SellPriceDTO): void{
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      panelClass: 'custom-dialog-container',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deleteSellPrice(sellPrice);
+      } else {
+        this.snackBar.open('Delete operation canceled', '', {
+          duration: 2000,
+          panelClass: ['snackbar-error'],
+        });
+      }
+    })
+  }
+
+  deleteSellPrice(sellPrice: SellPriceDTO): void {
+    if(this.storeId && sellPrice.goodsId && sellPrice.goodsUnit){
+      this.goodSellPriceService.deleteSellPrice(this.storeId, sellPrice.goodsId, sellPrice.goodsUnit).subscribe({
+        next: () => {
+          this.snackBar.open('Sell Price deleted successfully', '', {
+            duration: 2000,
+            panelClass: ['snackbar-success'],
           });
-          console.log('Created Good Sell Price for Goods ID:', goodsId);
-          this.getGoodSellPrice();
-        }
-      });
+          this.getGoodSellPrice(); 
+        },
+        error: () => {
+          this.snackBar.open('Error while deleting Sell Price', '', {
+            duration: 2000,
+            panelClass: ['snackbar-error'],
+          });
+        },
+      })
     }
+  }
+
+
 
 }

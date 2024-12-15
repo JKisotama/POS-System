@@ -46,8 +46,21 @@
         button {
           @include btn-white-border;
           border-radius: 0 5px 5px 0 !important;
-          border-left: none;
+          border-left: none !important;
         }
+
+        .btn-secondary {
+          border-radius: 0 5px 5px 0 !important; // Remove left radius
+          border-left: none !important; // Remove left border completely
+          margin-left: -1px; // Fix alignment with the input
+        }
+
+        .custom-btn {
+          border-radius: 0 5px 5px 0 !important; // Right-rounded only
+          border-left: none !important; // Remove left border
+          margin-left: -1px; // Fix gap alignment
+        }
+
       }
 
     }

@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { CreateGoodUnitComponent } from './create-good-unit/create-good-unit.component';
 import { GoodsService } from '../../../API/Admin/goods/goods.service';
 import { EditGoodUnitComponent } from './edit-good-unit/edit-good-unit.component';
+import { ConfirmDialogComponent } from '../../../confirm-dialog.component';
 
 @Component({
   selector: 'app-view-good-unit',
@@ -115,4 +116,43 @@ export class ViewGoodUnitComponent implements OnInit {
       }
     });
   }
+
+  confirmDelete(goodUnit: GoodsUnitDTO): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      panelClass: 'custom-dialog-container',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deleteGoodUnit(goodUnit);
+      } else {
+        this.snackBar.open('Delete operation canceled', '', {
+          duration: 2000,
+          panelClass: ['snackbar-error'],
+        });
+      }
+    })
+  }
+
+  deleteGoodUnit(goodUnit: GoodsUnitDTO): void {
+    if(this.storeId && goodUnit.goodsUnit){
+      this.goodsUnitService.deleteGoodsUnit(this.storeId, goodUnit.goodsUnit).subscribe({
+        next: () => {
+          this.snackBar.open('Good unit deleted successfully', '', {
+            duration: 2000,
+            panelClass: ['snackbar-success'],
+          });
+          this.getGoodsUnit(); 
+        },
+        error: () => {
+          this.snackBar.open('Error while deleting Good unit', '', {
+            duration: 2000,
+            panelClass: ['snackbar-error'],
+          });
+        },
+      })
+    }
+  }
+
+
 }

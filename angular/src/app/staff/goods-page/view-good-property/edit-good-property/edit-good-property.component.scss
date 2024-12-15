@@ -1,0 +1,15 @@
+@import "../../../../../styles.scss";
+
+.update-good-property {
+    background-color: $Gluon-Grey !important;
+    padding: 16px 20px;
+    .good-property-input {
+        @include input-text-field;
+        form{
+            select{
+                border: 1px dashed $White-Snow;
+            }
+        }
+        
+    }
+}

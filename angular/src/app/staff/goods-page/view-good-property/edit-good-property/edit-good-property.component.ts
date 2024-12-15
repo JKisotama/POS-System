@@ -1,57 +1,55 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CreateGoodPropertyComponent } from '../create-good-property/create-good-property.component';
+import { GoodsPropertyDTO } from '../../../../API/Admin/Goods Property/model';
 import { AuthenticationService } from '../../../../API/Admin/authentication.service';
 import { GoodsPropertyService } from '../../../../API/Admin/Goods Property/goodsProperty.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { GoodsPropertyDTO } from '../../../../API/Admin/Goods Property/model';
-import { PropertyGroupService } from '../../../../API/Admin/Property Group/propertyGroup.service';
 
 @Component({
-  selector: 'app-create-good-property',
-  templateUrl: './create-good-property.component.html',
-  styleUrl: './create-good-property.component.scss'
+  selector: 'app-edit-good-property',
+  templateUrl: './edit-good-property.component.html',
+  styleUrl: './edit-good-property.component.scss'
 })
-export class CreateGoodPropertyComponent implements OnInit {
+export class EditGoodPropertyComponent implements OnInit {
 
   form: FormGroup;
   storeId: string | null = null;
-  propertyGroupList: { propertyId: string; propertyName: string } [] = []
 
   constructor(
     private dialogRef: MatDialogRef<CreateGoodPropertyComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { goodsId: string },
+    @Inject(MAT_DIALOG_DATA) public data: { goodProperty?: GoodsPropertyDTO },
     private fb: FormBuilder,
     private authenticationService : AuthenticationService,
     private goodPropertyService: GoodsPropertyService,
-    private propertyGroupService: PropertyGroupService,
     private snackBar: MatSnackBar,
   ){} 
+
 
   ngOnInit(): void {
     this.storeId = this.authenticationService.getStoreIdUser();
     this.buildForm();
-    this.getAllPropertyGroup();
   }
 
   buildForm(){
     this.form = this.fb.group({
-      goodsId: [this.data.goodsId],
+      goodsId: [this.data.goodProperty?.goodsId],
       storeId: [this.storeId],
-      propertyId: ['', [Validators.required]],
+      propertyId: [this.data.goodProperty?.propertyId],
       propertyName: ['', [Validators.required]],
     });
   }
-
+  
   save(){
     if(this.form.valid){
       const goodPropertyData: GoodsPropertyDTO = this.form.value;
-      this.goodPropertyService.createGoodsProperty(goodPropertyData).subscribe(() => {
+      this.goodPropertyService.updateGoodsProperty(goodPropertyData).subscribe(() => {
         this.dialogRef.close(true);
       },
     (error) => {
-      console.error('Error creating Good Property:', error);
-      this.snackBar.open('Error creating Good Property.', 'Close', {
+      console.error('Error Updating Good Property:', error);
+      this.snackBar.open('Error Updating Good Property.', 'Close', {
         duration: 3000,
         verticalPosition: 'top',
         horizontalPosition: 'right',
@@ -79,23 +77,7 @@ export class CreateGoodPropertyComponent implements OnInit {
     }
   }
 
-  getAllPropertyGroup(){
-    if (this.storeId) {
-      this.propertyGroupService.GetAllPropertyGroup(this.storeId).subscribe((response) => {
-        this.propertyGroupList = response;
-      })
-    }
-  }
-
-  onPropertyGroupChange(event: any) {
-    const selectedPropertyId = event.target.value;
-    this.form.patchValue({ popertyId: selectedPropertyId });
-  }
-
   onCancel(){
     this.dialogRef.close(false);
   }
-
-
-
 }
