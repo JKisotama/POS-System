@@ -5,6 +5,9 @@ import { PropertyGroupService } from '../../API/Admin/Property Group/propertyGro
 import { AuthenticationService } from '../../API/Admin/authentication.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreatePropertyGroupComponent } from './create-property-group/create-property-group.component';
+import { EditPropertyGroupComponent } from './edit-property-group/edit-property-group.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmDialogComponent } from '../../confirm-dialog.component';
 
 @Component({
   selector: 'app-property-group',
@@ -15,7 +18,7 @@ export class PropertyGroupComponent implements OnInit {
 
   dataSource = new MatTableDataSource<PropertyGroupDTO>();
 
-  displayedColumns: string[] = ['action', 'propertyId', 'propertyName', 'storeId'];
+  displayedColumns: string[] = ['action', 'propertyName'];
 
   storeId: string | null = null;
 
@@ -23,6 +26,7 @@ export class PropertyGroupComponent implements OnInit {
     private propertyGroupService: PropertyGroupService,
     private authenticationService: AuthenticationService,
     private dialog: MatDialog,
+    private snackBar: MatSnackBar,
   ){}
 
   ngOnInit(): void {
@@ -46,10 +50,69 @@ export class PropertyGroupComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
-        console.log('Created New Property Group', result);
+        this.snackBar.open('Created new Property Group successfully!', 'Close', {
+          duration: 3000, 
+          panelClass: ['snackbar-success'], 
+        });
         this.getAllPropertyGroup();
       }
     })
+  }
+
+  openEditPropertyGroup(propertyGroup: PropertyGroupDTO){
+    const dialogRef = this.dialog.open(EditPropertyGroupComponent, {
+      width: '700px',
+      panelClass: 'custom-dialog-container',
+      data: { propertyGroup }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.snackBar.open('Update Good successfully!', 'Close', {
+          duration: 3000, 
+          panelClass: ['snackbar-success'], 
+        });
+        console.log('Updated Successfully Property Group', result);
+        this.getAllPropertyGroup();
+      }
+    })
+  }
+
+  confirmDelete(propertyGroup: PropertyGroupDTO): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      panelClass: 'custom-dialog-container',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if(result) {
+        this.deletePropertyGroup(propertyGroup);
+      } else {
+        this.snackBar.open('Delete operation canceled', '', {
+          duration: 2000,
+          panelClass: ['snackbar-error'],
+        });
+      }
+    })
+  }
+
+  deletePropertyGroup(propertyGroup: PropertyGroupDTO): void {
+    if(this.storeId && propertyGroup.propertyId){
+      this.propertyGroupService.deleteGroupProperty(this.storeId, propertyGroup.propertyId).subscribe({
+        next: () => {
+          this.snackBar.open('Property Group deleted successfully', '', {
+            duration: 2000,
+            panelClass: ['snackbar-success'],
+          });
+          this.getAllPropertyGroup(); 
+        },
+        error: () => {
+          this.snackBar.open('Error while deleting Property Group', '', {
+            duration: 2000,
+            panelClass: ['snackbar-error'],
+          });
+        },
+      });
+    }
   }
 
 

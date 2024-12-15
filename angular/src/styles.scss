@@ -67,7 +67,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     
 
   }
+  --mat-menu-container-color: grey;
+  --mat-menu-item-label-text-color: white;
+  --mdc-protected-button-container-color: grey;
+  --mat-menu-item-icon-color: white;
+  --mat-icon-color: white;
 }
+
 
 .mat-mdc-cell {
   padding: 15px;

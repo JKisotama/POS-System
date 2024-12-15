@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { GoodsPropertyDTO } from './model';
+import { LoadingService } from '../../../loading.service';
 
 
 @Injectable({
@@ -10,28 +11,58 @@ import { GoodsPropertyDTO } from './model';
 export class GoodsPropertyService {
 
     constructor(
-        private http : HttpClient
+        private http : HttpClient,
+        private loadingService: LoadingService
     ){}
 
     private baseUrl = 'https://localhost:5000/api/GoodGroup';
 
     GetGoodProperty(storeId: string, goodsId: string, propertyId: string): Observable<any> {
+        this.loadingService.show();
         return this.http.get(
           `${this.baseUrl}/GetGoodProperty?store_id=${storeId}&goods_id=${goodsId}&property_id=${propertyId}`
+        ).pipe(
+            finalize(() => this.loadingService.hide())
         );
-      }
+    }
+
+    GetAllGoodPropertyByGoodId(storeId: string, goodsId: string): Observable<any> {
+        this.loadingService.show();
+        return this.http.get(
+          `${this.baseUrl}/GetGoodPropertyById?store_id=${storeId}&goods_id=${goodsId}`
+        ).pipe(
+            finalize(() => this.loadingService.hide())
+        );
+    }
+
     createGoodsProperty(GoodsPropertyData: GoodsPropertyDTO): Observable<any> {
-        return this.http.post(`${this.baseUrl}`, GoodsPropertyData);
+        const url = `${this.baseUrl}/SaveProperty`;
+        const params: { [param: string]: string } = {
+            store_id: GoodsPropertyData.storeId ?? '',
+            goods_id: GoodsPropertyData.goodsId ?? '',
+            property_id: GoodsPropertyData.propertyId ?? '',
+            property_value: GoodsPropertyData.propertyName ?? '',
+        };
+
+        this.loadingService.show();
+    
+        return this.http.post(url, {}, { params, responseType: 'text'}).pipe(
+            finalize(() => this.loadingService.hide()) // Hide loading spinner
+        );
     }
-    updateGoodsProperty(GoodsPropertyData: GoodsPropertyDTO): Observable<any> {
-        return this.http.put(`${this.baseUrl}/${GoodsPropertyData['id']}`, GoodsPropertyData);
-    }
+   
     deleteGoodsProperty(id: string): Observable<any> {
-        return this.http.delete(`${this.baseUrl}/${id}`);
+        this.loadingService.show();
+        return this.http.delete(`${this.baseUrl}/${id}`).pipe(
+            finalize(() => this.loadingService.hide())
+        );
     }
 
     GetGoodsPropertyById(id: string): Observable<any>{
-        return this.http.get(`${this.baseUrl}/${id}`);
+        this.loadingService.show();
+        return this.http.get(`${this.baseUrl}/${id}`).pipe(
+            finalize(() => this.loadingService.hide())
+        );
     }
 
 

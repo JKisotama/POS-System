@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { GoodsUnitDTO } from './model';
+import { LoadingService } from '../../../loading.service';
 
 
 @Injectable({
@@ -11,21 +12,37 @@ import { GoodsUnitDTO } from './model';
 export class GoodsUnitService {
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private loadingService: LoadingService
+        
     ){}
 
     private baseUrl = 'https://localhost:5000/api/GoodGroup';
 
     GetAllGoodsUnit(storeId: string, goodsId: string): Observable<any>{
-        return this.http.get(`${this.baseUrl}/GetGoodUnit?store_id=${storeId}&goods_id=${goodsId}`);
+        this.loadingService.show();
+        return this.http.get(`${this.baseUrl}/GetGoodUnit?store_id=${storeId}&goods_id=${goodsId}`).pipe(
+            finalize(() => this.loadingService.hide())
+        );
     }
     createGoodsUnit(GoodsUnitData: GoodsUnitDTO): Observable<any> {
-        return this.http.post(`${this.baseUrl}/SaveUnit`, GoodsUnitData);
+        return this.http.post(`${this.baseUrl}/SaveUnit`, GoodsUnitData).pipe(
+            finalize(() => this.loadingService.hide())
+        );
     }
-    // updateGoodsUnit(GoodsUnitData: GoodsUnitDTO): Observable<any> {
-    //     return this.http.put(`${this.baseUrl}/${GoodsUnitData['id']}`, GoodsUnitData);
-    // }
+    updateGoodsUnit(
+        GoodsUnitData: GoodsUnitDTO
+    ): Observable<any> {
+        const updateUrl = `${this.baseUrl}/UpdateUnit?store_id=${GoodsUnitData.storeId}&goods_id=${GoodsUnitData.goodsId}&unit=${GoodsUnitData.goodsUnit}&size=${GoodsUnitData.unitSize}&status=${GoodsUnitData.unitStatus}&stock=${GoodsUnitData.unitStock}`;
+        this.loadingService.show();
+        return this.http.put(updateUrl, {}).pipe(
+            finalize(() => this.loadingService.hide())
+        );
+    }
     deleteGoodsUnit(id: string): Observable<any> {
-        return this.http.delete(`${this.baseUrl}/${id}`);
+        this.loadingService.show();
+        return this.http.delete(`${this.baseUrl}/${id}`).pipe(
+            finalize(() => this.loadingService.hide())
+        );
     }
-}
+}       

@@ -55,12 +55,24 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 import {MatInputModule} from '@angular/material/input';
 import { DialogCustomerComponent } from './POS/pos-main/dialog-customer/dialog-customer.component';
-import { CreateSellPriceComponent } from './staff/goods-page/create-sell-price/create-sell-price.component';
+import { CreateSellPriceComponent } from './staff/goods-page/view-good-sell-price/create-sell-price/create-sell-price.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DialogAddCtmComponent } from './POS/pos-main/dialog-customer/dialog-add-ctm/dialog-add-ctm.component';
 import { DialogProductComponent } from './POS/pos-main/dialog-product/dialog-product.component';
 import { DialogInvoiceComponent } from './POS/pos-main/dialog-invoice/dialog-invoice.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { CreateGoodPropertyComponent } from './staff/goods-page/view-good-property/create-good-property/create-good-property.component';
+import { CreateGoodUnitComponent } from './staff/goods-page/view-good-unit/create-good-unit/create-good-unit.component';
+import { ViewGoodUnitComponent } from './staff/goods-page/view-good-unit/view-good-unit.component';
+import { ViewGoodSellPriceComponent } from './staff/goods-page/view-good-sell-price/view-good-sell-price.component';
+import { ViewGoodPropertyComponent } from './staff/goods-page/view-good-property/view-good-property.component';
+import { EditGoodUnitComponent } from './staff/goods-page/view-good-unit/edit-good-unit/edit-good-unit.component';
+import { EditGoodsComponent } from './staff/goods-page/edit-goods/edit-goods.component';
+import { ConfirmDialogComponent } from './confirm-dialog.component';
+import { EditPropertyGroupComponent } from './staff/property-group/edit-property-group/edit-property-group.component';
+import { EditGoodGroupComponent } from './staff/goods-group/edit-good-group/edit-good-group.component';
+import { EditSupplierComponent } from './staff/supplier/edit-supplier/edit-supplier.component';
+import { EditCustomerComponent } from './staff/customer/edit-customer/edit-customer.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +107,18 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     DialogProductComponent,
     DialogInvoiceComponent,
     LoadingSpinnerComponent,
-    
+    CreateGoodPropertyComponent,
+    CreateGoodUnitComponent,
+    ViewGoodUnitComponent,
+    ViewGoodSellPriceComponent,
+    ViewGoodPropertyComponent,
+    EditGoodUnitComponent,
+    EditGoodsComponent,
+    ConfirmDialogComponent,
+    EditPropertyGroupComponent,
+    EditGoodGroupComponent,
+    EditSupplierComponent,
+    EditCustomerComponent,
   ],
   imports: [
     BrowserModule, 

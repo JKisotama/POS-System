@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { AuthenticationService } from '../../../API/Admin/authentication.service';
-import { SellPriceService } from '../../../API/Admin/Sell Price/sellPrice.service';
-import { SellPriceDTO } from '../../../API/Admin/Sell Price/model';
+import { AuthenticationService } from '../../../../API/Admin/authentication.service';
+import { SellPriceService } from '../../../../API/Admin/Sell Price/sellPrice.service';
+import { SellPriceDTO } from '../../../../API/Admin/Sell Price/model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-sell-price',
@@ -21,7 +22,7 @@ export class CreateSellPriceComponent implements OnInit {
     private fb: FormBuilder,
     private authenticationService : AuthenticationService,
     private sellPriceService: SellPriceService,
-
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -43,12 +44,36 @@ export class CreateSellPriceComponent implements OnInit {
   save(){
     if(this.form.valid){
       const sellPriceData: SellPriceDTO = this.form.value;
-      this.sellPriceService.createSellPrice(sellPriceData).subscribe((response) => {
+      this.sellPriceService.createSellPrice(sellPriceData).subscribe(() => {
         this.dialogRef.close(true);
       },
     (error) => {
-      console.error('Error creating goods:', error);
+      console.error('Error creating Sell Price for Good:', error);
+      this.snackBar.open('Error creating sell price.', 'Close', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right',
+        panelClass: ['snackbar-error']
+      });
+      this.dialogRef.close(false);
     })
+    }  else {
+      // Handle invalid form fields
+      const invalidFields = Object.keys(this.form.controls).filter(
+        (key) => this.form.get(key)?.invalid
+      );
+  
+      let errorMessage = 'Please fill in all required fields: ';
+      invalidFields.forEach((field, index) => {
+        errorMessage += `${field}${index < invalidFields.length - 1 ? ', ' : ''}`;
+      });
+  
+      this.snackBar.open(errorMessage, 'Close', {
+        duration: 4000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right',
+        panelClass: ['snackbar-error']
+      });
     }
   }
 

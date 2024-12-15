@@ -186,7 +186,7 @@ export class PosMainComponent implements OnInit {
 
   openProductDialog(): void {
     const dialogRef = this.dialog.open(DialogProductComponent, {
-      width: '80vw', // Set the width to 80% of the viewport width
+      width: '80vw',
       height: '90vh',
       panelClass: 'custom-dialog-container'
     });

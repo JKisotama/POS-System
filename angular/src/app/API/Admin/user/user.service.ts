@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { UserDTO } from './model';
+import { LoadingService } from '../../../loading.service';
 
 
 @Injectable({
@@ -11,11 +12,14 @@ import { UserDTO } from './model';
 export class UserService {
     private baseUrl = 'https://localhost:5000/api/Users';
 
-    constructor( private http: HttpClient){}
+    constructor( private http: HttpClient, private loadingService: LoadingService){}
 
 
     CreateUser(data: UserDTO): Observable<any>{
-        return this.http.post(`${this.baseUrl}/Create User?StoreId=${data.storeId}&LoginName=${data.loginName}&FullName=${data.fullName}&PassWord=${data.passWord}`, data);
+        this.loadingService.show();
+        return this.http.post(`${this.baseUrl}/Create User?StoreId=${data.storeId}&LoginName=${data.loginName}&FullName=${data.fullName}&PassWord=${data.passWord}`, data).pipe(
+            finalize(() => this.loadingService.hide())
+        );
     }
 
     LoginUser(storeId: string, loginName: string, passWord: string) : Observable<any> {
@@ -24,7 +28,11 @@ export class UserService {
     }
 
     GetAllUser(storeId: string): Observable<any>{
-        return this.http.get(`${this.baseUrl}/Get All User?store_id=${storeId}`);
+
+        this.loadingService.show();
+        return this.http.get(`${this.baseUrl}/Get All User?store_id=${storeId}`).pipe(
+            finalize(() => this.loadingService.hide())
+        );
     }
 }
 

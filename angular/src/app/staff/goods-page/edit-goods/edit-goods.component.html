@@ -1,0 +1,40 @@
+<div class="add-new-goods dialog-form">
+  <h2>Edit Goods</h2>
+  <div class="form-input">
+    <form [formGroup]="form">
+      <div class="mt-2">
+        <label>Good Name</label>
+        <input type="text" class="form-control" formControlName="goodsName" />
+      </div>
+
+      <div class="mt-2">
+        <label>Good Brand</label>
+        <input type="text" class="form-control" formControlName="goodsBrand" />
+      </div>
+
+      <div class="mt-2">
+        <label>Good Status</label>
+        <select class="form-select" formControlName="goodsStatus">
+          <option [value]="0">Available</option>
+          <option [value]="1">Unavailable</option>
+        </select>
+      </div>
+
+      <div class="mt-2">
+        <label>File</label>
+        <input
+          type="file"
+          (change)="onFileSelected($event)"
+          class="form-control"
+        />
+      </div>
+
+      <div class="btn-zone">
+        <button class="btn" (click)="Save()">Save</button>
+        <button class="btn" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-loading-spinner></app-loading-spinner>

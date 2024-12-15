@@ -6,32 +6,25 @@
       <div class="col-md-3 ad-main-btn">
         <button
           type="button"
-          
           (click)="openCreateSupplier()"
           class="btn btn-orange-bg"
         >
           Create Supplier
         </button>
-        
       </div>
       <div class="col-md-6">
         <form>
-          
           <input
             type="text"
             class="form-control search-bar-admin"
-            formControlName="filterText"
             aria-describedby="helpId"
             placeholder="Search"
           />
         </form>
-    
-
       </div>
       <div class="col-md-3 ad-main-btn">
-        <input type="hidden">
+        <input type="hidden" />
       </div>
-
     </div>
   </div>
 
@@ -44,32 +37,26 @@
       >
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>Action</th>
-          <td mat-cell *matCellDef="let goods">
+          <td mat-cell *matCellDef="let supplier">
             <button
-              mat-stroked-button
+              mat-raised-button
               [matMenuTriggerFor]="actionsMenu"
-              color="primary"
               class="detail-btn"
             >
               Actions
               <mat-icon>arrow_drop_down</mat-icon>
             </button>
             <mat-menu #actionsMenu="matMenu">
-              <button mat-menu-item>
+              <button mat-menu-item (click)="openEditSupplier(supplier)">
                 <mat-icon>edit</mat-icon>
                 <span>Edit</span>
               </button>
-              <button mat-menu-item>
+              <button mat-menu-item (click)="deleteSupplier(supplier)">
                 <mat-icon>delete</mat-icon>
                 <span>Delete</span>
               </button>
             </mat-menu>
           </td>
-        </ng-container>
-
-        <ng-container matColumnDef="supplierId">
-          <th mat-header-cell *matHeaderCellDef>Supplier Id</th>
-          <td mat-cell *matCellDef="let supplier">{{ supplier.supplierId }}</td>
         </ng-container>
 
         <ng-container matColumnDef="supplierName">
@@ -82,7 +69,13 @@
         <ng-container matColumnDef="supplierType">
           <th mat-header-cell *matHeaderCellDef>Supplier Type</th>
           <td mat-cell *matCellDef="let supplier">
-            {{ supplier.supplierType }}
+            {{
+              supplier.supplierType === 0
+                ? "Company"
+                : supplier.supplierType === 1
+                ? "Agency"
+                : "Unknown"
+            }}
           </td>
         </ng-container>
 
@@ -105,11 +98,6 @@
           <td mat-cell *matCellDef="let supplier">
             {{ supplier.supplierEmail }}
           </td>
-        </ng-container>
-
-        <ng-container matColumnDef="storeId">
-          <th mat-header-cell *matHeaderCellDef>Store Id</th>
-          <td mat-cell *matCellDef="let supplier">{{ supplier.storeId }}</td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

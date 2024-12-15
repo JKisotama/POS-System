@@ -45,15 +45,6 @@
         multiTemplateDataRows
         class="mat-elevation-z8 parent-table"
       >
-        <!-- <ng-container matColumnDef="expandArrow">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let group" (click)="toggleRow(group)">
-            <mat-icon>{{
-              group.expanded ? "keyboard_arrow_down" : "keyboard_arrow_right"
-            }}</mat-icon>
-          </td>
-        </ng-container> -->
-
         <ng-container matColumnDef="action">
           <th
             mat-header-cell
@@ -62,39 +53,38 @@
           >
             Action
           </th>
-          <td mat-cell *matCellDef="let goods">
+          <td mat-cell *matCellDef="let goods" class="text-center align-middle">
             <button
-              mat-stroked-button
+              mat-raised-button
               [matMenuTriggerFor]="actionsMenu"
-              color="primary"
               class="detail-btn"
             >
               Actions
               <mat-icon>arrow_drop_down</mat-icon>
             </button>
             <mat-menu #actionsMenu="matMenu">
-              <button mat-menu-item>
-                <mat-icon> add</mat-icon>
-                <span class="text-dark">Add Unit</span>
-              </button>
-              <button mat-menu-item>
-                <mat-icon>add</mat-icon>
-                <span class="text-dark">Add Property</span>
+              <button mat-menu-item (click)="openViewGoodUnit(goods.goodsId)">
+                <mat-icon>visibility</mat-icon>
+                <span>View Good Unit</span>
               </button>
               <button
                 mat-menu-item
-                (click)="openCreateSellPrice(goods.goodsId)"
+                (click)="openViewGoodProperty(goods.goodsId)"
               >
-                <mat-icon>attach_money</mat-icon>
-                <span class="text-dark">Add Sell Price</span>
+                <mat-icon>visibility</mat-icon>
+                <span>View Good Property</span>
               </button>
-              <button mat-menu-item>
+              <button mat-menu-item (click)="openViewSellPrice(goods.goodsId)">
+                <mat-icon>visibility</mat-icon>
+                <span>View Sell Price</span>
+              </button>
+              <button mat-menu-item (click)="openEditGoods(goods)">
                 <mat-icon>edit</mat-icon>
-                <span class="text-dark">Edit</span>
+                <span>Edit</span>
               </button>
-              <button mat-menu-item>
+              <button mat-menu-item (click)="confirmDelete(goods)">
                 <mat-icon>delete</mat-icon>
-                <span class="text-dark">Delete</span>
+                <span>Delete</span>
               </button>
             </mat-menu>
           </td>
@@ -102,13 +92,8 @@
 
         <ng-container matColumnDef="groupId">
           <th mat-header-cell *matHeaderCellDef>Group Id</th>
-          <td mat-cell *matCellDef="let group">{{ group.groupId }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="goodsId">
-          <th mat-header-cell *matHeaderCellDef>Goods ID</th>
-          <td mat-cell *matCellDef="let goods">
-            {{ goods.goodsId }}
+          <td mat-cell *matCellDef="let group">
+            {{ getGroupNameById(group.groupId) }}
           </td>
         </ng-container>
 
@@ -147,97 +132,8 @@
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="storeId">
-          <th mat-header-cell *matHeaderCellDef>Store Id</th>
-          <td *matCellDef="let group">{{ group.storeId }}</td>
-        </ng-container>
-
-        <!-- <ng-container matColumnDef="expandedDetail">
-          <td
-            class="boder_table color_table_background"
-            mat-cell
-            *matCellDef="let group"
-            [attr.colspan]="displayedColumns.length"
-          >
-            <div
-              class="example-element-detail flex-container"
-              [@detailExpand]="group.expanded ? 'expanded' : 'collapsed'"
-            >
-              <div class="card">
-                <div class="card-header">
-                  <div class="table-name">Good Information</div>
-                </div>
-
-                <div class="card-body">
-                  <table
-                    mat-table
-                    [dataSource]="innerDataSource"
-                    class="detail-table mat-elevation-z8"
-                  >
-                    <ng-container matColumnDef="goodsId">
-                      <th mat-header-cell *matHeaderCellDef>Goods ID</th>
-                      <td mat-cell *matCellDef="let goods">
-                        {{ goods.goodsId }}
-                      </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="goodsName">
-                      <th mat-header-cell *matHeaderCellDef>Goods Name</th>
-                      <td mat-cell *matCellDef="let goods">
-                        {{ goods.goodsName }}
-                      </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="goodsBrand">
-                      <th mat-header-cell *matHeaderCellDef>Goods Brand</th>
-                      <td mat-cell *matCellDef="let goods">
-                        {{ goods.goodsBrand }}
-                      </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="picture">
-                      <th mat-header-cell *matHeaderCellDef>Picture</th>
-                      <td mat-cell *matCellDef="let goods">
-                        <img
-                          [src]="goods.picture"
-                          alt="Goods Picture"
-                          width="50"
-                          height="50"
-                        />
-                      </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="goodsStatus">
-                      <th mat-header-cell *matHeaderCellDef>Goods Status</th>
-                      <td mat-cell *matCellDef="let goods">
-                        {{ goods.goodsStatus }}
-                      </td>
-                    </ng-container>
-
-                    <tr
-                      mat-header-row
-                      *matHeaderRowDef="childDisplayedColumns"
-                    ></tr>
-
-                    <tr
-                      mat-row
-                      *matRowDef="let good; columns: childDisplayedColumns"
-                      class="data-row"
-                    ></tr>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </td>
-        </ng-container> -->
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let group; columns: displayedColumns"></tr>
-        <!-- <tr
-          mat-row
-          *matRowDef="let group; columns: ['expandedDetail']"
-          class="example-detail-row"
-        ></tr> -->
       </table>
     </div>
   </div>

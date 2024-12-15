@@ -9,7 +9,12 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { MatDialog } from '@angular/material/dialog';
 import { CreateGoodsComponent } from './create-goods/create-goods.component';
 import { GoodsGroupService } from '../../API/Admin/Goods Group/goodsGroup.service';
-import { CreateSellPriceComponent } from './create-sell-price/create-sell-price.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ViewGoodUnitComponent } from './view-good-unit/view-good-unit.component';
+import { ViewGoodSellPriceComponent } from './view-good-sell-price/view-good-sell-price.component';
+import { ViewGoodPropertyComponent } from './view-good-property/view-good-property.component';
+import { EditGoodsComponent } from './edit-goods/edit-goods.component';
+import { ConfirmDialogComponent } from '../../confirm-dialog.component';
 
 
 @Component({
@@ -28,11 +33,10 @@ export class GoodsPageComponent implements OnInit {
 
 
   dataSource = new MatTableDataSource<GoodsGroupDTO>();
-  expandedGroup: GoodsGroupDTO | null = null;
 
-    form: FormGroup;
+  form: FormGroup;
 
-  displayedColumns: string[] = ['action','groupId', 'goodsId', 'goodsName', 'goodsBrand',  'picture', 'goodsStatus', 'storeId'];
+  displayedColumns: string[] = ['action', 'goodsName', 'goodsBrand',  'picture', 'goodsStatus'];
   storeId: string | null = null;
   userLevel: number | null = null;
   groupList: { groupId: string; groupName: string }[] = [];
@@ -44,7 +48,7 @@ export class GoodsPageComponent implements OnInit {
     private authenticationService : AuthenticationService,
     private fb: FormBuilder,
     private dialog: MatDialog,
-    
+    private snackBar: MatSnackBar,
   ){}
 
   ngOnInit(): void {
@@ -85,19 +89,16 @@ export class GoodsPageComponent implements OnInit {
   getAllGoodGroup() {
     if (this.storeId) {
       this.goodGroupService.GetAllGoodsGroup(this.storeId).subscribe((response) => {
-        this.groupList = response; // Assuming response is an array of groups
+        this.groupList = response;
       });
     }
   }
-
-  toggleRow(group: GoodsGroupDTO) {
-    group.expanded = !group.expanded;
+  getGroupNameById(groupId: string): string {
+    const group = this.groupList.find((g) => g.groupId === groupId);
+    return group ? group.groupName : 'Unknown Group Name';
   }
 
-  // Check if a group is expanded
-  isExpanded(group: GoodsGroupDTO): boolean {
-    return this.expandedGroup === group;
-  }
+  
 
   openCreateGoods(){
     const dialogRef = this.dialog.open(CreateGoodsComponent, {
@@ -108,25 +109,116 @@ export class GoodsPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
         console.log('Created new Good' , result);
+        this.snackBar.open('Created new Good successfully!', 'Close', {
+          duration: 3000, 
+          panelClass: ['snackbar-success'], 
+        });
         this.getGoodByGroup();
       }
     })
   }
 
-  openCreateSellPrice(goodsId: string): void {
-    const dialogRef = this.dialog.open(CreateSellPriceComponent, {
+  openEditGoods(goods: GoodsDTO): void {
+    const dialogRef = this.dialog.open(EditGoodsComponent, {
       width: '700px',
       panelClass: 'custom-dialog-container',
-      data: { goodsId } // Pass the goodsId to the dialog
+      data: {goods}, 
+    });
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.snackBar.open('Update Good successfully!', 'Close', {
+          duration: 3000, 
+          panelClass: ['snackbar-success'], 
+      });
+        this.getGoodByGroup(); 
+      }
+    });
+  }
+
+  openViewSellPrice(goodsId: string): void {
+    const dialogRef = this.dialog.open(ViewGoodSellPriceComponent, {
+      width: '80vw',
+      height: '90vh',
+      panelClass: 'custom-dialog-container',
+      data: { goodsId }
     });
   
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Created Sell Price for Goods ID:', goodsId);
-        this.getGoodByGroup(); // Refresh the table data if necessary
+        this.getGoodByGroup(); 
       }
     });
   }
+
+  openViewGoodProperty(goodsId: string): void {
+    const dialogRef = this.dialog.open(ViewGoodPropertyComponent, {
+      width: '700px',
+      panelClass: 'custom-dialog-container',
+      data: {goodsId}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getGoodByGroup(); 
+      }
+    });
+  }
+
+  
+
+  openViewGoodUnit(goodsId: string): void {
+    const dialogRef = this.dialog.open(ViewGoodUnitComponent, {
+      width: '80vw',
+      height: '90vh',
+      panelClass: 'custom-dialog-container',
+      data: {goodsId}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getGoodByGroup(); 
+      }
+    });
+  }
+
+  confirmDelete(goods: GoodsDTO): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      panelClass: 'custom-dialog-container',
+    });
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deleteGood(goods);
+      } else {
+        this.snackBar.open('Delete operation canceled', '', {
+          duration: 2000,
+          panelClass: ['snackbar-error'],
+        });
+      }
+    });
+  }
+  
+  deleteGood(goods: GoodsDTO): void {
+   if(this.storeId && goods.goodsId){
+    this.goodsService.deleteProduct(this.storeId, goods.goodsId).subscribe({
+      next: () => {
+        this.snackBar.open('Product deleted successfully', '', {
+          duration: 2000,
+          panelClass: ['snackbar-success'],
+        });
+        this.getGoodByGroup(); 
+      },
+      error: () => {
+        this.snackBar.open('Error while deleting product', '', {
+          duration: 2000,
+          panelClass: ['snackbar-error'],
+        });
+      },
+    });
+   }
+  }
+  
 
  
 

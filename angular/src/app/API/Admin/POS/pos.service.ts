@@ -25,8 +25,8 @@ export class POSService {
         this.loadingService.show();
     
         return this.http.get<POSDto>(url, { params }).pipe(
-            finalize(() => this.loadingService.hide()) // Hide loading spinner
-          );
+            finalize(() => this.loadingService.hide())
+        );
     }
 
     getPoHeadersPaged(storeId: string): Observable<{ items: POSDto[]; totalCount: number }> {
@@ -59,7 +59,10 @@ export class POSService {
             .set('quantity', item.quantity || '0')
             .set('posCreator', item.posCreator || ''); // Adjust dynamically as needed
     
-        return this.http.post(url, {}, { params, responseType: 'text' });
+        this.loadingService.show();
+        return this.http.post(url, {}, { params, responseType: 'text' }).pipe(
+            finalize(() => this.loadingService.hide())
+        );
     }
 
 
@@ -69,7 +72,10 @@ export class POSService {
         .set('store_id', storeId)
         .set('posNumber', posNumber);
 
-        return this.http.get<POSDetailDto[]>(url, { params });
+        this.loadingService.show();
+        return this.http.get<POSDetailDto[]>(url, { params }).pipe(
+            finalize(() => this.loadingService.hide())
+        );
     }
 
     finalizeTransaction(
@@ -85,12 +91,15 @@ export class POSService {
         const params = new HttpParams()
             .set('storeId', storeId)
             .set('posNumber', posNumber)
-            .set('customerPay', customerPay.toString()) // Convert to string
+            .set('customerPay', customerPay.toString())
             .set('payer', payer)
-            .set('paymentMethod', paymentMethod.toString()); // Convert to string
+            .set('paymentMethod', paymentMethod.toString());
     
-        // Send the params in the POST request
-        return this.http.post(url, {}, { params, responseType: 'text' });
+
+        this.loadingService.show();
+        return this.http.post(url, {}, { params, responseType: 'text' }).pipe(
+            finalize(() => this.loadingService.hide())
+        );
     }
 
     getPoHangList(storeId: string): Observable<POSDto[]> {
@@ -108,8 +117,12 @@ export class POSService {
         const params = new HttpParams()
             .set('storeId', storeId)
             .set('posNumber', posNumber);
+
+        this.loadingService.show();
     
-        return this.http.put<void>(url, {}, { params });
+        return this.http.put<void>(url, {}, { params }).pipe(
+            finalize(() => this.loadingService.hide())
+        );
     }
     
 

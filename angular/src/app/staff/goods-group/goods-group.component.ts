@@ -6,6 +6,9 @@ import { AuthenticationService } from '../../API/Admin/authentication.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateGoodGroupComponent } from './create-good-group/create-good-group.component';
 import { SupplierService } from '../../API/Admin/Supplier/supplier.service';
+import { EditGoodGroupComponent } from './edit-good-group/edit-good-group.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmDialogComponent } from '../../confirm-dialog.component';
 
 @Component({
   selector: 'app-goods-group',
@@ -17,7 +20,7 @@ export class GoodsGroupComponent implements OnInit {
 
   dataSource = new MatTableDataSource<GoodsGroupDTO>();
 
-  displayedColumns: string[] = ['action', 'groupId', 'groupName', 'groupStatus','storeId'];
+  displayedColumns: string[] = ['action', 'groupName', 'groupStatus'];
 
   storeId: string | null = null;
 
@@ -27,6 +30,7 @@ export class GoodsGroupComponent implements OnInit {
     private goodGroupService: GoodsGroupService,
     private authenticationService: AuthenticationService,
     private dialog: MatDialog,
+    private snackBar: MatSnackBar,
   ){}
 
 
@@ -52,10 +56,69 @@ export class GoodsGroupComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
-        console.log('Created new Good Group', result);
+        this.snackBar.open('Created new Good Group successfully!', 'Close', {
+          duration: 3000, 
+          panelClass: ['snackbar-success'], 
+        });
         this.getAllGoodGroup();
       }
     });
+  }
+
+  openEditGoodGroup(goodGroup: GoodsGroupDTO){
+    const dialogRef = this.dialog.open(EditGoodGroupComponent, {
+      width: '700px',
+      panelClass: 'custom-dialog-container',
+      data: {goodGroup}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.snackBar.open('Update Good Group successfully!', 'Close', {
+          duration: 3000, 
+          panelClass: ['snackbar-success'], 
+        });
+
+        this.getAllGoodGroup();
+      }
+    })
+  }
+
+  confirmDelete(goodGroup: GoodsGroupDTO): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      panelClass: 'custom-dialog-container',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if(result) {
+        this.deleteGoodGroup(goodGroup);
+      } else {
+        this.snackBar.open('Delete operation canceled', '', {
+          duration: 2000,
+          panelClass: ['snackbar-error'],
+        });
+      }
+    })
+  }
+
+  deleteGoodGroup(goodGroup: GoodsGroupDTO): void {
+    if(this.storeId && goodGroup.groupId) {
+      this.goodGroupService.deleteGroup(this.storeId, goodGroup.groupId).subscribe({
+        next: () => {
+          this.snackBar.open('Good Group deleted successfully', '', {
+            duration: 2000,
+            panelClass: ['snackbar-success'],
+          });
+          this.getAllGoodGroup();
+        },
+        error: () => {
+          this.snackBar.open('Error while deleting Good Group', '', {
+            duration: 2000,
+            panelClass: ['snackbar-error'],
+          });
+        },
+      })
+    }
   }
 
 

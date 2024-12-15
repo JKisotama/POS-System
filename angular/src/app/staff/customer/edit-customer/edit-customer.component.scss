@@ -1,0 +1,10 @@
+@import '../../../../styles.scss';
+
+.update-customer {
+    background-color: $Gluon-Grey !important;
+    padding: 16px 20px;
+    .goods-input {
+        @include input-text-field;
+        
+    }
+}
