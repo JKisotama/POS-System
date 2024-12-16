@@ -10,6 +10,7 @@ import { CreatePropertyGroupComponent } from '../../property-group/create-proper
 import { GoodsService } from '../../../API/Admin/goods/goods.service';
 import { PropertyGroupService } from '../../../API/Admin/Property Group/propertyGroup.service';
 import { EditGoodPropertyComponent } from './edit-good-property/edit-good-property.component';
+import { CreateGoodPropertyComponent } from './create-good-property/create-good-property.component';
 
 @Component({
   selector: 'app-view-good-property',
@@ -91,7 +92,7 @@ export class ViewGoodPropertyComponent implements OnInit {
   }
 
   openCreateGoodProperty(goodsId: string): void {
-    const dialogRef = this.dialog.open(CreatePropertyGroupComponent, {
+    const dialogRef = this.dialog.open(CreateGoodPropertyComponent, {
       width: '700px',
       panelClass: 'custom-dialog-container',
       data: {goodsId}

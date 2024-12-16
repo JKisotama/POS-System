@@ -137,7 +137,7 @@ public partial class OnlinePosContext : DbContext
 
         modelBuilder.Entity<TblGoodsgroup>(entity =>
         {
-            entity.HasKey(e => e.GroupId).HasName("PK__tbl_good__D57795A06351FF69");
+            entity.HasKey(e => e.GroupId).HasName("PK__tbl_good__ D57795A06351FF69");
 
             entity.ToTable("tbl_goodsgroup");
 
