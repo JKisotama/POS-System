@@ -47,8 +47,8 @@ namespace POS_System_BAL.Services.Customer
 
         public async Task CreateCustomer(TblCustomer customer)
         {
-            var customerCounter = GenerateCustomerID(customer.CompanyId, customer.CreatedDate);
-            customer.CustomerCounter = GetCustomerCounterByStoreId(customer.CompanyId, customer.CreatedDate) +1;
+            var customerCounter = GenerateCustomerID(customer.CompanyId);
+            customer.CustomerCounter = GetCustomerCounterByStoreId(customer.CompanyId) +1;
             customer.CustomerId = customer.CompanyId + customerCounter;
             _onlinePosContext.TblCustomers
                 .Add(customer);
@@ -75,8 +75,9 @@ namespace POS_System_BAL.Services.Customer
 
         public async Task DeleteCustomer(string company_id,string customer_id)
         {
-            var customer = GetCustomer(company_id, customer_id);
-            _onlinePosContext.Remove(customer);
+            var customer = await _onlinePosContext.TblCustomers.FirstOrDefaultAsync(
+                c => c.CompanyId == company_id && c.CustomerId == customer_id);
+            _onlinePosContext.TblCustomers.Remove(customer);
             await _onlinePosContext.SaveChangesAsync();
         }
         
@@ -85,9 +86,9 @@ namespace POS_System_BAL.Services.Customer
         #region AUTO-GEN
 
         private string GenerateCustomerID(
-            string company_id, DateTime created_date)
+            string company_id)
         {
-            int counter = GetCustomerCounterByStoreId(company_id, created_date);
+            int counter = GetCustomerCounterByStoreId(company_id);
             var nCounter = counter + 1;
             string customer_id = new string('0', 3 - nCounter.ToString().Length) + nCounter.ToString();
             return customer_id;
@@ -95,11 +96,10 @@ namespace POS_System_BAL.Services.Customer
 
 
         private int GetCustomerCounterByStoreId(
-            string company_id, DateTime created_date)
+            string company_id)
         {
             var customerCounter = _onlinePosContext.TblCustomers
-                .Where(g => g.CompanyId == company_id 
-                            && g.CreatedDate.Date == created_date.Date)
+                .Where(g => g.CompanyId == company_id)
                 .OrderBy(g => g.CompanyId)
                 .ThenByDescending(g => g.CustomerCounter)
                 .Select(g => g.CustomerCounter)

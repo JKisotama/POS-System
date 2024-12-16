@@ -24,6 +24,7 @@ namespace POS_Final_Year.Controller
             _customerServices = customerServices;
         }
 
+        #region GET
 
         [HttpGet("GettAllCustomer")]
         public async Task<ActionResult<IEnumerable<TblCustomer>>> GetTblCustomers(string company_id)
@@ -45,22 +46,9 @@ namespace POS_Final_Year.Controller
             return Ok(customer);
         }
 
+        #endregion
 
-        [HttpPut("EditCustomer")]
-        public async Task<IActionResult> PutTblCustomer(string comapny_id,string customer_id, CustomerDTO customerDTO)
-        {
-            if(customer_id != customerDTO.CustomerId)
-            {
-                return BadRequest();
-            }
-
-            customerDTO.CompanyId = comapny_id;
-            customerDTO.CustomerId = customer_id;
-            await _customerServices.UpdateCustomer(customerDTO);
-            return NoContent();
-
-            
-        }
+        #region POST
 
         [HttpPost("SaveCustomer")]
         public async Task<ActionResult<TblCustomer>> PostTblCustomer(TblCustomer tblCustomer)
@@ -72,10 +60,36 @@ namespace POS_Final_Year.Controller
             return CreatedAtAction("GetTblCustomer", new { id = tblCustomer.CustomerId }, tblCustomer);
         }
 
+        #endregion
+
+        #region PUT
+
+        [HttpPut("EditCustomer")]
+        public async Task<IActionResult> PutTblCustomer(string company_id,string customer_id, CustomerDTO customerDTO)
+        {
+            if(customer_id != customerDTO.CustomerId)
+            {
+                return BadRequest();
+            }
+
+            customerDTO.CompanyId = company_id;
+            customerDTO.CustomerId = customer_id;
+            await _customerServices.UpdateCustomer(customerDTO);
+            return NoContent();
+
+            
+        }
+
+
+        #endregion
+
+
+        #region DELETE
+
         [HttpDelete("DeleteCustomer")]
         public async Task<IActionResult> DeleteTblCustomer(string comapny_id, string customer_id)
         {
-            var existCustomer = GetTblCustomer(comapny_id, customer_id); 
+            var existCustomer = await GetTblCustomer(comapny_id, customer_id); 
             if (existCustomer == null)
             {
                 return NotFound();
@@ -85,5 +99,9 @@ namespace POS_Final_Year.Controller
 
             return NoContent();
         }
+
+        #endregion
+
+        
     }
 }

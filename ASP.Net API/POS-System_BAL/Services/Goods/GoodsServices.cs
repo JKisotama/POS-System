@@ -8,14 +8,6 @@ using POS_System_BAL.DTOs;
 using POS_System_DAL;
 using POS_System_DAL.Data;
 using POS_System_DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace POS_System_BAL.Services.Goods
 {
@@ -24,7 +16,8 @@ namespace POS_System_BAL.Services.Goods
         private readonly IMapper _mapper;
         private readonly OnlinePosContext _onlinePosContext;
         private readonly Cloudinary _cloudinary;
-        public GoodsServices( IMapper mapper ,OnlinePosContext onlinePosContext, Cloudinary cloudinary)
+
+        public GoodsServices(IMapper mapper, OnlinePosContext onlinePosContext, Cloudinary cloudinary)
         {
             _mapper = mapper;
             _onlinePosContext = onlinePosContext;
@@ -32,14 +25,17 @@ namespace POS_System_BAL.Services.Goods
         }
 
         #region GET
+
         public IQueryable<TblGood> GetGoodsQueryable()
         {
             return _onlinePosContext.TblGoods.AsQueryable();
         }
+
         public IQueryable<TblSellprice> GetSelPriceQueryable()
         {
             return _onlinePosContext.TblSellprices.AsQueryable();
         }
+
         public async Task<IEnumerable<TblGoodsgroup>> GetTblGoodsgroupsAsync(string store_id)
         {
             return await _onlinePosContext.TblGoodsgroups
@@ -58,7 +54,7 @@ namespace POS_System_BAL.Services.Goods
         public async Task<IEnumerable<TblGood>> GetGoodsByGroupAsync(
             IQueryable<TblGood> query,
             string store_id = null,
-            string group_id = null,  
+            string group_id = null,
             string searchTerm = null)
         {
             var goods = await _onlinePosContext.TblGoods
@@ -75,7 +71,7 @@ namespace POS_System_BAL.Services.Goods
                 .ToListAsync();
         }
 
-        public async Task<TblPropertygroup> GetPropertyGroupAsync(string store_id,string property_id)
+        public async Task<TblPropertygroup> GetPropertyGroupAsync(string store_id, string property_id)
         {
             var property = await _onlinePosContext.TblPropertygroups
                 .Where(s => s.StoreId == store_id && s.PropertyId == property_id)
@@ -87,7 +83,7 @@ namespace POS_System_BAL.Services.Goods
         {
             var goods = await _onlinePosContext.TblGoods
                 .Where(s => s.StoreId == store_id && s.GoodsId == goods_id)
-               .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync();
             return goods;
         }
 
@@ -98,44 +94,69 @@ namespace POS_System_BAL.Services.Goods
                 .ToListAsync();
             return _mapper.Map<IEnumerable<GoodUnitDTO>>(entity);
         }
+
         public async Task<IEnumerable<TblGoodsproperty>> GetGoodsPropertyAsync(
-            string store_id, 
-            string goods_id,
+            string store_id,
             string property_group)
         {
-            return _onlinePosContext.TblGoodsproperties
-                .Where(s => s.StoreId == store_id && s.GoodsId == goods_id && s.PropertyId == property_group);
+            return await _onlinePosContext.TblGoodsproperties
+                .Where(s => s.StoreId == store_id && s.PropertyId == property_group)
+                .Distinct()
+                .ToListAsync();
         }
-        public async Task<TblGoodsproperty> GetGoodsPropertyByIdAsync(
-            string store_id, 
+        
+        public async Task<TblGoodsproperty> GetGoodsPropertySpecificAsync(
+            string storeId,
+            string goodsId,
+            string propertyName)
+        {
+            var result = await _onlinePosContext.TblGoodsproperties
+                .Where(s => s.StoreId == storeId && s.GoodsId == goodsId && s.PropertyName == propertyName)
+                .FirstOrDefaultAsync();
+            return result;
+        }
+
+        public async Task<IEnumerable<TblGoodsproperty>> GetGoodsPropertyByIdAsync(
+            string store_id,
             string goods_id)
         {
-            return await _onlinePosContext.TblGoodsproperties
-                .Where(s => s.StoreId == store_id && s.GoodsId == goods_id)
-                .FirstOrDefaultAsync();
+            var result = await _onlinePosContext.TblGoodsproperties
+                .AsNoTracking()
+                .Join(
+                    _onlinePosContext.TblPropertygroups,
+                    gp => gp.PropertyId,
+                    pg => pg.PropertyId,
+                    (gp, pg) => gp
+                )
+                .Where(gp => gp.StoreId == store_id && gp.GoodsId == goods_id)
+                .Distinct()
+                .ToListAsync();
+
+            return result;
         }
+
         public async Task<IEnumerable<GoodsWithSellPriceDTO>> GetGoodsWithSellPricesAsync(
-        IQueryable<TblGood> query,
-        IQueryable<TblSellprice> sellPriceQuery, 
-        string store_id = null,
-        string searchTerm = null,
-        int? sellNumber = null,
-        int? sellPrice = null)
+            IQueryable<TblGood> query,
+            IQueryable<TblSellprice> sellPriceQuery,
+            string store_id = null,
+            string searchTerm = null,
+            int? sellNumber = null,
+            int? sellPrice = null)
         {
             var filteredGoods = query
                 .Where(g =>
-                    (string.IsNullOrEmpty(store_id) || 
-                        g.StoreId.Contains(store_id)) &&
-                    (string.IsNullOrEmpty(searchTerm) || 
-                        g.GoodsName.Contains(searchTerm) || 
-                        g.GoodsId.Contains(searchTerm)));
+                    (string.IsNullOrEmpty(store_id) ||
+                     g.StoreId.Contains(store_id)) &&
+                    (string.IsNullOrEmpty(searchTerm) ||
+                     g.GoodsName.Contains(searchTerm) ||
+                     g.GoodsId.Contains(searchTerm)));
             var filteredSellPrice = sellPriceQuery
                 .Where(s =>
-                (string.IsNullOrEmpty(searchTerm) || 
-                    s.Barcode.Contains(searchTerm) || 
-                    s.GoodsUnit.Contains(searchTerm) &&
-                (!sellNumber.HasValue || s.SellNumber == sellNumber) &&
-                (!sellPrice.HasValue || s.SellPrice == sellPrice)));
+                    (string.IsNullOrEmpty(searchTerm) ||
+                     s.Barcode.Contains(searchTerm) ||
+                     s.GoodsUnit.Contains(searchTerm) &&
+                     (!sellNumber.HasValue || s.SellNumber == sellNumber) &&
+                     (!sellPrice.HasValue || s.SellPrice == sellPrice)));
 
             var result = await filteredSellPrice
                 .GroupJoin(
@@ -149,7 +170,7 @@ namespace POS_System_BAL.Services.Goods
                         GoodsName = good.Goods.GoodsName,
                         Barcode = good.Barcode,
                         GoodsUnit = good.GoodsUnit,
-                        SellNumber = sellPrices.FirstOrDefault().SellNumber, 
+                        SellNumber = sellPrices.FirstOrDefault().SellNumber,
                         SellPrice = sellPrices.FirstOrDefault().SellPrice
                     })
                 .ToListAsync();
@@ -158,7 +179,7 @@ namespace POS_System_BAL.Services.Goods
         }
 
         public async Task<IEnumerable<TblSellprice>> GetSellpricesAsync(
-            string store_id, 
+            string store_id,
             string goods_id)
         {
             return await _onlinePosContext.TblSellprices
@@ -166,9 +187,55 @@ namespace POS_System_BAL.Services.Goods
                 .ToListAsync();
         }
 
+
+        public async Task<IEnumerable<TblGood>>GetAllGoodsAsync(string store_id)
+        {
+            return await _onlinePosContext.TblGoods
+                .Where(s => s.StoreId == store_id)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<TblGoodsgroup>>GetAllGroupAsync(string store_id)
+        {
+            return await _onlinePosContext.TblGoodsgroups
+                .Where(s => s.StoreId == store_id)
+                .ToListAsync();
+        }
+        
+        public async Task<IEnumerable<TblPropertygroup>> GetAllGroupPropertyAsync(string store_id)
+        {
+            return await _onlinePosContext.TblPropertygroups
+                .Where(s => s.StoreId == store_id)
+                .ToListAsync();
+        }
+        
+        public async Task<IEnumerable<TblGoodsproperty>> GetAllGoodsPropertyAsync(string store_id)
+        {
+            return await _onlinePosContext.TblGoodsproperties
+                .Where(s => s.StoreId == store_id)
+                .ToListAsync();
+        }
+        
+        public async Task<IEnumerable<TblGoodsunit>> GetAllGoodsUnitAsync(string store_id)
+        {
+            return await _onlinePosContext.TblGoodsunits
+                .Where(s => s.StoreId == store_id)
+                .ToListAsync();
+        }
+        
+        public async Task<IEnumerable<TblSellprice>> GetAllSellPriceAsync(string store_id)
+        {
+            return await _onlinePosContext.TblSellprices
+                .Where(s => s.StoreId == store_id)
+                .ToListAsync();
+        }
+        
+        
+
         #endregion
 
         #region CREATE
+
         public async Task SaveGoodsGroup(GoodsGroupDTO goodsGroupDTO)
         {
             var entity = _mapper.Map<TblGoodsgroup>(goodsGroupDTO);
@@ -183,7 +250,7 @@ namespace POS_System_BAL.Services.Goods
         public async Task SavePropertyGroup(TblPropertygroup tblPropertygroup)
         {
             var propertyCounter = GenerateGoodGroupProperty(tblPropertygroup.StoreId);
-            tblPropertygroup.PropertyId = tblPropertygroup.StoreId + propertyCounter;
+            tblPropertygroup.PropertyId = propertyCounter;
             tblPropertygroup.PropertyCounter = GetPropertyCounterByStoreId(tblPropertygroup.StoreId) + 1;
             _onlinePosContext.TblPropertygroups
                 .Add(tblPropertygroup);
@@ -192,23 +259,21 @@ namespace POS_System_BAL.Services.Goods
 
         public async Task SaveGoods(GoodsDTO goodsDTO, IFormFile imageFile)
         {
-            
-                var entity = _mapper.Map<TblGood>(goodsDTO);
-                var goodsCounter = GenerateGoodId(entity.StoreId, entity.GroupId);
-                entity.GoodsId =  entity.GroupId + goodsCounter;
-                entity.GoodsCounter = GetGoodsCounterByStoreId(entity.StoreId, entity.GroupId) + 1;
-                var imageName = $"{entity.StoreId}-{entity.GroupId}-{goodsCounter}";
-                var uploadResult = await UploadImageToCloudinary(imageFile, entity.StoreId, goodsCounter, imageName);
-                if (uploadResult.Error != null)
-                {
-                    throw new Exception(uploadResult.Error.Message);
-                }
-                entity.Picture = uploadResult.SecureUrl.ToString();
+            var entity = _mapper.Map<TblGood>(goodsDTO);
+            var goodsCounter = GenerateGoodId(entity.StoreId, entity.GroupId);
+            entity.GoodsId = entity.GroupId + goodsCounter;
+            entity.GoodsCounter = GetGoodsCounterByStoreId(entity.StoreId, entity.GroupId) + 1;
+            var imageName = $"{entity.StoreId}-{entity.GroupId}-{goodsCounter}";
+            var uploadResult = await UploadImageToCloudinary(imageFile, entity.StoreId, goodsCounter, imageName);
+            if (uploadResult.Error != null)
+            {
+                throw new Exception(uploadResult.Error.Message);
+            }
 
-                _onlinePosContext.TblGoods.Add(entity);
-                await _onlinePosContext.SaveChangesAsync();
+            entity.Picture = uploadResult.SecureUrl.ToString();
 
-            
+            _onlinePosContext.TblGoods.Add(entity);
+            await _onlinePosContext.SaveChangesAsync();
         }
 
         public async Task SaveUnit(GoodUnitDTO goodUnitDTO)
@@ -222,39 +287,30 @@ namespace POS_System_BAL.Services.Goods
 
         public async Task SaveProperty(string store_id, string goods_id, string property_id, string property_value)
         {
-            try
+            var goodProperty_id = GetGoodPropertyCounterByStoreId(store_id);
+            var counter = GenerateGoodProperty(store_id);
+            var newProperty = new TblGoodsproperty
             {
-                var newProperty = new TblGoodsproperty
-                {
-                    StoreId = store_id,
-                    GoodsId = goods_id,
-                    PropertyId = property_id,
-                    PropertyName = property_value
-                };
-                _onlinePosContext.TblGoodsproperties
-                    .Add(newProperty);
-                await _onlinePosContext.SaveChangesAsync();
-            }
-            catch(DbUpdateException ex)
-            {
-                if(ex.InnerException is SqlException sqlException)
-                {
-                        throw new Exception("Check Property ID !");            
-                }
-                throw;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while saving the property.", ex);
-            }
-        }
+                PropertyGoodsId = counter,
+                StoreId = store_id,
+                GoodsId = goods_id,
+                PropertyId = property_id,
+                PropertyName = property_value,
+                PropertyCounter = goodProperty_id + 1
+                
+            };
+            _onlinePosContext.TblGoodsproperties
+                .Add(newProperty);
+            await _onlinePosContext.SaveChangesAsync();
+        
+}
 
         public async Task SaveSellingPrices(TblSellprice tblSellprice)
         {
             string? storeId = _onlinePosContext.TblGoods
-                        .Where(g => g.GoodsId == tblSellprice.GoodsId)
-                        .Select(g => g.StoreId)
-                        .FirstOrDefault();
+                .Where(g => g.GoodsId == tblSellprice.GoodsId)
+                .Select(g => g.StoreId)
+                .FirstOrDefault();
             if (storeId != null)
             {
                 tblSellprice.StoreId = storeId;
@@ -263,17 +319,20 @@ namespace POS_System_BAL.Services.Goods
             {
                 throw new InvalidOperationException("No store ID found for goods ID");
             }
+
             _onlinePosContext.TblSellprices
                 .Add(tblSellprice);
             await _onlinePosContext.SaveChangesAsync();
         }
+
         #endregion
 
         #region AUTO GEN
+
         public string GenerateGoodGroupID(string store_id)
         {
             int counter = GetGroupCounterByStoreId(store_id);
-            var  nCounter =   counter + 1;
+            var nCounter = counter + 1;
             string group_id = new string('0', 3 - nCounter.ToString().Length) + nCounter.ToString();
             return group_id;
         }
@@ -293,6 +352,14 @@ namespace POS_System_BAL.Services.Goods
             string group_id = new string('0', 3 - nCounter.ToString().Length) + nCounter.ToString();
             return group_id;
         }
+        
+        public string GenerateGoodProperty(string store_id)
+        {
+            int counter = GetGoodPropertyCounterByStoreId(store_id);
+            var nCounter = counter + 1;
+            string group_id = new string('0', 3 - nCounter.ToString().Length) + nCounter.ToString();
+            return group_id;
+        }
 
         public int GetGroupCounterByStoreId(string storerId)
         {
@@ -302,34 +369,48 @@ namespace POS_System_BAL.Services.Goods
                 .ThenByDescending(g => g.GroupCounter)
                 .Select(g => g.GroupCounter)
                 .FirstOrDefault();
-                return groupCounter;
+            return groupCounter;
         }
 
         public int GetGoodsCounterByStoreId(string storeId, string groupId)
         {
-                var goodsCounter = _onlinePosContext.TblGoods
-                    .Where(g => g.StoreId == storeId && g.GroupId == groupId)
-                    .OrderBy(g => g.StoreId)
-                    .ThenByDescending (g => g.GoodsCounter)
-                    .Select(g => g.GoodsCounter)
-                    .FirstOrDefault();
-                return goodsCounter;            
+            var goodsCounter = _onlinePosContext.TblGoods
+                .Where(g => g.StoreId == storeId && g.GroupId == groupId)
+                .OrderBy(g => g.StoreId)
+                .ThenByDescending(g => g.GoodsCounter)
+                .Select(g => g.GoodsCounter)
+                .FirstOrDefault();
+            return goodsCounter;
         }
 
         public int GetPropertyCounterByStoreId(string storeId)
         {
-                var propertyCounter = _onlinePosContext.TblPropertygroups
-                    .Where(g => g.StoreId == storeId)
-                    .OrderBy(g => g.StoreId)
-                    .ThenByDescending(g => g.PropertyCounter)
-                    .Select(g => g.PropertyCounter)
-                    .FirstOrDefault();
-                return propertyCounter;
+            var propertyCounter = _onlinePosContext.TblPropertygroups
+                .Where(g => g.StoreId == storeId)
+                .OrderBy(g => g.StoreId)
+                .ThenByDescending(g => g.PropertyCounter)
+                .Select(g => g.PropertyCounter)
+                .FirstOrDefault();
+            return propertyCounter;
         }
+
+        public int GetGoodPropertyCounterByStoreId(string storeId)
+        {
+            var propertyCounter = _onlinePosContext.TblGoodsproperties
+                .Where(g => g.StoreId == storeId)
+                .OrderBy(g => g.StoreId)
+                .ThenByDescending(g => g.PropertyCounter)
+                .Select(g => g.PropertyCounter)
+                .FirstOrDefault();
+            return propertyCounter;
+        }
+
         #endregion
 
         #region UPDATE
-        public async Task UpdateGoods(string storeId, string goodsId, string goodsName, string goodsBrand, int goodsStatus, IFormFile imageFile)
+
+        public async Task UpdateGoods(string storeId, string goodsId, string goodsName, string goodsBrand,
+            int goodsStatus, IFormFile imageFile)
         {
             var existingGoods = await _onlinePosContext.TblGoods
                 .FirstOrDefaultAsync(g => g.GoodsId == goodsId && g.StoreId == storeId);
@@ -338,7 +419,7 @@ namespace POS_System_BAL.Services.Goods
             {
                 throw new KeyNotFoundException("Goods not found.");
             }
-            
+
             if (!string.IsNullOrEmpty(goodsName))
                 existingGoods.GoodsName = goodsName;
 
@@ -346,7 +427,7 @@ namespace POS_System_BAL.Services.Goods
                 existingGoods.GoodsBrand = goodsBrand;
 
             existingGoods.GoodsStatus = goodsStatus;
-            
+
             if (imageFile != null)
             {
                 var imageName = $"{existingGoods.StoreId}-{existingGoods.GroupId}-{goodsId}";
@@ -361,7 +442,7 @@ namespace POS_System_BAL.Services.Goods
 
             await _onlinePosContext.SaveChangesAsync();
         }
-        
+
         public async Task UpdateGroup(string storeId, string groupId, string groupName, int groupStatus)
         {
             var existingGroup = await _onlinePosContext.TblGoodsgroups
@@ -379,27 +460,27 @@ namespace POS_System_BAL.Services.Goods
 
             await _onlinePosContext.SaveChangesAsync();
         }
-        
-        public async Task UpdateGoodsProperty(string storeId, string propertyId, string goodsId,string propertyName)
+
+        public async Task UpdateGoodsProperty(string goodsPropertyId, string updateProperty)
         {
             var existingProperty = await _onlinePosContext.TblGoodsproperties
-                .FirstOrDefaultAsync(p => p.StoreId == storeId && p.GoodsId == goodsId && p.PropertyId == propertyId);
+                .FirstOrDefaultAsync(p => p.PropertyGoodsId == goodsPropertyId );
 
             if (existingProperty == null)
             {
                 throw new KeyNotFoundException("Goods property not found.");
             }
+            if(!string.IsNullOrEmpty(updateProperty))
+                existingProperty.PropertyName = updateProperty;
 
-            if (!string.IsNullOrEmpty(propertyName))
-                existingProperty.PropertyName = propertyName;
-            
+            _onlinePosContext.TblGoodsproperties.Update(existingProperty);
             await _onlinePosContext.SaveChangesAsync();
         }
 
-        
-        public async Task UpdateGroupProperty(string storeId,string propertyId, string propertyName)
+
+        public async Task UpdateGroupProperty(string storeId, string propertyId, string propertyName)
         {
-            var existingGroup = await _onlinePosContext.TblGoodsproperties
+            var existingGroup = await _onlinePosContext.TblPropertygroups
                 .FirstOrDefaultAsync(g => g.StoreId == storeId && g.PropertyId == propertyId);
 
             if (existingGroup == null)
@@ -409,11 +490,12 @@ namespace POS_System_BAL.Services.Goods
 
             if (!string.IsNullOrEmpty(propertyName))
                 existingGroup.PropertyName = propertyName;
-            
+
             await _onlinePosContext.SaveChangesAsync();
         }
-        
-        public async Task UpdateGoodsUnit(string storeId, string goodsId,string goodsUnit, int size, int status, int stock)
+
+        public async Task UpdateGoodsUnit(string storeId, string goodsId, string goodsUnit, int size, int status,
+            int stock)
         {
             var existingUnit = await _onlinePosContext.TblGoodsunits
                 .FirstOrDefaultAsync(u => u.StoreId == storeId && u.GoodsUnit == goodsUnit);
@@ -428,16 +510,17 @@ namespace POS_System_BAL.Services.Goods
 
             if (!string.IsNullOrEmpty(goodsId))
                 existingUnit.GoodsId = goodsId;
-            
+
             existingUnit.UnitSize = size;
             existingUnit.UnitStatus = status;
             existingUnit.UnitStock = stock;
-            
+
 
             await _onlinePosContext.SaveChangesAsync();
         }
 
-        public async Task UpdateSellingPrices(string storeId, string goodsId, string barcode,string goodsUnit, int price, int sku)
+        public async Task UpdateSellingPrices(string storeId, string goodsId, string barcode, string goodsUnit,
+            int price, int sku)
         {
             var existingPrice = await _onlinePosContext.TblSellprices
                 .FirstOrDefaultAsync(p => p.StoreId == storeId && p.GoodsId == goodsId && p.Barcode == barcode);
@@ -457,26 +540,27 @@ namespace POS_System_BAL.Services.Goods
         #endregion
 
         #region DELETE
-        
+
         public async Task DeleteGoods(string storeId, string goodsId)
         {
             var goods = await _onlinePosContext.TblGoods
                 .FirstOrDefaultAsync(g => g.StoreId == storeId && g.GoodsId == goodsId);
-                
+
             if (goods == null)
             {
                 throw new KeyNotFoundException("Goods not found.");
             }
-            
+
             bool validgoodsProperty = await _onlinePosContext.TblGoodsproperties
                 .AnyAsync(g => g.StoreId == storeId && g.GoodsId == goodsId);
-            
+
             bool validsellPrice = await _onlinePosContext.TblSellprices
                 .AnyAsync(g => g.StoreId == storeId && g.GoodsId == goodsId);
 
             if (validgoodsProperty && validsellPrice)
             {
-                throw new InvalidOperationException("Cannot delete goods because it has associated goodsProperty and SellPrice.");
+                throw new InvalidOperationException(
+                    "Cannot delete goods because it has associated goodsProperty and SellPrice.");
             }
 
             _onlinePosContext.TblGoods.Remove(goods);
@@ -491,7 +575,7 @@ namespace POS_System_BAL.Services.Goods
             {
                 throw new KeyNotFoundException("Group not found.");
             }
-            
+
             bool validGoods = await _onlinePosContext.TblGoods
                 .AnyAsync(g => g.StoreId == storeId && g.GroupId == groupId);
             if (validGoods)
@@ -503,18 +587,24 @@ namespace POS_System_BAL.Services.Goods
             await _onlinePosContext.SaveChangesAsync();
         }
 
-        public async Task DeleteGoodsProperty(string storeId, string propertyId)
+
+        
+        public async Task DeleteGoodsProperty(string storeId, string goodsPropertyId)
         {
             var property = await _onlinePosContext.TblGoodsproperties
-                .FirstOrDefaultAsync(p => p.StoreId == storeId && p.PropertyId == propertyId);
+                .Where(s => s.StoreId == storeId && 
+                            s.PropertyGoodsId == goodsPropertyId)
+                .FirstOrDefaultAsync();
 
-            if (property == null)
+            
+            Console.WriteLine($"Deleting property: {property}");
+            if (property != null)
             {
-                throw new KeyNotFoundException("Goods property not found.");
+                _onlinePosContext.TblGoodsproperties.Remove(property);
+                await _onlinePosContext.SaveChangesAsync();
             }
-
-            _onlinePosContext.TblGoodsproperties.Remove(property);
-            await _onlinePosContext.SaveChangesAsync();
+            
+            
         }
 
         public async Task DeleteGroupProperty(string storeId, string propertyId)
@@ -526,7 +616,7 @@ namespace POS_System_BAL.Services.Goods
             {
                 throw new KeyNotFoundException("Group property not found.");
             }
-            
+
             bool validGoodsProperty = await _onlinePosContext.TblGoodsproperties
                 .AnyAsync(g => g.StoreId == storeId && g.PropertyId == propertyId);
 
@@ -539,7 +629,7 @@ namespace POS_System_BAL.Services.Goods
             await _onlinePosContext.SaveChangesAsync();
         }
 
-        public async Task DeleteGoodsUnit(string storeId,string goodsUnit)
+        public async Task DeleteGoodsUnit(string storeId, string goodsUnit)
         {
             var unit = await _onlinePosContext.TblGoodsunits
                 .FirstOrDefaultAsync(u => u.StoreId == storeId && u.GoodsUnit == goodsUnit);
@@ -548,7 +638,7 @@ namespace POS_System_BAL.Services.Goods
             {
                 throw new KeyNotFoundException("Goods unit not found.");
             }
-            
+
             bool validUnit = await _onlinePosContext.TblSellprices
                 .AnyAsync(g => g.StoreId == storeId && g.GoodsUnit == goodsUnit);
 
@@ -567,20 +657,18 @@ namespace POS_System_BAL.Services.Goods
                 .Where(s => s.StoreId == storeId && s.GoodsId == goodsId && s.GoodsUnit == goodsUnit)
                 .FirstOrDefaultAsync();
 
-                if (sellPrice == null)
-                {
-                    throw new KeyNotFoundException("Sell price not found.");
-                }
+            if (sellPrice == null)
+            {
+                throw new KeyNotFoundException("Sell price not found.");
+            }
 
-                _onlinePosContext.TblSellprices.Remove(sellPrice);
-                await _onlinePosContext.SaveChangesAsync();
-            
+            _onlinePosContext.TblSellprices.Remove(sellPrice);
+            await _onlinePosContext.SaveChangesAsync();
         }
 
-
         #endregion
-        
-        
+
+
         private async Task<ImageUploadResult> UploadImageToCloudinary(
             IFormFile imageFile,
             string id,
@@ -607,6 +695,5 @@ namespace POS_System_BAL.Services.Goods
 
             return uploadResult;
         }
-
     }
 }

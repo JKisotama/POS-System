@@ -159,9 +159,13 @@ public partial class OnlinePosContext : DbContext
         modelBuilder.Entity<TblGoodsproperty>(entity =>
         {
             entity
-                .HasKey(e => e.PropertyId);
+                .HasKey(e => e.PropertyGoodsId);
             entity
                 .ToTable("tbl_goodsproperty");
+            entity.Property(e => e.PropertyGoodsId)
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasColumnName("goodsproperty_id");
             entity.Property(e => e.PropertyId)
                 .HasMaxLength(3)
                 .IsUnicode(false)
@@ -175,6 +179,8 @@ public partial class OnlinePosContext : DbContext
                 .HasColumnName("store_id");
             entity.Property(e => e.GoodsId)
                 .HasColumnName("goods_id");
+            entity.Property(e => e.PropertyCounter)
+                .HasColumnName("property_counter");
 
             entity.HasOne(d => d.Goods).WithMany()
                 .HasForeignKey(d => d.GoodsId)

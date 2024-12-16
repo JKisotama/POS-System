@@ -116,10 +116,9 @@ namespace POS_Final_Year.Controller
         [HttpGet("GetGoodProperty")]
         public async Task<ActionResult<IEnumerable<TblGoodsproperty>>> GetProperty(
             string store_id,
-            string goods_id,
             string property_id)
         {
-            var property = await _goodsServices.GetGoodsPropertyAsync(store_id,goods_id,property_id);
+            var property = await _goodsServices.GetGoodsPropertyAsync(store_id,property_id);
             if (property == null )
             {
                 return NotFound("No Property found");
@@ -200,11 +199,11 @@ namespace POS_Final_Year.Controller
         }
         
         [HttpPut("UpdateGoodsProperty")]
-        public async Task<IActionResult> UpdateGoodsProperty(string store_id, string property_id, string goods_id, string propert_name)
+        public async Task<IActionResult> UpdateGoodsProperty(string goodsPropertyId,string update_property)
         {
             try
             {
-                await _goodsServices.UpdateGoodsProperty(store_id, property_id, goods_id, propert_name);
+                await _goodsServices.UpdateGoodsProperty(goodsPropertyId, update_property);
                 return NoContent();
             }
             catch (KeyNotFoundException ex)
@@ -259,7 +258,7 @@ namespace POS_Final_Year.Controller
         {
             try
             {
-                await _goodsServices.UpdateSellingPrices(store_id, goods_id, unit, barcode, quantity, selling_price);
+                await _goodsServices.UpdateSellingPrices(store_id, goods_id,barcode, unit , selling_price,quantity);
                 return NoContent();
             }
             catch (KeyNotFoundException ex)
@@ -306,7 +305,7 @@ namespace POS_Final_Year.Controller
             return StatusCode(201, goodsunit);
         }
         [HttpPost("SaveProperty")]
-        public async Task<ActionResult<TblGoodsproperty>> PostTblGoodProperty(string store_id, string goods_id, string property_id, string property_value)
+        public async Task<IActionResult> PostTblGoodProperty(string store_id, string goods_id, string property_id, string property_value)
         {
             await _goodsServices.SaveProperty(store_id,goods_id, property_id, property_value);
 
@@ -376,11 +375,12 @@ namespace POS_Final_Year.Controller
         }
         
         [HttpDelete("DeleteGoodsProperty")]
-        public async Task<IActionResult> DeleteGoodsProperty(string store_id, string goods_id)
+        public async Task<IActionResult> DeleteGoodsProperty(string store_id,  string goodsProperty_id)
         {
+            
             try
             {
-                await _goodsServices.DeleteGoodsProperty(store_id, goods_id);
+                await _goodsServices.DeleteGoodsProperty(store_id, goodsProperty_id);
                 return NoContent();
             }
             catch (KeyNotFoundException ex)
