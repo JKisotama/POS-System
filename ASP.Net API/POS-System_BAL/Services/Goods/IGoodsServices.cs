@@ -24,10 +24,15 @@ namespace POS_System_BAL.Services.Goods
         Task<IEnumerable<GoodUnitDTO>> GetGoodsUnitAsync(string store_id, string goods_id, int type);
         Task<IEnumerable<TblGoodsproperty>> GetGoodsPropertyAsync(
             string store_id, 
-            string goods_id,
             string property_group);
 
-        Task<TblGoodsproperty> GetGoodsPropertyByIdAsync(
+
+        Task<TblGoodsproperty> GetGoodsPropertySpecificAsync(
+            string storeId,
+            string goodsId,
+            string propertyName);
+
+        Task<IEnumerable<TblGoodsproperty>> GetGoodsPropertyByIdAsync(
             string store_id,
             string goods_id);
         Task<IEnumerable<GoodsWithSellPriceDTO>> GetGoodsWithSellPricesAsync(
@@ -38,6 +43,14 @@ namespace POS_System_BAL.Services.Goods
             int? sellNumber = null,
             int? sellPrice = null);
         Task<IEnumerable<TblSellprice>> GetSellpricesAsync(string store_id, string goods_id);
+
+        Task<IEnumerable<TblGood>> GetAllGoodsAsync(string store_id);
+        Task<IEnumerable<TblGoodsgroup>> GetAllGroupAsync(string store_id);
+        Task<IEnumerable<TblPropertygroup>> GetAllGroupPropertyAsync(string store_id);
+        Task<IEnumerable<TblGoodsproperty>> GetAllGoodsPropertyAsync(string store_id);
+        Task<IEnumerable<TblGoodsunit>> GetAllGoodsUnitAsync(string store_id);
+        Task<IEnumerable<TblSellprice>> GetAllSellPriceAsync(string store_id);
+        
         #endregion
 
         #region POST
@@ -53,7 +66,7 @@ namespace POS_System_BAL.Services.Goods
 
         Task UpdateGoods(string storeId, string goodsId, string goodsName, string goodsBrand, int goodsStatus, IFormFile imageFile);
         Task UpdateGroup(string storeId, string groupId, string groupName, int groupStatus);
-        Task UpdateGoodsProperty(string storeId, string propertyId, string goodsId, string propertyName);
+        Task UpdateGoodsProperty(string goodsPropertyId, string updateProperty);
         Task UpdateGroupProperty(string storeId, string propertyId, string propertyName);
         Task UpdateGoodsUnit(string storeId, string goodsId, string goodsUnit, int size, int status, int stock);
         Task UpdateSellingPrices(string storeId, string goodsId, string barcode, string goodsUnit, int price, int sku);
@@ -64,7 +77,7 @@ namespace POS_System_BAL.Services.Goods
 
         Task DeleteGoods(string storeId, string goodsId);
         Task DeleteGroup(string storeId, string groupId);
-        Task DeleteGoodsProperty(string storeId, string propertyId);
+        Task DeleteGoodsProperty(string storeId, string goodsPropertyId);
         Task DeleteGroupProperty(string storeId, string propertyId);
 
         Task DeleteGoodsUnit(string storeId, string goodsUnit);

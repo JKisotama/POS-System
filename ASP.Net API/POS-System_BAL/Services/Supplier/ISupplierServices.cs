@@ -21,7 +21,11 @@ namespace POS_System_BAL.Services.Supplier
 
         #region PUT
 
-        Task UpdateSupplier(SupplierDTO supplierDTO);
+        Task UpdateSupplier(
+            string storeId, string supplierId,
+            string supplierName, int type,
+            string address, string phone,
+            string email, int allowDebt);
 
         #endregion
 

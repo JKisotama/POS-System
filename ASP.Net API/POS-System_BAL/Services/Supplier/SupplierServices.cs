@@ -61,16 +61,28 @@ namespace POS_System_BAL.Services.Supplier
 
         #region PUT
 
-        public async Task UpdateSupplier(SupplierDTO supplierDTO)
+        public async Task UpdateSupplier(
+            string storeId, string supplierId, 
+            string supplierName, int type, 
+            string address, string phone, 
+            string email, int allowDebt)
         {
-            var existSupplier = await GetSupplier(supplierDTO.StoreId, supplierDTO.SupplierId);
-            if (existSupplier != null)
+            var existSupplier = await _onlinePosContext.TblSuppliers
+                .FirstOrDefaultAsync(p => p.StoreId == storeId && p.SupplierId == supplierId);
+            if (existSupplier == null)
             {
-                _mapper.Map(supplierDTO, existSupplier);
-                _onlinePosContext.Update(existSupplier);
-                
+                throw new InvalidOperationException("No Supplier found");
             }
-            throw new InvalidOperationException("No Supplier found");
+
+            existSupplier.SupplierName = supplierName;
+            existSupplier.SupplierType = type;
+            existSupplier.SupplierAddress = address;
+            existSupplier.SupplierPhone = phone;
+            existSupplier.SupplierEmail = email;
+            existSupplier.AllowDebt = allowDebt;
+            
+            _onlinePosContext.Update(existSupplier);
+            await _onlinePosContext.SaveChangesAsync();
         }
 
 
@@ -83,7 +95,8 @@ namespace POS_System_BAL.Services.Supplier
             var supplier = await GetSupplier(store_id, supplier_id);
             if (supplier != null)
             {
-                _onlinePosContext.Remove(supplier);
+                _onlinePosContext.TblSuppliers.Remove(supplier);
+                await _onlinePosContext.SaveChangesAsync();
                 return supplier;
             }
             throw new InvalidOperationException("no Supplier Found");

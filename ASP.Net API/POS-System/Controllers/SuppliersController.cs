@@ -62,14 +62,15 @@ namespace POS_Final_Year.Controller
         #region PUT
 
         [HttpPut("UpdateSupplier")]
-        public async Task<IActionResult> PutTblSupplier(SupplierDTO supplierDTO)
+        public async Task<IActionResult> PutTblSupplier(string store_id, string supplier_id, 
+            string supplier_name, int supplier_type, 
+            string supplier_address, string supplier_phone, 
+            string supplier_email, int allowDebt)
         {
-            var updateSupplier = await _supplierServices.GetSupplier(supplierDTO.StoreId, supplierDTO.SupplierId);
-            if (updateSupplier == null)
-            {
-                return NotFound();
-            }
-            await _supplierServices.UpdateSupplier(supplierDTO);
+            await _supplierServices.UpdateSupplier(store_id, supplier_id, 
+                supplier_name, supplier_type, 
+                supplier_address, supplier_phone, 
+                supplier_email, allowDebt);
             return NoContent();
         }
 
