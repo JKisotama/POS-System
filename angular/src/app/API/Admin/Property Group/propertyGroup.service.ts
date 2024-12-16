@@ -25,6 +25,7 @@ export class PropertyGroupService {
     }
     createPropertyGroup(PropertyGroupData: PropertyGroupDTO): Observable<any> {
         this.loadingService.show();
+        console.log('storeId:', PropertyGroupData.storeId, 'propertyId:', PropertyGroupData.propertyId, 'propertyName:' , PropertyGroupData.propertyName)
         return this.http.post(`${this.baseUrl}/SavePropertyGroup`, PropertyGroupData).pipe(
             finalize(() => this.loadingService.hide())
         );

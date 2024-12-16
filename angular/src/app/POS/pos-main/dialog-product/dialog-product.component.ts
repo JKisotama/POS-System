@@ -29,7 +29,7 @@ export class DialogProductComponent implements OnInit{
 
   @Output() itemAdded = new EventEmitter<void>();
   form: FormGroup;
-  dataSource = new MatTableDataSource<GoodsDTO>();
+  dataSource = new MatTableDataSource<GoodsDTO>([]);
   displayedColumns: string[] = ['name', 'unit', 'propertyGroup', 'goodProperty', 'quantity', 'price', 'total' , 'addcart'];
   storeId: string | null = null;
   loginName: string | null = null;
@@ -46,6 +46,7 @@ export class DialogProductComponent implements OnInit{
     
     this.fetchOrderDetails();
     this.getAllPropertyGroup();
+    this.getGoodsList();
   }
 
   buildForm() {

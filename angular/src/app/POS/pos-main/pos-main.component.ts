@@ -187,7 +187,6 @@ export class PosMainComponent implements OnInit {
   openProductDialog(): void {
     const dialogRef = this.dialog.open(DialogProductComponent, {
       width: '80vw',
-      height: '90vh',
       panelClass: 'custom-dialog-container'
     });
     dialogRef.componentInstance.itemAdded.subscribe(() => {

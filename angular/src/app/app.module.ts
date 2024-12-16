@@ -96,7 +96,7 @@ import { EditGoodSellPriceComponent } from './staff/goods-page/view-good-sell-pr
     CreatePropertyGroupComponent,
     CreateGoodsComponent,
     SupplierComponent,
-    CreateSupplierComponent,
+    CreateSupplierComponent,  
     CustomerComponent,
     CreateCustomerComponent,
     GoodsUnitComponent,

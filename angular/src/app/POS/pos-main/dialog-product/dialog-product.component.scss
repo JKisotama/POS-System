@@ -2,10 +2,9 @@
 
 
 
-.dialog-form {
+.dialog {
   background-color: $Dark-Void !important;
   padding: 25px 30px;
-  height: 90vh;
   .custom-table {
     .mat-header-cell, .mat-cell {
       padding-bottom: 16px; // Customize the padding bottom
@@ -48,18 +47,7 @@
           border-radius: 0 5px 5px 0 !important;
           border-left: none !important;
         }
-
-        .btn-secondary {
-          border-radius: 0 5px 5px 0 !important; // Remove left radius
-          border-left: none !important; // Remove left border completely
-          margin-left: -1px; // Fix alignment with the input
-        }
-
-        .custom-btn {
-          border-radius: 0 5px 5px 0 !important; // Right-rounded only
-          border-left: none !important; // Remove left border
-          margin-left: -1px; // Fix gap alignment
-        }
+        
 
       }
 
@@ -142,6 +130,11 @@
 .error-snackbar {
   background-color: red; /* Change to your desired error color */
   color: red /* Text color */
+}
+
+.no-data {
+  font-size: 15px;
+  color: white;
 }
 
 

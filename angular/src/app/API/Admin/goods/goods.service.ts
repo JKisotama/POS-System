@@ -48,6 +48,7 @@ export class GoodsService {
 
   updateProduct(goodsData: GoodsDTO, file: File): Observable<any> {
     const formData = new FormData();
+    
     formData.append('file', file);
 
     this.loadingService.show();

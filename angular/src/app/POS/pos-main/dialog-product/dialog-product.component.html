@@ -1,5 +1,5 @@
-<div class="dialog-form">
-  <div mat-dialog-content>
+<div class="dialog">
+  <div class="header">
     <div class="row">
       <div class="col-md-4">
         <h2>Product List</h2>
@@ -128,6 +128,10 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
+
+      <div class="no-data" *ngIf="dataSource.data.length === 0">
+        No data, please search
+      </div>
     </div>
   </div>
 
