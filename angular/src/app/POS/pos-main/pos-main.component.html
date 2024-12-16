@@ -2,7 +2,6 @@
   <div class="new-order-zone">
     <div class="row">
       <!-- Order Holder -->
-      <!-- TODO: Reponsive  -->
       <div class="col-xl-12 col-lg-12 col-md-12 order-information">
         <div class="d-flex justify-content-between">
           <!-- Order Hang Holder -->
@@ -27,23 +26,25 @@
       </div>
       <div class="col-xl-12 col-lg-12 col-md-12 order-information">
         <div class="d-flex justify-content-between">
+          <!-- TODO: Thêm class "active" khi order được chọn -->
           <div class="order-holder">
             <a href="javascript:void(0)" class="text-capitalize">
               {{ currentPosNumber }}
             </a>
-
             <!-- Show this if no orders are available -->
             <ng-template #noOrders>
               <p>No orders available</p>
             </ng-template>
 
             <!-- Button to create a new order -->
-            <button>
+            <button (click)="hangPO()">
               <i class="fas fa-plus"></i>
             </button>
           </div>
           <div class="order-deleted">
-            <button (click)="hangPO()">Hang Order</button>
+            <button (click)="hangPO()">
+              <i class="fas fa-trash"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -147,10 +148,10 @@
             <p class="text-capitalize bill-infor-title">Seller:</p>
             <p class="text-capitalize bill-infor-detail">{{ fullName }}</p>
           </div>
-          <div class="bill-information-item d-flex justify-content-between">
+          <!-- <div class="bill-information-item d-flex justify-content-between">
             <p class="text-capitalize bill-infor-title">Store:</p>
             <p class="text-capitalize bill-infor-detail">Location</p>
-          </div>
+          </div> -->
           <div class="bill-information-item d-flex justify-content-between">
             <p class="text-capitalize bill-infor-title">Bill Date:</p>
             <p class="text-capitalize bill-infor-detail">
@@ -192,39 +193,35 @@
           </div>
           <div class="checkout-info">
             <div class="checkout-info-item d-flex justify-content-between">
-              <p class="Checkout-title">Subtotal:</p>
-              <p class="Checkout-price">
+              <p class="checkout-title">Subtotal:</p>
+              <p class="checkout-price">
                 {{ subtotal | number : "1.0-2" }} VND
               </p>
             </div>
             <div class="checkout-info-item d-flex justify-content-between">
-              <p class="Checkout-title">Discount:</p>
-              <p class="Checkout-price">
+              <p class="checkout-title">Discount:</p>
+              <p class="checkout-price">
                 {{ discount | number : "1.0-2" }} VND
               </p>
             </div>
             <div class="checkout-info-item d-flex justify-content-between">
-              <p class="Checkout-title">Total:</p>
-              <p class="Checkout-price">{{ total | number : "1.0-2" }} VND</p>
+              <p class="checkout-title">Total:</p>
+              <p class="checkout-price-total fw-bold">{{ total | number : "1.0-2" }} VND</p>
             </div>
-            <div
-              class="checkout-info-customer-pay d-flex justify-content-between"
-              [formGroup]="form"
-            >
+            <div class="checkout-info-customer-pay d-flex justify-content-between" [formGroup]="form">
               <p class="checkout-title">Customer Pay:</p>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Enter amount"
-                formControlName="customerPay"
-              />
+              <div class="checkout-info-customer-pay-input d-flex justify-content-between">
+                <!-- TODO: Chỉnh phần input thêm giấu chấm cho mỗi đơn vị lên hàng ngàn (giống phần add price trong good price) -->
+                <input type="number" class="form-control" placeholder="Enter amount" formControlName="customerPay" />
+                <p>VND</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Customer Card -->
-      <!-- TODO: Open Dialog user -->
+      
       <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 customer-card mt-3">
         <div class="card-item">
           <div class="customer-title d-flex justify-content-between">

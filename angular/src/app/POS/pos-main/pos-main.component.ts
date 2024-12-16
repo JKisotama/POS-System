@@ -173,6 +173,7 @@ export class PosMainComponent implements OnInit {
 
   openCustomerDialog(): void {
     const dialogRef = this.dialog.open(DialogCustomerComponent, {
+      width: '80vw',
       panelClass: 'custom-dialog-container',
 
     });
@@ -235,7 +236,7 @@ export class PosMainComponent implements OnInit {
           console.log('PO successfully hung');
       },
       error: (error) => {
-        this.snackBar.open('Error Hanging item. Please try again.', 'Close', {
+        this.snackBar.open('Error Hanging item. No Products selected', 'Close', {
           duration: 3000,
           panelClass: ['snackbar-error'], // Use the error class
       });
