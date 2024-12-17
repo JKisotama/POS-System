@@ -3,7 +3,7 @@
 
   <div class="ad-main-search">
     <div class="row">
-      <div class="col-md-3 ad-main-btn">
+      <div class="col-md-2 ad-main-btn">
         <button
           type="button"
           (click)="openCreateCustomer()"
@@ -12,7 +12,7 @@
           Create Customer
         </button>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-8">
         <form [formGroup]="form">
           <input
             type="text"
@@ -23,10 +23,12 @@
           />
         </form>
       </div>
-      <div class="col-md-3 ad-main-btn">
-        <button class="btn btn-zone" (click)="getCustomerByCompanyId()">
-          Search
-        </button>
+      <div class="col-md-2 ad-main-btn ">
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-zone" (click)="getCustomerByCompanyId()">
+            Search
+          </button>
+        </div>
       </div>
     </div>
   </div>

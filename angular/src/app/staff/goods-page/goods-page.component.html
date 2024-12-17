@@ -1,39 +1,43 @@
 <div class="ad-main-content">
   <h2 class="">Goods Information</h2>
 
-  <div class="ad-main-search d-flex justify-content-between">
-    <div class="ad-main-btn">
-      <button
-        type="button"
-        (click)="openCreateGoods()"
-        class="btn btn-orange-bg"
-      >
-        Create Good
-      </button>
-    </div>
-    <form [formGroup]="form">
-      <input
-        type="text"
-        class="form-control search-bar-admin"
-        formControlName="filterText"
-        aria-describedby="helpId"
-        placeholder="Search"
-      />
-    </form>
-
-    <div class="ad-main-btn">
-      <form [formGroup]="form">
-        <select
-          class="form-select custom-select"
-          formControlName="groupId"
-          aria-describedby="helpId"
+  
+  <div class="ad-main-search">
+    <div class="row">
+      <div class="col-md-2 ad-main-btn text-start">
+        <button
+          type="button"
+          (click)="openCreateGoods()"
+          class="btn btn-orange-bg"
         >
-          <option value="">Search Group</option>
-          <option *ngFor="let group of groupList" [value]="group.groupId">
-            {{ group.groupName }}
-          </option>
-        </select>
-      </form>
+          Create Customer
+        </button>
+      </div>
+      <div class="col-md-8">
+        <form [formGroup]="form">
+          <input
+            type="text"
+            class="form-control search-bar-admin"
+            formControlName="companyId"
+            aria-describedby="helpId"
+            placeholder="Search"
+          />
+        </form>
+      </div>
+      <div class="col-md-2 ad-main-btn text-end">
+        <form [formGroup]="form">
+          <select
+            class="form-select custom-select"
+            formControlName="groupId"
+            aria-describedby="helpId"
+          >
+            <option value="">Search Group</option>
+            <option *ngFor="let group of groupList" [value]="group.groupId">
+              {{ group.groupName }}
+            </option>
+          </select>
+        </form>
+      </div>
     </div>
   </div>
 

@@ -175,3 +175,13 @@ $desktop: 1440px;
    
 
 }
+
+@mixin search-bar-admin{
+    background-color: $Gluon-Grey;
+    border-radius: 100px !important;
+    border: $Dusty-Grey solid 1px;
+    color: $White-Snow;
+    &::placeholder{
+        color: $Dusty-Grey;
+    }
+}

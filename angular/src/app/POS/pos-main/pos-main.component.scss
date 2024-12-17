@@ -2,6 +2,7 @@
 
 .custom-dialog-container {
   --mdc-dialog-container-color: $Dusty-Grey;
+
   .mat-dialog-container {
     padding: 25px 30px;
     background-color: $Dusty-Grey;
@@ -14,35 +15,36 @@
 
 .new-order-zone {
   .order-information {
-    .order-holder{
+    .order-holder {
       a {
         padding: 14px 40px;
         color: $White-Snow;
         border-radius: 5px;
         border: 1px dashed $White-Snow;
         transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
-  
+
         &:hover {
           background-color: $White-Snow;
           color: $Dark-Void;
           border: 1px solid $White-Snow;
         }
-  
+
         &:nth-of-type(n + 2) {
           margin-left: 20px;
         }
-        :active{
+
+        &:active {
           background-color: $White-Snow;
           color: $Dark-Void;
           border: 1px solid $White-Snow;
         }
       }
-      
+
       button {
         @include btn-white-border;
         margin-left: 20px;
         padding: 14px 20px;
-  
+
         &:nth-of-type(2) {
           // Styles for the second button
           height: auto;
@@ -50,8 +52,9 @@
         }
       }
     }
-    .order-deleted{
-      button{
+
+    .order-deleted {
+      button {
         padding: 14px 40px;
         @include btn-orange-border;
       }
@@ -61,85 +64,99 @@
   .product-card {
     .header {
 
-        h2 {
-            color: $White-Snow;
-            font-size: 30px;
-            margin-bottom: 20px;
-        }
-        button{
-          padding: 9px 42px;
-          @include btn-white-border;
-        }
-        .search-bar {
-            @include search-bar-input;
-            form{
-                input{
-                    border-right: none;
-                    border-radius: 5px 0 0 5px!important;
-                    &::placeholder{
-                        color: $Dusty-Grey;
-                    }
-                    &:focus {
-                        outline: none;
-                        box-shadow: none; // For Bootstrap-specific focus shadows
-                      }
-                }
-                button{
-                    @include btn-white-border;
-                    border-radius: 0 5px 5px 0!important;
-                    border-left: none;
-                }
+      h2 {
+        color: $White-Snow;
+        font-size: 30px;
+        margin-bottom: 20px;
+      }
+
+      button {
+        padding: 9px 42px;
+        @include btn-white-border;
+      }
+
+      .search-bar {
+        @include search-bar-input;
+
+        form {
+          input {
+            border-right: none;
+            border-radius: 5px 0 0 5px !important;
+
+            &::placeholder {
+              color: $Dusty-Grey;
             }
-            
+
+            &:focus {
+              outline: none;
+              box-shadow: none; // For Bootstrap-specific focus shadows
+            }
+          }
+
+          button {
+            @include btn-white-border;
+            border-radius: 0 5px 5px 0 !important;
+            border-left: none;
+          }
         }
 
-        .add-new-ctm{
-            button{
-                @include btn-green-border;
-                padding: 10px 20px;
-                border-radius: 5px;
-                
-            }
+      }
+
+      .add-new-ctm {
+        button {
+          @include btn-green-border;
+          padding: 10px 20px;
+          border-radius: 5px;
+
         }
+      }
     }
-    .empty-card{
+
+    .empty-card {
       border: 1px dashed $White-Snow;
       border-radius: 12px;
       width: 100%;
       margin-top: 25px;
       padding: 34px 0;
-      i{
+
+      i {
         font-size: 50px;
         color: $White-Snow;
         margin-top: 20px;
       }
-      p{
+
+      p {
         color: $White-Snow;
         font-size: 20px;
         margin-top: 20px;
       }
     }
-    table{
-      .pd-name{
-        td{
+
+    table {
+      .pd-name {
+        td {
           color: $Dark-Void !important;
         }
       }
-      td{
-        select{
+
+      td {
+        select {
           background-color: transparent !important;
           color: $White-Snow;
-          option{
+
+          option {
             background-color: $Dusty-Grey;
             color: $White-Snow;
           }
         }
-        input{
+
+        input {
           background-color: transparent;
           color: $White-Snow;
           border-radius: 5px;
           border: 1px dashed $White-Snow;
-          :focus{
+
+          :focus {
             border: 1px solid $White-Snow !important;
           }
         }
@@ -152,15 +169,18 @@
     .bill-information-item {
       margin-top: 10px;
       border-bottom: 1px solid $White-Snow;
+
       .bill-infor-title {
         color: $White-Snow;
         font-size: 20px;
         margin-bottom: 10px;
       }
+
       &:nth-child(n + 2) {
         padding-top: 20px;
       }
     }
+
     padding-bottom: 20px;
   }
 
@@ -190,55 +210,93 @@
         padding: 20px 90px;
         border-radius: 5px;
         flex: 1 1 auto;
+
         i {
           padding-right: 5px;
         }
       }
     }
+
     .checkout-info {
       margin-top: 15px;
-     
+      .checkout-title{
+        font-weight: bold;
+        font-size: 16px;
+      }
       .checkout-info-item {
         border-bottom: 1px solid $White-Snow;
-        input{
+
+        input {
           background-color: $Gluon-Grey;
           color: $White-Snow;
-          width: 100%;
+          // width: 100%;
           border-radius: 5px;
           border: 1px dashed $White-Snow;
           padding: 6px;
-          
-          &::placeholder{
-              color: $Dusty-Grey;
+
+          &::placeholder {
+            color: $Dusty-Grey;
           }
-          
-      }
-      
-        .checkout-title {
-          color: $White-Snow;
-          font-size: 20px;
-          margin-bottom: 10px;
+
         }
+        .checkout-price-total{
+          font-size: 20px;
+        }
+        
+
         &:nth-child(n + 2) {
           padding-top: 20px;
         }
       }
+
       .checkout-info-customer-pay {
         margin-top: 10px;
-        input{
-          background-color: $Gluon-Grey;
-          color: $White-Snow;
-          width: 100%;
-          border-radius: 5px;
-          border: 1px dashed $White-Snow;
-          padding: 6px;
-          
-          &::placeholder{
+
+        p {
+          padding: 6px 0;
+
+        }
+
+        .checkout-info-customer-pay-input {
+          input {
+
+            background-color: $Gluon-Grey;
+            color: $White-Snow;
+            width: 100%;
+            border-radius: 5px 0 0 5px !important;
+            border: 1px dashed $White-Snow;
+            border-right: none;
+
+            padding: 6px;
+            text-align: right;
+
+            &::placeholder {
               color: $Dusty-Grey;
+            }
+            &[type="number"] {
+              -moz-appearance: textfield;
+              -webkit-appearance: none;
+              appearance: none;
+        
+              &::-webkit-inner-spin-button,
+              &::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+              }
+            }
+
           }
-          
+
+          p {
+            border-radius: 0 5px 5px 0 !important;
+            border: 1px dashed $White-Snow;
+            border-left: none;
+
+            padding: 6px;
+
+          }
+        }
       }
-    }
     }
   }
 
@@ -250,23 +308,29 @@
           padding-left: 10px;
         }
       }
+
       button {
         padding: 9px 42px;
         @include btn-white-border;
       }
     }
+
     .customer-item {
       margin-top: 30px;
+
       p {
         font-size: medium;
+
         .bill-infor-title {
           color: $White-Snow;
           font-size: 20px;
           margin-bottom: 10px;
         }
+
         &:nth-child(n + 2) {
           padding-top: 20px;
         }
+
         span {
           color: $Dusty-Grey;
           padding-left: 10px;
@@ -275,7 +339,3 @@
     }
   }
 }
-
-
-
-

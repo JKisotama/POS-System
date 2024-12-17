@@ -29,6 +29,19 @@ p{
     color: $White-Snow;
 
 }
+input {
+    border-right: none;
+    border-radius: 5px 0 0 5px !important;
+
+    &::placeholder {
+        color: $Dusty-Grey;
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: none; // For Bootstrap-specific focus shadows
+    }
+}
 
 .row{
     padding: 0 !important;
@@ -117,13 +130,15 @@ form{
 }
 .search-bar-admin{
     background-color: $Gluon-Grey;
-    border-radius: 100px;
+    border-radius: 100px !important;
     border: $Dusty-Grey solid 1px;
     color: $White-Snow;
     &::placeholder{
         color: $Dusty-Grey;
     }
 }
+
+
 
 
 .mat-elevation-z8 {
