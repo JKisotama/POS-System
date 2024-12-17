@@ -39,32 +39,32 @@ namespace POS_Final_Year.Controller
         
         
         [HttpGet("GetPoHangList")]
-        public async Task<ActionResult<IEnumerable<TblPo>>> GetPoHangList(string store_id)
+        public async Task<ActionResult<IEnumerable<TblPo>>> GetPoHangList(string storeId)
         {
-            var list = await  _posServices.GetPoHangList(store_id);
+            var list = await  _posServices.GetPoHangList(storeId);
             return Ok(list);
         }
         
         [HttpPut("CancelPo")]
-        public async Task<ActionResult> GetPoHeaderList(string store_id, string pos_number)
+        public async Task<ActionResult> GetPoHeaderList(string storeId, string posNumber)
         {
-            var list = _posServices.CancelPo(store_id,pos_number);
+            var list = _posServices.CancelPo(storeId,posNumber);
             return NoContent();
         }
         
         [HttpGet("GetPOSDetails")]
         public async Task<ActionResult> GetDetails(
-            string store_id, 
-            string pos_number)
+            string storeId, 
+            string posNumber)
         {
-            var items = await _posServices.GetPoItemsAsync(store_id, pos_number);
+            var items = await _posServices.GetPoItemsAsync(storeId, posNumber);
             return Ok(items);
         }
         
         [HttpGet("GetPODetailsByPoHeader")]
-        public async Task<ActionResult> GetDetailList(string store_id, string posNumber)
+        public async Task<ActionResult> GetDetailList(string storeId, string posNumber)
         {
-            var list = await _posServices.GetPoItemsListAsync(store_id, posNumber);
+            var list = await _posServices.GetPoItemsListAsync(storeId, posNumber);
             return Ok(list);
         }
         
@@ -103,9 +103,9 @@ namespace POS_Final_Year.Controller
         }
                 
         [HttpDelete("DeleteItem")]
-        public async Task UnHangPo(string storeId, string posNumber)
+        public async Task DeletItem(string storeId, string posNumber, int itemOrder)
         {
-            await _posServices.DeletePoItemAsync(storeId, posNumber);
+            await _posServices.DeletePoItemAsync(storeId, posNumber, itemOrder);
         }
 
         [HttpPost("FinalizeTransaction")]
@@ -129,9 +129,10 @@ namespace POS_Final_Year.Controller
         }
 
         [HttpPut("HangPO")]
-        public async Task HangPo(string storeId, string posNumber)
+        public async Task<IActionResult> HangPo(string storeId, string posNumber)
         {
             await _posServices.HangPo(storeId, posNumber);
+            return NoContent();
         }
 
     }
