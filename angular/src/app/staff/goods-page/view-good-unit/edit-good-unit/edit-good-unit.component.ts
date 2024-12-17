@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { GoodsUnitDTO } from '../../../../API/Admin/Goods Unit/model';
-import { AuthenticationService } from '../../../../API/Admin/authentication.service';
-import { GoodsUnitService } from '../../../../API/Admin/Goods Unit/goodsUnit.service';
+import { GoodsUnitDTO } from '../../../../API/Staff/Goods Unit/model';
+import { AuthenticationService } from '../../../../API/authentication.service';
+import { GoodsUnitService } from '../../../../API/Staff/Goods Unit/goodsUnit.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

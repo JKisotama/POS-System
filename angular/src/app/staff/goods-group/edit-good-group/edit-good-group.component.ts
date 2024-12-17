@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { GoodsGroupService } from '../../../API/Admin/Goods Group/goodsGroup.service';
-import { AuthenticationService } from '../../../API/Admin/authentication.service';
+import { GoodsGroupService } from '../../../API/Staff/Goods Group/goodsGroup.service';
+import { AuthenticationService } from '../../../API/authentication.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { GoodsGroupDTO } from '../../../API/Admin/Goods Group/model';
+import { GoodsGroupDTO } from '../../../API/Staff/Goods Group/model';
 
 @Component({
   selector: 'app-edit-good-group',

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from './../../API/Admin/authentication.service';
-import { UserService } from '../../API/Admin/user/user.service';
+import { AuthenticationService } from '../../API/authentication.service';
+import { UserService } from '../../API/Staff/user/user.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -46,8 +46,8 @@ export class LoginComponent {
     // Call login service
     this.userService.LoginUser(storeId, loginName, passWord).subscribe(
       (response) => {
-        const userLevel = response.userLevel; 
-        const fullName = response.fullName;
+        const userLevel = response.user.userLevel; 
+        const fullName = response.user.fullName;
   
         this.authservice.setLoggedIn(true, loginName, storeId, userLevel, fullName);
         this.snackBar.open('Logged in successfully!', '', {
@@ -57,7 +57,16 @@ export class LoginComponent {
         this.loginSuccess.emit();
         this.loading = false;
   
-        this.router.navigate(['Admin']);
+        if (userLevel === 1) {
+          this.router.navigate(['Staff']);
+        } else if (userLevel === 0) {
+          this.router.navigate(['Admin']);
+        } else {
+          this.snackBar.open('Invalid user status.', '', {
+            duration: 3000,
+            panelClass: ['snackbar-error']
+          });
+        }
       },
       (error) => {
         this.snackBar.open('Login Failed. Please try again.', '', {

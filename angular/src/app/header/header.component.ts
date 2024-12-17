@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { AuthenticationService } from '../../API/Admin/authentication.service';
+import { AuthenticationService } from '../API/authentication.service';
 
 
 @Component({
-  selector: 'app-admin-header',
-  templateUrl: './admin-header.component.html',
-  styleUrl: './admin-header.component.scss'
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss'
 })
-export class AdminHeaderComponent  implements OnInit {
+export class HeaderComponent  implements OnInit {
   items: MenuItem[] | undefined;
   fullName: string | null = null;
   userRole: number | null = null;
 
-  constructor(private authenticationService: AuthenticationService,){
+  constructor(private authenticationService: AuthenticationService){
     
   }
 

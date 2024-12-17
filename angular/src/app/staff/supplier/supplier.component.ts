@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { SupplierDTO } from '../../API/Admin/Supplier/model';
-import { SupplierService } from '../../API/Admin/Supplier/supplier.service';
-import { AuthenticationService } from '../../API/Admin/authentication.service';
+import { SupplierDTO } from '../../API/Staff/Supplier/model';
+import { SupplierService } from '../../API/Staff/Supplier/supplier.service';
+import { AuthenticationService } from '../../API/authentication.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateSupplierComponent } from './create-supplier/create-supplier.component';
 import { MatSnackBar } from '@angular/material/snack-bar';

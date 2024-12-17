@@ -1,13 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { GoodsUnitDTO } from '../../../API/Admin/Goods Unit/model';
-import { GoodsUnitService } from '../../../API/Admin/Goods Unit/goodsUnit.service';
+import { GoodsUnitDTO } from '../../../API/Staff/Goods Unit/model';
+import { GoodsUnitService } from '../../../API/Staff/Goods Unit/goodsUnit.service';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { AuthenticationService } from '../../../API/Admin/authentication.service';
+import { AuthenticationService } from '../../../API/authentication.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CreateGoodUnitComponent } from './create-good-unit/create-good-unit.component';
-import { GoodsService } from '../../../API/Admin/goods/goods.service';
+import { GoodsService } from '../../../API/Staff/goods/goods.service';
 import { EditGoodUnitComponent } from './edit-good-unit/edit-good-unit.component';
 import { ConfirmDialogComponent } from '../../../confirm-dialog.component';
 

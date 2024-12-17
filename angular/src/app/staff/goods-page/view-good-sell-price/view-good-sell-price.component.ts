@@ -1,12 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SellPriceService } from '../../../API/Admin/Sell Price/sellPrice.service';
+import { SellPriceService } from '../../../API/Staff/Sell Price/sellPrice.service';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { AuthenticationService } from '../../../API/Admin/authentication.service';
+import { AuthenticationService } from '../../../API/authentication.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { GoodsService } from '../../../API/Admin/goods/goods.service';
+import { GoodsService } from '../../../API/Staff/goods/goods.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { SellPriceDTO } from '../../../API/Admin/Sell Price/model';
+import { SellPriceDTO } from '../../../API/Staff/Sell Price/model';
 import { CreateSellPriceComponent } from './create-sell-price/create-sell-price.component';
 import { EditGoodSellPriceComponent } from './edit-good-sell-price/edit-good-sell-price.component';
 import { ConfirmDialogComponent } from '../../../confirm-dialog.component';

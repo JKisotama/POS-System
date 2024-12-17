@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { AuthenticationService } from '../../../API/Admin/authentication.service';
-import { SupplierService } from '../../../API/Admin/Supplier/supplier.service';
+import { AuthenticationService } from '../../../API/authentication.service';
+import { SupplierService } from '../../../API/Staff/Supplier/supplier.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

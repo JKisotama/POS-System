@@ -2,9 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CreateGoodPropertyComponent } from '../create-good-property/create-good-property.component';
-import { GoodsPropertyDTO } from '../../../../API/Admin/Goods Property/model';
-import { AuthenticationService } from '../../../../API/Admin/authentication.service';
-import { GoodsPropertyService } from '../../../../API/Admin/Goods Property/goodsProperty.service';
+import { GoodsPropertyDTO } from '../../../../API/Staff/Goods Property/model';
+import { AuthenticationService } from '../../../../API/authentication.service';
+import { GoodsPropertyService } from '../../../../API/Staff/Goods Property/goodsProperty.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

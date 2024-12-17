@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { AuthenticationService } from '../../../API/Admin/authentication.service';
-import { GoodsUnitService } from '../../../API/Admin/Goods Unit/goodsUnit.service';
+import { AuthenticationService } from '../../../API/authentication.service';
+import { GoodsUnitService } from '../../../API/Staff/Goods Unit/goodsUnit.service';
 
 @Component({
   selector: 'app-create-goods-unit',

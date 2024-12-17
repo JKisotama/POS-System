@@ -32,7 +32,7 @@ export class CustomerService {
     this.loadingService.show();
     return this.http
       .put(
-        `${this.baseUrl}/EditCustomer?comapny_id=${CustomerData.companyId}&customer_id=${CustomerData.customerId}`,
+        `${this.baseUrl}/EditCustomer?company_id=${CustomerData.companyId}&customer_id=${CustomerData.customerId}`,
         CustomerData
       )
       .pipe(finalize(() => this.loadingService.hide()));

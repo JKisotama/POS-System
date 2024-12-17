@@ -1,5 +1,3 @@
-
-
 <div class="ad-sidenav">
   <!-- <ul class="nav nav-tabs flex-column">
       <li class="nav-item">
@@ -29,32 +27,51 @@
       </li>
   </ul> -->
 
-  <ul class="nav nav-pills  flex-column">
+  <ul class="nav nav-pills flex-column">
     <li class="nav-item">
-      <a routerLink="/Admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link" aria-current="page">Goods</a>
+      <a
+        routerLink="/Staff"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-link"
+        aria-current="page"
+        >Goods</a
+      >
     </li>
     <li class="nav-item">
-      <a routerLink="/Admin/good-group" routerLinkActive="active"  class="nav-link">Goods Group</a>
+      <a
+        routerLink="/Staff/good-group"
+        routerLinkActive="active"
+        class="nav-link"
+        >Goods Group</a
+      >
+    </li>
+
+    <li class="nav-item">
+      <a routerLink="/Staff/supplier" routerLinkActive="active" class="nav-link"
+        >Supplier</a
+      >
     </li>
 
     <li class="nav-item">
-      <a routerLink="/Admin/supplier" routerLinkActive="active" class="nav-link">Supplier</a>
+      <a routerLink="/Staff/user" routerLinkActive="active" class="nav-link"
+        >User Management</a
+      >
     </li>
 
     <li class="nav-item">
-      <a routerLink="/Admin/user" routerLinkActive="active" class="nav-link">User Management</a>
+      <a
+        routerLink="/Staff/property-group"
+        routerLinkActive="active"
+        class="nav-link"
+        >Property Group</a
+      >
     </li>
 
     <li class="nav-item">
-      <a routerLink="/Admin/property-group" routerLinkActive="active" class="nav-link">Property Group</a>
+      <a routerLink="/Staff/customer" routerLinkActive="active" class="nav-link"
+        >Customer</a
+      >
     </li>
-
-    <li class="nav-item">
-      <a routerLink="/Admin/customer" routerLinkActive="active" class="nav-link">Customer</a>
-    </li>
-
-
   </ul>
-
-  
 </div>

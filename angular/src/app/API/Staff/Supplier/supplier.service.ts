@@ -33,7 +33,7 @@ export class SupplierService {
 
     updateSupplier(SupplierData: SupplierDTO): Observable<any> {
         this.loadingService.show();
-        return this.http.put(`${this.baseUrl}/UpdateSupplier`, SupplierData).pipe(
+        return this.http.put(`${this.baseUrl}/UpdateSupplier?store_id=${SupplierData.storeId}&supplier_id=${SupplierData.supplierId}&supplier_name=${SupplierData.supplierName}&supplier_type=${SupplierData.supplierType}&supplier_address=${SupplierData.supplierAddress}&supplier_phone=${SupplierData.supplierPhone}&supplier_email=${SupplierData.supplierEmail}`, SupplierData).pipe(
           finalize(() => this.loadingService.hide())
         );
     }

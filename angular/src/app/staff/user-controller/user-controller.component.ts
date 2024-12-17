@@ -1,6 +1,6 @@
 import { Component, OnInit , ViewChild} from '@angular/core';
-import { StaffService } from '../../API/Admin/Staff/staff.service';
-import { StaffDTO } from '../../API/Admin/Staff/model';
+import { StaffService } from '../../API/Staff/Staff/staff.service';
+import { StaffDTO } from '../../API/Staff/Staff/model';
 import { NgForm } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
 import { ViewContainerRef } from '@angular/core';
@@ -11,9 +11,9 @@ import { CreateStaffComponent } from './create-staff/create-staff.component';
 import { EditStaffComponent } from './edit-staff/edit-staff.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { AuthenticationService } from '../../API/Admin/authentication.service';
-import { GoodsDTO } from '../../API/Admin/goods/model';
-import { UserService } from '../../API/Admin/user/user.service';
+import { AuthenticationService } from '../../API/authentication.service';
+import { GoodsDTO } from '../../API/Staff/goods/model';
+import { UserService } from '../../API/Staff/user/user.service';
 
 
 

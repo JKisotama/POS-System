@@ -4,16 +4,16 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogCustomerComponent } from './dialog-customer/dialog-customer.component';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { POSDetailDto, POSDto } from '../../API/Admin/POS/model';
-import { POSService } from '../../API/Admin/POS/pos.service';
-import { AuthenticationService } from '../../API/Admin/authentication.service';
-import { CustomerDTO } from '../../API/Admin/Customer/model';
-import { GoodsDTO } from '../../API/Admin/goods/model';
+import { POSDetailDto, POSDto } from '../../API/Staff/POS/model';
+import { POSService } from '../../API/Staff/POS/pos.service';
+import { AuthenticationService } from '../../API/authentication.service';
+import { CustomerDTO } from '../../API/Staff/Customer/model';
+import { GoodsDTO } from '../../API/Staff/goods/model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DialogProductComponent } from './dialog-product/dialog-product.component';
 import { DialogInvoiceComponent } from './dialog-invoice/dialog-invoice.component';
-import { PropertyGroupDTO } from '../../API/Admin/Property Group/model';
-import { PropertyGroupService } from '../../API/Admin/Property Group/propertyGroup.service';
+import { PropertyGroupDTO } from '../../API/Staff/Property Group/model';
+import { PropertyGroupService } from '../../API/Staff/Property Group/propertyGroup.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

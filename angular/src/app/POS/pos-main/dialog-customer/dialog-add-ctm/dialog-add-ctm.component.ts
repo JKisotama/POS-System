@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { CustomerService } from '../../../../API/Admin/Customer/customer.service';
+import { CustomerService } from '../../../../API/Staff/Customer/customer.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

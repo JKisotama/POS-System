@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { SellPriceDTO } from '../../../../API/Admin/Sell Price/model';
-import { AuthenticationService } from '../../../../API/Admin/authentication.service';
-import { SellPriceService } from '../../../../API/Admin/Sell Price/sellPrice.service';
+import { SellPriceDTO } from '../../../../API/Staff/Sell Price/model';
+import { AuthenticationService } from '../../../../API/authentication.service';
+import { SellPriceService } from '../../../../API/Staff/Sell Price/sellPrice.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -33,7 +33,7 @@ export class EditGoodSellPriceComponent implements OnInit {
   buildForm(){
     this.form = this.fb.group({
       goodsUnit: [this.data.sellPrice?.goodsUnit, [Validators.required]],
-      barcode: [this.data.sellPrice?.barcode, [Validators.required]],
+      barcode: [this.data.sellPrice?.barcode],
       sellNumber: [this.data.sellPrice?.sellNumber, [Validators.required]],
       sellPrice: [
         this.data.sellPrice?.sellPrice 

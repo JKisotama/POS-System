@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { CustomerDTO } from '../../../API/Admin/Customer/model';
+import { CustomerDTO } from '../../../API/Staff/Customer/model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CustomerService } from '../../../API/Admin/Customer/customer.service';
+import { CustomerService } from '../../../API/Staff/Customer/customer.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatCheckboxChange } from '@angular/material/checkbox';

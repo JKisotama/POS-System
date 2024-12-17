@@ -1,0 +1,33 @@
+@import "../../styles.scss";
+
+.ad-header-component{
+    padding: 40px 40px 0 40px;
+    .ad-header{
+        
+        
+    }
+
+    .ad-sidenav{
+        height: 1000px;
+        background-color: $Gluon-Grey;
+        border-radius: 20px;
+        
+    }
+}
+
+.galaxy{
+    background-color: $Dark-Void;
+    
+}
+.hidden-content {
+    display: none;
+  }
+  @media screen and (max-width: 1200px) {
+    .hidden-content {
+      display: block;
+    }
+    .ad-header-component{
+      display: none;
+    }
+    
+  }

@@ -5,9 +5,9 @@ import {
   provideClientHydration,
 } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { AdminHeaderComponent } from './staff/admin-header/admin-header.component'; 
+import {HeaderComponent } from './header/header.component'; 
 import { AdminPageComponent } from './staff/admin-page/admin-page.component'; 
-import { AdminSidebarComponent } from './staff/admin-sidebar/admin-sidebar.component'; 
+import {SidebarComponent } from './sidebar/sidebar.component'; 
 import { PosHeaderComponent } from './POS/pos-header/pos-header.component';
 import { PosFooterComponent } from './POS/pos-footer/pos-footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,7 +35,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { UserControllerComponent } from './staff/user-controller/user-controller.component'; 
 import { CreateStaffComponent } from './staff/user-controller/create-staff/create-staff.component';
 import { LoginComponent } from './authentication/login/login.component';
-import { AuthenticationService } from './API/Admin/authentication.service';
+import { AuthenticationService } from './API/authentication.service';
 import { AuthenticationGuard } from './authentication.guard';
 import { GoodsGroupComponent } from './staff/goods-group/goods-group.component'; 
 import { CreateGoodGroupComponent } from './staff/goods-group/create-good-group/create-good-group.component';
@@ -49,7 +49,7 @@ import { CreateCustomerComponent } from './staff/customer/create-customer/create
 import { GoodsUnitComponent } from './staff/goods-unit/goods-unit.component'; 
 import { CreateGoodsUnitComponent } from './staff/goods-unit/create-goods-unit/create-goods-unit.component'; 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AdminComponent } from './staff/admin.component';
+import { AdminComponent } from './admin/admin.component';
 import { POSComponent } from './POS/pos.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
@@ -75,13 +75,14 @@ import { EditSupplierComponent } from './staff/supplier/edit-supplier/edit-suppl
 import { EditCustomerComponent } from './staff/customer/edit-customer/edit-customer.component';
 import { EditGoodPropertyComponent } from './staff/goods-page/view-good-property/edit-good-property/edit-good-property.component';
 import { EditGoodSellPriceComponent } from './staff/goods-page/view-good-sell-price/edit-good-sell-price/edit-good-sell-price.component';
+import { StaffComponent } from './staff/staff.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminHeaderComponent,
+    HeaderComponent,
     AdminPageComponent,
-    AdminSidebarComponent,
+    SidebarComponent,
     PosHeaderComponent,
     PosFooterComponent,
     DashboardComponent,
@@ -123,6 +124,7 @@ import { EditGoodSellPriceComponent } from './staff/goods-page/view-good-sell-pr
     EditCustomerComponent,
     EditGoodPropertyComponent,
     EditGoodSellPriceComponent,
+    StaffComponent,
   ],
   imports: [
     BrowserModule, 

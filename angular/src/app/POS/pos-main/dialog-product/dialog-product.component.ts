@@ -1,13 +1,13 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { GoodsDTO } from '../../../API/Admin/goods/model';
-import { POSService } from '../../../API/Admin/POS/pos.service';
-import { AuthenticationService } from '../../../API/Admin/authentication.service';
+import { GoodsDTO } from '../../../API/Staff/goods/model';
+import { POSService } from '../../../API/Staff/POS/pos.service';
+import { AuthenticationService } from '../../../API/authentication.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import { POSDetailDto, POSDto } from '../../../API/Admin/POS/model';
-import { PropertyGroupService } from '../../../API/Admin/Property Group/propertyGroup.service';
-import { GoodsPropertyService } from '../../../API/Admin/Goods Property/goodsProperty.service';
+import { POSDetailDto, POSDto } from '../../../API/Staff/POS/model';
+import { PropertyGroupService } from '../../../API/Staff/Property Group/propertyGroup.service';
+import { GoodsPropertyService } from '../../../API/Staff/Goods Property/goodsProperty.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

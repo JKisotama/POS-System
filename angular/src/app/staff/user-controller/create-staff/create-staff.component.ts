@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { StaffDTO } from '../../../API/Admin/Staff/model';
-import { StaffService } from '../../../API/Admin/Staff/staff.service';
-import { UserService } from '../../../API/Admin/user/user.service';
+import { StaffDTO } from '../../../API/Staff/Staff/model';
+import { StaffService } from '../../../API/Staff/Staff/staff.service';
+import { UserService } from '../../../API/Staff/user/user.service';
 
 
 @Component({

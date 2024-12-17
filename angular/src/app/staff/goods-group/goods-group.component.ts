@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { GoodsGroupDTO } from '../../API/Admin/Goods Group/model';
-import { GoodsGroupService } from '../../API/Admin/Goods Group/goodsGroup.service';
-import { AuthenticationService } from '../../API/Admin/authentication.service';
+import { GoodsGroupDTO } from '../../API/Staff/Goods Group/model';
+import { GoodsGroupService } from '../../API/Staff/Goods Group/goodsGroup.service';
+import { AuthenticationService } from '../../API/authentication.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateGoodGroupComponent } from './create-good-group/create-good-group.component';
-import { SupplierService } from '../../API/Admin/Supplier/supplier.service';
+import { SupplierService } from '../../API/Staff/Supplier/supplier.service';
 import { EditGoodGroupComponent } from './edit-good-group/edit-good-group.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from '../../confirm-dialog.component';

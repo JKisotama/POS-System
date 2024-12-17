@@ -1,6 +1,6 @@
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthenticationService } from './API/Admin/authentication.service';
+import { AuthenticationService } from './API/authentication.service';
 import { Injectable } from '@angular/core';
 import { map, take } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar'; 
@@ -19,12 +19,17 @@ export class AuthenticationGuard implements CanActivate {
       map(isLoggedIn => {
         if (isLoggedIn) {
           const userRole = this.authService.getUserRole();
-          const allowedPagesForStaff = ['goods-page', 'good-group', 'POS', 'supplier', 'Admin', 'customer'];
+          const allowedPagesForStaff = ['Staff', 'Staff/good-group', 'POS', 'Staff/supplier', 'Staff/customer'];
+          const allowedPagesForAdmin = ['Admin', 'Admin/good-group', 'Admin/supplier', 'Admin/customer'];
 
           // Check if user is staff and if the route is allowed
           if (userRole === 1 && !allowedPagesForStaff.includes(next.routeConfig?.path || '')) {
             this.snackBar.open('You have no right to access this page', 'Close', { duration: 3000 });
-            this.router.navigate(['/goods-page']); // Redirect to home or another page
+            this.router.navigate(['/']); // Redirect to home or another page
+            return false;
+          } else if (userRole === 0 && !allowedPagesForAdmin.includes(next.routeConfig?.path || '')) {
+            this.snackBar.open('You have no right to access this page', 'Close', { duration: 3000 });
+            this.router.navigate(['/']); // Redirect to home or another page
             return false;
           }
           return true; // Allow access if logged in and has permission

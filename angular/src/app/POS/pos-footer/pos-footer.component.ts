@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogInvoiceComponent } from '../pos-main/dialog-invoice/dialog-invoice.component';
-import { AuthenticationService } from '../../API/Admin/authentication.service';
-import { POSService } from '../../API/Admin/POS/pos.service';
+import { AuthenticationService } from '../../API/authentication.service';
+import { POSService } from '../../API/Staff/POS/pos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

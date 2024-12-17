@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { PropertyGroupDTO } from '../../API/Admin/Property Group/model';
-import { PropertyGroupService } from '../../API/Admin/Property Group/propertyGroup.service';
-import { AuthenticationService } from '../../API/Admin/authentication.service';
+import { PropertyGroupDTO } from '../../API/Staff/Property Group/model';
+import { PropertyGroupService } from '../../API/Staff/Property Group/propertyGroup.service';
+import { AuthenticationService } from '../../API/authentication.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreatePropertyGroupComponent } from './create-property-group/create-property-group.component';
 import { EditPropertyGroupComponent } from './edit-property-group/edit-property-group.component';

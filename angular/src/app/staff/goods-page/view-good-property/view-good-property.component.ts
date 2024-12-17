@@ -1,14 +1,14 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { GoodsPropertyDTO } from '../../../API/Admin/Goods Property/model';
-import { GoodsPropertyService } from '../../../API/Admin/Goods Property/goodsProperty.service';
+import { GoodsPropertyDTO } from '../../../API/Staff/Goods Property/model';
+import { GoodsPropertyService } from '../../../API/Staff/Goods Property/goodsProperty.service';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { AuthenticationService } from '../../../API/Admin/authentication.service';
+import { AuthenticationService } from '../../../API/authentication.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CreatePropertyGroupComponent } from '../../property-group/create-property-group/create-property-group.component';
-import { GoodsService } from '../../../API/Admin/goods/goods.service';
-import { PropertyGroupService } from '../../../API/Admin/Property Group/propertyGroup.service';
+import { GoodsService } from '../../../API/Staff/goods/goods.service';
+import { PropertyGroupService } from '../../../API/Staff/Property Group/propertyGroup.service';
 import { EditGoodPropertyComponent } from './edit-good-property/edit-good-property.component';
 import { CreateGoodPropertyComponent } from './create-good-property/create-good-property.component';
 

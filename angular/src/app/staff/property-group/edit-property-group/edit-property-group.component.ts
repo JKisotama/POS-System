@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { PropertyGroupService } from '../../../API/Admin/Property Group/propertyGroup.service';
-import { AuthenticationService } from '../../../API/Admin/authentication.service';
+import { PropertyGroupService } from '../../../API/Staff/Property Group/propertyGroup.service';
+import { AuthenticationService } from '../../../API/authentication.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PropertyGroupDTO } from '../../../API/Admin/Property Group/model';
+import { PropertyGroupDTO } from '../../../API/Staff/Property Group/model';
 
 @Component({
   selector: 'app-edit-property-group',

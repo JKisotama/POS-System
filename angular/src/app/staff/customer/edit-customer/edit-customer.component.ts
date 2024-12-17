@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CustomerService } from '../../../API/Admin/Customer/customer.service';
+import { CustomerService } from '../../../API/Staff/Customer/customer.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CustomerDTO } from '../../../API/Admin/Customer/model';
+import { CustomerDTO } from '../../../API/Staff/Customer/model';
 
 @Component({
   selector: 'app-edit-customer',
