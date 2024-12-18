@@ -1,22 +1,26 @@
-<!-- <div class="container-fluid galaxy ad-header-component">
+<div class="container-fluid galaxy ad-header-component">
   <div class="col-12 ad-header">
-    <app-admin-header></app-admin-header>
+    <app-header></app-header>
   </div>
 
   <div class="col-12">
     <div class="row">
       <div class="col-2">
         <div class="ad-sidenav">
-          <app-admin-sidebar></app-admin-sidebar>
+          <app-sidebar></app-sidebar>
         </div>
       </div>
       <div class="col-10">
-        <app-goods-page *ngIf="isAdminGoodsPage"></app-goods-page>
-        <app-goods-group *ngIf="isAdminGoodGroup"></app-goods-group>
-        <app-pos *ngIf="isAdminPOS"></app-pos>
-        <app-property-group *ngIf="isAdminPropertyGroup"></app-property-group>
-        <app-supplier *ngIf="isAdminSupplier"></app-supplier>
-        <app-customer *ngIf="isAdminCustomer"></app-customer>
+        <app-admin-goods-page *ngIf="isAdminGoodsPage"></app-admin-goods-page>
+        <app-admin-good-group *ngIf="isAdminGoodGroup"></app-admin-good-group>
+        <app-admin-supplier *ngIf="isAdminSupplier"></app-admin-supplier>
+        <app-admin-property-group
+          *ngIf="isAdminPropertyGroup"
+        ></app-admin-property-group>
+        <app-admin-customer *ngIf="isAdminCustomer"></app-admin-customer>
+        <app-admin-user-management
+          *ngIf="isAdminUserManagement"
+        ></app-admin-user-management>
       </div>
     </div>
   </div>
@@ -29,4 +33,4 @@
   >
     <h1>Pls use PC to continues using system</h1>
   </div>
-</div> -->
+</div>

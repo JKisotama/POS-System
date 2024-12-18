@@ -16,6 +16,7 @@ export class AdminComponent implements OnInit {
   isAdminPropertyGroup = false;
   isAdminSupplier = false;
   isAdminCustomer = false
+  isAdminUserManagement = false;
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
@@ -28,6 +29,7 @@ export class AdminComponent implements OnInit {
       this.isAdminPropertyGroup = currentRoute === '/Admin/property-group'
       this.isAdminSupplier = currentRoute === '/Admin/supplier'
       this.isAdminCustomer = currentRoute === '/Admin/customer'
+      this.isAdminUserManagement = currentRoute === '/Admin/staff'
     });
   }
 }

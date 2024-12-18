@@ -1,0 +1,34 @@
+<div class="dialog-form">
+  <h2>Update Staff</h2>
+  <div class="form-input">
+    <form [formGroup]="form">
+      <div class="mt-2">
+        <label>Login Name</label>
+        <input type="text" class="form-control" formControlName="loginName" />
+      </div>
+
+      <div class="mt-2">
+        <label>Full Name</label>
+        <input type="text" class="form-control" formControlName="fullName" />
+      </div>
+
+      <div class="mt-2">
+        <label>Password</label>
+        <input type="text" class="form-control" formControlName="passWord" />
+      </div>
+
+      <div class="mt-2">
+        <label>User Status</label>
+        <select class="form-select custom-select" formControlName="userStatus">
+          <option [value]="1">Active</option>
+          <option [value]="0">Inactive</option>
+        </select>
+      </div>
+
+      <div class="btn-zone">
+        <button class="btn" (click)="Save()">Save</button>
+        <button class="btn" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

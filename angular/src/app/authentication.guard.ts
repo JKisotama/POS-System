@@ -20,15 +20,21 @@ export class AuthenticationGuard implements CanActivate {
         if (isLoggedIn) {
           const userRole = this.authService.getUserRole();
           const allowedPagesForStaff = ['Staff', 'Staff/good-group', 'POS', 'Staff/supplier', 'Staff/customer'];
-          const allowedPagesForAdmin = ['Admin', 'Admin/good-group', 'Admin/supplier', 'Admin/customer'];
+          const allowedPagesForAdmin = ['Admin', 'Admin/good-group', 'Admin/supplier', 'Admin/customer', 'Admin/staff'];
 
           // Check if user is staff and if the route is allowed
           if (userRole === 1 && !allowedPagesForStaff.includes(next.routeConfig?.path || '')) {
-            this.snackBar.open('You have no right to access this page', 'Close', { duration: 3000 });
+            this.snackBar.open('You have no right to access this page', 'Close', {
+              panelClass: ['snackbar-error'],
+              duration: 3000 
+            });
             this.router.navigate(['/']); // Redirect to home or another page
             return false;
           } else if (userRole === 0 && !allowedPagesForAdmin.includes(next.routeConfig?.path || '')) {
-            this.snackBar.open('You have no right to access this page', 'Close', { duration: 3000 });
+            this.snackBar.open('You have no right to access this page', 'Close', {
+              panelClass: ['snackbar-error'], 
+              duration: 3000 
+            });
             this.router.navigate(['/']); // Redirect to home or another page
             return false;
           }

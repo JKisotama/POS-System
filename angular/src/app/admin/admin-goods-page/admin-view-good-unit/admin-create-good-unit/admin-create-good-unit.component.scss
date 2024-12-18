@@ -1,0 +1,15 @@
+@import "../../../../../styles.scss";
+
+.admin-add-new-good-unit {
+    background-color: $Gluon-Grey !important;
+    padding: 16px 20px;
+    .prices-input {
+        @include input-text-field;
+        form{
+            select{
+                border: 1px dashed $White-Snow;
+            }
+        }
+        
+    }
+}

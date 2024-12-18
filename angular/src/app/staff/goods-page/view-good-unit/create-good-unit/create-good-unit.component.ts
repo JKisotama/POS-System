@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './create-good-unit.component.scss'
 })
 export class CreateGoodUnitComponent implements OnInit {
-form: FormGroup;
+  form: FormGroup;
 
   storeId: string | null = null;
    
@@ -48,8 +48,8 @@ form: FormGroup;
         this.dialogRef.close(true);
       },
       (error) => {
-        console.error('Error creating Sell Price for Good:', error);
-        this.snackBar.open('Error creating sell price.', 'Close', {
+        console.error('Error creating Good unit:', error);
+        this.snackBar.open('Error creating Good Unit.', 'Close', {
           duration: 3000,
           verticalPosition: 'top',
           horizontalPosition: 'right',

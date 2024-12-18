@@ -7,9 +7,7 @@
       <app-header></app-header>
       <div class="ad-background">
         <div class="ad-btn-function">
-          <button mat-stroked-button (click)="openCreateStaffDialog()">
-            Add New User
-          </button>
+          <button mat-stroked-button>Add New User</button>
           <button mat-stroked-button matTooltip="This is a tooltip!">
             text
           </button>
@@ -17,14 +15,16 @@
 
         <div class="ad-table">
           <div class="table-responsive">
-            <mat-table [dataSource]="dataSource">
+            <mat-table
+              [dataSource]="dataSource"
+              class="mat-elevation-z8 parent-table"
+            >
               <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef> Action</mat-header-cell>
                 <mat-cell *matCellDef="let users">
                   <button
-                    mat-stroked-button
+                    mat-raised-button
                     [matMenuTriggerFor]="actionsMenu"
-                    color="primary"
                     class="detail-btn"
                   >
                     Actions

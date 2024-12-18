@@ -1,6 +1,5 @@
 import { Component, OnInit , ViewChild} from '@angular/core';
-import { StaffService } from '../../API/Staff/Staff/staff.service';
-import { StaffDTO } from '../../API/Staff/Staff/model';
+
 import { NgForm } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
 import { ViewContainerRef } from '@angular/core';
@@ -25,21 +24,7 @@ import { UserService } from '../../API/Staff/user/user.service';
 export class UserControllerComponent implements OnInit {
 
 
-  staffData: StaffDTO[] = [];
-  newStaff: StaffDTO = {
-    code: '',
-    name: '',
-    age: '',
-    role: '',
-    department: ''
-  };
-  editStaff: StaffDTO = {
-    code: '',
-    name: '',
-    age: '',
-    role: '',
-    department: ''
-  };
+  
   displayedColumns: string[] = ['action','storeId', 'loginName', 'fullName', 'passWord'];
   
   dataSource = new MatTableDataSource<GoodsDTO>();
@@ -70,46 +55,46 @@ export class UserControllerComponent implements OnInit {
       })
     }
   }
-  openCreateStaffDialog() {
-    const dialogRef = this.dialog.open(CreateStaffComponent, {
-      width: '700px',
-      panelClass: 'custom-dialog-container',
-      data: { newStaff: this.newStaff }
-    });
+  // openCreateStaffDialog() {
+  //   const dialogRef = this.dialog.open(CreateStaffComponent, {
+  //     width: '700px',
+  //     panelClass: 'custom-dialog-container',
+  //     data: { newStaff: this.newStaff }
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // Handle the saved staff data
-        console.log('New staff saved:', result);
-      }
-    });
-  }
-  openEditStaff(staff: StaffDTO) {
-    this.editStaff = { ...staff };
-    const dialogRef = this.dialog.open(EditStaffComponent, {
-      width: '400px',
-      panelClass: 'custom-dialog-container',
-      data: { editStaff: this.editStaff }
-    });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (result) {
+  //       // Handle the saved staff data
+  //       console.log('New staff saved:', result);
+  //     }
+  //   });
+  // }
+  // openEditStaff(staff: StaffDTO) {
+  //   this.editStaff = { ...staff };
+  //   const dialogRef = this.dialog.open(EditStaffComponent, {
+  //     width: '400px',
+  //     panelClass: 'custom-dialog-container',
+  //     data: { editStaff: this.editStaff }
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // Handle the edited staff data
-        console.log('Staff updated:', result);
-        // Update the staff data in the staffData array
-        const index = this.staffData.findIndex(s => s.code === result.code);
-        this.staffData[index] = result;
-      }
-    });
-  }
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (result) {
+  //       // Handle the edited staff data
+  //       console.log('Staff updated:', result);
+  //       // Update the staff data in the staffData array
+  //       const index = this.staffData.findIndex(s => s.code === result.code);
+  //       this.staffData[index] = result;
+  //     }
+  //   });
+  // }
 
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      // Handle the form submission
-      console.log('Submitted form:', this.newStaff);
-      this.dialog.closeAll();
-    }
-  }
+  // onSubmit(form: NgForm) {
+  //   if (form.valid) {
+  //     // Handle the form submission
+  //     console.log('Submitted form:', this.newStaff);
+  //     this.dialog.closeAll();
+  //   }
+  // }
 
   onCancel() {
     this.dialog.closeAll();

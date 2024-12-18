@@ -3,5 +3,6 @@ export interface UserDTO {
     loginName?: string;
     fullName?: string;
     passWord?: string;
-    
+    userLevel?: number;
+    userStatus?: number;
 }

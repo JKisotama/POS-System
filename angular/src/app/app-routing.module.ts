@@ -13,6 +13,12 @@ import { CustomerComponent } from './staff/customer/customer.component';
 import { AdminComponent } from './admin/admin.component'; 
 import { POSComponent } from './POS/pos.component';
 import { StaffComponent } from './staff/staff.component';
+import { AdminUserManagementComponent } from './admin/admin-user-management/admin-user-management.component';
+import { AdminGoodsPageComponent } from './admin/admin-goods-page/admin-goods-page.component';
+import { AdminGoodGroupComponent } from './admin/admin-good-group/admin-good-group.component';
+import { AdminPropertyGroupComponent } from './admin/admin-property-group/admin-property-group.component';
+import { AdminSupplierComponent } from './admin/admin-supplier/admin-supplier.component';
+import { AdminCustomerComponent } from './admin/admin-customer/admin-customer.component';
 
 
 const routes: Routes = [
@@ -34,11 +40,12 @@ const routes: Routes = [
   },
 
   { path: 'Admin', component: AdminComponent, canActivate: [AuthenticationGuard],children: [
-      { path: '', component: GoodsPageComponent },
-      { path: 'good-group', component: GoodsGroupComponent },
-      { path: 'property-group', component: PropertyGroupComponent },
-      { path: 'supplier', component: SupplierComponent },
-      { path: 'customer', component: CustomerComponent },
+      { path: '', component: AdminGoodsPageComponent },
+      { path: 'good-group', component: AdminGoodGroupComponent },
+      { path: 'property-group', component: AdminPropertyGroupComponent},
+      { path: 'supplier', component: AdminSupplierComponent },
+      { path: 'customer', component: AdminCustomerComponent },
+      { path: 'staff', component: AdminUserManagementComponent}
    
     ]
   },

@@ -1,0 +1,21 @@
+<div class="admin-update-property-group dialog-form">
+  <h2>Update Property Group</h2>
+
+  <div class="form-input">
+    <form [formGroup]="form">
+      <div class="mt-2">
+        <label>Property Name</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="propertyName"
+        />
+      </div>
+
+      <div class="btn-zone">
+        <button class="btn" (click)="Save()">Save</button>
+        <button class="btn" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

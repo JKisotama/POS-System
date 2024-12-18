@@ -6,7 +6,7 @@
     <div class="col-xl-7 col-md-7"></div>
     <div class="col-xl-3 col-md-3 POS-user d-flex justify-content-end">
       <div class="POS-user-btn">
-        <button routerLink="/POS">
+        <button *ngIf="userRole === 1" routerLink="/POS">
           <i class="fa-solid fa-cash-register"></i>
         </button>
       </div>
@@ -14,13 +14,33 @@
         <p class="text-capitalize">
           Hello, <span>{{ fullName }}</span>
         </p>
-        <p class="role">{{ userRole === 1 ? "Staff" : "User" }}</p>
+        <p class="role">{{ userRole === 1 ? "Staff" : "Admin" }}</p>
       </div>
-      <img
-        src="https://i.pinimg.com/enabled_hi/236x/80/62/8a/80628a1842568b00dcaca6861e0a834a.jpg"
-        (click)="logout()"
-        alt=""
-      />
+      <div class="dropdown">
+        <img
+          src="https://i.pinimg.com/enabled_hi/236x/80/62/8a/80628a1842568b00dcaca6861e0a834a.jpg"
+          class="dropdown-toggle"
+          id="userMenu"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          alt=""
+        />
+        <!-- Dropdown Menu -->
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+          <li *ngIf="userRole === 1">
+            <button class="dropdown-item">
+              <i class="fa-solid fa-user me-2"></i>
+              Staff Profile
+            </button>
+          </li>
+          <li>
+            <button class="dropdown-item" (click)="logout()">
+              <i class="fa-solid fa-right-from-bracket me-2"></i>
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

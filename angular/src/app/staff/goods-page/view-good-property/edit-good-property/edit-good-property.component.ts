@@ -18,7 +18,7 @@ export class EditGoodPropertyComponent implements OnInit {
   storeId: string | null = null;
 
   constructor(
-    private dialogRef: MatDialogRef<CreateGoodPropertyComponent>,
+    private dialogRef: MatDialogRef<EditGoodPropertyComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { goodProperty?: GoodsPropertyDTO },
     private fb: FormBuilder,
     private authenticationService : AuthenticationService,

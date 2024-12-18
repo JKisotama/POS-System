@@ -1,0 +1,58 @@
+@import "../../../_variables.scss";
+@import "../../../styles.scss";
+@import "../../../_globals.scss";
+
+.ad-main-content{
+    .ad-main-btn{
+        button{
+            @include btn-orange-bg;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+    }
+    .ad-main-search{
+        padding: 22px 50px;
+        background-color: $Slate-Grey;
+        border-radius: 14px;
+        margin-top: 10px;
+        .ad-main-btn{
+            button{
+                margin-right: 20px;
+            }
+        }
+    }
+    
+    .ad-main-data{
+        background-color: $Slate-Grey;
+        border-radius: 14px;
+        margin-top: 15px;
+        padding: 21px 23px;
+
+        .table-responsive {
+            max-height: 650px;  // Set the maximum height for the table container
+            overflow-y: auto;   // Enable vertical scrolling
+            overflow-x: auto;   // Enable horizontal scrolling if needed
+    
+        }
+    }
+
+    
+
+
+    .boder_table {
+        border-top: 1px solid #ccc;
+    }
+
+    .color_table_background {
+        background-color: #fafafa;
+    }
+}
+
+.mdc-button {
+    min-width: 70px;
+}
+
+.no-data {
+    font-size: 15px;
+    color: white;
+  }

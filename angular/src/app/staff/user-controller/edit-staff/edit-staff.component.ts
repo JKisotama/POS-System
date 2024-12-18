@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { StaffDTO } from '../../../API/Staff/Staff/model';
-import { StaffService } from '../../../API/Staff/Staff/staff.service';
+
 
 
 
@@ -12,29 +11,17 @@ import { StaffService } from '../../../API/Staff/Staff/staff.service';
 })
 export class EditStaffComponent implements OnInit {
 
-  editStaff: StaffDTO;
+ 
   
   constructor(
     public dialogRef: MatDialogRef<EditStaffComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { editStaff: StaffDTO },
-    private staffService: StaffService
   ) {
-    this.editStaff = { ...data.editStaff };
   }
 
   ngOnInit() {
   }
 
-  onSave() {
-    this.staffService.updateStaff(this.editStaff).subscribe(
-      (response) => {
-        this.dialogRef.close(response);
-      },
-      (error) => {
-        console.error('Error updating staff:', error);
-      }
-    );
-  }
+  
 
   onCancel() {
     this.dialogRef.close();

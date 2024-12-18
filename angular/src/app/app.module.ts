@@ -76,6 +76,33 @@ import { EditCustomerComponent } from './staff/customer/edit-customer/edit-custo
 import { EditGoodPropertyComponent } from './staff/goods-page/view-good-property/edit-good-property/edit-good-property.component';
 import { EditGoodSellPriceComponent } from './staff/goods-page/view-good-sell-price/edit-good-sell-price/edit-good-sell-price.component';
 import { StaffComponent } from './staff/staff.component';
+import { AdminGoodsPageComponent } from './admin/admin-goods-page/admin-goods-page.component';
+import { AdminCreateGoodComponent } from './admin/admin-goods-page/admin-create-good/admin-create-good.component';
+import { AdminEditGoodComponent } from './admin/admin-goods-page/admin-edit-good/admin-edit-good.component';
+import { AdminGoodGroupComponent } from './admin/admin-good-group/admin-good-group.component';
+import { AdminCreateGoodGroupComponent } from './admin/admin-good-group/admin-create-good-group/admin-create-good-group.component';
+import { AdminEditGoodGroupComponent } from './admin/admin-good-group/admin-edit-good-group/admin-edit-good-group.component';
+import { AdminSupplierComponent } from './admin/admin-supplier/admin-supplier.component';
+import { AdminCreateSupplierComponent } from './admin/admin-supplier/admin-create-supplier/admin-create-supplier.component';
+import { AdminEditSupplierComponent } from './admin/admin-supplier/admin-edit-supplier/admin-edit-supplier.component';
+import { AdminPropertyGroupComponent } from './admin/admin-property-group/admin-property-group.component';
+import { AdminCreatePropertyGroupComponent } from './admin/admin-property-group/admin-create-property-group/admin-create-property-group.component';
+import { AdminEditPropertyGroupComponent } from './admin/admin-property-group/admin-edit-property-group/admin-edit-property-group.component';
+import { AdminCustomerComponent } from './admin/admin-customer/admin-customer.component';
+import { AdminCreateCustomerComponent } from './admin/admin-customer/admin-create-customer/admin-create-customer.component';
+import { AdminEditCustomerComponent } from './admin/admin-customer/admin-edit-customer/admin-edit-customer.component';
+import { AdminUserManagementComponent } from './admin/admin-user-management/admin-user-management.component';
+import { AdminCreateUserComponent } from './admin/admin-user-management/admin-create-user/admin-create-user.component';
+import { AdminEditUserComponent } from './admin/admin-user-management/admin-edit-user/admin-edit-user.component';
+import { AdminViewGoodUnitComponent } from './admin/admin-goods-page/admin-view-good-unit/admin-view-good-unit.component';
+import { AdminViewGoodSellPriceComponent } from './admin/admin-goods-page/admin-view-good-sell-price/admin-view-good-sell-price.component';
+import { AdminViewGoodPropertyComponent } from './admin/admin-goods-page/admin-view-good-property/admin-view-good-property.component';
+import { AdminCreateGoodUnitComponent } from './admin/admin-goods-page/admin-view-good-unit/admin-create-good-unit/admin-create-good-unit.component';
+import { AdminEditGoodUnitComponent } from './admin/admin-goods-page/admin-view-good-unit/admin-edit-good-unit/admin-edit-good-unit.component';
+import { AdminCreateGoodSellPriceComponent } from './admin/admin-goods-page/admin-view-good-sell-price/admin-create-good-sell-price/admin-create-good-sell-price.component';
+import { AdminEditGoodSellPriceComponent } from './admin/admin-goods-page/admin-view-good-sell-price/admin-edit-good-sell-price/admin-edit-good-sell-price.component';
+import { AdminCreateGoodPropertyComponent } from './admin/admin-goods-page/admin-view-good-property/admin-create-good-property/admin-create-good-property.component';
+import { AdminEditGoodPropertyComponent } from './admin/admin-goods-page/admin-view-good-property/admin-edit-good-property/admin-edit-good-property.component';
 
 @NgModule({
   declarations: [
@@ -125,6 +152,33 @@ import { StaffComponent } from './staff/staff.component';
     EditGoodPropertyComponent,
     EditGoodSellPriceComponent,
     StaffComponent,
+    AdminGoodsPageComponent,
+    AdminCreateGoodComponent,
+    AdminEditGoodComponent,
+    AdminGoodGroupComponent,
+    AdminCreateGoodGroupComponent,
+    AdminEditGoodGroupComponent,
+    AdminCreateSupplierComponent,
+    AdminEditSupplierComponent,
+    AdminSupplierComponent,
+    AdminPropertyGroupComponent,
+    AdminCreatePropertyGroupComponent,
+    AdminEditPropertyGroupComponent,
+    AdminCustomerComponent,
+    AdminCreateCustomerComponent,
+    AdminEditCustomerComponent,
+    AdminUserManagementComponent,
+    AdminCreateUserComponent,
+    AdminEditUserComponent,
+    AdminViewGoodUnitComponent,
+    AdminViewGoodSellPriceComponent,
+    AdminViewGoodPropertyComponent,
+    AdminCreateGoodUnitComponent,
+    AdminEditGoodUnitComponent,
+    AdminCreateGoodSellPriceComponent,
+    AdminEditGoodSellPriceComponent,
+    AdminCreateGoodPropertyComponent,
+    AdminEditGoodPropertyComponent,
   ],
   imports: [
     BrowserModule, 

@@ -1,0 +1,36 @@
+<div class="admin-add-new-prices dialog-form">
+  <h2>Add Sell Prices</h2>
+  <div class="form-input">
+    <form [formGroup]="form">
+      <div class="mt-2">
+        <label>Bar Code</label>
+        <input type="text" class="form-control" formControlName="barcode" />
+      </div>
+
+      <div class="mt-2">
+        <label>Unit</label>
+        <input type="text" class="form-control" formControlName="goodsUnit" />
+      </div>
+
+      <div class="mt-2">
+        <label>Quantity</label>
+        <input type="text" class="form-control" formControlName="sellNumber" />
+      </div>
+
+      <div class="mt-2">
+        <label>Price</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="sellPrice"
+          (input)="onPriceInput($event)"
+        />
+      </div>
+
+      <div class="btn-zone">
+        <button class="btn" (click)="save()">Save</button>
+        <button class="btn" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

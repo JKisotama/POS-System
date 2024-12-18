@@ -1,0 +1,15 @@
+@import "../../../../styles.scss";
+
+.admin-add-new-goods {
+    background-color: $Gluon-Grey !important;
+    padding: 16px 20px;
+    .goods-input {
+        @include input-text-field;
+        form{
+            select{
+                border: 1px dashed $White-Snow;
+            }
+        }
+        
+    }
+}
