@@ -59,13 +59,25 @@ namespace POS_System_BAL.Services.Customer
 
         #region PUT
 
-        public async Task UpdateCustomer(CustomerDTO customerDto)
+        public async Task UpdateCustomer(string companyId,string customerId, 
+            string customerName, string customerAddress, 
+            string customerPhone, string customerEmail, int allowDebt)
         {
-            if (customerDto.CompanyId != null)
+            var existCustomer = await GetCustomer(companyId, customerId);
+            if (existCustomer != null)
             {
-                var existCustomer = await GetCustomer(customerDto.CompanyId, customerDto.CustomerId);
-                _mapper.Map(customerDto, existCustomer);
+                existCustomer.CustomerName = customerName; 
+                existCustomer.CustomerEmail = customerEmail;
+                existCustomer.CustomerPhone = customerPhone;
+                existCustomer.CustomerAddress = customerAddress;
+                existCustomer.Allowdebt = allowDebt;
+                existCustomer.CreatedDate = DateTime.Today;
                 _onlinePosContext.Update(existCustomer);
+                await _onlinePosContext.SaveChangesAsync();
+            }
+            else
+            {
+                throw  new Exception("Customer not found");
             }
         }
 

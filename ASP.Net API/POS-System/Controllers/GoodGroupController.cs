@@ -275,14 +275,14 @@ namespace POS_Final_Year.Controller
 
         #region POST
         [HttpPost("SaveGoodGroup")]
-        public async Task<ActionResult<TblGoodsgroup>> PostTblGoodsgroup(GoodsGroupDTO goodsGroupDTO)
+        public async Task<ActionResult<TblGoodsgroup>> PostTblGoodsgroup([FromQuery]GoodsGroupDTO goodsGroupDTO)
         {
             await _goodsServices.SaveGoodsGroup(goodsGroupDTO);
             return StatusCode(201, goodsGroupDTO);
         }
 
         [HttpPost("SavePropertyGroup")]
-        public async Task<ActionResult<TblPropertygroup>> PostTblPropertyGroup(TblPropertygroup group_name)
+        public async Task<ActionResult<TblPropertygroup>> PostTblPropertyGroup([FromQuery]TblPropertygroup group_name)
         {
             await _goodsServices.SavePropertyGroup(group_name);
             return Ok(group_name);
@@ -295,7 +295,7 @@ namespace POS_Final_Year.Controller
             return StatusCode(201, goodsDTO);
         }
         [HttpPost("SaveUnit")]
-        public async Task<ActionResult> PostTblUnit([FromBody] GoodUnitDTO goodsunit)
+        public async Task<ActionResult> PostTblUnit([FromQuery] GoodUnitDTO goodsunit)
         {
             if (!ModelState.IsValid)
             {
