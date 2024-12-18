@@ -1,4 +1,5 @@
-﻿using POS_System_BAL.DTOs;
+﻿using Microsoft.AspNetCore.Http;
+using POS_System_BAL.DTOs;
 using POS_System_DAL.Models;
 
 
@@ -22,7 +23,8 @@ namespace POS_System_BAL.Services.User
 
         #region PUT
 
-        Task<UserDTO> UpdateUser(UserDTO userDTO,string store_id, string login_name);
+        Task<TblUser> UpdateUser(TblUser user, string store_id, string login_name);
+        Task<UserDTO> UpdateUserDTO(UserDTO userDTO, string store_id, string login_name, IFormFile imageFile);
 
         #endregion
 

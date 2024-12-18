@@ -10,6 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using Microsoft.AspNetCore.Http;
 
 namespace POS_System_BAL.Services.User
 {
@@ -18,11 +21,13 @@ namespace POS_System_BAL.Services.User
         private readonly IMapper _mapper;
         private readonly IAuthenticate _authenticate;
         private readonly OnlinePosContext _onlinePosContext;
-        public UserServices(IMapper mapper, IAuthenticate authenticate, OnlinePosContext onlinePosContext)
+        private readonly Cloudinary _cloudinary;
+        public UserServices(IMapper mapper, IAuthenticate authenticate, OnlinePosContext onlinePosContext, Cloudinary cloudinary)
         {
             _mapper = mapper;
             _authenticate = authenticate;
             _onlinePosContext = onlinePosContext;
+            _cloudinary = cloudinary;
         }
 
         #region GET
@@ -66,11 +71,17 @@ namespace POS_System_BAL.Services.User
                     LoginName = user.LoginName,
                     FullName = user.FullName,
                     PassWord = _authenticate.VerifyPasswordHash(user.PassWord),
+                    Address = user.Address,
+                    Phone = user.Phone,
+                    DoB = user.DoB,
+                    Email = user.Email,
+                    Gender = user.Gender,
                     IdentifyString = user.IdentifyString,
                     UserLanguage = user.UserLanguage,
                     UserType = user.UserType,
                     UserLevel = 1,
-                    UserStatus = 1
+                    UserStatus = 1,
+                    Picture = null
                 };
                 _onlinePosContext.TblUsers.Add(newUser);
                 await _onlinePosContext.SaveChangesAsync();
@@ -124,23 +135,54 @@ namespace POS_System_BAL.Services.User
 
         #region PUT
 
-        public async Task<UserDTO> UpdateUser(UserDTO userDTO, string store_id, string login_name)
+        public async Task<TblUser> UpdateUser(TblUser user, string store_id, string login_name)
         {
             var existUser = await GetUser(store_id,login_name);
-            var entity = _mapper.Map<UserDTO>(existUser);
             if (existUser != null)
             {
-                existUser.FullName = userDTO.FullName;
-                existUser.PassWord = _authenticate.VerifyPasswordHash(userDTO.PassWord);
-                existUser.IdentifyString = userDTO.IdentifyString;
-                existUser.UserLanguage = userDTO.UserLanguage;
-                existUser.UserType = userDTO.UserType;
-                existUser.UserLevel = userDTO.UserLevel;
-                existUser.UserStatus = userDTO.UserStatus;
+                existUser.FullName = user.FullName;
+                existUser.PassWord = _authenticate.VerifyPasswordHash(user.PassWord);
+                existUser.IdentifyString = user.IdentifyString;
+                existUser.UserLanguage = user.UserLanguage;
+                existUser.UserType = user.UserType;
+                existUser.UserLevel = user.UserLevel;
+                existUser.UserStatus = user.UserStatus;
+                
+                
                 
                 _onlinePosContext.TblUsers.Update(existUser);
                 await _onlinePosContext.SaveChangesAsync();
             }
+            return existUser;
+        }
+        public async Task<UserDTO> UpdateUserDTO(UserDTO userDTO, string store_id, string login_name, IFormFile imageFile)
+        {
+            var existUser = await _onlinePosContext.TblUsers
+                .FirstOrDefaultAsync(u => u.StoreId == store_id && u.LoginName == login_name);
+            if (existUser  == null)
+            {
+                throw new KeyNotFoundException("User  not found.");
+            }
+            var entity = _mapper.Map<UserDTO>(existUser );
+            
+                existUser.FullName = userDTO.FullName;
+                existUser.PassWord = _authenticate.VerifyPasswordHash(userDTO.PassWord);
+                existUser.IdentifyString = userDTO.IdentifyString;
+                existUser.UserLanguage = userDTO.UserLanguage;
+                if (userDTO.Picture != null)
+                {
+                    var imageName = $"{userDTO.FullName}-avatar";
+                    var uploadResult = await UploadImageToCloudinary(imageFile, userDTO.FullName, imageName);
+                    if (uploadResult.Error != null)
+                    {
+                        throw new Exception(uploadResult.Error.Message);
+                    }
+
+                    existUser.Picture = uploadResult.SecureUrl.ToString();
+                }
+                _onlinePosContext.TblUsers.Update(existUser);
+                await _onlinePosContext.SaveChangesAsync();
+            
             return entity;
         }
         public async Task<int> GrandRights(string store_id, string login_name, int menu_id)
@@ -185,5 +227,31 @@ namespace POS_System_BAL.Services.User
 
         #endregion
         
+        
+        private async Task<ImageUploadResult> UploadImageToCloudinary(
+            IFormFile imageFile,
+            string userId,
+            string imageName)
+        {
+            var uploadResult = new ImageUploadResult();
+
+            if (imageFile.Length > 0)
+            {
+                using (var stream = imageFile.OpenReadStream())
+                {
+                    var filePath = $"{userId}/{imageName}";
+                    var uploadParams = new ImageUploadParams()
+                    {
+                        File = new FileDescription(imageFile.FileName, stream),
+                        PublicId = filePath,
+                        Transformation = new Transformation().Crop("fill").Gravity("face").Width(300).Height(300)
+                    };
+
+                    uploadResult = await _cloudinary.UploadAsync(uploadParams);
+                }
+            }
+
+            return uploadResult;
+        }
     }
 }

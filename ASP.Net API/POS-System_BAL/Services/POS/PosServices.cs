@@ -25,24 +25,28 @@ namespace POS_System_BAL.Services.POS
             _goodsServices = goodsServices;
         }
 
-        public async Task<PageResult<TblGood>> GetGoodListAsync(string goodsName, string barcodeFilter, PagingParameters paging)
+        #region GET
+
+        public async Task<PageResult<TblGood>> GetGoodListAsync(string goodsName, string barcodeFilter,
+            PagingParameters paging)
         {
             var query = _onlinePosContext.TblGoods
                 .Include(g => g.Group)
                 .Include(g => g.TblSellprices)
                 .AsQueryable();
-            
+
             if (!string.IsNullOrEmpty(goodsName))
             {
                 query = query.Where(g => g.GoodsName.Contains(goodsName));
             }
+
             if (!string.IsNullOrEmpty(barcodeFilter))
             {
                 query = query.Where(g => g.TblSellprices.Any(sp => sp.Barcode.Contains(barcodeFilter)));
             }
-            
+
             var count = await query.CountAsync();
-            
+
             var list = await query
                 .Skip((paging.PageNumber - 1) * paging.PageSize)
                 .Take(paging.PageSize)
@@ -74,15 +78,74 @@ namespace POS_System_BAL.Services.POS
         }
 
 
-
-        public async Task<TblPosdetail> GetPoItemsAsync(string storeId,string posNumber)
+        public async Task<IEnumerable<TblPo>> GetPoHangList(string store_id)
         {
-                var item = await _onlinePosContext
-                    .TblPosdetails
-                    .FirstOrDefaultAsync(s => s.PosNumber == posNumber);
-                return item;
-        } 
-        
+            var hang_list = await _onlinePosContext.TblPos
+                .Where(p => p.StoreId == store_id &&
+                            p.PosStatus == 3)
+                .ToListAsync();
+            return hang_list;
+        }
+
+        public async Task GetPoHeaderList(
+            string store_id)
+        {
+        }
+
+
+        public async Task GetDataByShift(
+            string store_id, string shift_number)
+        {
+        }
+
+
+        public async Task<TblPo> CreateTemporaryPoHeader(
+            string storeId,
+            string cashierId,
+            string posCreator)
+        {
+            cashierId = "1";
+
+            var existingPoHeader = await _onlinePosContext.TblPos
+                .FirstOrDefaultAsync(p => p.StoreId == storeId &&
+                                          p.CashierId == cashierId &&
+                                          p.PosStatus == 0);
+            if (existingPoHeader != null)
+            {
+                return existingPoHeader;
+            }
+
+            var previousPoHeader = await _onlinePosContext.TblPos
+                .FirstOrDefaultAsync(p => p.StoreId == storeId &&
+                                          p.CashierId == cashierId &&
+                                          (p.PosStatus == 1 || p.PosStatus == 2 || p.PosStatus == 3));
+
+            var posNumber = GerenatePosNumber(storeId, cashierId, DateTime.Now);
+            var posCounter = GetPosCounterByStoreId(storeId, cashierId, DateTime.Now);
+            return new TblPo
+            {
+                StoreId = storeId,
+                PosNumber = posNumber,
+                CashierId = cashierId,
+                PosDate = DateTime.Now.Date,
+                PosTotal = 0,
+                PosDiscount = 0,
+                PosTopay = 0,
+                PosCreator = posCreator,
+                PosCounter = posCounter + 1,
+                PosStatus = 0
+            };
+        }
+
+
+        public async Task<TblPosdetail> GetPoItemsAsync(string storeId, string posNumber)
+        {
+            var item = await _onlinePosContext
+                .TblPosdetails
+                .FirstOrDefaultAsync(s => s.PosNumber == posNumber);
+            return item;
+        }
+
         public async Task<IEnumerable<TblPosdetail>> GetPoItemsListAsync(string storeId, string posNumber)
         {
             var items = await _onlinePosContext
@@ -99,6 +162,11 @@ namespace POS_System_BAL.Services.POS
                 .ToListAsync();
             return items;
         }
+
+        #endregion
+
+
+        #region POST
 
         public async Task<TblPo> CreatePoHeaderAsync(string storeId, string cashierId, string posCreator)
         {
@@ -123,13 +191,12 @@ namespace POS_System_BAL.Services.POS
             {
                 await _onlinePosContext.TblPos.AddAsync(newPo);
                 await _onlinePosContext.SaveChangesAsync();
-                return  newPo;
+                return newPo;
             }
             catch (Exception ex)
             {
                 throw new Exception($"Error creating PO header: {ex.Message}");
             }
-
         }
 
         public async Task SavePoItemAsync(
@@ -149,7 +216,8 @@ namespace POS_System_BAL.Services.POS
                 .FirstOrDefaultAsync(g => g.StoreId == storeId && g.GoodsId == goodsId);
 
             var itemPrice = await _onlinePosContext.TblSellprices
-                .Where(sp => sp.StoreId == storeId && sp.GoodsId == goodsId && sp.GoodsUnit == goodsUnit && sp.SellNumber == 1)
+                .Where(sp =>
+                    sp.StoreId == storeId && sp.GoodsId == goodsId && sp.GoodsUnit == goodsUnit && sp.SellNumber == 1)
                 .Select(sp => sp.SellPrice)
                 .FirstOrDefaultAsync();
 
@@ -163,7 +231,7 @@ namespace POS_System_BAL.Services.POS
                 throw new Exception("Unit name not found for the specified unit.");
             }
 
-            
+
             var poHeader = await _onlinePosContext.TblPos
                 .FirstOrDefaultAsync(p => p.StoreId == storeId && p.PosNumber == posNumber);
 
@@ -171,9 +239,9 @@ namespace POS_System_BAL.Services.POS
             {
                 poHeader = await CreateTemporaryPoHeader(storeId, "1", posCreator);
                 await _onlinePosContext.TblPos.AddAsync(poHeader);
-                await _onlinePosContext.SaveChangesAsync(); 
+                await _onlinePosContext.SaveChangesAsync();
             }
-            
+
             var existingDetail = await _onlinePosContext.TblPosdetails
                 .FirstOrDefaultAsync(detail => detail.StoreId == storeId &&
                                                detail.PosNumber == posNumber &&
@@ -184,17 +252,17 @@ namespace POS_System_BAL.Services.POS
             if (existingDetail != null)
             {
                 existingDetail.ItemQuantity += quantity;
-                var subTotal = itemPrice * existingDetail.ItemQuantity;
-                double? newTotalPrice = await CalculateSellingPriceAsync(storeId, goodsId, existingDetail.ItemQuantity, goodsUnit);
-                existingDetail.LineTotal = newTotalPrice ?? 0;
+                var subTotal = (itemPrice ?? 0) * existingDetail.ItemQuantity;
+                double newTotalPrice =
+                    await CalculateSellingPriceAsync(storeId, goodsId, existingDetail.ItemQuantity, goodsUnit);
+                existingDetail.LineTotal = newTotalPrice;
                 existingDetail.SubTotal = subTotal;
                 existingDetail.ItemPrice = itemPrice;
                 existingDetail.LineDiscount = subTotal - newTotalPrice;
             }
             else
             {
-                
-                int? maxItemOrder  = await _onlinePosContext.TblPosdetails
+                int? maxItemOrder = await _onlinePosContext.TblPosdetails
                     .Where(detail => detail.StoreId == storeId && detail.PosNumber == posNumber)
                     .Select(detail => detail.ItemOrder)
                     .OrderByDescending(order => order)
@@ -202,43 +270,46 @@ namespace POS_System_BAL.Services.POS
 
                 int nextItemOrder = (maxItemOrder ?? 0) + 1;
 
-                
-                
-                     double? totalPrice = await CalculateSellingPriceAsync(storeId, goodsId, quantity, goodsUnit);
-   
-                     // if (existingDetail != null)
-                     // {
-                     //     existingDetail.ItemQuantity += quantity;
-                     //     existingDetail.LineTotal += totalPrice;
-                     // }
-                     // else
-                     // {
-                         var newDetail = new TblPosdetail
-                         {
-                             StoreId = storeId,
-                             PosNumber = posNumber,
-                             GoodsId = goodsId,
-                             Barcode = barcode,
-                             GoodsName = good.GoodsName,
-                             ItemUnit = goodsUnit,
-                             ItemQuantity = quantity,
-                             ItemPrice = itemPrice,
-                             SubTotal = itemPrice * quantity,
-                             LineTotal = totalPrice,
-                             LineDiscount = (itemPrice * quantity) - totalPrice,
-                             Property = groupPropertyName,
-                             PropertyValue = goodsPropertyName,
-                             ItemOrder = nextItemOrder
-                         };
 
-                         await _onlinePosContext.TblPosdetails.AddAsync(newDetail);
-                     }
-                 
-            
+                double totalPrice = await CalculateSellingPriceAsync(storeId, goodsId, quantity, goodsUnit);
+
+                // if (existingDetail != null)
+                // {
+                //     existingDetail.ItemQuantity += quantity;
+                //     existingDetail.LineTotal += totalPrice;
+                // }
+                // else
+                // {
+                var newDetail = new TblPosdetail
+                {
+                    StoreId = storeId,
+                    PosNumber = posNumber,
+                    GoodsId = goodsId,
+                    Barcode = barcode,
+                    GoodsName = good.GoodsName,
+                    ItemUnit = goodsUnit,
+                    ItemQuantity = quantity,
+                    ItemPrice = itemPrice,
+                    SubTotal = (itemPrice ?? 0) * quantity,
+                    LineTotal = totalPrice,
+                    LineDiscount = ((itemPrice ?? 0) * quantity) - totalPrice,
+                    Property = groupPropertyName,
+                    PropertyValue = goodsPropertyName,
+                    ItemOrder = nextItemOrder
+                };
+
+                await _onlinePosContext.TblPosdetails.AddAsync(newDetail);
+            }
+
+
             await _onlinePosContext.SaveChangesAsync();
             await UpdatePoTotalsAsync(storeId, posNumber);
         }
 
+        #endregion
+
+
+        #region PUT
 
         public async Task UpdatePoTotalsAsync(string storeId, string posNumber)
         {
@@ -246,18 +317,17 @@ namespace POS_System_BAL.Services.POS
                 .Where(detail => detail.StoreId == storeId && detail.PosNumber == posNumber)
                 .ToListAsync();
 
-         
-            double? posTotal = 0;
-            double? posDiscount = 0;
+
+            double posTotal = 0;
+            double posDiscount = 0;
 
             foreach (var detail in poDetails)
             {
-                posTotal += detail.LineTotal; 
-                posDiscount += (detail.LineDiscount ?? 0); 
+                posTotal += detail.LineTotal;
+                posDiscount += detail.LineDiscount;
             }
 
-            double posTopay = (posTotal ?? 0) - (posDiscount ?? 0); 
-            
+            double posTopay = posTotal - posDiscount;
 
 
             var po = await _onlinePosContext.TblPos
@@ -282,21 +352,33 @@ namespace POS_System_BAL.Services.POS
             }
         }
 
-        public async Task<IEnumerable<TblPo>> GetPoHangList(string store_id)
+        public async Task CancelPo(string storeId, string posNumber)
         {
-           var hang_list =  await _onlinePosContext.TblPos
-                .Where(p => p.StoreId == store_id &&
-                            p.PosStatus == 3)
-                .ToListAsync();
-           return hang_list;
-        }
+            var po = await _onlinePosContext.TblPos
+                .FirstOrDefaultAsync(p => p.StoreId == storeId && p.PosNumber == posNumber);
 
-        public async Task GetPoHeaderList(
-            string store_id)
-        {
-            
-        }
+            if (po == null)
+            {
+                throw new Exception("POS record not found.");
+            }
 
+            if (po.PosStatus == 1 && po.PosStatus == 2 && po.PosStatus == 3)
+            {
+                throw new Exception("Cannot cancel this PO.");
+            }
+
+            po.PosStatus = 2;
+            po.CancelDate = DateTime.Now;
+
+            try
+            {
+                await _onlinePosContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error canceling PO: {ex.Message}");
+            }
+        }
 
         public async Task PayPO(
             string store_id,
@@ -320,14 +402,15 @@ namespace POS_System_BAL.Services.POS
 
             if (po.PosPaymentmethod == 1 && customer_pay != po.PosTopay)
             {
-                throw new Exception("For banking payments, the customer payment amount must be equal to the total amount to pay.");
+                throw new Exception(
+                    "For banking payments, the customer payment amount must be equal to the total amount to pay.");
             }
 
             po.PosStatus = 3;
             po.Payer = payer;
             po.PosPaymentmethod = pay_method;
-            po.PosTotal = po.PosTopay; 
-            po.PosDiscount = po.PosDiscount; 
+            po.PosTotal = po.PosTopay;
+            po.PosDiscount = po.PosDiscount;
             po.PosCustomerpay = customer_pay;
             po.PosPaymenttype = 1;
             po.PosExchange = customer_pay - po.PosTotal;
@@ -342,50 +425,70 @@ namespace POS_System_BAL.Services.POS
             }
         }
 
-
-        public async Task GetDataByShift(
-            string store_id, string shift_number)
+        public async Task HangPo(string storeId, string posNumber)
         {
-        }
+            var po = await _onlinePosContext.TblPos
+                .FirstOrDefaultAsync(p => p.StoreId == storeId && p.PosNumber == posNumber);
 
-        public async Task<TblPo> CreateTemporaryPoHeader(
-            string storeId,
-            string cashierId,
-            string posCreator)
-        {
-            cashierId = "1";
-            
-            var existingPoHeader = await _onlinePosContext.TblPos
-                .FirstOrDefaultAsync(p => p.StoreId == storeId && 
-                                          p.CashierId == cashierId && 
-                                          p.PosStatus == 0);
-            if (existingPoHeader != null)
+            if (po == null)
             {
-                return existingPoHeader;
+                throw new Exception("POS record not found.");
             }
-            
-            var previousPoHeader = await _onlinePosContext.TblPos
-                .FirstOrDefaultAsync(p => p.StoreId == storeId &&
-                                          p.CashierId == cashierId &&
-                                          (p.PosStatus == 1 || p.PosStatus == 2 || p.PosStatus == 3));
-            
-            var posNumber = GerenatePosNumber(storeId, cashierId, DateTime.Now);
-            var posCounter = GetPosCounterByStoreId(storeId, cashierId, DateTime.Now);
-            return new TblPo
+
+            if (po.PosStatus == 0)
             {
-                StoreId = storeId,
-                PosNumber = posNumber,
-                CashierId = cashierId,
-                PosDate = DateTime.Now.Date,
-                PosTotal = 0,
-                PosDiscount = 0,
-                PosTopay = 0,
-                PosCreator = posCreator,
-                PosCounter = posCounter + 1,
-                PosStatus = 0
-            };
+                po.PosStatus = 1;
+            }
+            else
+            {
+                po.PosStatus = 0;
+            }
+
+            try
+            {
+                await _onlinePosContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error updating POS status: {ex.Message}");
+            }
         }
-        
+
+        #endregion
+
+
+        #region DELETE
+
+        public async Task DeletePoItemAsync(string storeId, string posNumber, int item_order)
+        {
+            var item = await _onlinePosContext.TblPosdetails
+                .FirstOrDefaultAsync(detail =>
+                    detail.StoreId == storeId &&
+                    detail.PosNumber == posNumber && 
+                    detail.ItemOrder == item_order);
+            if (item == null)
+            {
+                throw new Exception("Item not found for the given details.");
+            }
+
+            _onlinePosContext.TblPosdetails.Remove(item);
+
+            try
+            {
+                await _onlinePosContext.SaveChangesAsync();
+                await UpdatePoTotalsAsync(storeId, posNumber);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error deleting PO item: {ex.Message}");
+            }
+        }
+
+        #endregion
+
+
+        #region AUTO-GEN
+
         private string GerenatePosNumber(
             string store_id,
             string cashier_id,
@@ -410,6 +513,10 @@ namespace POS_System_BAL.Services.POS
                 .FirstOrDefault();
             return posCounter;
         }
+
+        #endregion
+        
+        
 
 
         public async Task<double> CalculateSellingPriceAsync(string storeId, string goodsId, double quantity,
@@ -457,88 +564,5 @@ namespace POS_System_BAL.Services.POS
 
             return totalPrice;
         }
-
-        
-        public async Task CancelPo(string storeId, string posNumber)
-        {
-            var po = await _onlinePosContext.TblPos
-                .FirstOrDefaultAsync(p => p.StoreId == storeId && p.PosNumber == posNumber);
-
-            if (po == null)
-            {
-                throw new Exception("POS record not found.");
-            }
-
-            if (po.PosStatus == 1 && po.PosStatus == 2 && po.PosStatus == 3)
-            {
-                throw new Exception("Cannot cancel this PO.");
-            }
-
-            po.PosStatus = 2;
-            po.CancelDate = DateTime.Now;
-
-            try
-            {
-                await _onlinePosContext.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error canceling PO: {ex.Message}");
-            }
-        }
-
-        public async Task HangPo(string storeId, string posNumber)
-        {
-            var po = await _onlinePosContext.TblPos
-                .FirstOrDefaultAsync(p => p.StoreId == storeId && p.PosNumber == posNumber);
-
-            if (po == null)
-            {
-                throw new Exception("POS record not found.");
-            }
-            
-            if (po.PosStatus == 0)
-            {
-                po.PosStatus = 1;
-            }
-            else
-            {
-                po.PosStatus = 0;
-            }
-
-            try
-            {
-                await _onlinePosContext.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error updating POS status: {ex.Message}");
-            }
-        }
-        
-        public async Task DeletePoItemAsync(string storeId, string posNumber)
-        {
-            var item = await _onlinePosContext.TblPosdetails
-                .FirstOrDefaultAsync(detail =>
-                    detail.StoreId == storeId &&
-                    detail.PosNumber == posNumber);
-            if (item == null)
-            {
-                throw new Exception("Item not found for the given details.");
-            }
-
-            _onlinePosContext.TblPosdetails.Remove(item);
-
-            try
-            {
-                await _onlinePosContext.SaveChangesAsync();
-                await UpdatePoTotalsAsync(storeId, posNumber);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error deleting PO item: {ex.Message}");
-            }
-        }
-
     }
 }

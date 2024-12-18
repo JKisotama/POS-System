@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using POS_System_BAL.DTOs;
 using POS_System_BAL.Services.Customer;
 using POS_System_BAL.Services.Goods;
 using POS_System_BAL.Services.Receipt;
 using POS_System_BAL.Services.Supplier;
 using POS_System_BAL.Services.User;
+using POS_System_DAL.Models;
 
 namespace POS_Final_Year.Controller
 {
@@ -71,7 +73,8 @@ namespace POS_Final_Year.Controller
             var properties = await _goodsServices.GetAllSellPriceAsync(store_id);
             return Ok(properties);
         }
-
+        
+      
         
 
         [HttpGet]
@@ -96,6 +99,15 @@ namespace POS_Final_Year.Controller
         {
             var customers = await _supplierServices.GetAllSupplier(store_id);
             return Ok(customers);
+        }
+        
+        [HttpPut("UpdateUser")]
+        public async Task<ActionResult> PutTblUser([FromQuery]TblUser user,string store_id, string login_name)
+        {
+
+            await _userServices
+                .UpdateUser(user,store_id, login_name);
+            return NoContent();
         }
     }
 }

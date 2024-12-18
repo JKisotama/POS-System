@@ -65,16 +65,15 @@ namespace POS_Final_Year.Controller
         #region PUT
 
         [HttpPut("EditCustomer")]
-        public async Task<IActionResult> PutTblCustomer(string company_id,string customer_id, CustomerDTO customerDTO)
+        public async Task<IActionResult> PutTblCustomer(string company_id, string customer_id,
+            string customer_name, string customer_address,
+            string customer_phone, string customer_email, int allow_debt)
         {
-            if(customer_id != customerDTO.CustomerId)
+            if(company_id == null || customer_id == null)
             {
                 return BadRequest();
             }
-
-            customerDTO.CompanyId = company_id;
-            customerDTO.CustomerId = customer_id;
-            await _customerServices.UpdateCustomer(customerDTO);
+            await _customerServices.UpdateCustomer(company_id, customer_id, customer_name, customer_address, customer_phone, customer_email, allow_debt);
             return NoContent();
 
             

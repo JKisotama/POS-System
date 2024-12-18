@@ -28,11 +28,11 @@ public  class TblPosdetail
 
     public double? ItemPrice { get; set; }
 
-    public double? SubTotal { get; set; }
+    public double SubTotal { get; set; }
 
-    public double? LineDiscount { get; set; }
+    public double LineDiscount { get; set; }
 
-    public double? LineTotal { get; set; }
+    public double LineTotal { get; set; }
 
     public string? StoreId { get; set; }
 

@@ -708,6 +708,30 @@ public partial class OnlinePosContext : DbContext
                 .HasMaxLength(200)
                 .IsUnicode(false)
                 .HasColumnName("pass_word");
+            entity.Property(e => e.Address)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("user_address");
+            entity.Property(e => e.Phone)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("user_phone");
+            entity.Property(e => e.DoB)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("user_dob");
+            entity.Property(e => e.DoB)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("user_dob");
+            entity.Property(e => e.Email)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("user_email");
+            entity.Property(e => e.Gender)
+                .HasMaxLength(8)
+                .IsUnicode(false)
+                .HasColumnName("user_gender");
             entity.Property(e => e.StoreId)
                 .HasMaxLength(4)
                 .IsUnicode(false)
@@ -716,6 +740,9 @@ public partial class OnlinePosContext : DbContext
                 .HasMaxLength(2)
                 .IsUnicode(false)
                 .HasColumnName("user_language");
+            entity.Property(e => e.Picture)
+                .HasMaxLength(1)
+                .HasColumnName("avatar");
             entity.Property(e => e.UserLevel).HasColumnName("user_level");
             entity.Property(e => e.UserStatus).HasColumnName("user_status");
             entity.Property(e => e.UserType).HasColumnName("user_type");

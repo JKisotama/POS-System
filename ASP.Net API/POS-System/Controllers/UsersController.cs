@@ -79,11 +79,11 @@ namespace POS_Final_Year.Controller
         #region PUT
 
         [HttpPut("UpdateUser")]
-        public async Task<ActionResult> PutTblUser([FromQuery]UserDTO userDTO,string store_id, string login_name)
+        public async Task<ActionResult> PutTblUser([FromQuery]UserDTO userDTO,string store_id, string login_name, IFormFile avatar)
         {
 
-            var updateUser = await _userServices
-                .UpdateUser(userDTO,store_id, login_name);
+             await _userServices
+                .UpdateUserDTO(userDTO,store_id, login_name, avatar);
             return NoContent();
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace POS_System_DAL.Models;
 
@@ -12,6 +13,12 @@ public partial class TblUser
     public string? FullName { get; set; }
 
     public string? PassWord { get; set; }
+    
+    public string? Address { get; set; }
+    public string? Phone { get; set; }
+    public string? DoB { get; set; }
+    public string? Email { get; set; }
+    public string? Gender { get; set; }
 
     public string? IdentifyString { get; set; }
 
@@ -22,4 +29,6 @@ public partial class TblUser
     public int? UserLevel { get; set; }
 
     public int UserStatus { get; set; }
+    [JsonIgnore]
+    public string? Picture { get; set; } = null;
 }
