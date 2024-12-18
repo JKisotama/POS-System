@@ -139,6 +139,15 @@ form{
 }
 
 
+.ad-action-btn{
+    button{
+        @include btn-gray-border;
+    }
+    select{
+        @include btn-gray-border;
+    }
+}
+
 
 
 .mat-elevation-z8 {

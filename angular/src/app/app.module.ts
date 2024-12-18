@@ -76,6 +76,7 @@ import { EditCustomerComponent } from './staff/customer/edit-customer/edit-custo
 import { EditGoodPropertyComponent } from './staff/goods-page/view-good-property/edit-good-property/edit-good-property.component';
 import { EditGoodSellPriceComponent } from './staff/goods-page/view-good-sell-price/edit-good-sell-price/edit-good-sell-price.component';
 import { StaffComponent } from './staff/staff.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -144,7 +145,9 @@ import { StaffComponent } from './staff/staff.component';
     ToolbarModule, ButtonModule, SplitButtonModule,InputTextModule,AvatarModule,CarouselModule, ButtonModule, TagModule, 
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatSlideToggleModule
+    
     
 ],
   providers: [

@@ -5,12 +5,21 @@
     </div>
     <div class="col-xl-7 col-md-7"></div>
     <div class="col-xl-3 col-md-3 POS-user d-flex justify-content-end">
-      <div class="POS-user-btn">
+      <div class="POS-user-btn d-flex">
+        <div class="toggle-theme-mode d-flex">
+          <mat-sidenav-container class="">
+            <mat-sidenav-content>
+              <mat-toolbar>
+                <mat-slide-toggle>Slide</mat-slide-toggle>
+              </mat-toolbar>
+            </mat-sidenav-content>
+          </mat-sidenav-container>
+        </div>
         <button routerLink="/POS">
           <i class="fa-solid fa-cash-register"></i>
         </button>
       </div>
-      <div class="text-end POs-user-infor">
+      <div class="text-end POS-user-infor">
         <p class="text-capitalize">
           Hello, <span>{{ fullName }}</span>
         </p>

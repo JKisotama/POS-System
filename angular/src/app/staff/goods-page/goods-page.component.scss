@@ -161,6 +161,14 @@ tr[matNoDataRow] td {
         .boder_table {
             border: none !important;
         }
+        table{
+            .action-btn{
+                width: 0;
+                padding: 0 50px;
+            
+            }
+            
+        }
     }
 }
 

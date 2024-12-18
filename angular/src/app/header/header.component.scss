@@ -3,16 +3,17 @@
 
 
 
-.ad-head-btn{
+.ad-head-btn {
 
-    button{
+    button {
         margin: 0 10px 0 0;
-        span{
-            .mat-mdc-button-touch-target{
-                margin-right: 10px ;
+
+        span {
+            .mat-mdc-button-touch-target {
+                margin-right: 10px;
             }
         }
-        
+
     }
 
 
@@ -20,73 +21,85 @@
 
 
 
-.search-bar{
+.search-bar {
     margin: auto;
     padding: 0 120px;
 
-    button{
+    button {
         margin: 0 10px 0 0;
-        span{
+
+        span {
             font-weight: bold !important;
-            .mat-mdc-button-touch-target{
+
+            .mat-mdc-button-touch-target {
                 margin-right: 10px !important;
             }
         }
     }
-    
-    input{
+
+    input {
         border-radius: 50px;
         border: 1px solid;
     }
-    
+
 }
 
-.ad-header-detail{
+.ad-header-detail {
     margin-bottom: 50px !important;
-    .POS-logo{
-        img{
+
+    .POS-logo {
+        img {
             height: 67px;
-            
-            
-            
         }
     }
-    .POS-user{
-        button{
+
+    .POS-user {
+        .toggle-theme-mode{
+            button{
+                
+            }
+        }
+        button {
             padding: 14px 42px !important;
             border-radius: 12px;
-            
+
             transition: background-color 0.3s ease;
-            i{
+
+            i {
                 font-size: 18px;
             }
 
             &:hover {
                 background-color: $Liquid-Lava;
-                i{
+
+                i {
                     color: $White-Snow;
                 }
-                
+
             }
-            
+
         }
-        img{
+
+        img {
             height: 70px;
             width: 70px;
             border-radius: 100px;
         }
-        i{
+
+        i {
             color: $Dusty-Grey;
             font-size: 16px;
-            
-            
+
+
         }
 
-        .POs-user-infor{
+        .POS-user-infor {
             padding: 9px 15px;
-            p{
+
+            p {
                 color: $Dusty-Grey;
-                span{
+
+                span {
                     color: $White-Snow;
                     font-weight: bold !important;
                 }
