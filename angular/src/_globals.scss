@@ -31,7 +31,7 @@ p{
 }
 input {
     border-right: none;
-    border-radius: 5px 0 0 5px !important;
+    border-radius: 5px !important;
 
     &::placeholder {
         color: $Dusty-Grey;
