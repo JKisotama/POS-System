@@ -10,7 +10,7 @@
           i{
               padding-right: 15px;
           }
-          &.active { // Fix: Apply `.active` directly to `.nav-link`
+          &.active { 
             background-color: $White-Snow !important; // Background for active link
             color: $Dark-Void; // Optional: Adjust text color for active state
             font-weight: bold;

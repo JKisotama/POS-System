@@ -3,6 +3,35 @@
 
 
 
+:host{
+
+    body.dark-mode &{
+        .POS-user-infor{
+            p{
+                transition: background-color 0.3s, color 0.3s;
+                color: $Dusty-Grey;
+                span{
+                    transition: background-color 0.3s, color 0.3s;
+                    color: $White-Snow;
+                }
+            }
+        }
+
+    }
+    body.light-mode &{
+        .POS-user-infor{
+            p{
+                color: $Dusty-Grey;
+                span{
+                    transition: background-color 0.3s, color 0.3s;
+                    color: $Dark-Void;
+                }
+            }
+        }
+
+    }
+}
+
 .ad-head-btn{
 
     button{
@@ -46,9 +75,7 @@
     .POS-logo{
         img{
             height: 67px;
-            
-            
-            
+
         }
     }
     .POS-user{
@@ -82,12 +109,10 @@
             
         }
 
-        .POs-user-infor{
+        .POS-user-infor{
             padding: 9px 15px;
             p{
-                color: $Dusty-Grey;
                 span{
-                    color: $White-Snow;
                     font-weight: bold !important;
                 }
             }

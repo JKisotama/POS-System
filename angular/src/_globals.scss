@@ -2,31 +2,155 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 
-
-
-
-
-body{
-    background-color: $Dark-Void;
+:root{
     font-family: 'Manrope', sans-serif;
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    font-size: clamp(12px, 1.5vw, 16px);
+    font-size: clamp(12px, 1.5vw, 16px) !important;
 }
+body{
+    &.dark-mode{
+        // @include dark-mode;
+        background-color: $Dark-Void !important;
+        transition: background-color 0.3s, color 0.3s;
+        h1, h2, h3, h4, h5, h6{
+            color: $White-Snow;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        p{
+            transition: background-color 0.3s, color 0.3s;
+            color: $White-Snow;
+        }
+        a{
+            transition: background-color 0.3s, color 0.3s;
+            color: $White-Snow; 
+        }
+        span{
+            transition: background-color 0.3s, color 0.3s;
+            color: $White-Snow;
+        }
+        tr{
+            th{
+                transition: background-color 0.3s, color 0.3s;
+                color: $White-Snow;
+            }
+            td{
+                transition: background-color 0.3s, color 0.3s;
+                color: $White-Snow;
+            }
+        }
+        form{
+            label{
+                transition: background-color 0.3s, color 0.3s;
+                color: $White-Snow !important;
+            }
+        }
 
+        .box-bg{
+            transition: background-color 0.3s, color 0.3s;
+            background-color: $Slate-Grey;
+        }
+
+        .search-bar-admin{
+            transition: background-color 0.3s, color 0.3s;
+            background-color: $Gluon-Grey;
+            border-radius: 100px !important;
+            border: $Dusty-Grey solid 1px;
+            color: $White-Snow;
+            &::placeholder{
+                transition: background-color 0.3s, color 0.3s;
+                color: $Dusty-Grey;
+            }
+        }
+        .ad-action-btn{
+            button{
+                transition: background-color 0.3s, color 0.3s;
+                @include btn-gray-border;
+            }
+            select{
+                transition: background-color 0.3s, color 0.3s;
+                @include btn-gray-border;
+            }
+        }
+
+    }
+    &.light-mode{
+        // @include light-mode;
+        background-color: $Light-mode-bg !important;
+        transition: background-color 0.3s, color 0.3s;
+        h1, h2, h3, h4, h5, h6{
+            color: $Dark-Void;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        p{
+            transition: background-color 0.3s, color 0.3s;
+            color: $Dark-Void;
+        }
+        a{
+            transition: background-color 0.3s, color 0.3s;
+            color: $Dark-Void; 
+        }
+        span{
+            transition: background-color 0.3s, color 0.3s;
+            color: $Dark-Void;
+        }
+        tr{
+            th{
+                transition: background-color 0.3s, color 0.3s;
+                color: $Dark-Void;
+            }
+            td{
+                transition: background-color 0.3s, color 0.3s;
+                color: $Dark-Void;
+            }
+        }
+        form{
+            label{
+                transition: background-color 0.3s, color 0.3s;
+                color: $Dark-Void !important;
+            }
+        }
+
+        .box-bg{
+            transition: background-color 0.3s, color 0.3s;
+            background-color: $Box-bg-light;
+        }
+        .search-bar-admin{
+            transition: background-color 0.3s, color 0.3s;
+            background-color: $White-Snow;
+            border-radius: 100px !important;
+            border: $Dusty-Grey solid 1px;
+            color: $Dark-Void;
+            &::placeholder{
+                transition: background-color 0.3s, color 0.3s;
+                color: $Dusty-Grey;
+            }
+        }
+        .ad-action-btn{
+            button{
+                transition: background-color 0.3s, color 0.3s;
+                @include btn-white-bg;
+            }
+            select{
+                transition: background-color 0.3s, color 0.3s;
+                @include btn-white-bg;
+            }
+        }
+
+    }
+
+}
 
 h1, h2, h3, h4, h5, h6{
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    color: $White-Snow;
 }
 p{
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    color: $White-Snow;
 
 }
 input {
@@ -52,25 +176,14 @@ li{
 }
 a{
     text-decoration: none;
-    color: $White-Snow; 
-}
-span{
-    color: $White-Snow;
-}
-tr{
-    th{
-        color: $White-Snow;
-    }
-    td{
-        color: $White-Snow;
-    }
 }
 
-form{
-    label{
-        color: $White-Snow !important;
-    }
+
+.search-center{
+    margin: auto 0;
 }
+
+
 
 .btn-zone {
     @include double-btn-zone;
@@ -128,15 +241,7 @@ form{
     }
     
 }
-.search-bar-admin{
-    background-color: $Gluon-Grey;
-    border-radius: 100px !important;
-    border: $Dusty-Grey solid 1px;
-    color: $White-Snow;
-    &::placeholder{
-        color: $Dusty-Grey;
-    }
-}
+
 
 
 

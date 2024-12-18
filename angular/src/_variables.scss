@@ -5,12 +5,16 @@ $Gluon-Grey: #1B1A1F;
 $Liquid-Lava: #F56F10;
 $Dusty-Grey: #878787;
 $Slate-Grey: #262626;
+$Box-bg-light: #f2e3d8;
+$Light-mode-bg: #a9b494;
 
 $mobile: 576px;
 $table: 768px;
 $ipad-mini: 992px;
 $laptop: 1024px;
 $desktop: 1440px;
+
+
 
 @mixin input-text-field {
     form{
@@ -71,6 +75,19 @@ $desktop: 1440px;
             
         }
 
+    }
+}
+
+@mixin btn-white-bg{
+    background-color: $White-Snow;
+    color: $Dark-Void;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: $White-Snow;
+        color: $Liquid-Lava;
     }
 }
 

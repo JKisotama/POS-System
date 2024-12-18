@@ -103,7 +103,7 @@ import { AdminCreateGoodSellPriceComponent } from './admin/admin-goods-page/admi
 import { AdminEditGoodSellPriceComponent } from './admin/admin-goods-page/admin-view-good-sell-price/admin-edit-good-sell-price/admin-edit-good-sell-price.component';
 import { AdminCreateGoodPropertyComponent } from './admin/admin-goods-page/admin-view-good-property/admin-create-good-property/admin-create-good-property.component';
 import { AdminEditGoodPropertyComponent } from './admin/admin-goods-page/admin-view-good-property/admin-edit-good-property/admin-edit-good-property.component';
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 @NgModule({
   declarations: [
     AppComponent,
