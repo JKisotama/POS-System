@@ -7,13 +7,16 @@
     <div class="col-xl-3 col-md-3 POS-user d-flex justify-content-end">
       <div class="POS-user-btn d-flex">
         <div class="toggle-theme-mode d-flex">
-          <mat-sidenav-container class="">
+          <!-- <mat-sidenav-container class="">
             <mat-sidenav-content>
               <mat-toolbar>
                 <mat-slide-toggle>Slide</mat-slide-toggle>
               </mat-toolbar>
             </mat-sidenav-content>
-          </mat-sidenav-container>
+          </mat-sidenav-container> -->
+          <button (click)="toggleTheme()">
+            <i class="fa-solid fa-moon"></i>
+          </button>
         </div>
         <button routerLink="/POS">
           <i class="fa-solid fa-cash-register"></i>

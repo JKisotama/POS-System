@@ -12,6 +12,26 @@ $ipad-mini: 992px;
 $laptop: 1024px;
 $desktop: 1440px;
 
+
+
+// mixin that enables css variables in light mode
+@mixin light-mode() {
+  --bgColor: #{$White-Snow};
+  --textColor: #{$Dark-Void};
+}
+
+// mixin that enables css variables in dark mode
+@mixin dark-mode() {
+  --bgColor: #{$Dark-Void};
+  --textColor: #{$White-Snow};
+}
+
+
+
+
+
+
+
 @mixin input-text-field {
     form{
         label{

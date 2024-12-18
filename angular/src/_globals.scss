@@ -7,7 +7,17 @@
 
 
 body{
-    background-color: $Dark-Void;
+    &.dark-mode{
+        @include dark-mode;
+        background-color: $Dark-Void !important;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    &.light-mode{
+        @include light-mode;
+        background-color: $White-Snow !important;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    background-color: $White-Snow;
     font-family: 'Manrope', sans-serif;
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
