@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../../../API/Staff/user/user.service';
-import { CreateStaffComponent } from '../../../staff/user-controller/create-staff/create-staff.component';
 import { AdminUserService } from '../../../API/Admin/users/user.service';
 import { AuthenticationService } from '../../../API/authentication.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -38,6 +37,11 @@ export class AdminCreateUserComponent implements OnInit {
        loginName: ['', [Validators.required]],
        fullName: ['', [Validators.required]],
        passWord: ['', [Validators.required]],
+       address: [''],
+       email: [''],
+       phone: [''],
+       dob: [''],
+       gender: [''],
        userLevel: [1],
        userStatus: ['', [Validators.required]],
      })

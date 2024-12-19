@@ -32,8 +32,6 @@ import { MatIconModule} from '@angular/material/icon'
 import { GoodsPageComponent } from './staff/goods-page/goods-page.component';
 import {  MatMenuModule} from '@angular/material/menu'
 import { MatSelectModule } from '@angular/material/select';
-import { UserControllerComponent } from './staff/user-controller/user-controller.component'; 
-import { CreateStaffComponent } from './staff/user-controller/create-staff/create-staff.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { AuthenticationService } from './API/authentication.service';
 import { AuthenticationGuard } from './authentication.guard';
@@ -103,6 +101,7 @@ import { AdminCreateGoodSellPriceComponent } from './admin/admin-goods-page/admi
 import { AdminEditGoodSellPriceComponent } from './admin/admin-goods-page/admin-view-good-sell-price/admin-edit-good-sell-price/admin-edit-good-sell-price.component';
 import { AdminCreateGoodPropertyComponent } from './admin/admin-goods-page/admin-view-good-property/admin-create-good-property/admin-create-good-property.component';
 import { AdminEditGoodPropertyComponent } from './admin/admin-goods-page/admin-view-good-property/admin-edit-good-property/admin-edit-good-property.component';
+import { UserProfileComponent } from './staff/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -115,8 +114,6 @@ import { AdminEditGoodPropertyComponent } from './admin/admin-goods-page/admin-v
     DashboardComponent,
     PosMainComponent,
     GoodsPageComponent,
-    UserControllerComponent,
-    CreateStaffComponent,
     LoginComponent,
     GoodsGroupComponent,
     CreateGoodGroupComponent,
@@ -179,6 +176,7 @@ import { AdminEditGoodPropertyComponent } from './admin/admin-goods-page/admin-v
     AdminEditGoodSellPriceComponent,
     AdminCreateGoodPropertyComponent,
     AdminEditGoodPropertyComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule, 

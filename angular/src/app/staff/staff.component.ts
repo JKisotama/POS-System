@@ -13,6 +13,7 @@ export class StaffComponent implements OnInit {
   isStaffPropertyGroup = false;
   isStaffSupplier = false;
   isStaffCustomer = false
+  isStaffUserProfile = false;
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
@@ -25,6 +26,7 @@ export class StaffComponent implements OnInit {
       this.isStaffPropertyGroup = currentRoute === '/Staff/property-group'
       this.isStaffSupplier = currentRoute === '/Staff/supplier'
       this.isStaffCustomer = currentRoute === '/Staff/customer'
+      this.isStaffUserProfile = currentRoute === '/Staff/user-profile'
     });
   }
 }

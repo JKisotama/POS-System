@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { GoodsPageComponent } from './staff/goods-page/goods-page.component'; 
 import { PosMainComponent } from './POS/pos-main/pos-main.component'; 
 import { AdminPageComponent } from './staff/admin-page/admin-page.component'; 
-import { UserControllerComponent } from './staff/user-controller/user-controller.component'; 
 import { LoginComponent } from './authentication/login/login.component';
 import { AuthenticationGuard } from './authentication.guard';
 import { GoodsGroupComponent } from './staff/goods-group/goods-group.component'; 
@@ -19,11 +18,11 @@ import { AdminGoodGroupComponent } from './admin/admin-good-group/admin-good-gro
 import { AdminPropertyGroupComponent } from './admin/admin-property-group/admin-property-group.component';
 import { AdminSupplierComponent } from './admin/admin-supplier/admin-supplier.component';
 import { AdminCustomerComponent } from './admin/admin-customer/admin-customer.component';
+import { UserProfileComponent } from './staff/user-profile/user-profile.component';
 
 
 const routes: Routes = [
   { path: 'POS', component: POSComponent, canActivate: [AuthenticationGuard]},
-  { path: 'user', component: UserControllerComponent, canActivate: [AuthenticationGuard]},
   { path: '', component: LoginComponent},
   { path: 'property-group', component: PropertyGroupComponent, canActivate: [AuthenticationGuard]},
   {path: 'supplier', component: SupplierComponent, canActivate: [AuthenticationGuard]},
@@ -35,7 +34,7 @@ const routes: Routes = [
       { path: 'property-group', component: PropertyGroupComponent },
       { path: 'supplier', component: SupplierComponent },
       { path: 'customer', component: CustomerComponent },
-     
+      { path: 'user-profile', component: UserProfileComponent},
     ]
   },
 

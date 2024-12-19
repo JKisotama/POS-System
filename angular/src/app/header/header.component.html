@@ -28,7 +28,7 @@
         <!-- Dropdown Menu -->
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
           <li *ngIf="userRole === 1">
-            <button class="dropdown-item">
+            <button class="dropdown-item" [routerLink]="'/Staff/user-profile'">
               <i class="fa-solid fa-user me-2"></i>
               Staff Profile
             </button>

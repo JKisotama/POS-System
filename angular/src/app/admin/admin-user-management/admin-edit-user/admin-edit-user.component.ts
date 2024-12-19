@@ -38,6 +38,11 @@ export class AdminEditUserComponent implements OnInit{
          loginName: [this.data.user?.loginName, [Validators.required]],
          fullName: [this.data.user?.fullName, [Validators.required]],
          passWord: [this.data.user?.passWord, [Validators.required]],
+         address: [this.data.user?.address],
+         email: [this.data.user?.email],
+         dob: [this.data.user?.doB],
+         phone: [this.data.user?.phone],
+         gender: [this.data.user?.gender],
          userLevel: [1],
          userStatus: [this.data.user?.userStatus, [Validators.required]],
        })

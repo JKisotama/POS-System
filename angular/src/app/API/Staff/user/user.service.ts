@@ -30,6 +30,13 @@ export class UserService {
         );
     }
 
+    getUserByLoginName(storeId: string, loginName: string): Observable<any>{
+        this.loadingService.show();
+        return this.http.get(`${this.baseUrl}/GetUserById?store_id=${storeId}&login_name=${loginName}`).pipe(
+            finalize(() => this.loadingService.hide())
+        );
+    }   
+
     
 }
 

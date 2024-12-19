@@ -29,7 +29,7 @@ export class AdminUserService {
 
     CreateUser(user: UserDTO): Observable<any>{
         this.loadingService.show();
-        return this.http.post(`${this.baseUrl}/CreateUser?StoreId=${user.storeId}&LoginName=${user.loginName}&FullName=${user.fullName}&PassWord=${user.passWord}&UserLevel=${user.userLevel}&UserStatus=${user.userStatus}`, user).pipe(
+        return this.http.post(`${this.baseUrl}/CreateUser?StoreId=${user.storeId}&LoginName=${user.loginName}&FullName=${user.fullName}&PassWord=${user.passWord}&Address=${user.address}&Phone=${user.phone}&DoB=${user.doB}&Email=${user.email}&Gender=${user.gender}&UserLevel=${user.userLevel}&UserStatus=${user.userStatus}`, user).pipe(
             finalize(() => this.loadingService.hide())
         );
     }
@@ -43,7 +43,7 @@ export class AdminUserService {
 
     UpdateUser(user: UserDTO): Observable<any>{
         this.loadingService.show();
-        return this.http.put(`${this.baseUrl}/UpdateUser?FullName=${user.fullName}&PassWord${user.passWord}&UserStatus=${user.userStatus}&store_id=${user.storeId}&login_name=${user.loginName}`, user).pipe(
+        return this.http.put(`${this.baseUrlAdmin}/UpdateUser?StoreId=${user.storeId}&LoginName=${user.loginName}FullName=${user.fullName}&PassWord${user.passWord}&Address=${user.address}&Phone=${user.phone}&DoB=${user.doB}&Email=${user.email}&Gender=${user.gender}&UserStatus=${user.userStatus}`, user).pipe(
             finalize(() => this.loadingService.hide())
         );
     }

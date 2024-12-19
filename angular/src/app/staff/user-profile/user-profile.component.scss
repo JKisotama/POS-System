@@ -1,0 +1,29 @@
+@import "../../../_variables.scss";
+@import "../../../styles.scss";
+@import "../../../_globals.scss";
+
+.ad-main-content{
+   
+    .ad-main-data{
+        background-color: $Slate-Grey;
+        border-radius: 14px;
+        margin-top: 15px;
+        padding: 21px 23px;
+    }
+
+    .profile-item {
+        margin-bottom: 10px;
+      }
+    
+      .profile-item label {
+        font-weight: bold;
+        color: white;
+
+      }
+    
+      .profile-item span {
+        margin-left: 10px;
+        
+      }
+}
+

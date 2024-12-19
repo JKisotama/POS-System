@@ -17,7 +17,7 @@ import { ConfirmDialogComponent } from '../../confirm-dialog.component';
 })
 export class AdminUserManagementComponent {
 
-  displayedColumns: string[] = ['action','storeId', 'loginName', 'fullName', 'passWord'];
+  displayedColumns: string[] = ['action','storeId', 'loginName', 'fullName', 'address', 'phone', 'dob', 'email', 'gender'];
     
   dataSource = new MatTableDataSource<UserDTO>();
   storeId: string | null = null;
