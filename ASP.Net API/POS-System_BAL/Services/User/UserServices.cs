@@ -161,10 +161,15 @@ namespace POS_System_BAL.Services.User
             {
                 throw new KeyNotFoundException("User  not found.");
             }
-            var entity = _mapper.Map<UserDTO>(existUser );
+            var entity = _mapper.Map<UserDTO>(existUser);
             
                 existUser.FullName = userDTO.FullName;
                 existUser.IdentifyString = userDTO.IdentifyString;
+                existUser.Address = userDTO.Address;
+                existUser.Phone = userDTO.Phone;
+                existUser.Email = userDTO.Email;
+                existUser.Gender = userDTO.Gender;
+                existUser.DoB = userDTO.DoB;
                 if (imageFile != null)
                 {
                     var imageName = $"{userDTO.FullName}-avatar";
