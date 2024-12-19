@@ -127,16 +127,5 @@ namespace POS_Final_Year.Controller
         #endregion
 
 
-        
-       
-
-    
-
-        private void SetLanguage(string user_language)
-        { 
-            var culture = new CultureInfo(user_language);
-            CultureInfo.CurrentCulture = culture;
-            CultureInfo.CurrentUICulture = culture;
-        }
     }
 }

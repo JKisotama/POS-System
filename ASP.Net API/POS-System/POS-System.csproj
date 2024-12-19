@@ -30,4 +30,37 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Resrouces\SharedResource.vi.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SharedResource.vi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resrouces\SharedResources.en-US.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SharedResource.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resrouces\SharedResources.fr-FR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SharedResources.fr-FR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resrouces\SharedResource.vi.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SharedResource.vi.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resrouces\SharedResources.en-US.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SharedResources.en-US.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resrouces\SharedResources.fr-FR.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SharedResources.fr-FR.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>

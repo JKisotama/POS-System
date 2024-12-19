@@ -57,19 +57,16 @@ namespace POS_System
                 options.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.None; 
             });
 
+            builder.Services.AddMvc()
+                .AddViewLocalization()
+                .AddDataAnnotationsLocalization();
 
             builder.Services.Configure<RequestLocalizationOptions>(options =>
             {
-                var supportedCultures = new[]
-                {
-                    new CultureInfo("en"),
-                    new CultureInfo("fr"),
-                    new CultureInfo("es")
-                };
-                
-                options.DefaultRequestCulture = new RequestCulture("en");
-                options.SupportedCultures = supportedCultures;
-                options.SupportedUICultures = supportedCultures;
+                var supportedCultures = new[] { "en", "fr", "es" };
+                options.SetDefaultCulture("en")
+                    .AddSupportedCultures(supportedCultures)
+                    .AddSupportedUICultures(supportedCultures);
             });
             
             builder.Services.AddDbContext<OnlinePosContext>(options =>
