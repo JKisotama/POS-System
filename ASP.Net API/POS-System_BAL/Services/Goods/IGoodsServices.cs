@@ -64,7 +64,7 @@ namespace POS_System_BAL.Services.Goods
 
         #region UPDATE
 
-        Task UpdateGoods(string storeId, string goodsId, string goodsName, string goodsBrand, int goodsStatus, IFormFile imageFile);
+        Task<TblGood> UpdateGoods(string storeId, string goodsId, string goodsName, string goodsBrand, int goodsStatus, IFormFile imageFile);
         Task UpdateGroup(string storeId, string groupId, string groupName, int groupStatus);
         Task UpdateGoodsProperty(string goodsPropertyId, string updateProperty);
         Task UpdateGroupProperty(string storeId, string propertyId, string propertyName);
