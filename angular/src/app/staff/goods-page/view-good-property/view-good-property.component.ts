@@ -11,6 +11,7 @@ import { GoodsService } from '../../../API/Staff/goods/goods.service';
 import { PropertyGroupService } from '../../../API/Staff/Property Group/propertyGroup.service';
 import { EditGoodPropertyComponent } from './edit-good-property/edit-good-property.component';
 import { CreateGoodPropertyComponent } from './create-good-property/create-good-property.component';
+import { ConfirmDialogComponent } from '../../../confirm-dialog.component';
 
 @Component({
   selector: 'app-view-good-property',
@@ -131,6 +132,40 @@ export class ViewGoodPropertyComponent implements OnInit {
         this.getGoodProperty();
       }
     });
+  }
+
+  confirmDelete(goodProperty: GoodsPropertyDTO): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      panelClass: 'custom-dialog-container',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deleteGoodProperty(goodProperty);
+      } else {
+        console.log('Delete Good Property Cancelled');
+      }
+    });
+  }
+
+  deleteGoodProperty(goodProperty: GoodsPropertyDTO){
+    if(this.storeId){
+      this.goodPropertyService.deleteGoodsProperty(this.storeId, goodProperty.propertyGoodsId).subscribe({
+        next: () => {
+          this.snackBar.open('Good Property deleted successfully', '', {
+            duration: 2000,
+            panelClass: ['snackbar-success'],
+          });
+          this.getGoodProperty(); 
+        },
+        error: () => {
+          this.snackBar.open('Error while deleting Good Property', '', {
+            duration: 2000,
+            panelClass: ['snackbar-error'],
+          });
+        },
+      })
+    }
   }
 
 

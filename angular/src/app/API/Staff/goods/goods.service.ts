@@ -49,14 +49,17 @@ export class GoodsService {
   updateProduct(goodsData: GoodsDTO, file: File): Observable<any> {
     const formData = new FormData();
     
+    // Append the file to the FormData
     formData.append('file', file);
 
+    // Show loading spinner
     this.loadingService.show();
+    
+    // Construct the URL with the required parameters
+    const url = `${this.baseUrl}/UpdateGoods?store_id=${goodsData.storeId}&goods_id=${goodsData.goodsId}&good_name=${goodsData.goodsName}&goods_brand=${goodsData.goodsBrand}&goods_status=${goodsData.goodsStatus}`;
+
     return this.http
-      .put(
-        `${this.baseUrl}/UpdateGoods?store_id=${goodsData.storeId}&goods_id=${goodsData.goodsId}&good_name=${goodsData.goodsName}&goods_brand=${goodsData.goodsBrand}&goods_status=${goodsData.goodsStatus}`,
-        formData
-      )
+      .put(url, formData)
       .pipe(finalize(() => this.loadingService.hide()));
   }
   

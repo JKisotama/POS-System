@@ -35,8 +35,8 @@ export class AdminEditGoodPropertyComponent implements OnInit{
       this.form = this.fb.group({
         goodsId: [this.data.goodProperty?.goodsId],
         storeId: [this.storeId],
-        propertyId: [this.data.goodProperty?.propertyId],
-        propertyName: ['', [Validators.required]],
+        propertyGoodsId: [this.data.goodProperty?.propertyGoodsId],
+        propertyName: [this.data.goodProperty?.propertyName, [Validators.required]],
       });
     }
     

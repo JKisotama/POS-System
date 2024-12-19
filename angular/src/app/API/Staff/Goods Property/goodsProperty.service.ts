@@ -51,9 +51,9 @@ export class GoodsPropertyService {
         );
     }
    
-    deleteGoodsProperty(id: string): Observable<any> {
+    deleteGoodsProperty(storeId: string, goodsPropertyId: string): Observable<any> {
         this.loadingService.show();
-        return this.http.delete(`${this.baseUrl}/${id}`).pipe(
+        return this.http.delete(`${this.baseUrl}/DeleteGoodsProperty?store_id=${storeId}&goodsProperty_id=${goodsPropertyId}`).pipe(
             finalize(() => this.loadingService.hide())
         );
     }
@@ -70,7 +70,7 @@ export class GoodsPropertyService {
       ): Observable<any> {
         this.loadingService.show();
       
-        return this.http.put(`${this.baseUrl}/UpdateGoodsProperty?store_id=${goodPropertyData.storeId}&property_id=${goodPropertyData.propertyId}$goods_id=${goodPropertyData.goodsId}&propert_name=${goodPropertyData.propertyName}`, goodPropertyData).pipe(
+        return this.http.put(`${this.baseUrl}/UpdateGoodsProperty?goodsPropertyId=${goodPropertyData.propertyGoodsId}&update_property=${goodPropertyData.propertyName}`, goodPropertyData).pipe(
           finalize(() => this.loadingService.hide()) // Hide loading spinner after request completes
         );
     }

@@ -41,10 +41,11 @@ export class AdminUserService {
         )
     }
 
-    UpdateUser(user: UserDTO): Observable<any>{
+    UpdateUser(user: UserDTO): Observable<any> {
         this.loadingService.show();
-        return this.http.put(`${this.baseUrlAdmin}/UpdateUser?StoreId=${user.storeId}&LoginName=${user.loginName}FullName=${user.fullName}&PassWord${user.passWord}&Address=${user.address}&Phone=${user.phone}&DoB=${user.doB}&Email=${user.email}&Gender=${user.gender}&UserStatus=${user.userStatus}`, user).pipe(
-            finalize(() => this.loadingService.hide())
+        const url = `${this.baseUrlAdmin}/UpdateUser?StoreId=${user.storeId}&LoginName=${user.loginName}&FullName=${user.fullName}&PassWord=${user.passWord}&Address=${user.address}&Phone=${user.phone}&DoB=${user.doB}&Email=${user.email}&Gender=${user.gender}&UserStatus=${user.userStatus}`;
+        return this.http.put(url, user).pipe(
+          finalize(() => this.loadingService.hide())
         );
     }
 }

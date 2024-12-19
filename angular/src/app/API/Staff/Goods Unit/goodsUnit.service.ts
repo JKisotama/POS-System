@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { finalize, Observable } from 'rxjs';
 import { GoodsUnitDTO } from './model';
 import { LoadingService } from '../../../loading.service';
@@ -25,8 +25,18 @@ export class GoodsUnitService {
             finalize(() => this.loadingService.hide())
         );
     }
-    createGoodsUnit(GoodsUnitData: GoodsUnitDTO): Observable<any> {
-        return this.http.post(`${this.baseUrl}/SaveUnit`, GoodsUnitData).pipe(
+    createGoodsUnit(goodsUnitData: GoodsUnitDTO): Observable<any> {
+        const url = `${this.baseUrl}/SaveUnit`;
+        const params = new HttpParams()
+            .set('GoodsId', goodsUnitData.goodsId || '')
+            .set('Barcode', goodsUnitData.barcode || '')
+            .set('GoodsUnit', goodsUnitData.goodsUnit || '')
+            .set('UnitSize', goodsUnitData.unitSize?.toString() || '')
+            .set('UnitStatus', goodsUnitData.unitStatus?.toString() || '')
+            .set('UnitStock', goodsUnitData.unitStock?.toString() || '')
+            .set('StoreId', goodsUnitData.storeId || '');
+        
+        return this.http.post(url, null, { params }).pipe(
             finalize(() => this.loadingService.hide())
         );
     }
