@@ -102,6 +102,7 @@ import { AdminEditGoodSellPriceComponent } from './admin/admin-goods-page/admin-
 import { AdminCreateGoodPropertyComponent } from './admin/admin-goods-page/admin-view-good-property/admin-create-good-property/admin-create-good-property.component';
 import { AdminEditGoodPropertyComponent } from './admin/admin-goods-page/admin-view-good-property/admin-edit-good-property/admin-edit-good-property.component';
 import { UserProfileComponent } from './staff/user-profile/user-profile.component';
+import { EditUserProfileComponent } from './staff/user-profile/edit-user-profile/edit-user-profile.component';
 
 @NgModule({
   declarations: [
@@ -177,6 +178,7 @@ import { UserProfileComponent } from './staff/user-profile/user-profile.componen
     AdminCreateGoodPropertyComponent,
     AdminEditGoodPropertyComponent,
     UserProfileComponent,
+    EditUserProfileComponent,
   ],
   imports: [
     BrowserModule, 

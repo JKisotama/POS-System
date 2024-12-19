@@ -11,19 +11,35 @@
         padding: 21px 23px;
     }
 
+    .profile-image {
+      margin-bottom: 20px;
+    }
+    
+    .profile-image img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ddd;
+    }
+    
+    .profile-details {
+      width: 100%;
+    }
+    
     .profile-item {
-        margin-bottom: 10px;
-      }
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
     
-      .profile-item label {
-        font-weight: bold;
-        color: white;
-
-      }
+    .profile-item label {
+      font-weight: bold;
+      color: white;
+    }
     
-      .profile-item span {
-        margin-left: 10px;
-        
-      }
+    .profile-item span {
+      color: white;
+    }
 }
 

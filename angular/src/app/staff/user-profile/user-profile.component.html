@@ -2,34 +2,51 @@
   <h2 class="">User Profile</h2>
 
   <div class="ad-main-data">
-    <div class="profile-item">
-      <label>Full Name:</label>
-      <span>{{ userData?.fullName }}</span>
+    <!-- Display user image -->
+    <div class="profile-image">
+      <img
+        [src]="userData?.picture || 'assets/Image/default-avatar.png'"
+        alt="User Avatar"
+      />
     </div>
 
-    <div class="profile-item">
-      <label>Address:</label>
-      <span>{{ userData?.address }}</span>
+    <!-- Display user information -->
+    <div class="profile-details">
+      <div class="profile-item">
+        <label>Full Name:</label>
+        <span>{{ userData?.fullName }}</span>
+      </div>
+
+      <div class="profile-item">
+        <label>Address:</label>
+        <span>{{ userData?.address }}</span>
+      </div>
+
+      <div class="profile-item">
+        <label>Phone:</label>
+        <span>{{ userData?.phone }}</span>
+      </div>
+
+      <div class="profile-item">
+        <label>Date of Birth:</label>
+        <span>{{ userData?.doB }}</span>
+      </div>
+
+      <div class="profile-item">
+        <label>Email:</label>
+        <span>{{ userData?.email }}</span>
+      </div>
+
+      <div class="profile-item">
+        <label>Gender:</label>
+        <span>{{ userData?.gender }}</span>
+      </div>
     </div>
 
-    <div class="profile-item">
-      <label>Phone:</label>
-      <span>{{ userData?.phone }}</span>
-    </div>
-
-    <div class="profile-item">
-      <label>Date of Birth:</label>
-      <span>{{ userData?.doB }}</span>
-    </div>
-
-    <div class="profile-item">
-      <label>Email:</label>
-      <span>{{ userData?.email }}</span>
-    </div>
-
-    <div class="profile-item">
-      <label>Gender:</label>
-      <span>{{ userData?.gender }}</span>
+    <div class="btn-zone">
+      <button class="btn" (click)="openEditUserProfile(userData!)">
+        Update Information
+      </button>
     </div>
   </div>
 </div>

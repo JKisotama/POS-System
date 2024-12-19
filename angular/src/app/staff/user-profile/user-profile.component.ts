@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UserDTO } from '../../API/Admin/users/model';
 import { UserService } from '../../API/Staff/user/user.service';
 import { AuthenticationService } from '../../API/authentication.service';
+import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,9 +18,12 @@ export class UserProfileComponent implements OnInit {
 
   userData: UserDTO | null = null;
 
+
   constructor(
     private authenticationService: AuthenticationService,
-    private userService: UserService
+    private userService: UserService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
   ){}
 
   ngOnInit(): void {
@@ -33,6 +39,25 @@ export class UserProfileComponent implements OnInit {
         this.userData = response;
       });
     }
+  }
+
+  openEditUserProfile(user: UserDTO){
+     const dialogRef = this.dialog.open(EditUserProfileComponent, {
+      width: '700px',
+      panelClass: 'custom-dialog-container',
+      data: {user}, 
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.snackBar.open('Update Information successfully!', 'Close', {
+          duration: 3000, 
+          panelClass: ['snackbar-success'], 
+      });
+        this.getUserByLoginName(); 
+        this.userService.updateUserInHeader();
+      }
+    });
   }
 
 }

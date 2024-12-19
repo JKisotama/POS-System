@@ -12,4 +12,5 @@ export interface UserDTO {
     userStatus?: number;
     userLanguage?: string;
     userType?: number;
+    picture?: string;
 }
