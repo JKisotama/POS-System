@@ -11,10 +11,7 @@ namespace POS_System_BAL.DTOs
     {
         public string? FullName { get; set; }
 
-        public string? PassWord { get; set; }
-
         public string? IdentifyString { get; set; }
-
-        public string? UserLanguage { get; set; }
+        
     }
 }

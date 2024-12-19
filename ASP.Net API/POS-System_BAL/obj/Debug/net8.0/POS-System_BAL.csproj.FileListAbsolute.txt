@@ -30,3 +30,19 @@ D:\Thinh Workplace\POS\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\re
 D:\Thinh Workplace\POS\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.pdb
 D:\Thinh Workplace\POS\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\ref\POS-System_BAL.dll
 E:\GreenCode\COMP1640\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-Syst.5A5E3FF7.Up2Date
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\bin\Debug\net8.0\POS-System_BAL.deps.json
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\bin\Debug\net8.0\POS-System_BAL.dll
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\bin\Debug\net8.0\POS-System_BAL.pdb
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\bin\Debug\net8.0\POS-System_DAL.dll
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\bin\Debug\net8.0\POS-System_DAL.pdb
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.csproj.AssemblyReference.cache
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.AssemblyInfoInputs.cache
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.AssemblyInfo.cs
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.csproj.CoreCompileInputs.cache
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.sourcelink.json
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-Syst.5A5E3FF7.Up2Date
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.dll
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\refint\POS-System_BAL.dll
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\POS-System_BAL.pdb
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_BAL\obj\Debug\net8.0\ref\POS-System_BAL.dll

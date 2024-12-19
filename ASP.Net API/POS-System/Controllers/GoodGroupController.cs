@@ -295,14 +295,14 @@ namespace POS_Final_Year.Controller
             return StatusCode(201, goodsDTO);
         }
         [HttpPost("SaveUnit")]
-        public async Task<ActionResult> PostTblUnit([FromQuery] GoodUnitDTO goodsunit)
+        public async Task<ActionResult> PostTblUnit(string goods_id, string bar_code, string goods_unit, int unit_size, int unit_status, int unit_stock, string store_id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            await _goodsServices.SaveUnit(goodsunit);
-            return StatusCode(201, goodsunit);
+            var newUnit = await  _goodsServices.SaveUnit(goods_id, bar_code, goods_unit, unit_size, unit_status, unit_stock, store_id);
+            return StatusCode(201, newUnit);
         }
         [HttpPost("SaveProperty")]
         public async Task<IActionResult> PostTblGoodProperty(string store_id, string goods_id, string property_id, string property_value)

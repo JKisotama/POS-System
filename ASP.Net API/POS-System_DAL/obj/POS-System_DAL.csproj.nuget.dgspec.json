@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj": {}
+    "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj": {}
   },
   "projects": {
-    "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj": {
+    "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj",
+        "projectUniqueName": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj",
         "projectName": "POS-System_DAL",
-        "projectPath": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj",
-        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System_DAL\\obj\\",
+        "projectPath": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System_DAL\\POS-System_DAL.csproj",
+        "packagesPath": "C:\\Users\\quant\\.nuget\\packages",
+        "outputPath": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System_DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\quant\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -43,9 +43,8 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+          "auditMode": "direct"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -60,6 +59,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.8, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.7.3, )"
             }
           },
           "imports": [
@@ -78,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

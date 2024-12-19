@@ -137,21 +137,18 @@ namespace POS_System_BAL.Services.User
 
         #region PUT
 
-        public async Task<TblUser> UpdateUser(TblUser user)
+        public async Task<TblUser> UpdateUser(string storeId, string loginName, string passWord,
+            string fullName, string userLanguage, int userType, int userLevel, int userStatus)
         {
-            var existUser = await GetUser(user.StoreId,user.LoginName);
+            var existUser = await GetUser(storeId,loginName);
             if (existUser != null)
             {
-                existUser.FullName = user.FullName;
-                existUser.PassWord = _authenticate.VerifyPasswordHash(user.PassWord);
-                existUser.IdentifyString = user.IdentifyString;
-                existUser.UserLanguage = user.UserLanguage;
-                existUser.UserType = user.UserType;
-                existUser.UserLevel = user.UserLevel;
-                existUser.UserStatus = user.UserStatus;
-                
-                
-                
+                existUser.FullName = fullName;
+                existUser.PassWord = _authenticate.VerifyPasswordHash(passWord);
+                existUser.UserLanguage = userLanguage;
+                existUser.UserType = userType;
+                existUser.UserLevel = userLevel;
+                existUser.UserStatus = userStatus;
                 _onlinePosContext.TblUsers.Update(existUser);
                 await _onlinePosContext.SaveChangesAsync();
             }
@@ -168,9 +165,7 @@ namespace POS_System_BAL.Services.User
             var entity = _mapper.Map<UserDTO>(existUser );
             
                 existUser.FullName = userDTO.FullName;
-                existUser.PassWord = _authenticate.VerifyPasswordHash(userDTO.PassWord);
                 existUser.IdentifyString = userDTO.IdentifyString;
-                existUser.UserLanguage = userDTO.UserLanguage;
                 if (imageFile != null)
                 {
                     var imageName = $"{userDTO.FullName}-avatar";

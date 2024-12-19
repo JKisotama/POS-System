@@ -23,7 +23,8 @@ namespace POS_System_BAL.Services.User
 
         #region PUT
 
-        Task<TblUser> UpdateUser(TblUser user);
+        Task<TblUser> UpdateUser(string storeId, string loginName, string passWord,
+            string fullName, string userLanguage, int userType, int userLevel, int userStatus);
         Task<UserDTO> UpdateUserDTO(UserDTO userDTO, string store_id, string login_name, IFormFile imageFile);
 
         #endregion

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zWb5Tx7f/GYfyZB2MwGLTkZ7b1+dZG++cpKC+kDgDR0=",
+  "Hash": "W3KSINo41rfdfmwAcYQKCg9J1S9bVgJ9wmVX7soA8mc=",
   "Source": "POS-System",
   "BasePath": "_content/POS-System",
   "Mode": "Default",
@@ -10,1970 +10,372 @@
     {
       "Name": "POS-System\\wwwroot",
       "Source": "POS-System",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001.jpg",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001001#[.{fingerprint}]?.jpg",
+      "RelativePath": "image/stores/001/001001.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8hcyq22kz5",
-      "Integrity": "rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001001.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001.png",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001.png",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001001#[.{fingerprint}]?.png",
+      "RelativePath": "image/stores/001/001001.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "4qgwmbml0h",
-      "Integrity": "rJ76LOpnRrRWmM1pHrPuQiSb0+wzvidSZRwRuR4WfX0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001001.png"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001004.jpg",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001004.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001001004#[.{fingerprint}]?.jpg",
+      "RelativePath": "image/stores/001/001001004.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8hcyq22kz5",
-      "Integrity": "rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001001004.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001005.jpg",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001005.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001001005#[.{fingerprint}]?.jpg",
+      "RelativePath": "image/stores/001/001001005.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8hcyq22kz5",
-      "Integrity": "rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001001005.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001006.jpg",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001006.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001001006#[.{fingerprint}]?.jpg",
+      "RelativePath": "image/stores/001/001001006.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8hcyq22kz5",
-      "Integrity": "rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001001006.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001007.jpg",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001007.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001001007#[.{fingerprint}]?.jpg",
+      "RelativePath": "image/stores/001/001001007.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8hcyq22kz5",
-      "Integrity": "rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001001007.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001008.jpg",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001008.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001001008#[.{fingerprint}]?.jpg",
+      "RelativePath": "image/stores/001/001001008.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8hcyq22kz5",
-      "Integrity": "rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001001008.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001002.jpg",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001002.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001002#[.{fingerprint}]?.jpg",
+      "RelativePath": "image/stores/001/001002.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8hcyq22kz5",
-      "Integrity": "rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001002.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001002.png",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001002.png",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001002#[.{fingerprint}]?.png",
+      "RelativePath": "image/stores/001/001002.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "4qgwmbml0h",
-      "Integrity": "rJ76LOpnRrRWmM1pHrPuQiSb0+wzvidSZRwRuR4WfX0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001002.png"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001003.jpg",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001003.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001003#[.{fingerprint}]?.jpg",
+      "RelativePath": "image/stores/001/001003.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8hcyq22kz5",
-      "Integrity": "rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001003.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001003.png",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001003.png",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001003#[.{fingerprint}]?.png",
+      "RelativePath": "image/stores/001/001003.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "4qgwmbml0h",
-      "Integrity": "rJ76LOpnRrRWmM1pHrPuQiSb0+wzvidSZRwRuR4WfX0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001003.png"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001004.jpg",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001004.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001004#[.{fingerprint}]?.jpg",
+      "RelativePath": "image/stores/001/001004.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8hcyq22kz5",
-      "Integrity": "rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001004.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001004.png",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001004.png",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001004#[.{fingerprint}]?.png",
+      "RelativePath": "image/stores/001/001004.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "bezaily6p4",
-      "Integrity": "szfjx/AphlAIqNQ8gSERgAQPL35v8OH49JNZlr3hPvQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001004.png"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001005.jpg",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001005.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001005#[.{fingerprint}]?.jpg",
+      "RelativePath": "image/stores/001/001005.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8hcyq22kz5",
-      "Integrity": "rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001005.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001006.jpg",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001006.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001006#[.{fingerprint}]?.jpg",
+      "RelativePath": "image/stores/001/001006.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8hcyq22kz5",
-      "Integrity": "rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001006.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001007.jpg",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001007.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001007#[.{fingerprint}]?.jpg",
+      "RelativePath": "image/stores/001/001007.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8hcyq22kz5",
-      "Integrity": "rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001007.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001008.png",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001008.png",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001/001008#[.{fingerprint}]?.png",
+      "RelativePath": "image/stores/001/001008.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "c5frtbbpd0",
-      "Integrity": "kEGpp0kZufni4gvu78tnA3sV8N7XZ6t1DyMssR/c0oY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001\\001008.png"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001001.jpg",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001001.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/001001#[.{fingerprint}]?.jpg",
+      "RelativePath": "image/stores/001001.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8hcyq22kz5",
-      "Integrity": "rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\001001.jpg"
     },
     {
-      "Identity": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\002\\002001.jpg",
+      "Identity": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\002\\002001.jpg",
       "SourceId": "POS-System",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\quant\\OneDrive\\Documents\\GitHub\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\",
       "BasePath": "_content/POS-System",
-      "RelativePath": "image/stores/002/002001#[.{fingerprint}]?.jpg",
+      "RelativePath": "image/stores/002/002001.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8hcyq22kz5",
-      "Integrity": "rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\stores\\002\\002001.jpg"
-    }
-  ],
-  "Endpoints": [
-    {
-      "Route": "image/stores/001/001001.4qgwmbml0h.png",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1655551"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rJ76LOpnRrRWmM1pHrPuQiSb0+wzvidSZRwRuR4WfX0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 27 Nov 2024 09:36:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "4qgwmbml0h"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001001.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rJ76LOpnRrRWmM1pHrPuQiSb0+wzvidSZRwRuR4WfX0="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001001.8hcyq22kz5.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8hcyq22kz5"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001001.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001001.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001001.png",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1655551"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rJ76LOpnRrRWmM1pHrPuQiSb0+wzvidSZRwRuR4WfX0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 27 Nov 2024 09:36:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rJ76LOpnRrRWmM1pHrPuQiSb0+wzvidSZRwRuR4WfX0="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001001004.8hcyq22kz5.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001004.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8hcyq22kz5"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001001004.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001001004.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001004.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001001005.8hcyq22kz5.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001005.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8hcyq22kz5"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001001005.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001001005.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001005.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001001006.8hcyq22kz5.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001006.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8hcyq22kz5"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001001006.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001001006.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001006.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001001007.8hcyq22kz5.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001007.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8hcyq22kz5"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001001007.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001001007.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001007.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001001008.8hcyq22kz5.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001008.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8hcyq22kz5"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001001008.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001001008.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001001008.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001002.4qgwmbml0h.png",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001002.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1655551"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rJ76LOpnRrRWmM1pHrPuQiSb0+wzvidSZRwRuR4WfX0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 27 Nov 2024 09:36:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "4qgwmbml0h"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001002.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rJ76LOpnRrRWmM1pHrPuQiSb0+wzvidSZRwRuR4WfX0="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001002.8hcyq22kz5.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001002.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8hcyq22kz5"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001002.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001002.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001002.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001002.png",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001002.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1655551"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rJ76LOpnRrRWmM1pHrPuQiSb0+wzvidSZRwRuR4WfX0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 27 Nov 2024 09:36:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rJ76LOpnRrRWmM1pHrPuQiSb0+wzvidSZRwRuR4WfX0="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001003.4qgwmbml0h.png",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001003.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1655551"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rJ76LOpnRrRWmM1pHrPuQiSb0+wzvidSZRwRuR4WfX0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 27 Nov 2024 09:36:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "4qgwmbml0h"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001003.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rJ76LOpnRrRWmM1pHrPuQiSb0+wzvidSZRwRuR4WfX0="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001003.8hcyq22kz5.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001003.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8hcyq22kz5"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001003.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001003.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001003.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001003.png",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001003.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1655551"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rJ76LOpnRrRWmM1pHrPuQiSb0+wzvidSZRwRuR4WfX0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 27 Nov 2024 09:36:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rJ76LOpnRrRWmM1pHrPuQiSb0+wzvidSZRwRuR4WfX0="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001004.8hcyq22kz5.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001004.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8hcyq22kz5"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001004.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001004.bezaily6p4.png",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001004.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "131763"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"szfjx/AphlAIqNQ8gSERgAQPL35v8OH49JNZlr3hPvQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 27 Nov 2024 09:36:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "bezaily6p4"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001004.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-szfjx/AphlAIqNQ8gSERgAQPL35v8OH49JNZlr3hPvQ="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001004.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001004.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001004.png",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001004.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "131763"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"szfjx/AphlAIqNQ8gSERgAQPL35v8OH49JNZlr3hPvQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 27 Nov 2024 09:36:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-szfjx/AphlAIqNQ8gSERgAQPL35v8OH49JNZlr3hPvQ="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001005.8hcyq22kz5.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001005.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8hcyq22kz5"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001005.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001005.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001005.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001006.8hcyq22kz5.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001006.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8hcyq22kz5"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001006.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001006.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001006.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001007.8hcyq22kz5.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001007.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8hcyq22kz5"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001007.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001007.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001007.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001008.c5frtbbpd0.png",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001008.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "14228"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"kEGpp0kZufni4gvu78tnA3sV8N7XZ6t1DyMssR/c0oY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "c5frtbbpd0"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001/001008.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-kEGpp0kZufni4gvu78tnA3sV8N7XZ6t1DyMssR/c0oY="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001/001008.png",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001\\001008.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "14228"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"kEGpp0kZufni4gvu78tnA3sV8N7XZ6t1DyMssR/c0oY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-kEGpp0kZufni4gvu78tnA3sV8N7XZ6t1DyMssR/c0oY="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001001.8hcyq22kz5.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001001.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8hcyq22kz5"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/001001.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/001001.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\001001.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/002/002001.8hcyq22kz5.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\002\\002001.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8hcyq22kz5"
-        },
-        {
-          "Name": "label",
-          "Value": "image/stores/002/002001.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
-    },
-    {
-      "Route": "image/stores/002/002001.jpg",
-      "AssetFile": "E:\\GreenCode\\COMP1640\\POS-System\\ASP.Net API\\POS-System\\wwwroot\\image\\stores\\002\\002001.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1398624"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Oct 2024 14:33:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rDUqFZNr0MUtWUYnuNQm3MYaU2Tk+RtRHImWF+4e+jA="
-        }
-      ]
     }
   ]
 }

@@ -28,3 +28,18 @@ D:\Thinh Workplace\POS\POS-System\ASP.Net API\POS-System_DAL\obj\Debug\net8.0\re
 D:\Thinh Workplace\POS\POS-System\ASP.Net API\POS-System_DAL\obj\Debug\net8.0\POS-System_DAL.pdb
 D:\Thinh Workplace\POS\POS-System\ASP.Net API\POS-System_DAL\obj\Debug\net8.0\POS-System_DAL.genruntimeconfig.cache
 D:\Thinh Workplace\POS\POS-System\ASP.Net API\POS-System_DAL\obj\Debug\net8.0\ref\POS-System_DAL.dll
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_DAL\bin\Debug\net8.0\POS-System_DAL.deps.json
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_DAL\bin\Debug\net8.0\POS-System_DAL.runtimeconfig.json
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_DAL\bin\Debug\net8.0\POS-System_DAL.dll
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_DAL\bin\Debug\net8.0\POS-System_DAL.pdb
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_DAL\obj\Debug\net8.0\POS-System_DAL.csproj.AssemblyReference.cache
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_DAL\obj\Debug\net8.0\POS-System_DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_DAL\obj\Debug\net8.0\POS-System_DAL.AssemblyInfoInputs.cache
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_DAL\obj\Debug\net8.0\POS-System_DAL.AssemblyInfo.cs
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_DAL\obj\Debug\net8.0\POS-System_DAL.csproj.CoreCompileInputs.cache
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_DAL\obj\Debug\net8.0\POS-System_DAL.sourcelink.json
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_DAL\obj\Debug\net8.0\POS-System_DAL.dll
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_DAL\obj\Debug\net8.0\refint\POS-System_DAL.dll
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_DAL\obj\Debug\net8.0\POS-System_DAL.pdb
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_DAL\obj\Debug\net8.0\POS-System_DAL.genruntimeconfig.cache
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System_DAL\obj\Debug\net8.0\ref\POS-System_DAL.dll
