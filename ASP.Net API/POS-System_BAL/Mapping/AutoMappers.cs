@@ -18,8 +18,9 @@ namespace POS_System_BAL.Mapping
                 .ReverseMap();
             CreateMap<TblCustomer, CustomerDTO>()
                 .ReverseMap();
-            CreateMap<TblGoodsunit, GoodUnitDTO>()
-                .ReverseMap();
+            CreateMap<GoodUnitDTO, TblGoodsunit>()
+                .ForMember(dest => dest.GoodsUnit, opt => opt.MapFrom(src => src.GoodsUnit));
+
             CreateMap<TblGood, GoodsDTO>()
                 .ReverseMap();
             CreateMap<TblGoodsgroup, GoodsGroupDTO>()

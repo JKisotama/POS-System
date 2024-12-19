@@ -57,7 +57,7 @@ namespace POS_System_BAL.Services.Goods
         Task SaveGoodsGroup(GoodsGroupDTO goodsGroupDTO);
         Task SavePropertyGroup(TblPropertygroup tblPropertygroup);
         Task SaveSellingPrices(TblSellprice tblSellprice);
-        Task SaveUnit(GoodUnitDTO goodUnitDTO);
+        Task<TblGoodsunit> SaveUnit(string goodsId, string barCode, string goodsUnit, int size, int status, int stock, string storeId);
         Task SaveGoods(GoodsDTO goodsDTO, IFormFile imageFile);
         Task SaveProperty(string store_id, string goods_id, string property_id, string property_value);
         #endregion

@@ -276,12 +276,22 @@ namespace POS_System_BAL.Services.Goods
             await _onlinePosContext.SaveChangesAsync();
         }
 
-        public async Task SaveUnit(GoodUnitDTO goodUnitDTO)
+        public async Task<TblGoodsunit> SaveUnit(string goodsId, string barCode, string goodsUnit, int size, int status, int stock, string storeId)
         {
-            var entity = _mapper.Map<TblGoodsunit>(goodUnitDTO);
+            var newUnit = new TblGoodsunit
+            {
+                GoodsId = goodsId,
+                Barcode = barCode,
+                GoodsUnit = goodsUnit,
+                UnitSize = size,
+                UnitStatus = status,
+                UnitStock = stock,
+                StoreId = storeId
+            };
             _onlinePosContext.TblGoodsunits
-                .Add(entity);
+                .Add(newUnit);
             await _onlinePosContext.SaveChangesAsync();
+            return newUnit;
         }
 
 
