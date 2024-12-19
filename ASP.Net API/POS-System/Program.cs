@@ -1,4 +1,5 @@
 
+using System.Globalization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using POS_System_BAL.Mapping;
@@ -14,7 +15,9 @@ using Microsoft.AspNetCore.Cors.Infrastructure;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using dotenv.net;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using POS_System_BAL.Services.POS;
 using POS_System_BAL.Services.SaleReport;
 
@@ -50,8 +53,23 @@ namespace POS_System
             services.AddSession();
             builder.Services.AddControllers().AddNewtonsoftJson(options =>
             {
-                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; // Prevents infinite loop
-                options.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.None; // Keeps references
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; 
+                options.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.None; 
+            });
+
+
+            builder.Services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("en"),
+                    new CultureInfo("fr"),
+                    new CultureInfo("es")
+                };
+                
+                options.DefaultRequestCulture = new RequestCulture("en");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
             });
             
             builder.Services.AddDbContext<OnlinePosContext>(options =>
@@ -86,7 +104,9 @@ namespace POS_System
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            var localizationOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>().Value;
+            app.UseRequestLocalization(localizationOptions);
+            
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();

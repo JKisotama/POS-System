@@ -16,7 +16,5 @@ namespace POS_System_BAL.DTOs
         public string? IdentifyString { get; set; }
 
         public string? UserLanguage { get; set; }
-        [JsonIgnore]
-        public string Picture { get; set; } = null;
     }
 }
