@@ -7,7 +7,7 @@
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    font-size: clamp(12px, 1.5vw, 16px) !important;
+    font-size: clamp(16px, 1.5vw, 18px) !important;
 }
 body{
     &.dark-mode{
@@ -47,9 +47,22 @@ body{
             }
         }
 
+        .cdk-overlay-pane{
+            background-color: transparent !important;
+        }
+        .mat-mdc-menu-panel{
+            background-color: $Gluon-Grey !important;
+            button{
+                &:hover{
+                    background-color: $Dusty-Grey;
+                    color: $Dark-Void !important;
+                }
+            }
+        }
         .box-bg{
             transition: background-color 0.3s, color 0.3s;
             background-color: $Slate-Grey;
+            border-radius: 20px ;
         }
 
         .search-bar-admin{
@@ -71,7 +84,56 @@ body{
             select{
                 transition: background-color 0.3s, color 0.3s;
                 @include btn-gray-border;
+                option{
+                    background-color: $Gluon-Grey;
+                    color: $White-Snow;
+                    
+                }
             }
+        }
+        .dialog-form{
+            background-color: $Gluon-Grey;
+            .form-input {
+                @include input-text-field;
+                form{
+                    label{
+                    }
+                    input{
+                        width: 100%;
+                        border-radius: 5px;
+                        
+                        &::placeholder{
+                        }
+                        
+                    }
+                    select{
+                        background-color: transparent !important;
+                        option{
+                        }
+                        &::placeholder{
+                        }
+                    
+                      }
+                }
+
+                
+            }
+            .form-table{
+                table{
+                    tr{
+                        td{
+                            select{
+                                border: 1px dashed $White-Snow;
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+
+        .card-item{
+            background-color: $Gluon-Grey;
         }
 
     }
@@ -111,10 +173,18 @@ body{
                 color: $Dark-Void !important;
             }
         }
-
+        .cdk-overlay-pane{
+            // background-color: #f7f2eb !important;
+            background-color: transparent;
+            
+        }
+        .mat-mdc-menu-panel{
+            background-color: #f7f2eb !important;
+        }
         .box-bg{
             transition: background-color 0.3s, color 0.3s;
             background-color: $Box-bg-light;
+            border-radius: 20px ;
         }
         .search-bar-admin{
             transition: background-color 0.3s, color 0.3s;
@@ -135,7 +205,64 @@ body{
             select{
                 transition: background-color 0.3s, color 0.3s;
                 @include btn-white-bg;
+                option{
+                    background-color: $White-Snow;
+                    color: $Dark-Void;
+                }
             }
+        }
+        .dialog-form{
+            background-color: #f7f2eb;
+            .form-input {
+                @include input-text-field;
+                form{
+                    label{
+                    }
+                    input{
+                        background-color: $White-Snow;
+                        color: $Dark-Void;
+                        width: 100%;
+                        border-radius: 5px;
+                        border: 1px solid $Dark-Void;
+                        
+                        &::placeholder{
+                            color: $Dusty-Grey;
+                        }
+                        
+                    }
+                    select{
+                        background-color: transparent !important;
+                        color: $Dark-Void;
+                        border: 1px dashed $Dark-Void;
+                        option{
+                          background-color: $White-Snow;
+                          color: $Dusty-Grey;
+                        }
+                        &::placeholder{
+                            color: $Dusty-Grey;
+                        }
+                    
+                      }
+                }
+            
+                
+            }
+            .form-table{
+                table{
+                    tr{
+                        td{
+                            select{
+                                border: 1px dashed $White-Snow;
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+
+        .card-item{
+            background-color: $Box-bg-light;
         }
 
     }
@@ -209,7 +336,6 @@ a{
 }
 
 .card-item{
-    background-color: $Gluon-Grey;
     padding: 15px 20px;
     border-radius: 12px;
     height: 100%;
@@ -217,31 +343,23 @@ a{
 }
 
 .dialog-form{
-    background-color: $Gluon-Grey !important;
     padding: 16px 20px;
-    .form-input {
-        @include input-text-field;
-        form{
-            select{
-                border: 1px dashed $White-Snow;
-            }
-        }
-        
-    }
-    .form-table{
-        table{
-            tr{
-                td{
-                    select{
-                        border: 1px dashed $White-Snow;
-                    }
-                }
-            }
-        }
-    }
+    // .form-table{
+    //     table{
+    //         tr{
+    //             td{
+    //                 select{
+    //                     border: 1px dashed $White-Snow;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
     
 }
-
+.min-hight-set{
+    min-height: 100vh;
+}
 
 
 
@@ -259,7 +377,9 @@ a{
 .mat-table {
     background-color: transparent; // Ensure the table itself has no background color
 }
-
+.mdc-button {
+    min-width: 220px;
+}
 
 
 

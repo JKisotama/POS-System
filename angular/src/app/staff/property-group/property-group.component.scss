@@ -109,3 +109,82 @@
         }
     }
 }
+
+.mat-elevation-z8 {
+    box-shadow: none;
+    
+}
+
+tr[matNoDataRow] td {
+    font-size: 1.5rem;
+}
+
+/* Center the text in the table */
+tr[matNoDataRow] td {
+    text-align: center;
+}
+
+.example-detail-row {
+    height: 0;
+}
+
+.example-element-row td {
+    border-bottom-width: 0;
+}
+
+.cdk-overlay-pane {
+    background-color: $Slate-Grey !important;
+    color: $White-Snow;
+    border-radius: 14px;
+
+    .mat-mdc-menu-content {
+        padding: 10px;
+    }
+}
+
+.ad-main-content {
+    .ad-main-data {
+        .color_table_background {
+            background-color: transparent !important;
+        }
+
+        .boder_table {
+            border: none !important;
+        }
+
+        .detail-btn{
+            width: 0;
+            padding: 45px;
+        }
+    }
+}
+
+.custom-select {
+    background-color: grey;
+    color: white;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+}
+.mat-mdc-menu-panel{
+    background-color: transparent !important;
+}
+.mat-mdc-menu-content {
+    background-color: transparent !important;
+    color: white !important;
+    /* Replace with your desired color */
+}
+
+a {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover {
+        color: darkblue;
+    }
+}
+
+.mdc-button {
+    min-width: 220px;
+}

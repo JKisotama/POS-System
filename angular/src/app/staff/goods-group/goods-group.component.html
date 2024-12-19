@@ -35,23 +35,23 @@
         [dataSource]="dataSource"
         class="mat-elevation-z8 parent-table"
       >
-        <ng-container matColumnDef="action" class="action-column">
-          <th mat-header-cell *matHeaderCellDef>Action</th>
-          <td mat-cell *matCellDef="let goodGroup" class="ad-action-btn">
+        <ng-container matColumnDef="action" >
+          <th mat-header-cell *matHeaderCellDef class="text-center align-middle">Action</th>
+          <td mat-cell *matCellDef="let goodGroup" class="text-center align-middle ad-action-btn detail-btn">
             <button
               mat-raised-button
               [matMenuTriggerFor]="actionsMenu"
-              class="detail-btn"
+              class=""
             >
               <i class="fa-solid fa-caret-down"></i> Actions
             </button>
             <mat-menu #actionsMenu="matMenu" class="dropdown-menu-mat">
               <button mat-menu-item (click)="openEditGoodGroup(goodGroup)">
-                <mat-icon>edit</mat-icon>
+                <i class="fa-regular fa-edit pe-2"></i>
                 <span>Edit</span>
               </button>
               <button mat-menu-item (click)="confirmDelete(goodGroup)">
-                <mat-icon>delete</mat-icon>
+                <i class="fa-solid fa-trash pe-2"></i>
                 <span>Delete</span>
               </button>
             </mat-menu>

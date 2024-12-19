@@ -3,6 +3,10 @@
 @import "../../../_globals.scss";
 
 .ad-main-content {
+    h2{
+        font-size: 35px;
+        font-weight: bold;
+    }
     .ad-main-search {
         padding: 22px 50px;
         border-radius: 14px;
@@ -110,14 +114,6 @@
     }
 }
 
-
-
-
-
-
-
-
-
 .mat-elevation-z8 {
     box-shadow: none;
     
@@ -167,9 +163,6 @@ tr[matNoDataRow] td {
     }
 }
 
-
-
-
 .custom-select {
     background-color: grey;
     color: white;
@@ -177,9 +170,11 @@ tr[matNoDataRow] td {
     padding: 8px;
     border-radius: 4px;
 }
-
+.mat-mdc-menu-panel{
+    background-color: transparent !important;
+}
 .mat-mdc-menu-content {
-    background-color: grey !important;
+    background-color: transparent !important;
     color: white !important;
     /* Replace with your desired color */
 }

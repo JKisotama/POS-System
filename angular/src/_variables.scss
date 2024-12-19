@@ -5,14 +5,20 @@ $Gluon-Grey: #1B1A1F;
 $Liquid-Lava: #F56F10;
 $Dusty-Grey: #878787;
 $Slate-Grey: #262626;
-$Box-bg-light: #f2e3d8;
-$Light-mode-bg: #a9b494;
+
+// Variables for the light mode
+$Box-bg-light: #c9d7dd;
+$Light-mode-bg: #fcfaf9;
+$Sidenav-light: #abbcc4;
+
+
 
 $mobile: 576px;
 $table: 768px;
 $ipad-mini: 992px;
 $laptop: 1024px;
 $desktop: 1440px;
+
 
 
 
@@ -37,6 +43,7 @@ $desktop: 1440px;
         select{
             background-color: transparent !important;
             color: $White-Snow;
+            border: 1px dashed $White-Snow;
             option{
               background-color: $Dusty-Grey;
               color: $White-Snow;
@@ -48,6 +55,8 @@ $desktop: 1440px;
           }
     }
 }
+
+
 @mixin double-btn-zone {
     display: flex;
     justify-content: center;
@@ -86,9 +95,10 @@ $desktop: 1440px;
     transition: background-color 0.3s ease, color 0.3s ease;
 
     &:hover {
-        background-color: $White-Snow;
-        color: $Liquid-Lava;
+        background-color: $Dusty-Grey;
+        color: $Gluon-Grey;
     }
+    
 }
 
 @mixin btn-orange-bg{
@@ -98,9 +108,17 @@ $desktop: 1440px;
     padding: 10px 20px;
     transition: background-color 0.3s ease, color 0.3s ease;
 
-    &:hover {
-        background-color: $White-Snow;
-        color: $Liquid-Lava;
+    body.dark-mode &{
+        &:hover {
+            background-color: $White-Snow;
+            color: $Liquid-Lava;
+        }
+    }
+    body.light-mode &{
+        &:hover {
+            background-color: $White-Snow;
+            color: $Greenwich;
+        }
     }
 }
 @mixin btn-gray-bg{
@@ -168,7 +186,7 @@ $desktop: 1440px;
 }
 
 @mixin btn-gray-border {
-    
+        padding: 10px 20px;
         border-radius: 5px;
         border: 1px solid $Dusty-Grey;
         color: $Dusty-Grey;

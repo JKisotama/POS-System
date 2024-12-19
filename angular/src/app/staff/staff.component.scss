@@ -1,14 +1,13 @@
 @import "../../styles.scss";
 
 :host {
-  
-
-  // Áp dụng style cho dark mode
-  body.dark-mode & {
+    body.dark-mode & {
     
     .ad-sidenav {
+      transition: background-color 0.3s ease, color 0.3s ease;
       background-color: $Gluon-Grey; // Màu nền cho sidebar trong dark mode
       color: $White-Snow; // Màu chữ trong dark mode
+      min-height: 700px;
 
       a {
         color: $White-Snow;
@@ -26,23 +25,23 @@
       background-color: transparent; // Header nền dark mode
     }
   }
-
-  // Áp dụng style cho light mode
   body.light-mode & {
     .ad-sidenav {
-      background-color: $Greenwich; // Màu nền cho sidebar trong light mode
-      color: $Dark-Void; // Màu chữ trong light mode
-
+      transition: background-color 0.3s ease, color 0.3s ease;
+      background-color: $Sidenav-light; // Màu nền cho sidebar trong light mode
+      color: $Dark-Void !important; // Màu chữ trong light mode
+      min-height: 700px;
       a {
-        color: $Dark-Void;
+        color: $Dark-Void !important;
         &:hover {
-          color: $Dark-Void; // Màu chữ khi hover
+          color: $Dark-Void !important; // Màu chữ khi hover
         }
       }
 
       .menu-item {
         border-bottom: 1px solid $Dusty-Grey; // Viền chia cách menu
       }
+
     }
 
     .ad-header {
@@ -61,10 +60,7 @@
       cursor: pointer;
       transition: background-color 0.3s ease, color 0.3s ease;
 
-      &:hover {
-        background-color: $Liquid-Lava;
-        color: $White-Snow;
-      }
+      
     }
   }
 

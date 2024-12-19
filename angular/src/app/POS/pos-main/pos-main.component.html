@@ -2,28 +2,7 @@
   <div class="new-order-zone">
     <div class="row">
       <!-- Order Holder -->
-      <div class="col-xl-12 col-lg-12 col-md-12 order-information box-bg">
-        <div class="d-flex justify-content-between">
-          <!-- Order Hang Holder -->
-          <div class="order-holder" *ngFor="let pos of posHangList">
-            <a href="javascript:void(0)" class="text-capitalize">
-              {{ pos.posNumber }}
-            </a>
-
-            <!-- Show this if no orders are hanging -->
-            <ng-template #noHangOrders>
-              <p>No hanging orders available</p>
-            </ng-template>
-          </div>
-
-          <!-- Order Hang Deleted -->
-          <div class="order-deleted">
-            <button>
-              <i class="fas fa-trash"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+      
       <div class="col-xl-12 col-lg-12 col-md-12 order-information">
         <div class="d-flex justify-content-between">
           <!-- TODO: Thêm class "active" khi order được chọn -->
@@ -51,8 +30,8 @@
 
       <!-- Product Card -->
       <!-- TODO: Limited rows can show (4-5 rows) -->
-      <div class="col-xl-8 col-lg-8 col-md-8 product-card mt-5">
-        <div class="card-item">
+      <div class="col-xl-8 col-lg-8 col-md-8 product-card mt-5 ">
+        <div class="card-item box-pos-bg">
           <div class="header d-flex justify-content-between">
             <h2>Product</h2>
             <button (click)="openProductDialog()">
