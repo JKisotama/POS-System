@@ -419,7 +419,7 @@ namespace POS_System_BAL.Services.Goods
 
         #region UPDATE
 
-        public async Task UpdateGoods(string storeId, string goodsId, string goodsName, string goodsBrand,
+        public async Task<TblGood> UpdateGoods(string storeId, string goodsId, string goodsName, string goodsBrand,
             int goodsStatus, IFormFile imageFile)
         {
             var existingGoods = await _onlinePosContext.TblGoods
@@ -451,6 +451,7 @@ namespace POS_System_BAL.Services.Goods
             }
 
             await _onlinePosContext.SaveChangesAsync();
+            return existingGoods;
         }
 
         public async Task UpdateGroup(string storeId, string groupId, string groupName, int groupStatus)

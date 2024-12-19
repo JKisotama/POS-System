@@ -167,8 +167,8 @@ namespace POS_Final_Year.Controller
         {
             try
             {
-                await _goodsServices.UpdateGoods(store_id, goods_id, good_name, goods_brand, goods_status,imageFile);
-                return NoContent(); 
+               var updateGoods = await _goodsServices.UpdateGoods(store_id, goods_id, good_name, goods_brand, goods_status,imageFile);
+                return StatusCode(200,updateGoods); 
             }
             catch (KeyNotFoundException)
             {
