@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace POS_System_DAL.Models;
 
@@ -29,6 +30,6 @@ public partial class TblUser
     public int? UserLevel { get; set; }
 
     public int UserStatus { get; set; }
-    [JsonIgnore]
+    [SwaggerIgnore]
     public string? Picture { get; set; } = null;
 }

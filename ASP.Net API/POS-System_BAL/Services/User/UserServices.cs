@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Localization;
 
 namespace POS_System_BAL.Services.User
 {
@@ -22,6 +23,7 @@ namespace POS_System_BAL.Services.User
         private readonly IAuthenticate _authenticate;
         private readonly OnlinePosContext _onlinePosContext;
         private readonly Cloudinary _cloudinary;
+        private readonly IStringLocalizer<UserServices> _localizer;
         public UserServices(IMapper mapper, IAuthenticate authenticate, OnlinePosContext onlinePosContext, Cloudinary cloudinary)
         {
             _mapper = mapper;
@@ -135,9 +137,9 @@ namespace POS_System_BAL.Services.User
 
         #region PUT
 
-        public async Task<TblUser> UpdateUser(TblUser user, string store_id, string login_name)
+        public async Task<TblUser> UpdateUser(TblUser user)
         {
-            var existUser = await GetUser(store_id,login_name);
+            var existUser = await GetUser(user.StoreId,user.LoginName);
             if (existUser != null)
             {
                 existUser.FullName = user.FullName;
@@ -169,7 +171,7 @@ namespace POS_System_BAL.Services.User
                 existUser.PassWord = _authenticate.VerifyPasswordHash(userDTO.PassWord);
                 existUser.IdentifyString = userDTO.IdentifyString;
                 existUser.UserLanguage = userDTO.UserLanguage;
-                if (userDTO.Picture != null)
+                if (imageFile != null)
                 {
                     var imageName = $"{userDTO.FullName}-avatar";
                     var uploadResult = await UploadImageToCloudinary(imageFile, userDTO.FullName, imageName);
