@@ -10,4 +10,6 @@ export interface UserDTO {
     gender?: string;
     userLevel?: number;
     userStatus?: number;
+    userLanguage?: string;
+    userType?: number;
 }

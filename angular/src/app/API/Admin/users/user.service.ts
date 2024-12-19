@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { finalize, Observable } from 'rxjs';
 import { LoadingService } from '../../../loading.service';
 import { UserDTO } from './model';
@@ -29,7 +29,7 @@ export class AdminUserService {
 
     CreateUser(user: UserDTO): Observable<any>{
         this.loadingService.show();
-        return this.http.post(`${this.baseUrl}/CreateUser?StoreId=${user.storeId}&LoginName=${user.loginName}&FullName=${user.fullName}&PassWord=${user.passWord}&Address=${user.address}&Phone=${user.phone}&DoB=${user.doB}&Email=${user.email}&Gender=${user.gender}&UserLevel=${user.userLevel}&UserStatus=${user.userStatus}`, user).pipe(
+        return this.http.post(`${this.baseUrl}/CreateUser?StoreId=${user.storeId}&LoginName=${user.loginName}&FullName=${user.fullName}&PassWord=${user.passWord}&Address=${user.address}&Phone=${user.phone}&DoB=${user.doB}&Email=${user.email}&Gender=${user.gender}&UserLanguage=${user.userLanguage}&UserLevel=${user.userLevel}&UserStatus=${user.userStatus}`, user).pipe(
             finalize(() => this.loadingService.hide())
         );
     }
@@ -43,9 +43,18 @@ export class AdminUserService {
 
     UpdateUser(user: UserDTO): Observable<any> {
         this.loadingService.show();
-        const url = `${this.baseUrlAdmin}/UpdateUser?StoreId=${user.storeId}&LoginName=${user.loginName}&FullName=${user.fullName}&PassWord=${user.passWord}&Address=${user.address}&Phone=${user.phone}&DoB=${user.doB}&Email=${user.email}&Gender=${user.gender}&UserStatus=${user.userStatus}`;
-        return this.http.put(url, user).pipe(
-          finalize(() => this.loadingService.hide())
+    
+        const url = `${this.baseUrlAdmin}/UpdateUser`;
+        const params = new HttpParams()
+            .set('store_id', user.storeId || '')
+            .set('login_name', user.loginName|| '')
+            .set('full_name', user.fullName|| '')
+            .set('user_language', user.userLanguage|| '')
+            .set('user_level', user.userLevel?.toString() || '')
+            .set('use_status', user.userStatus?.toString() || '');
+    
+        return this.http.put(url, user, { params }).pipe(
+            finalize(() => this.loadingService.hide())
         );
     }
 }

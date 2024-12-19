@@ -41,6 +41,7 @@ export class AdminEditUserComponent implements OnInit{
          address: [this.data.user?.address],
          email: [this.data.user?.email],
          dob: [this.data.user?.doB],
+         userLanguage: [this.data.user?.userLanguage],
          phone: [this.data.user?.phone],
          gender: [this.data.user?.gender],
          userLevel: [1],
