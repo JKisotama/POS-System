@@ -505,7 +505,7 @@ namespace POS_System_BAL.Services.Goods
             await _onlinePosContext.SaveChangesAsync();
         }
 
-        public async Task UpdateGoodsUnit(string storeId, string goodsId, string goodsUnit, int size, int status,
+        public async Task UpdateGoodsUnit(string storeId, string goodsId, string barCode,string goodsUnit, int size, int status,
             int stock)
         {
             var existingUnit = await _onlinePosContext.TblGoodsunits
@@ -522,6 +522,7 @@ namespace POS_System_BAL.Services.Goods
             if (!string.IsNullOrEmpty(goodsId))
                 existingUnit.GoodsId = goodsId;
 
+            existingUnit.Barcode = barCode;
             existingUnit.UnitSize = size;
             existingUnit.UnitStatus = status;
             existingUnit.UnitStock = stock;
