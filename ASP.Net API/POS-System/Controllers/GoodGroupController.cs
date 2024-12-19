@@ -235,11 +235,11 @@ namespace POS_Final_Year.Controller
         }
         
         [HttpPut("UpdateUnit")]
-        public async Task<IActionResult> UpdateUnit(string store_id, string goods_id, string unit, int size, int status, int stock)
+        public async Task<IActionResult> UpdateUnit(string store_id, string goods_id, string barCode,string unit, int size, int status, int stock)
         {
             try
             {
-                await _goodsServices.UpdateGoodsUnit(store_id, goods_id, unit, size, status, stock);
+                await _goodsServices.UpdateGoodsUnit(store_id, goods_id, barCode, unit, size, status, stock);
                 return NoContent();
             }
             catch (KeyNotFoundException ex)

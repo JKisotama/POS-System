@@ -102,12 +102,12 @@ namespace POS_Final_Year.Controller
         }
         
         [HttpPut("UpdateUser")]
-        public async Task<ActionResult> PutTblUser(string store_id, string login_name, string pass_word,
+        public async Task<ActionResult> PutTblUser(string store_id, string login_name,
             string full_name, string user_language, int user_type, int user_level, int use_status)
         {
 
             await _userServices
-                .UpdateUser(store_id, login_name, pass_word, full_name,user_language, user_type, user_level, use_status);
+                .UpdateUser(store_id, login_name, full_name,user_language, user_type, user_level, use_status);
             return NoContent();
         }
     }

@@ -68,7 +68,7 @@ namespace POS_System_BAL.Services.Goods
         Task UpdateGroup(string storeId, string groupId, string groupName, int groupStatus);
         Task UpdateGoodsProperty(string goodsPropertyId, string updateProperty);
         Task UpdateGroupProperty(string storeId, string propertyId, string propertyName);
-        Task UpdateGoodsUnit(string storeId, string goodsId, string goodsUnit, int size, int status, int stock);
+        Task UpdateGoodsUnit(string storeId, string goodsId, string barCode,string goodsUnit, int size, int status, int stock);
         Task UpdateSellingPrices(string storeId, string goodsId, string barcode, string goodsUnit, int price, int sku);
         
         #endregion

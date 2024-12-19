@@ -137,14 +137,13 @@ namespace POS_System_BAL.Services.User
 
         #region PUT
 
-        public async Task<TblUser> UpdateUser(string storeId, string loginName, string passWord,
+        public async Task<TblUser> UpdateUser(string storeId, string loginName,
             string fullName, string userLanguage, int userType, int userLevel, int userStatus)
         {
             var existUser = await GetUser(storeId,loginName);
             if (existUser != null)
             {
                 existUser.FullName = fullName;
-                existUser.PassWord = _authenticate.VerifyPasswordHash(passWord);
                 existUser.UserLanguage = userLanguage;
                 existUser.UserType = userType;
                 existUser.UserLevel = userLevel;
