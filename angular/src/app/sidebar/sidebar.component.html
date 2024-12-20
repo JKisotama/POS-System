@@ -1,6 +1,6 @@
 <div class="ad-sidenav">
   <ul class="nav nav-pills flex-column" *ngIf="userRole === 1">
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="hasMenuOrder(1)">
       <a
         routerLink="/Staff"
         routerLinkActive="active"
@@ -10,7 +10,7 @@
         >Goods</a
       >
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="hasMenuOrder(1)">
       <a
         routerLink="/Staff/good-group"
         routerLinkActive="active"
@@ -18,14 +18,12 @@
         >Goods Group</a
       >
     </li>
-
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="hasMenuOrder(3)">
       <a routerLink="/Staff/supplier" routerLinkActive="active" class="nav-link"
         >Supplier</a
       >
     </li>
-
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="hasMenuOrder(1)">
       <a
         routerLink="/Staff/property-group"
         routerLinkActive="active"
@@ -33,14 +31,12 @@
         >Property Group</a
       >
     </li>
-
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="hasMenuOrder(4)">
       <a routerLink="/Staff/customer" routerLinkActive="active" class="nav-link"
         >Customer</a
       >
     </li>
-
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="hasMenuOrder(5)">
       <a
         routerLink="/Staff/dashboard"
         routerLinkActive="active"

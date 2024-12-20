@@ -51,6 +51,7 @@ export class AdminUserService {
             .set('full_name', user.fullName|| '')
             .set('user_language', user.userLanguage|| '')
             .set('user_level', user.userLevel?.toString() || '')
+            .set('user_type', user.userType?.toString() || '')
             .set('use_status', user.userStatus?.toString() || '');
     
         return this.http.put(url, user, { params }).pipe(

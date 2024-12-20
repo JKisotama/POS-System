@@ -4,11 +4,19 @@ import { AuthenticationService } from './API/authentication.service';
 import { Injectable } from '@angular/core';
 import { map, take } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar'; 
+import { UserService } from './API/Staff/user/user.service';
+import { Menu } from './API/Admin/users/model';
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
 
-  constructor(private authService: AuthenticationService, private router: Router, private snackBar: MatSnackBar) {}
+  userMenu: Menu[] = [];
+  storeId: string | null = null;
+  loginName: string | null = null;
+
+  constructor(private authService: AuthenticationService, private router: Router, private snackBar: MatSnackBar, private userService: UserService) {
+    
+  }
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -20,10 +28,14 @@ export class AuthenticationGuard implements CanActivate {
         if (isLoggedIn) {
           const userRole = this.authService.getUserRole();
           const userType = this.authService.getUserType();
+          this.storeId = this.authService.getStoreIdUser();
+          this.loginName = this.authService.getLoggedInUserName();
+          this.getMenus();
 
-          const allowedPagesForManager = ['Staff', 'Staff/good-group', 'POS', 'Staff/supplier', 'Staff/customer', 'Staff/user-profile', 'Staff/property-group', 'Staff/dashboard'];
+          const allowedPagesForManager = ['Staff', 'Staff/goods-page' , 'Staff/good-group', 'POS', 'Staff/supplier', 'Staff/customer', 'Staff/user-profile', 'Staff/property-group', 'Staff/dashboard'];
           const allowedPagesForAdmin = ['Admin', 'Admin/good-group', 'Admin/supplier', 'Admin/customer', 'Admin/staff'];
-          const allowedPagesForStaff = ['POS'];
+          const allowedPagesForStaff = ['Staff' , 'Staff/user-profile','POS'];
+
 
 
           // Check if user is staff and if the route is allowed
@@ -56,5 +68,14 @@ export class AuthenticationGuard implements CanActivate {
         }
       })
     );
+  }
+
+  getMenus(){
+    this.userService.getMenus(this.storeId!, this.loginName!).subscribe((data) => {
+      this.userMenu = data;
+    });
+  }
+  hasMenuOrder(order: number): boolean {
+    return this.userMenu.some(menu => menu.menuOrder === order);
   }
 }

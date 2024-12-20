@@ -2,7 +2,7 @@ import { Component, OnInit,Renderer2 } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthenticationService } from '../API/authentication.service';
 import { UserService } from '../API/Staff/user/user.service';
-import { UserDTO } from '../API/Admin/users/model';
+import { Menu, UserDTO } from '../API/Admin/users/model';
 
 import { ThemeService } from '../theme.service';
 
@@ -19,6 +19,7 @@ export class HeaderComponent  implements OnInit {
   storeId: string | null = null;
   loginName: string | null = null;
   userData: UserDTO | null = null;
+   userMenu: Menu[] = [];
     
   constructor(
     private themeService: ThemeService, 
@@ -43,6 +44,7 @@ export class HeaderComponent  implements OnInit {
     this.storeId = this.authenticationService.getStoreIdUser();
     this.loginName = this.authenticationService.getLoggedInUserName();
     this.getUserByLoginName();
+    this.getMenus();
 
     this.userService.userUpdated$.subscribe(updated => {
       if (updated) {
@@ -51,6 +53,16 @@ export class HeaderComponent  implements OnInit {
       }
     });
 
+  }
+
+  getMenus(){
+    this.userService.getMenus(this.storeId!, this.loginName!).subscribe((data) => {
+      this.userMenu = data;
+    });
+  }
+
+  hasMenuOrder(order: number): boolean {
+    return this.userMenu.some(menu => menu.menuOrder === order);
   }
 
 

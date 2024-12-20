@@ -14,3 +14,13 @@ export interface UserDTO {
     userType?: number;
     picture?: string;
 }
+
+export interface Menu {
+    menuId: number;
+    englishText: string;
+    localText: string;
+    investText: string;
+    linkedView: string | null;
+    menuOrder: number;
+    storeId: string;
+  }

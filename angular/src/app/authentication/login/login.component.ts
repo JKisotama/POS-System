@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../API/authentication.service';
 import { UserService } from '../../API/Staff/user/user.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Menu } from '../../API/Admin/users/model';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,8 @@ export class LoginComponent {
 
   loading: boolean = false;
   loginError: string | null = null;
+  userMenu: Menu[] = [];
+  
 
   constructor(
     private fb: FormBuilder, 
@@ -50,6 +53,8 @@ export class LoginComponent {
         const userType = response.user.userType;
         const fullName = response.user.fullName;
         const userLanguage = response.user.userLanguage;
+
+        this.getMenus(storeId, loginName);
   
         this.authservice.setLoggedIn(true, loginName, storeId, userLevel, fullName, userLanguage, userType);
         this.snackBar.open('Logged in successfully!', '', {
@@ -59,7 +64,7 @@ export class LoginComponent {
         this.loginSuccess.emit();
         this.loading = false;
   
-        if (userLevel === 1 && userType === 0) {
+        if (userLevel === 1 && userType === 0 && this.hasMenuOrder(2)) {
           this.router.navigate(['Staff']);
         } else if (userLevel === 0 && userType === 0) {
           this.router.navigate(['Admin']);
@@ -80,6 +85,16 @@ export class LoginComponent {
         this.loading = false;
       }
     );
+  }
+
+  getMenus(storeId: string, loginName: string) {
+    this.userService.getMenus(storeId, loginName).subscribe((data) => {
+      this.userMenu = data;
+    });
+  }
+
+  hasMenuOrder(order: number): boolean {
+    return this.userMenu.some(menu => menu.menuOrder === order);
   }
 
 }

@@ -1,18 +1,26 @@
 <div class="container-fuild ad-header-detail">
   <div class="row">
     <div class="col-xl-2 col-md-2 POS-logo">
-      <img [src]="isLightMode ? '../../../assets/Image/Logo_Light.svg' : '../../../assets/Image/Logo_Dark.svg'" alt="Logo" />
+      <img
+        [src]="
+          isLightMode
+            ? '../../../assets/Image/Logo_Light.svg'
+            : '../../../assets/Image/Logo_Dark.svg'
+        "
+        alt="Logo"
+      />
     </div>
     <div class="col-xl-4 col-md-4"></div>
     <div class="col-xl-6 col-md-6 POS-user d-flex justify-content-end">
       <div class="POS-user-btn">
-        <button *ngIf="userRole === 1" routerLink="/POS">
+        <button *ngIf="userRole === 1 && hasMenuOrder(1)" routerLink="/POS">
           <i class="fa-solid fa-cash-register"></i>
         </button>
         <button (click)="toggleTheme()">
-          
           <!-- <i class=" fa-solid fa-moon"></i> -->
-          <i [ngClass]="isLightMode ? 'fa-solid fa-sun': 'fa-solid fa-moon'"></i>
+          <i
+            [ngClass]="isLightMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"
+          ></i>
         </button>
       </div>
       <div class="text-end POS-user-infor">

@@ -45,6 +45,7 @@ export class AdminEditUserComponent implements OnInit{
          phone: [this.data.user?.phone],
          gender: [this.data.user?.gender],
          userLevel: [1],
+         userType: [this.data.user?.userType],
          userStatus: [this.data.user?.userStatus, [Validators.required]],
        })
      }

@@ -34,10 +34,11 @@ const routes: Routes = [
       { path: 'property-group', component: PropertyGroupComponent },
       { path: 'supplier', component: SupplierComponent },
       { path: 'customer', component: CustomerComponent },
+      { path: 'dashboard', component: DashboardComponent},
       { path: 'user-profile', component: UserProfileComponent},
-      { path: 'dashboard', component: DashboardComponent}
     ]
   },
+
 
   { path: 'Admin', component: AdminComponent, canActivate: [AuthenticationGuard],children: [
       { path: '', component: AdminGoodsPageComponent },

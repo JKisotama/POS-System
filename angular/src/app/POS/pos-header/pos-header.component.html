@@ -1,20 +1,51 @@
 <div class="container-fuild ad-header-detail">
   <div class="row">
     <div class="col-xl-2 col-md-2 POS-user-btn">
-      <button routerLink="/POS">
-        <i class="fa-solid fa-gear"></i>
+      <button
+        routerLink="/Staff"
+        *ngIf="userRole === 1 && hasMenuOrder(1) && hasMenuOrder(2)"
+      >
+        <i class="fa-solid fa-send-back"></i>
+      </button>
+
+      <button
+        routerLink="/Staff/supplier"
+        *ngIf="userRole === 1 && hasMenuOrder(1) && hasMenuOrder(3)"
+      >
+        <i class="fa-solid fa-send-back"></i>
+      </button>
+
+      <button
+        routerLink="/Staff/customer"
+        *ngIf="userRole === 1 && hasMenuOrder(1) && hasMenuOrder(4)"
+      >
+        <i class="fa-solid fa-send-back"></i>
+      </button>
+
+      <button
+        routerLink="/Staff/dashboard"
+        *ngIf="userRole === 1 && hasMenuOrder(1) && hasMenuOrder(5)"
+      >
+        <i class="fa-solid fa-send-back"></i>
       </button>
     </div>
     <div class="col-xl-7 col-md-7 POS-logo text-center">
-      <img [src]="isLightMode ? '../../../assets/Image/Logo_Light.svg' : '../../../assets/Image/Logo_Dark.svg'" alt="Logo" />
+      <img
+        [src]="
+          isLightMode
+            ? '../../../assets/Image/Logo_Light.svg'
+            : '../../../assets/Image/Logo_Dark.svg'
+        "
+        alt="Logo"
+      />
     </div>
     <div class="col-xl-3 col-md-3 POS-user d-flex justify-content-end">
       <div class="POS-user-btn">
-        
         <button (click)="toggleTheme()">
-          
           <!-- <i class=" fa-solid fa-moon"></i> -->
-          <i [ngClass]="isLightMode ? 'fa-solid fa-sun': 'fa-solid fa-moon'"></i>
+          <i
+            [ngClass]="isLightMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"
+          ></i>
         </button>
       </div>
       <div class="text-end POS-user-infor">
@@ -25,7 +56,7 @@
       </div>
       <div class="dropdown">
         <img
-          src="https://i.pinimg.com/enabled_hi/236x/80/62/8a/80628a1842568b00dcaca6861e0a834a.jpg"
+          [src]="userData?.picture || 'assets/Image/default-avatar.png'"
           class="dropdown-toggle"
           id="userMenu"
           data-bs-toggle="dropdown"
@@ -35,13 +66,13 @@
         <!-- Dropdown Menu -->
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
           <li *ngIf="userRole === 1">
-            <button class="dropdown-item">
+            <button class="dropdown-item" [routerLink]="'/Staff/user-profile'">
               <i class="fa-solid fa-user me-2"></i>
               Staff Profile
             </button>
           </li>
           <li>
-            <button class="dropdown-item" >
+            <button class="dropdown-item" (click)="logout()">
               <i class="fa-solid fa-right-from-bracket me-2"></i>
               Logout
             </button>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, finalize, Observable } from 'rxjs';
-import { UserDTO } from '../../Admin/users/model';
+import { Menu, UserDTO } from '../../Admin/users/model';
 import { LoadingService } from '../../../loading.service';
 
 
@@ -68,6 +68,13 @@ export class UserService {
             finalize(() => this.loadingService.hide())
         );
     }
+
+    getMenus(storeId: string, loginName: string): Observable<Menu[]> {
+        const url = `${this.baseUrl}/GetMenus?store_id=${storeId}&login_name=${loginName}`;
+        return this.http.get<Menu[]>(url);
+    }
+
+
 
 
     updateUserInHeader() {
