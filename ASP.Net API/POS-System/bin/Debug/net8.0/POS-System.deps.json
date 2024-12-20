@@ -23,9 +23,6 @@
           "POS-System.dll": {}
         },
         "resources": {
-          "en-US/POS-System.resources.dll": {
-            "locale": "en-US"
-          },
           "fr-FR/POS-System.resources.dll": {
             "locale": "fr-FR"
           },

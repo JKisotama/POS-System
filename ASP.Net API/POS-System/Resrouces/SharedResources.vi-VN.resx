@@ -323,4 +323,7 @@
 	<data name="Unit Size" xml:space="preserve">
 		<value>Kích Cỡ</value>
 	</data>
+	<data name="Login successful." xml:space="preserve">
+		<value>Đăng Nhập Thành Công</value>
+	</data>
 </root>

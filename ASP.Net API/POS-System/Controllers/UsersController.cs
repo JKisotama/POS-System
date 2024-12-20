@@ -1,10 +1,12 @@
 ﻿using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using POS_System_BAL.DTOs;
 using POS_System_BAL.Services.Menu;
 using POS_System_BAL.Services.User;
 using POS_System_DAL.Data;
 using POS_System_DAL.Models;
+using POS_System.Resrouces;
 
 
 namespace POS_Final_Year.Controller
@@ -16,12 +18,14 @@ namespace POS_Final_Year.Controller
         private readonly OnlinePosContext _context;
         private readonly IUserServices _userServices;
         private readonly IMenuServices _menuServices;
+        private readonly IStringLocalizer<SharedResources> _localizer;
 
-        public UsersController(OnlinePosContext context, IUserServices userServices, IMenuServices menuServices)
+        public UsersController(OnlinePosContext context, IUserServices userServices, IMenuServices menuServices, IStringLocalizer<SharedResources> localizer)
         {
             _context = context;
             _userServices = userServices;
             _menuServices = menuServices;
+            _localizer = localizer;
         }
 
         #region GET
@@ -87,7 +91,13 @@ namespace POS_Final_Year.Controller
             {
                 return Unauthorized("Invalid login credentials."); 
             }
-            return Ok(new { message = "Login successful.", user = loginUser });
+            Response.Headers.Add("User-Language", loginUser.UserLanguage);
+            return Ok(new
+            {
+                message = _localizer["LoginSuccessful"].Value,
+                user = loginUser
+            });
+
         }
         
         [HttpPost("GrantRights")]
