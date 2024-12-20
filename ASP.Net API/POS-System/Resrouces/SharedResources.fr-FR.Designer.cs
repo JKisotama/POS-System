@@ -60,11 +60,668 @@ namespace POS_System.Resrouces {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action .
+        /// </summary>
+        internal static string Action {
+            get {
+                return ResourceManager.GetString("Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Barcode.
+        /// </summary>
+        internal static string Barcode {
+            get {
+                return ResourceManager.GetString("Barcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date de la facture:.
+        /// </summary>
+        internal static string Bill_Date_ {
+            get {
+                return ResourceManager.GetString("Bill Date:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information de facturation:.
+        /// </summary>
+        internal static string Bill_Information_ {
+            get {
+                return ResourceManager.GetString("Bill Information:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Espèces.
+        /// </summary>
+        internal static string Cash {
+            get {
+                return ResourceManager.GetString("Cash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vérifier:.
+        /// </summary>
+        internal static string Check_Out_ {
+            get {
+                return ResourceManager.GetString("Check Out:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choisir le File.
+        /// </summary>
+        internal static string Choose_File {
+            get {
+                return ResourceManager.GetString("Choose File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entreprise Id.
+        /// </summary>
+        internal static string Company_Id {
+            get {
+                return ResourceManager.GetString("Company Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Créer un client.
+        /// </summary>
+        internal static string Create_Customer {
+            get {
+                return ResourceManager.GetString("Create Customer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Créer des marchandises.
+        /// </summary>
+        internal static string Create_Goods {
+            get {
+                return ResourceManager.GetString("Create Goods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Créer une propriété de biens.
+        /// </summary>
+        internal static string Create_Goods_Property {
+            get {
+                return ResourceManager.GetString("Create Goods Property", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Créer une unité de produits.
+        /// </summary>
+        internal static string Create_Goods_Unit {
+            get {
+                return ResourceManager.GetString("Create Goods Unit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Créer un groupe.
+        /// </summary>
+        internal static string Create_Group {
+            get {
+                return ResourceManager.GetString("Create Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Créer un groupe de propriétés.
+        /// </summary>
+        internal static string Create_Property_Group_ {
+            get {
+                return ResourceManager.GetString("Create Property Group ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Créer un fournisseur.
+        /// </summary>
+        internal static string Create_Supplier {
+            get {
+                return ResourceManager.GetString("Create Supplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 	Client.
+        /// </summary>
+        internal static string Customer {
+            get {
+                return ResourceManager.GetString("Customer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adresse .
+        /// </summary>
+        internal static string Customer_Address {
+            get {
+                return ResourceManager.GetString("Customer Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string Customer_Email {
+            get {
+                return ResourceManager.GetString("Customer Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client ID.
+        /// </summary>
+        internal static string Customer_Id {
+            get {
+                return ResourceManager.GetString("Customer Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Informations du Client.
+        /// </summary>
+        internal static string Customer_Information {
+            get {
+                return ResourceManager.GetString("Customer Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nom.
+        /// </summary>
+        internal static string Customer_Name {
+            get {
+                return ResourceManager.GetString("Customer Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paiement par le client:.
+        /// </summary>
+        internal static string Customer_Pay_ {
+            get {
+                return ResourceManager.GetString("Customer Pay:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Téléphone.
+        /// </summary>
+        internal static string Customer_Phone {
+            get {
+                return ResourceManager.GetString("Customer Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supprimer.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rabais:.
+        /// </summary>
+        internal static string Discount_ {
+            get {
+                return ResourceManager.GetString("Discount:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifier.
+        /// </summary>
+        internal static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entrez le montant.
+        /// </summary>
+        internal static string Enter_amount {
+            get {
+                return ResourceManager.GetString("Enter amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fichiers.
+        /// </summary>
+        internal static string File {
+            get {
+                return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marchandises.
+        /// </summary>
+        internal static string Goods {
+            get {
+                return ResourceManager.GetString("Goods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marque.
+        /// </summary>
+        internal static string Goods_Brand {
+            get {
+                return ResourceManager.GetString("Goods Brand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thông tin nhóm hàng.
+        /// </summary>
+        internal static string Goods_Group_Information {
+            get {
+                return ResourceManager.GetString("Goods Group Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marchandises Information.
+        /// </summary>
+        internal static string Goods_Information {
+            get {
+                return ResourceManager.GetString("Goods Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nom de l&apos;article.
+        /// </summary>
+        internal static string Goods_Name {
+            get {
+                return ResourceManager.GetString("Goods Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marchandises propriétés Information.
+        /// </summary>
+        internal static string Goods_Property_Information {
+            get {
+                return ResourceManager.GetString("Goods Property Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marchandises propriétés Valuer.
+        /// </summary>
+        internal static string Goods_Property_Value {
+            get {
+                return ResourceManager.GetString("Goods Property Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prix de vente.
+        /// </summary>
+        internal static string Goods_Sell_Price_Information {
+            get {
+                return ResourceManager.GetString("Goods Sell Price Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to État des biens.
+        /// </summary>
+        internal static string Goods_Status {
+            get {
+                return ResourceManager.GetString("Goods Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marchandises Unitaire.
+        /// </summary>
+        internal static string Goods_Unit {
+            get {
+                return ResourceManager.GetString("Goods Unit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marchandises Unitaire Information.
+        /// </summary>
+        internal static string Goods_Unit_Information {
+            get {
+                return ResourceManager.GetString("Goods Unit Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Groupe de marchandises.
+        /// </summary>
+        internal static string GoodsGroup {
+            get {
+                return ResourceManager.GetString("GoodsGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nom Groupe.
+        /// </summary>
+        internal static string Group_Name {
+            get {
+                return ResourceManager.GetString("Group Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nom Groupe propriétés.
+        /// </summary>
+        internal static string Group_Property_Name {
+            get {
+                return ResourceManager.GetString("Group Property Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Groupe Statut.
+        /// </summary>
+        internal static string Group_Status {
+            get {
+                return ResourceManager.GetString("Group Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Identifiants de connexion invalides..
         /// </summary>
         internal static string InvalidLogin {
             get {
                 return ResourceManager.GetString("InvalidLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aucun fichier choisi.
+        /// </summary>
+        internal static string No_file_chosen {
+            get {
+                return ResourceManager.GetString("No file chosen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note:.
+        /// </summary>
+        internal static string Note_ {
+            get {
+                return ResourceManager.GetString("Note:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to POS Nombre:.
+        /// </summary>
+        internal static string POS_Number_ {
+            get {
+                return ResourceManager.GetString("POS Number:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Produit.
+        /// </summary>
+        internal static string Product {
+            get {
+                return ResourceManager.GetString("Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Groupe de propriétés.
+        /// </summary>
+        internal static string Property_Group {
+            get {
+                return ResourceManager.GetString("Property Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Groupe de propriétés Information.
+        /// </summary>
+        internal static string Property_Group_Information {
+            get {
+                return ResourceManager.GetString("Property Group Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Propriétés Nom.
+        /// </summary>
+        internal static string Property_Name {
+            get {
+                return ResourceManager.GetString("Property Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to QR Code.
+        /// </summary>
+        internal static string QR_Code {
+            get {
+                return ResourceManager.GetString("QR Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quantité.
+        /// </summary>
+        internal static string Quantity {
+            get {
+                return ResourceManager.GetString("Quantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rechercher.
+        /// </summary>
+        internal static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sélectionnez un client pour afficher ses détails..
+        /// </summary>
+        internal static string Select_a_customer_to_display_their_details_ {
+            get {
+                return ResourceManager.GetString("Select a customer to display their details.", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disponible à la vente.
+        /// </summary>
+        internal static string Sell_Available {
+            get {
+                return ResourceManager.GetString("Sell Available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prix ​​de vente.
+        /// </summary>
+        internal static string Sell_Price {
+            get {
+                return ResourceManager.GetString("Sell Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indisponible à la vente.
+        /// </summary>
+        internal static string Sell_Unavailable {
+            get {
+                return ResourceManager.GetString("Sell Unavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vendeur:.
+        /// </summary>
+        internal static string Seller_ {
+            get {
+                return ResourceManager.GetString("Seller:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sous-totaux:.
+        /// </summary>
+        internal static string Subtotal_ {
+            get {
+                return ResourceManager.GetString("Subtotal:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fournisseur.
+        /// </summary>
+        internal static string Supplier {
+            get {
+                return ResourceManager.GetString("Supplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        internal static string Supplier_Address {
+            get {
+                return ResourceManager.GetString("Supplier Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string Supplier_Email {
+            get {
+                return ResourceManager.GetString("Supplier Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Informations du Fournisseur.
+        /// </summary>
+        internal static string Supplier_Information {
+            get {
+                return ResourceManager.GetString("Supplier Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nom.
+        /// </summary>
+        internal static string Supplier_Name {
+            get {
+                return ResourceManager.GetString("Supplier Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Téléphone.
+        /// </summary>
+        internal static string Supplier_Phone {
+            get {
+                return ResourceManager.GetString("Supplier Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        internal static string Supplier_Type {
+            get {
+                return ResourceManager.GetString("Supplier Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total:.
+        /// </summary>
+        internal static string Total_ {
+            get {
+                return ResourceManager.GetString("Total:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Taille de unitaire.
+        /// </summary>
+        internal static string Unit_Size {
+            get {
+                return ResourceManager.GetString("Unit Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to état de unitaire.
+        /// </summary>
+        internal static string Unit_Status {
+            get {
+                return ResourceManager.GetString("Unit Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to stock unitaire.
+        /// </summary>
+        internal static string Unit_Stock {
+            get {
+                return ResourceManager.GetString("Unit Stock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voir Marchandises propriétés.
+        /// </summary>
+        internal static string View_Goods_Properties {
+            get {
+                return ResourceManager.GetString("View Goods Properties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voir Marchandises Unitaire.
+        /// </summary>
+        internal static string View_Goods_Unit {
+            get {
+                return ResourceManager.GetString("View Goods Unit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voir Prix ​​de vente.
+        /// </summary>
+        internal static string View_Sell_Prices {
+            get {
+                return ResourceManager.GetString("View Sell Prices", resourceCulture);
             }
         }
     }

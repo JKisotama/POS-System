@@ -82,7 +82,7 @@ namespace POS_System_BAL.Services.POS
         {
             var hang_list = await _onlinePosContext.TblPos
                 .Where(p => p.StoreId == store_id &&
-                            p.PosStatus == 3)
+                            p.PosStatus == 1)
                 .ToListAsync();
             return hang_list;
         }
