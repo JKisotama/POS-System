@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {
   BrowserModule,
@@ -6,12 +6,11 @@ import {
 } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import {HeaderComponent } from './header/header.component'; 
-import { AdminPageComponent } from './staff/admin-page/admin-page.component'; 
 import {SidebarComponent } from './sidebar/sidebar.component'; 
 import { PosHeaderComponent } from './POS/pos-header/pos-header.component';
 import { PosFooterComponent } from './POS/pos-footer/pos-footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
@@ -103,13 +102,23 @@ import { AdminCreateGoodPropertyComponent } from './admin/admin-goods-page/admin
 import { AdminEditGoodPropertyComponent } from './admin/admin-goods-page/admin-view-good-property/admin-edit-good-property/admin-edit-good-property.component';
 import { UserProfileComponent } from './staff/user-profile/user-profile.component';
 import { EditUserProfileComponent } from './staff/user-profile/edit-user-profile/edit-user-profile.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { CustomDatePipe } from '../assets/custom-date/custom.date';
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    AdminPageComponent,
     SidebarComponent,
     PosHeaderComponent,
     PosFooterComponent,
@@ -180,6 +189,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     AdminEditGoodPropertyComponent,
     UserProfileComponent,
     EditUserProfileComponent,
+    
   ],
   imports: [
     BrowserModule, 
@@ -199,14 +209,25 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     ToolbarModule, ButtonModule, SplitButtonModule,InputTextModule,AvatarModule,CarouselModule, ButtonModule, TagModule, 
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
     
 ],
   providers: [
     provideClientHydration(), 
     provideAnimationsAsync(),
     AuthenticationService,
-    AuthenticationGuard
+    AuthenticationGuard,
+    CustomDatePipe,
+    { provide: LOCALE_ID, useValue: 'en' }
   ],
   bootstrap: [AppComponent],
 })

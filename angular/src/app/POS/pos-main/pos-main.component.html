@@ -19,13 +19,6 @@
               <p>No hanging orders available</p>
             </ng-template>
           </div>
-
-          <!-- Order Hang Deleted -->
-          <div class="order-deleted">
-            <button>
-              <i class="fas fa-trash"></i>
-            </button>
-          </div>
         </div>
       </div>
       <div class="col-xl-12 col-lg-12 col-md-12 order-information">
@@ -78,6 +71,18 @@
             matSort
             class="mat-elevation-z8"
           >
+            <ng-container matColumnDef="picture">
+              <th mat-header-cell *matHeaderCellDef>Picture</th>
+              <td mat-cell *matCellDef="let good">
+                <img
+                  [src]="good.picture"
+                  alt="Goods Picture"
+                  width="100"
+                  height="100"
+                />
+              </td>
+            </ng-container>
+
             <ng-container matColumnDef="goodsName">
               <th mat-header-cell *matHeaderCellDef>Goods Name</th>
               <td mat-cell *matCellDef="let good">{{ good.goodsName }}</td>

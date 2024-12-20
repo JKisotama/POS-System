@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GoodsPageComponent } from './staff/goods-page/goods-page.component'; 
 import { PosMainComponent } from './POS/pos-main/pos-main.component'; 
-import { AdminPageComponent } from './staff/admin-page/admin-page.component'; 
 import { LoginComponent } from './authentication/login/login.component';
 import { AuthenticationGuard } from './authentication.guard';
 import { GoodsGroupComponent } from './staff/goods-group/goods-group.component'; 
@@ -19,6 +18,7 @@ import { AdminPropertyGroupComponent } from './admin/admin-property-group/admin-
 import { AdminSupplierComponent } from './admin/admin-supplier/admin-supplier.component';
 import { AdminCustomerComponent } from './admin/admin-customer/admin-customer.component';
 import { UserProfileComponent } from './staff/user-profile/user-profile.component';
+import { DashboardComponent } from './staff/dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -35,6 +35,7 @@ const routes: Routes = [
       { path: 'supplier', component: SupplierComponent },
       { path: 'customer', component: CustomerComponent },
       { path: 'user-profile', component: UserProfileComponent},
+      { path: 'dashboard', component: DashboardComponent}
     ]
   },
 

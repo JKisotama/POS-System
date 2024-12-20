@@ -1,0 +1,50 @@
+@import '../../../../styles.scss';
+
+.datepicker-container {
+  position: relative;
+  background-color: $Gluon-Grey !important;
+    color: $White-Snow !important;
+
+  input {
+    padding-right: 40px; // Adjust padding to make space for the icon
+  }
+  .mat-datepicker-content-container {
+    background-color: $Gluon-Grey !important;
+    color: $White-Snow !important;
+  
+    .mat-calendar-body-cell-content {
+      color: $White-Snow !important;
+    }
+  
+    .mat-calendar-body-selected,
+    .mat-calendar-body-today {
+      background-color: $Liquid-Lava !important;
+      color: $White-Snow !important;
+    }
+  }
+  
+
+  mat-datepicker-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: auto; // Allow the icon to be clickable
+  }
+}
+
+
+.mat-datepicker-content-container {
+  background-color: $Gluon-Grey !important;
+  color: $White-Snow !important;
+
+  .mat-calendar-body-cell-content {
+    color: $White-Snow !important;
+  }
+
+  .mat-calendar-body-selected,
+  .mat-calendar-body-today {
+    background-color: $Liquid-Lava !important;
+    color: $White-Snow !important;
+  }
+}

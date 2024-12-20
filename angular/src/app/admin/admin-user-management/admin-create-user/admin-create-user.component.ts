@@ -43,6 +43,7 @@ export class AdminCreateUserComponent implements OnInit {
        dob: [''],
        gender: [''],
        userLevel: [1],
+       userType: [''],
        userStatus: ['', [Validators.required]],
      })
    }

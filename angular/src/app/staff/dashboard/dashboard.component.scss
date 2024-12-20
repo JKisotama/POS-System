@@ -1,126 +1,190 @@
-.container {
-    display: flex;
-    flex-wrap: nowrap;
-    background-color: gray;
-  
-    .side-bar {
-      width: 20%;
-      float: left;
-      background-color: white;
-      padding: 20px;
+@import "../../../_variables.scss";
+@import "../../../styles.scss";
+@import "../../../_globals.scss";
+
+.ad-main-content {
+    .ad-main-search {
+        padding: 22px 50px;
+        border-radius: 14px;
+        margin-top: 10px;
+
+        .ad-main-btn {
+            
+            button {
+                margin-right: 20px;
+            }
+        }
     }
-  
-    .container-main {
-      width: 80%;
-      float: left;
-      background-color: white;
-      padding: 20px;
-  
-      .header {
-        background-color: white;
-        margin-bottom: 20px;
-        padding: 20px;
-      }
-  
-      .main {
-        background-color: #f9f9f9;
-        padding: 20px;
-      }
+
+    
+
+    .ad-main-data {
+        border-radius: 14px;
+        margin-top: 15px;
+        padding: 21px 23px;
+
+        .table-responsive {
+            max-height: 650px; // Set the maximum height for the table container
+            overflow-y: auto; // Enable vertical scrolling
+            overflow-x: auto;
+        }
+
+        // Enable horizontal scrolling if needed
+
     }
-  }
-  .header {
+
+    .search-bar {
+        margin: auto;
+        padding: 0 120px;
+
+        button {
+            margin: 0 10px 0 0;
+
+            span {
+                .mat-mdc-button-touch-target {
+                    margin-right: 10px !important;
+                }
+            }
+        }
+
+        input {
+            border-radius: 50px;
+            border: 1px solid;
+        }
+
+    }
+
+
+    .boder_table {
+        border-top: 1px solid #ccc;
+    }
+
+    .color_table_background {
+        background-color: #fafafa;
+    }
+
+    .table-name {
+        font-weight: bold;
+    }
+
+    .example-element-detail {
+        overflow: hidden;
+        display: flex;
+    }
+
+    .flex-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .parent-table {
+        border-radius: 12px;
+        /* Adjust radius as needed */
+        overflow: hidden;
+        /* Ensures that content doesn't overflow the rounded corners */
+    }
+
+    .detail-table {
+        text-align: center;
+        border: 1px solid #ccc;
+        margin-bottom: 1rem;
+    }
+
+    .table {
+        width: 100%; // Make the table stretch to full width
+        border-collapse: collapse; // Collapse borders for a cleaner look
+
+        thead {
+            position: sticky; // Sticky header at the top
+            top: 0;
+            background-color: #f1f1f1; // Background color for the sticky header
+            z-index: 1; // Ensure the header is above the table rows
+        }
+
+        th,
+        td {
+            padding: 8px; // Padding inside table cells
+            border: 1px solid #ddd; // Border around cells
+            text-align: left; // Align text to the left
+        }
+    }
+}
+
+.mat-elevation-z8 {
+    box-shadow: none;
+    
+}
+
+tr[matNoDataRow] td {
+    font-size: 1.5rem;
+}
+
+/* Center the text in the table */
+tr[matNoDataRow] td {
+    text-align: center;
+}
+
+.example-detail-row {
+    height: 0;
+}
+
+.example-element-row td {
+    border-bottom-width: 0;
+}
+
+.cdk-overlay-pane {
+    background-color: $Slate-Grey !important;
+    color: $White-Snow;
+    border-radius: 14px;
+
+    .mat-mdc-menu-content {
+        padding: 10px;
+    }
+}
+
+.ad-main-content {
+    .ad-main-data {
+        .color_table_background {
+            background-color: transparent !important;
+        }
+
+        .boder_table {
+            border: none !important;
+        }
+
+        .detail-btn{
+            width: 0;
+            padding: 45px;
+        }
+    }
+}
+
+.custom-select {
+    background-color: grey;
+    color: white;
     border: 1px solid #ccc;
-    padding: 10px;
-    align-items: center;
-  }
-  
-  .header-content {
-    width: 100%;
-    display: flex;
-    align-items: center;
-  }
-  
-  .header-left a {
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .header-right {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-  
-  .header-right .profile-icon {
-    font-size: 24px;
-    color: #333;
-    margin-left: 10px;
-  }
-  
-    .main {
-      .main-header {
-        display: flex;
-        justify-content: center;
-        h2 {
-          margin: 0;
-          padding: 0 20px;
-        }
-      }
-    
-      .main-search {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 20px;
-    
-        .search-bar,
-        .filter-bar {
-          display: flex;
-          align-items: center;
-          background-color: #f1f1f1;
-          border-radius: 5px;
-          padding: 5px 10px;
-          width: calc((100% - 120px) / 2);
-    
-          input {
-            flex: 1;
-            border: none;
-            background-color: transparent;
-            outline: none;
-            font-size: 14px;
-          }
-    
-          i {
-            color: #888;
-            font-size: 16px;
-            margin-left: 5px;
-          }
-        }
-    
-        .add-new-btn {
-          background-color: #4CAF50;
-          color: white;
-          border: none;
-          border-radius: 5px;
-          padding: 8px 16px;
-          font-size: 14px;
-          cursor: pointer;
-        }
-      }
-    
-      .main-table {
-        padding-top: 20px;
-        table {
-          width: 100%;
-          border-collapse: collapse;
-          th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-          }
-        }
-      }
-      
+    padding: 8px;
+    border-radius: 4px;
+}
+.mat-mdc-menu-panel{
+    background-color: transparent !important;
+}
+.mat-mdc-menu-content {
+    background-color: transparent !important;
+    color: white !important;
+    /* Replace with your desired color */
+}
+
+a {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover {
+        color: darkblue;
     }
+}
+
+.mdc-button {
+    min-width: 220px;
+}

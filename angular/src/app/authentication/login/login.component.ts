@@ -47,9 +47,11 @@ export class LoginComponent {
     this.userService.LoginUser(storeId, loginName, passWord).subscribe(
       (response) => {
         const userLevel = response.user.userLevel; 
+        const userType = response.user.userType;
         const fullName = response.user.fullName;
+        const userLanguage = response.user.userLanguage;
   
-        this.authservice.setLoggedIn(true, loginName, storeId, userLevel, fullName);
+        this.authservice.setLoggedIn(true, loginName, storeId, userLevel, fullName, userLanguage, userType);
         this.snackBar.open('Logged in successfully!', '', {
           duration: 3000,
           panelClass: ['snackbar-success']
@@ -57,10 +59,12 @@ export class LoginComponent {
         this.loginSuccess.emit();
         this.loading = false;
   
-        if (userLevel === 1) {
+        if (userLevel === 1 && userType === 0) {
           this.router.navigate(['Staff']);
-        } else if (userLevel === 0) {
+        } else if (userLevel === 0 && userType === 0) {
           this.router.navigate(['Admin']);
+        } else if (userLevel === 1 && userType === 1) {
+          this.router.navigate(['POS']);
         } else {
           this.snackBar.open('Invalid user status.', '', {
             duration: 3000,

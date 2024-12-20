@@ -11,11 +11,15 @@
             <input
               type="text"
               class="form-control"
-              formControlName="goodsName"
+              formControlName="companyId"
               placeholder="Search..."
             />
             <div class="input-group-append">
-              <button type="button" class="btn" (click)="getCustomerByCompanyId()">
+              <button
+                type="button"
+                class="btn"
+                (click)="getCustomerByCompanyId()"
+              >
                 <i class="fas fa-search"></i> Search
               </button>
             </div>

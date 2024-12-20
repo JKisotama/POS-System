@@ -17,6 +17,12 @@
           "standalone": false
         }
       },
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "fr": "src/locale/messages.xlf"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",

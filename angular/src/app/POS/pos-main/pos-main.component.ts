@@ -35,7 +35,7 @@ export class PosMainComponent implements OnInit {
   ) {}
 
   // Define columns to be displayed in the table
-  displayedColumns: string[] = ['goodsName', 'barcode', 'unit', 'propertyName' , 'propertyValue' ,'quantity', 'itemPrice', 'subTotal', 'lineDiscount', 'lineTotal', 'remove'];
+  displayedColumns: string[] = ['picture','goodsName', 'barcode', 'unit', 'propertyName' , 'propertyValue' ,'quantity', 'itemPrice', 'subTotal', 'lineDiscount', 'lineTotal', 'remove'];
 
   // Data source for the table
   dataSource = new MatTableDataSource<POSDetailDto>();

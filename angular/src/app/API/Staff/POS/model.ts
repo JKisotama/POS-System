@@ -39,6 +39,7 @@ export interface POSDetailDto {
     lineTotal?: number;
     storeId?: string;
     propertyName?: string;
+    picture?: string;
 
 }
 

@@ -30,7 +30,7 @@ export class DialogProductComponent implements OnInit{
   @Output() itemAdded = new EventEmitter<void>();
   form: FormGroup;
   dataSource = new MatTableDataSource<GoodsDTO>([]);
-  displayedColumns: string[] = ['name', 'unit', 'propertyGroup', 'goodProperty', 'quantity', 'price', 'total' , 'addcart'];
+  displayedColumns: string[] = ['picture','name', 'unit', 'propertyGroup', 'goodProperty', 'quantity', 'price', 'total' , 'addcart'];
   storeId: string | null = null;
   loginName: string | null = null;
   posHeader?: POSDto; // Stores the response from API

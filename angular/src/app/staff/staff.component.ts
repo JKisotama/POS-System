@@ -15,6 +15,7 @@ export class StaffComponent implements OnInit {
   isStaffSupplier = false;
   isStaffCustomer = false
   isStaffUserProfile = false;
+  isDashboard = false
 
   constructor(
     private router: Router, 
@@ -33,6 +34,7 @@ export class StaffComponent implements OnInit {
       this.isStaffSupplier = currentRoute === '/Staff/supplier'
       this.isStaffCustomer = currentRoute === '/Staff/customer'
       this.isStaffUserProfile = currentRoute === '/Staff/user-profile'
+      this.isDashboard = currentRoute === '/Staff/dashboard'
 
       const themeClass = this.themeService.isDarkMode() ? 'dark-mode' : 'light-mode';
       this.renderer.addClass(document.body, themeClass);
