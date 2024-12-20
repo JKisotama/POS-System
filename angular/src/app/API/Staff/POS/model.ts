@@ -25,7 +25,7 @@ export interface POSDto {
 export interface POSDetailDto {
     posNumber?: string;
     posCreator?: string;
-    itemOrder?: string;
+    itemOrder?: number;
     goodsId?: string;
     barCode?: string;
     goodsName?: string;

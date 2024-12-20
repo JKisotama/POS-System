@@ -5,6 +5,7 @@ import { AuthenticationService } from '../../../../API/authentication.service';
 import { SellPriceService } from '../../../../API/Staff/Sell Price/sellPrice.service';
 import { SellPriceDTO } from '../../../../API/Staff/Sell Price/model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { GoodsUnitService } from '../../../../API/Staff/Goods Unit/goodsUnit.service';
 
 @Component({
   selector: 'app-create-sell-price',
@@ -15,6 +16,7 @@ export class CreateSellPriceComponent implements OnInit {
 
   form: FormGroup;
   storeId: string | null = null;
+  goodsUnits: any[] = []; 
 
   constructor(
     private dialogRef: MatDialogRef<CreateSellPriceComponent>,
@@ -23,11 +25,13 @@ export class CreateSellPriceComponent implements OnInit {
     private authenticationService : AuthenticationService,
     private sellPriceService: SellPriceService,
     private snackBar: MatSnackBar,
+    private goodsUnitService: GoodsUnitService,
   ) {}
 
   ngOnInit(): void {
     this.storeId = this.authenticationService.getStoreIdUser();
     this.buildForm();
+    this.getGoodsUnit();
   }
 
   buildForm(){
@@ -39,7 +43,26 @@ export class CreateSellPriceComponent implements OnInit {
       goodsId: [this.data.goodsId],
       storeId: [this.storeId],
     });
+
+    this.form.get('goodsUnit')?.valueChanges.subscribe((selectedUnit) => {
+      const selectedGoods = this.goodsUnits.find(unit => unit.goodsUnit === selectedUnit);
+      if (selectedGoods) {
+        this.form.get('barcode')?.setValue(selectedGoods.barcode);
+      }
+    });
   }
+
+  getGoodsUnit() {
+    if (this.storeId) {
+      this.goodsUnitService.GetAllGoodsUnit(this.storeId, this.data.goodsId).subscribe((response) => {
+        this.goodsUnits = response; // Store the goods units
+      }, (error) => {
+        console.error('Error fetching goods units:', error);
+      });
+    }
+  }
+
+
 
   save(){
     

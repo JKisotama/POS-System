@@ -30,43 +30,56 @@ export class PosFooterComponent implements OnInit {
     this.storeId = this.authenticationService.getStoreIdUser();
   }
 
-  openInvoiceDialog(): void {
-    console.log('Finalizing transaction with data:');
-    console.log('Customer Name:', this.customerName);
-    console.log('POS Number:', this.posNumber);
-    console.log('Payment Method:', this.paymentMethod);
-    console.log('Customer Pay:', this.customerPay);
+//   finalizeTransaction(): void {
+//     console.log('Finalizing transaction with data:');
+//     console.log('Customer Name:', this.customerName);
+//     console.log('POS Number:', this.posNumber);
+//     console.log('Payment Method:', this.paymentMethod);
+//     console.log('Customer Pay:', this.customerPay);
 
-    if (this.storeId && this.customerName && this.posNumber) {
-        this.posService.finalizeTransaction(
-            this.storeId,
-            this.posNumber,
-            this.customerPay,
-            this.customerName, // This is the payer
-            this.paymentMethod
-        ).subscribe({
-          next: (response) => {
-            console.log('Transaction finalized:', response);
-            this.snackBar.open('Check out successfully!', 'Close', { duration: 3000, panelClass: ['snackbar-success'] }); // Success
-            window.location.reload();
-          },
-          error: (error) => {
-            console.error('Error finalizing transaction:', error);
-            this.snackBar.open('Check out failed.', 'Close', { duration: 3000, panelClass: ['snackbar-error'] }); // Error
-          },
-        });
-    } else {
-        console.error('Missing required data for finalizing transaction.');
-        this.snackBar.open('Check out failed due to missing data.', 'Close', { duration: 3000 , panelClass: ['snackbar-error']});
+//     if (this.storeId && this.customerName && this.posNumber) {
+//         this.posService.finalizeTransaction(
+//             this.storeId,
+//             this.posNumber,
+//             this.customerPay,
+//             this.customerName, // This is the payer
+//             this.paymentMethod
+//         ).subscribe({
+//           next: (response) => {
+//             console.log('Transaction finalized:', response);
+//             this.snackBar.open('Check out successfully!', 'Close', { duration: 3000, panelClass: ['snackbar-success'] }); // Success
+//             window.location.reload();
+//           },
+//           error: (error) => {
+//             console.error('Error finalizing transaction:', error);
+//             this.snackBar.open('Check out failed.', 'Close', { duration: 3000, panelClass: ['snackbar-error'] }); // Error
+//           },
+//         });
+//     } else {
+//         console.error('Missing required data for finalizing transaction.');
+//         this.snackBar.open('Check out failed due to missing data.', 'Close', { duration: 3000 , panelClass: ['snackbar-error']});
+//     }
+// }
+
+
+
+openInvoiceDialog(): void {
+  const dialogRef = this.dialog.open(DialogInvoiceComponent, {
+    data: {
+      storeId: this.storeId,
+      customerName: this.customerName,
+      posNumber: this.posNumber,
+      paymentMethod: this.paymentMethod,
+      customerPay: this.customerPay
     }
+  });
+
+  dialogRef.afterClosed().subscribe(() => {
+    // Notify parent component to reload data after dialog is closed
+    window.dispatchEvent(new Event('reloadPOSMainData'));
+  });
+
+  console.log(this.posNumber);
 }
-
-
-
-  // openInvoiceDialog(): void {
-  //   const dialogRef = this.dialog.open(DialogInvoiceComponent, {
-      
-  //   })
-  // }
 
 }

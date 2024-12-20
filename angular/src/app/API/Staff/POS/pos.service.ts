@@ -67,9 +67,9 @@ export class POSService {
 
 
     getPOList(storeId: string, posNumber: string): Observable<POSDetailDto[]> {
-        const url = `${this.baseUrl}/GetPOList`;
+        const url = `${this.baseUrl}/GetPODetailsByPoHeader`;
         const params = new HttpParams()
-        .set('store_id', storeId)
+        .set('storeId', storeId)
         .set('posNumber', posNumber);
 
         this.loadingService.show();
@@ -104,7 +104,7 @@ export class POSService {
 
     getPoHangList(storeId: string): Observable<POSDto[]> {
         const url = `${this.baseUrl}/GetPoHangList`;
-        const params = new HttpParams().set('store_id', storeId);
+        const params = new HttpParams().set('storeId', storeId);
 
         this.loadingService.show();
         return this.http.get<POSDto[]>(url, { params }).pipe(
@@ -121,6 +121,19 @@ export class POSService {
         this.loadingService.show();
     
         return this.http.put<void>(url, {}, { params }).pipe(
+            finalize(() => this.loadingService.hide())
+        );
+    }
+
+    deleteItem(storeId: string, posNumber: string, itemOrder: number): Observable<void> {
+        const url = `${this.baseUrl}/DeleteItem`;
+        const params = new HttpParams()
+            .set('storeId', storeId)
+            .set('posNumber', posNumber)
+            .set('itemOrder', itemOrder.toString());
+
+        this.loadingService.show();
+        return this.http.delete<void>(url, { params }).pipe(
             finalize(() => this.loadingService.hide())
         );
     }

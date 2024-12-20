@@ -17,7 +17,6 @@ table {
             color: $Dark-Void !important; 
         }
     }
-   
 }
 
 .invoice-container {
@@ -27,64 +26,111 @@ table {
     padding: 20px;
     border: 1px solid #ccc;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
   
-  .invoice-header {
+    @media print {
+      width: 80mm;
+      margin: 0;
+      padding: 10mm 5mm; /* Adjust padding to fit the paper size */
+      border: none; /* Remove border for printing */
+      box-shadow: none; /* Remove shadow for printing */
+
+      .invoice-header,
+      .invoice-customer-info,
+      .invoice-product-list,
+      .invoice-summary,
+      .invoice-footer {
+        margin-bottom: 10mm;
+      }
+
+      .invoice-header h1,
+      .invoice-customer-info h2,
+      .invoice-product-list h2 {
+        font-size: 16px;
+        margin-bottom: 5mm;
+      }
+
+      .invoice-meta p,
+      .invoice-customer-info p,
+      .invoice-summary p,
+      .invoice-footer p {
+        font-size: 12px;
+        margin: 2mm 0;
+      }
+
+      .invoice-product-list table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .invoice-product-list th,
+      .invoice-product-list td {
+        font-size: 12px;
+        border: 1px solid #000;
+        padding: 2mm;
+      }
+
+      .invoice-footer button {
+        display: none; /* Hide the print button */
+      }
+    }
+}
+
+.invoice-header {
     text-align: center;
     margin-bottom: 20px;
-  }
-  
-  .invoice-title {
+}
+
+.invoice-title {
     font-size: 24px;
     font-weight: bold;
-  }
-  
-  .invoice-meta {
+}
+
+.invoice-meta {
     text-align: right;
-  }
-  
-  .invoice-customer-info {
+}
+
+.invoice-customer-info {
     margin-bottom: 20px;
-  }
-  
-  .invoice-customer-info h2 {
+}
+
+.invoice-customer-info h2 {
     font-size: 18px;
     margin-bottom: 10px;
-  }
-  
-  .invoice-product-list {
+}
+
+.invoice-product-list {
     margin-bottom: 20px;
-  }
-  
-  .product-table {
+}
+
+.product-table {
     width: 100%;
     border-collapse: collapse;
-  }
-  
-  .product-table th,
-  .product-table td {
+}
+
+.product-table th,
+.product-table td {
     border: 1px solid #ccc;
     padding: 8px;
     text-align: center;
-  }
-  
-  .product-table th {
+}
+
+.product-table th {
     background: #f4f4f4;
     font-weight: bold;
-  }
-  
-  .invoice-summary {
+}
+
+.invoice-summary {
     text-align: right;
     margin-bottom: 20px;
-  }
-  
-  .invoice-summary p {
+}
+
+.invoice-summary p {
     margin: 5px 0;
-  }
-  
-  .invoice-footer {
+}
+
+.invoice-footer {
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
     color: #666;
-  }
+}

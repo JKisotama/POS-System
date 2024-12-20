@@ -4,12 +4,21 @@
     <form [formGroup]="form">
       <div class="mt-2">
         <label>Bar Code</label>
-        <input type="text" class="form-control" formControlName="barcode" />
+        <input
+          type="text"
+          class="form-control"
+          formControlName="barcode"
+          readonly
+        />
       </div>
 
       <div class="mt-2">
         <label>Unit</label>
-        <input type="text" class="form-control" formControlName="goodsUnit" />
+        <select class="form-control" formControlName="goodsUnit">
+          <option *ngFor="let unit of goodsUnits" [value]="unit.goodsUnit">
+            {{ unit.goodsUnit }}
+          </option>
+        </select>
       </div>
 
       <div class="mt-2">

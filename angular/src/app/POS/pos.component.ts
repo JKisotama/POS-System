@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PosMainComponent } from './pos-main/pos-main.component';
 
 @Component({
   selector: 'app-pos',
   templateUrl: './pos.component.html',
   styleUrl: './pos.component.scss'
 })
-export class POSComponent {
+export class POSComponent implements OnInit{
+
+  @ViewChild(PosMainComponent) posMainComponent!: PosMainComponent;
 
   checkoutData: {
     customerName: string | null;
@@ -18,6 +21,12 @@ export class POSComponent {
     paymentMethod: null,
     customerPay: null,
   };
+
+  ngOnInit(): void {
+    window.addEventListener('reloadPOSMainData', () => {
+      this.posMainComponent.reloadData();
+    });
+  }
 
   handleCheckoutData(data: {
     customerName: string | null;

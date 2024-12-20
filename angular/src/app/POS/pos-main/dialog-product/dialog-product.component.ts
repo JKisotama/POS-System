@@ -93,14 +93,17 @@ export class DialogProductComponent implements OnInit{
 
   fetchGoodProperty(goodsId: string, propertyId: string): void {
     if (this.storeId) {
-      this.goodPropertyService.GetGoodProperty(this.storeId, goodsId, propertyId).subscribe(
+      this.goodPropertyService.GetAllGoodPropertyByGoodId(this.storeId, goodsId).subscribe(
         (response) => {
-          this.goodProperties[goodsId] = response; // Cache properties for the specific goodsId
+          // Filter the properties based on the selected propertyId
+          const filteredProperties = response.filter((property: any) => property.propertyId === propertyId);
+          this.goodProperties[goodsId] = filteredProperties; // Cache properties for the specific goodsId
+          
           // Optionally set a default selected property
-          const defaultProperty = response[0]?.propertyId || '';
+          const defaultProperty = filteredProperties[0]?.propertyName || '';
           const good = this.dataSource.data.find((g) => g.goodsId === goodsId);
-          if (good && !good.selectedProperty) {
-            good.selectedProperty = defaultProperty;
+          if (good) {
+            good.selectedGoodProperty = defaultProperty; // Set the default selected good property
           }
         },
         (error) => {

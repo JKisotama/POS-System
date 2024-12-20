@@ -28,13 +28,13 @@ export class GoodsUnitService {
     createGoodsUnit(goodsUnitData: GoodsUnitDTO): Observable<any> {
         const url = `${this.baseUrl}/SaveUnit`;
         const params = new HttpParams()
-            .set('GoodsId', goodsUnitData.goodsId || '')
-            .set('Barcode', goodsUnitData.barcode || '')
-            .set('GoodsUnit', goodsUnitData.goodsUnit || '')
-            .set('UnitSize', goodsUnitData.unitSize?.toString() || '')
-            .set('UnitStatus', goodsUnitData.unitStatus?.toString() || '')
-            .set('UnitStock', goodsUnitData.unitStock?.toString() || '')
-            .set('StoreId', goodsUnitData.storeId || '');
+            .set('goods_id', goodsUnitData.goodsId || '')
+            .set('bar_code', goodsUnitData.barcode || '')
+            .set('goods_unit', goodsUnitData.goodsUnit || '')
+            .set('unit_size', goodsUnitData.unitSize?.toString() || '')
+            .set('unit_status', goodsUnitData.unitStatus?.toString() || '')
+            .set('unit_stock', goodsUnitData.unitStock?.toString() || '')
+            .set('store_id', goodsUnitData.storeId || '');
         
         return this.http.post(url, null, { params }).pipe(
             finalize(() => this.loadingService.hide())
@@ -43,7 +43,7 @@ export class GoodsUnitService {
     updateGoodsUnit(
         GoodsUnitData: GoodsUnitDTO
     ): Observable<any> {
-        const updateUrl = `${this.baseUrl}/UpdateUnit?store_id=${GoodsUnitData.storeId}&goods_id=${GoodsUnitData.goodsId}&unit=${GoodsUnitData.goodsUnit}&size=${GoodsUnitData.unitSize}&status=${GoodsUnitData.unitStatus}&stock=${GoodsUnitData.unitStock}`;
+        const updateUrl = `${this.baseUrl}/UpdateUnit?store_id=${GoodsUnitData.storeId}&goods_id=${GoodsUnitData.goodsId}&barCode=${GoodsUnitData.barcode}&unit=${GoodsUnitData.goodsUnit}&size=${GoodsUnitData.unitSize}&status=${GoodsUnitData.unitStatus}&stock=${GoodsUnitData.unitStock}`;
         this.loadingService.show();
         return this.http.put(updateUrl, {}).pipe(
             finalize(() => this.loadingService.hide())

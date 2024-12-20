@@ -106,6 +106,9 @@ export class AdminGoodsPageComponent implements OnInit {
     confirmDelete(goods: GoodsDTO): void {
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
           panelClass: 'custom-dialog-container',
+          data: {
+            message: 'Are you sure you want to delete this item?'
+          },
         });
       
         dialogRef.afterClosed().subscribe((result) => {

@@ -15,6 +15,7 @@ export class CustomerService {
   ) { }
 
   private baseUrl = 'https://localhost:5000/api/Customer';
+  private selectedCustomer?: CustomerDTO;
 
   GetAllCustomer(customerId: string): Observable<any> {
     this.loadingService.show();
@@ -47,6 +48,14 @@ export class CustomerService {
 
   GetCustomerById(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
+  }
+
+  setCustomer(customer: CustomerDTO): void {
+    this.selectedCustomer = customer;
+  }
+
+  getCustomer(): CustomerDTO | undefined {
+    return this.selectedCustomer;
   }
 
 
