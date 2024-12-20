@@ -27,9 +27,9 @@ namespace POS_Final_Year.Controller
         #region GET
 
         [HttpGet("GettAllCustomer")]
-        public async Task<ActionResult<IEnumerable<TblCustomer>>> GetTblCustomers(string company_id)
+        public async Task<ActionResult<IEnumerable<TblCustomer>>> GetTblCustomers([FromQuery]string company_id = null, [FromQuery]string customer_id = null)
         {
-            var customers = await _customerServices.GetAllCustomer(company_id);
+            var customers = await _customerServices.GetAllCustomer(company_id,customer_id);
             return Ok(customers);
         }
 

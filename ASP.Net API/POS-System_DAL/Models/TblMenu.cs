@@ -16,4 +16,5 @@ public partial class TblMenu
     public string? LinkedView { get; set; }
 
     public int? MenuOrder { get; set; }
+    public string storeId { get; set; }
 }

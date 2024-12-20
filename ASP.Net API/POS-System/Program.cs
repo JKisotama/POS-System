@@ -21,6 +21,7 @@ using Microsoft.Extensions.Options;
 using POS_System_BAL.Services.Menu;
 using POS_System_BAL.Services.POS;
 using POS_System_BAL.Services.SaleReport;
+using POS_System.Middleware;
 
 namespace POS_System
 {
@@ -64,15 +65,15 @@ namespace POS_System
 
             builder.Services.Configure<RequestLocalizationOptions>(options =>
             {
-                var supportedCultures = new[] { "en", "fr", "es" };
-                options.SetDefaultCulture("en")
+                var supportedCultures = new[] { "en", "fr", "vi" };
+                options
                     .AddSupportedCultures(supportedCultures)
                     .AddSupportedUICultures(supportedCultures);
             });
             
             builder.Services.AddDbContext<OnlinePosContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-
+            builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -119,6 +120,7 @@ namespace POS_System
 
             app.UseAuthorization();
 
+            app.UseMiddleware<UserLanguageMiddleware>();
             app.MapControllers();
 
 

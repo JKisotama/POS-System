@@ -343,7 +343,6 @@ C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\bin\D
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\POS-System.runtimeconfig.json
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\POS-System.dll
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\POS-System.pdb
-C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\en-US\POS-System.resources.dll
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\fr-FR\POS-System.resources.dll
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\vi-VN\POS-System.resources.dll
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\AutoMapper.dll
@@ -489,7 +488,6 @@ C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\bin\D
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\bin\Debug\net8.0\POS-System_DAL.pdb
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS-System.csproj.AssemblyReference.cache
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS_System.Properties.Resources.resources
-C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS_System.Resrouces.SharedResources.en-US.resources
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS_System.Resrouces.SharedResources.fr-FR.resources
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS_System.Resrouces.SharedResources.vi-VN.resources
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS-System.csproj.GenerateResource.cache
@@ -500,8 +498,6 @@ C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\D
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS-System.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS-System.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS-System.sourcelink.json
-C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\en-US\POS-System.resources.cs
-C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\en-US\POS-System.resources.dll
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\fr-FR\POS-System.resources.cs
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\fr-FR\POS-System.resources.dll
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\vi-VN\POS-System.resources.cs
@@ -520,3 +516,4 @@ C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\D
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS-System.pdb
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS-System.genruntimeconfig.cache
 C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\ref\POS-System.dll
+C:\Users\quant\OneDrive\Documents\GitHub\POS-System\ASP.Net API\POS-System\obj\Debug\net8.0\POS_System.Resrouces.SharedResources.resources

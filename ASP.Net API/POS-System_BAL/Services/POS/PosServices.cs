@@ -338,7 +338,11 @@ namespace POS_System_BAL.Services.POS
                 po.PosTotal = posTotal;
                 po.PosDiscount = posDiscount;
                 po.PosTopay = posTopay;
-                po.CustomerName = "visitor";
+                if (po.CustomerName == null)
+                {
+                    po.CustomerName = "visitor";    
+                }
+                
                 try
                 {
                     Console.WriteLine("Attempting to save PO detail...");

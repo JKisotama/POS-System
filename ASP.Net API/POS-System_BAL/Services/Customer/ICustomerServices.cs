@@ -6,7 +6,7 @@ namespace POS_System_BAL.Services.Customer
 {
     public interface ICustomerServices
     {
-        Task<IEnumerable<TblCustomer>> GetAllCustomer(string company_id);
+        Task<IEnumerable<TblCustomer>> GetAllCustomer(string company_id, string customer_id);
         Task<TblCustomer> GetCustomer(string company_id, string customer_id);
         Task CreateCustomer(TblCustomer customer);
 

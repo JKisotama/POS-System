@@ -236,4 +236,7 @@
     <data name="Enter amount" xml:space="preserve">
         <value>Enter amount</value>
     </data>
+    <data name="Login successful." xml:space="preserve">
+        <value>Connexion réussie.</value>
+    </data>
 </root>

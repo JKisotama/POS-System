@@ -36,7 +36,7 @@ namespace POS_System_BAL.Services.User
 
         public async Task<IEnumerable<TblUser>> GetAllUser(string store_id)
         {
-            return await _onlinePosContext.TblUsers.Where(s => s.StoreId == store_id).ToListAsync();
+            return await _onlinePosContext.TblUsers.Where(s => s.StoreId == store_id && s.UserLevel == 1).ToListAsync();
         }
 
         public async Task<TblUser> GetUser(string store_id, string login_name)
@@ -51,12 +51,26 @@ namespace POS_System_BAL.Services.User
                 .AnyAsync(ur => ur.StoreId == store_id && ur.LoginName == login_name && ur.MenuId == menu_id && ur.Assigned == assigned);
         }
         
+
+
+        
         public async Task<IEnumerable<TblMenu>> GetUserMenus(string store_id, string login_name)
         {
+            var user = await _onlinePosContext.TblUsers.FirstOrDefaultAsync(u => u.StoreId == store_id && u.LoginName == login_name);
+            if(user.UserType == 0 && user.UserLevel == 0)
+            {
+                var menu = await _onlinePosContext.TblMenus
+                    .Where(m => m.storeId == store_id)
+                    .ToListAsync();
+                return menu;
+            }
+            
             var userRights = await _onlinePosContext.TblUserrights
                 .Where(ur => ur.StoreId == store_id && ur.LoginName == login_name)
                 .Select(ur => ur.MenuId)
                 .ToListAsync();
+
+
 
             var menus = await _onlinePosContext.TblMenus
                 .Where(m => userRights.Contains(m.MenuId))
@@ -158,6 +172,8 @@ namespace POS_System_BAL.Services.User
         {
             var user = await GetUser(store_id, login_name);
             var menu = await _onlinePosContext.TblMenus.FirstOrDefaultAsync(m => m.MenuId == menu_id);
+            var counter = GenerateRightId(store_id);
+            var rightid = GetRightCounterByStoreId(store_id);
 
             if (user == null || menu == null)
             {
@@ -175,10 +191,12 @@ namespace POS_System_BAL.Services.User
             {
                 var userRight = new TblUserright
                 {
+                    RightId = counter,
                     LoginName = login_name,
                     MenuId = menu_id,
                     StoreId = store_id,
-                    Assigned = assigned
+                    Assigned = assigned,
+                    counter = rightid + 1
                 };
 
                 await _onlinePosContext.TblUserrights.AddAsync(userRight);
@@ -289,5 +307,25 @@ namespace POS_System_BAL.Services.User
 
             return uploadResult;
         }
+        
+        public string GenerateRightId(string store_id)
+        {
+            int counter = GetRightCounterByStoreId(store_id);
+            var nCounter = counter + 1;
+            string group_id = new string('0', 3 - nCounter.ToString().Length) + nCounter.ToString();
+            return group_id;
+        }
+        
+        public int GetRightCounterByStoreId(string storeId)
+        {
+            var propertyCounter = _onlinePosContext.TblUserrights
+                .Where(g => g.StoreId == storeId)
+                .OrderBy(g => g.StoreId)
+                .ThenByDescending(g => g.counter)
+                .Select(g => g.counter)
+                .FirstOrDefault();
+            return propertyCounter;
+        }
+
     }
 }

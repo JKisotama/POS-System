@@ -87,9 +87,9 @@ namespace POS_Final_Year.Controller
 
         [HttpGet]
         [Route("GetAllCustomers")]
-        public async Task<IActionResult> GetAllCustomers(string company_id)
+        public async Task<IActionResult> GetAllCustomers(string company_id, string customer_id)
         {
-            var customers = await _customerServices.GetAllCustomer(company_id);
+            var customers = await _customerServices.GetAllCustomer(company_id, customer_id);
             return Ok(customers);
         }
         
