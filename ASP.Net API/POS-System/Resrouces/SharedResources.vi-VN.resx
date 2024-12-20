@@ -101,4 +101,226 @@
 	<data name="InvalidLogin" xml:space="preserve">
 		<value>Lỗi Đăng Nhập</value>
 	</data>
+	<data name="Goods" xml:space="preserve">
+		<value>Hàng Hoá</value>
+	</data>
+	<data name="GoodsGroup" xml:space="preserve">
+		<value>Nhóm Hàng Hoá</value>
+	</data>
+	<data name="Goods Information" xml:space="preserve">
+		<value>Thông tin Hàng</value>
+	</data>
+	<data name="Action" xml:space="preserve">
+		<value>Lựa Chọn</value>
+	</data>
+	<data name="Goods Name" xml:space="preserve">
+		<value>Tên Hàng</value>
+	</data>
+	<data name="Goods Brand" xml:space="preserve">
+		<value>Hãng</value>
+	</data>
+	<data name="Property Group" xml:space="preserve">
+		<value>Nhóm Thuộc Tính</value>
+	</data>
+	<data name="Goods Status" xml:space="preserve">
+		<value>Trạng Thái Hàng</value>
+	</data>
+	<data name="Customer" xml:space="preserve">
+		<value>Khách Hàng</value>
+	</data>
+	<data name="	Picture" xml:space="preserve">
+		<value>Hình Ảnh</value>
+	</data>
+	<data name="Search" xml:space="preserve">
+		<value>Tìm Kiếm</value>
+	</data>
+	<data name="Sell Available" xml:space="preserve">
+		<value>Còn Hàng</value>
+	</data>
+	<data name="Sell Unavailable" xml:space="preserve">
+		<value>Hết Hàng</value>
+	</data>
+	<data name="Supplier" xml:space="preserve">
+		<value>Nhà Cung Cấp</value>
+	</data>
+	<data name="Create Customer" xml:space="preserve">
+		<value>Tạo Khách</value>
+	</data>
+	<data name="Create Goods" xml:space="preserve">
+		<value>Tạo Hàng</value>
+	</data>
+	<data name="Create Property Group " xml:space="preserve">
+		<value>Tạo Nhóm Thuộc Tính</value>
+	</data>
+	<data name="Create Supplier" xml:space="preserve">
+		<value>Tạo Nhà Cung Cấp</value>
+	</data>
+	<data name="Customer Address" xml:space="preserve">
+		<value>Địa Chỉ</value>
+	</data>
+	<data name="Customer Email" xml:space="preserve">
+		<value>Email</value>
+	</data>
+	<data name="Customer Information" xml:space="preserve">
+		<value>Thông Tin Khách</value>
+	</data>
+	<data name="Customer Name" xml:space="preserve">
+		<value>Tên Khách</value>
+	</data>
+	<data name="Customer Phone" xml:space="preserve">
+		<value>Số Điện Thoại</value>
+	</data>
+	<data name="Delete" xml:space="preserve">
+		<value>Xoá</value>
+	</data>
+	<data name="Edit" xml:space="preserve">
+		<value>Chỉnh Sửa</value>
+	</data>
+	<data name="Property Group Information" xml:space="preserve">
+		<value>Thông Tin Nhóm Thuộc Tính</value>
+	</data>
+	<data name="Property Name" xml:space="preserve">
+		<value>Tên Thuộc Tính</value>
+	</data>
+	<data name="Supplier Address" xml:space="preserve">
+		<value>Địa Chỉ</value>
+	</data>
+	<data name="Supplier Email" xml:space="preserve">
+		<value>Email</value>
+	</data>
+	<data name="Supplier Information" xml:space="preserve">
+		<value>Thông Tin Nhà Cung Cấp</value>
+	</data>
+	<data name="Supplier Name" xml:space="preserve">
+		<value>Tên</value>
+	</data>
+	<data name="Supplier Phone" xml:space="preserve">
+		<value>Số Điện Thoại</value>
+	</data>
+	<data name="Supplier Type" xml:space="preserve">
+		<value>Loại</value>
+	</data>
+	<data name="View Goods Properties" xml:space="preserve">
+		<value>Xem Thuộc Tính Hàng</value>
+	</data>
+	<data name="View Goods Unit" xml:space="preserve">
+		<value>Xem Đơn Vị</value>
+	</data>
+	<data name="View Sell Prices" xml:space="preserve">
+		<value>Xem Giá Hàng</value>
+	</data>
+	<data name="Barcode" xml:space="preserve">
+		<value>Barcode</value>
+	</data>
+	<data name="Bill Date:" xml:space="preserve">
+		<value>Ngày tạo hoá đơn</value>
+	</data>
+	<data name="Choose File" xml:space="preserve">
+		<value>Chọn File</value>
+	</data>
+	<data name="Company Id" xml:space="preserve">
+		<value>Id Cty</value>
+	</data>
+	<data name="Check Out:" xml:space="preserve">
+		<value>Chuyển Khoản</value>
+	</data>
+	<data name="Cash" xml:space="preserve">
+		<value>Tiền Mặt</value>
+	</data>
+	<data name="Bill Information:" xml:space="preserve">
+		<value>Thông Tin Hoá Đơn</value>
+	</data>
+	<data name="Create Goods Property" xml:space="preserve">
+		<value>Tạo Thuộc Tính Hàng</value>
+	</data>
+	<data name="Create Goods Unit" xml:space="preserve">
+		<value>Tạo Đơn Vị Hàng</value>
+	</data>
+	<data name="Create Group" xml:space="preserve">
+		<value>Tạo Nhóm Hàng</value>
+	</data>
+	<data name="Customer Id" xml:space="preserve">
+		<value>ID Khách</value>
+	</data>
+	<data name="Customer Pay:" xml:space="preserve">
+		<value>Khách Trả:</value>
+	</data>
+	<data name="Discount:" xml:space="preserve">
+		<value>Chiết Khấu:</value>
+	</data>
+	<data name="Enter amount" xml:space="preserve">
+		<value>Nhập Giá</value>
+	</data>
+	<data name="File" xml:space="preserve">
+		<value>File</value>
+	</data>
+	<data name="Goods Group Information" xml:space="preserve">
+		<value>Thông Tin Nhóm Hàng</value>
+	</data>
+	<data name="Goods Property Information" xml:space="preserve">
+		<value>Thông Tin Thuộc Tính Hàng</value>
+	</data>
+	<data name="Goods Property Value" xml:space="preserve">
+		<value>Tên Thuộc Tính</value>
+	</data>
+	<data name="Goods Sell Price Information" xml:space="preserve">
+		<value>Thông Tin Giá Hàng</value>
+	</data>
+	<data name="Goods Unit" xml:space="preserve">
+		<value>Đơn Vị</value>
+	</data>
+	<data name="Goods Unit Information" xml:space="preserve">
+		<value>Thông Tin Đơn Vị</value>
+	</data>
+	<data name="Group Name" xml:space="preserve">
+		<value>Tên Nhóm Hàng</value>
+	</data>
+	<data name="Group Property Name" xml:space="preserve">
+		<value>Thuộc Tính Nhóm Hàng</value>
+	</data>
+	<data name="Group Status" xml:space="preserve">
+		<value>Trạng Thái</value>
+	</data>
+	<data name="No file chosen" xml:space="preserve">
+		<value>Chưa chọn File</value>
+	</data>
+	<data name="Note:" xml:space="preserve">
+		<value>Ghi Chú:</value>
+	</data>
+	<data name="POS Number:" xml:space="preserve">
+		<value>Số Phiếu</value>
+	</data>
+	<data name="Product" xml:space="preserve">
+		<value>Sản Phẩm</value>
+	</data>
+	<data name="QR Code" xml:space="preserve">
+		<value>QR Code</value>
+	</data>
+	<data name="Quantity" xml:space="preserve">
+		<value>Số Lượng</value>
+	</data>
+	<data name="Select a customer to display their details." xml:space="preserve">
+		<value>Chọn một khách hàng để hiển thị thông tin chi tiết của họ.</value>
+	</data>
+	<data name="Sell Price" xml:space="preserve">
+		<value>Giá Hàng</value>
+	</data>
+	<data name="Seller:" xml:space="preserve">
+		<value>Người Bán</value>
+	</data>
+	<data name="Subtotal:" xml:space="preserve">
+		<value>Tổng Phụ</value>
+	</data>
+	<data name="Total:" xml:space="preserve">
+		<value>Tổng:</value>
+	</data>
+	<data name="Unit Status" xml:space="preserve">
+		<value>Trạng Thái</value>
+	</data>
+	<data name="Unit Stock" xml:space="preserve">
+		<value>Tồn Kho</value>
+	</data>
+	<data name="Unit Size" xml:space="preserve">
+		<value>Kích Cỡ</value>
+	</data>
 </root>

@@ -21,4 +21,226 @@
     <data name="InvalidLogin" xml:space="preserve">
         <value>Identifiants de connexion invalides.</value>
     </data>
+    <data name="Goods" xml:space="preserve">
+        <value>Marchandises</value>
+    </data>
+    <data name="GoodsGroup" xml:space="preserve">
+        <value>Groupe de marchandises</value>
+    </data>
+    <data name="Goods Information" xml:space="preserve">
+        <value>Marchandises Information</value>
+    </data>
+    <data name="Action" xml:space="preserve">
+        <value>Action </value>
+    </data>
+    <data name="Goods Brand" xml:space="preserve">
+        <value>Marque</value>
+    </data>
+    <data name="Property Group" xml:space="preserve">
+        <value>Groupe de propriétés</value>
+    </data>
+    <data name="Goods Status" xml:space="preserve">
+        <value>État des biens</value>
+    </data>
+    <data name="Goods Name" xml:space="preserve">
+        <value>Nom de l'article</value>
+    </data>
+    <data name="Customer" xml:space="preserve">
+        <value>	Client</value>
+    </data>
+    <data name="Search" xml:space="preserve">
+        <value>Rechercher</value>
+    </data>
+    <data name="	Picture" xml:space="preserve">
+        <value>Image</value>
+    </data>
+    <data name="Create Customer" xml:space="preserve">
+        <value>Créer un client</value>
+    </data>
+    <data name="Create Goods" xml:space="preserve">
+        <value>Créer des marchandises</value>
+    </data>
+    <data name="Create Property Group " xml:space="preserve">
+        <value>Créer un groupe de propriétés</value>
+    </data>
+    <data name="Create Supplier" xml:space="preserve">
+        <value>Créer un fournisseur</value>
+    </data>
+    <data name="Customer Address" xml:space="preserve">
+        <value>Adresse </value>
+    </data>
+    <data name="Customer Email" xml:space="preserve">
+        <value>Email</value>
+    </data>
+    <data name="Customer Name" xml:space="preserve">
+        <value>Nom</value>
+    </data>
+    <data name="Customer Phone" xml:space="preserve">
+        <value>Téléphone</value>
+    </data>
+    <data name="Delete" xml:space="preserve">
+        <value>Supprimer</value>
+    </data>
+    <data name="Edit" xml:space="preserve">
+        <value>Modifier</value>
+    </data>
+    <data name="Customer Information" xml:space="preserve">
+        <value>Informations du Client</value>
+    </data>
+    <data name="Property Group Information" xml:space="preserve">
+        <value>Groupe de propriétés Information</value>
+    </data>
+    <data name="Property Name" xml:space="preserve">
+        <value>Propriétés Nom</value>
+    </data>
+    <data name="Sell Available" xml:space="preserve">
+        <value>Disponible à la vente</value>
+    </data>
+    <data name="Sell Unavailable" xml:space="preserve">
+        <value>Indisponible à la vente</value>
+    </data>
+    <data name="Supplier" xml:space="preserve">
+        <value>Fournisseur</value>
+    </data>
+    <data name="Supplier Address" xml:space="preserve">
+        <value>Address</value>
+    </data>
+    <data name="Supplier Email" xml:space="preserve">
+        <value>Email</value>
+    </data>
+    <data name="Supplier Name" xml:space="preserve">
+        <value>Nom</value>
+    </data>
+    <data name="Supplier Phone" xml:space="preserve">
+        <value>Téléphone</value>
+    </data>
+    <data name="Supplier Information" xml:space="preserve">
+        <value>Informations du Fournisseur</value>
+    </data>
+    <data name="Supplier Type" xml:space="preserve">
+        <value>Type</value>
+    </data>
+    <data name="View Goods Properties" xml:space="preserve">
+        <value>Voir Marchandises propriétés</value>
+    </data>
+    <data name="Barcode" xml:space="preserve">
+        <value>Barcode</value>
+    </data>
+    <data name="Bill Date:" xml:space="preserve">
+        <value>Date de la facture:</value>
+    </data>
+    <data name="Bill Information:" xml:space="preserve">
+        <value>Information de facturation:</value>
+    </data>
+    <data name="Cash" xml:space="preserve">
+        <value>Espèces</value>
+    </data>
+    <data name="Check Out:" xml:space="preserve">
+        <value>Vérifier:</value>
+    </data>
+    <data name="Choose File" xml:space="preserve">
+        <value>Choisir le File</value>
+    </data>
+    <data name="Company Id" xml:space="preserve">
+        <value>Entreprise Id</value>
+    </data>
+    <data name="Create Goods Property" xml:space="preserve">
+        <value>Créer une propriété de biens</value>
+    </data>
+    <data name="Create Goods Unit" xml:space="preserve">
+        <value>Créer une unité de produits</value>
+    </data>
+    <data name="Create Group" xml:space="preserve">
+        <value>Créer un groupe</value>
+    </data>
+    <data name="Customer Id" xml:space="preserve">
+        <value>Client ID</value>
+    </data>
+    <data name="Customer Pay:" xml:space="preserve">
+        <value>Paiement par le client:</value>
+    </data>
+    <data name="Discount:" xml:space="preserve">
+        <value>Rabais:</value>
+    </data>
+    <data name="Enter amount" xml:space="preserve">
+        <value>Entrez le montant</value>
+    </data>
+    <data name="File" xml:space="preserve">
+        <value>Fichiers</value>
+    </data>
+    <data name="Goods Group Information" xml:space="preserve">
+        <value>Thông tin nhóm hàng</value>
+    </data>
+    <data name="Goods Property Information" xml:space="preserve">
+        <value>Marchandises propriétés Information</value>
+    </data>
+    <data name="Sell Price" xml:space="preserve">
+        <value>Prix ​​de vente</value>
+    </data>
+    <data name="Select a customer to display their details." xml:space="preserve">
+        <value>Sélectionnez un client pour afficher ses détails.</value>
+    </data>
+    <data name="Seller:" xml:space="preserve">
+        <value>Vendeur:</value>
+    </data>
+    <data name="Subtotal:" xml:space="preserve">
+        <value>Sous-totaux:</value>
+    </data>
+    <data name="Total:" xml:space="preserve">
+        <value>Total:</value>
+    </data>
+    <data name="Unit Size" xml:space="preserve">
+        <value>Taille de unitaire</value>
+    </data>
+    <data name="Unit Status" xml:space="preserve">
+        <value>état de unitaire</value>
+    </data>
+    <data name="Unit Stock" xml:space="preserve">
+        <value>stock unitaire</value>
+    </data>
+    <data name="View Goods Unit" xml:space="preserve">
+        <value>Voir Marchandises Unitaire</value>
+    </data>
+    <data name="View Sell Prices" xml:space="preserve">
+        <value>Voir Prix ​​de vente</value>
+    </data>
+    <data name="Goods Property Value" xml:space="preserve">
+        <value>Marchandises propriétés Valuer</value>
+    </data>
+    <data name="Goods Sell Price Information" xml:space="preserve">
+        <value>Prix de vente</value>
+    </data>
+    <data name="Goods Unit" xml:space="preserve">
+        <value>Marchandises Unitaire</value>
+    </data>
+    <data name="Goods Unit Information" xml:space="preserve">
+        <value>Marchandises Unitaire Information</value>
+    </data>
+    <data name="Group Name" xml:space="preserve">
+        <value>Nom Groupe</value>
+    </data>
+    <data name="Group Property Name" xml:space="preserve">
+        <value>Nom Groupe propriétés</value>
+    </data>
+    <data name="Group Status" xml:space="preserve">
+        <value>Groupe Statut</value>
+    </data>
+    <data name="No file chosen" xml:space="preserve">
+        <value>Aucun fichier choisi</value>
+    </data>
+    <data name="Note:" xml:space="preserve">
+        <value>Note:</value>
+    </data>
+    <data name="POS Number:" xml:space="preserve">
+        <value>POS Nombre:</value>
+    </data>
+    <data name="Product" xml:space="preserve">
+        <value>Produit</value>
+    </data>
+    <data name="QR Code" xml:space="preserve">
+        <value>QR Code</value>
+    </data>
+    <data name="Quantity" xml:space="preserve">
+        <value>Quantité</value>
+    </data>
 </root>

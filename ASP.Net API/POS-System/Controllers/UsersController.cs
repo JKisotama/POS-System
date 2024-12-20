@@ -106,7 +106,7 @@ namespace POS_Final_Year.Controller
         #region PUT
 
         [HttpPut("UpdateUser")]
-        public async Task<ActionResult> PutTblUser([FromQuery]UserDTO userDTO,string store_id, string login_name, IFormFile avatar)
+        public async Task<ActionResult> PutTblUser([FromQuery]UserDTO userDTO,string store_id, string login_name, IFormFile avatar = null)
         {
 
              await _userServices
