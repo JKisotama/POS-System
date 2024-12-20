@@ -45,6 +45,27 @@ namespace POS_System_BAL.Services.User
                 .FirstOrDefaultAsync(s => s.StoreId == store_id && s.LoginName == login_name);
         }
         
+        public async Task<bool> HasUserAccess(string store_id, string login_name, int menu_id, int assigned)
+        {
+            return await _onlinePosContext.TblUserrights
+                .AnyAsync(ur => ur.StoreId == store_id && ur.LoginName == login_name && ur.MenuId == menu_id && ur.Assigned == assigned);
+        }
+        
+        public async Task<IEnumerable<TblMenu>> GetUserMenus(string store_id, string login_name)
+        {
+            var userRights = await _onlinePosContext.TblUserrights
+                .Where(ur => ur.StoreId == store_id && ur.LoginName == login_name)
+                .Select(ur => ur.MenuId)
+                .ToListAsync();
+
+            var menus = await _onlinePosContext.TblMenus
+                .Where(m => userRights.Contains(m.MenuId))
+                .OrderBy(m => m.MenuOrder)
+                .ToListAsync();
+
+            return menus;
+        }
+        
         #endregion
 
         #region POST
@@ -132,6 +153,40 @@ namespace POS_System_BAL.Services.User
             var user = await _authenticate.CheckLogin(store_id, login_name, password);
             return user;
         }
+        
+        public async Task<int> GrantRights(string store_id, string login_name, int menu_id, int assigned)
+        {
+            var user = await GetUser(store_id, login_name);
+            var menu = await _onlinePosContext.TblMenus.FirstOrDefaultAsync(m => m.MenuId == menu_id);
+
+            if (user == null || menu == null)
+            {
+                return -1;
+            }
+
+            var existingRight = await _onlinePosContext.TblUserrights
+                .FirstOrDefaultAsync(ur => ur.LoginName == login_name && ur.MenuId == menu_id && ur.StoreId == store_id);
+
+            if (existingRight != null)
+            {
+                existingRight.Assigned = assigned;
+            }
+            else
+            {
+                var userRight = new TblUserright
+                {
+                    LoginName = login_name,
+                    MenuId = menu_id,
+                    StoreId = store_id,
+                    Assigned = assigned
+                };
+
+                await _onlinePosContext.TblUserrights.AddAsync(userRight);
+            }
+
+            await _onlinePosContext.SaveChangesAsync();
+            return 0;
+        }
 
         #endregion
 
@@ -186,28 +241,6 @@ namespace POS_System_BAL.Services.User
             
             return entity;
         }
-        public async Task<int> GrandRights(string store_id, string login_name, int menu_id)
-        {
-            var user = GetUser(store_id, login_name);
-            var menu = _onlinePosContext.TblMenus.FirstOrDefaultAsync(m => m.MenuId == menu_id);
-            if(user == null || menu == null)
-            {
-                return -1;
-            }
-            var userRights = new TblUserright
-            {
-                LoginName = login_name,
-                MenuId = menu_id,
-                StoreId = store_id,
-                Assigned = 0
-            };
-
-            _onlinePosContext.TblUserrights
-                .Add(userRights);
-            await _onlinePosContext.SaveChangesAsync();
-            return 0;
-        }
-
         #endregion
 
         #region DELETE
@@ -227,6 +260,8 @@ namespace POS_System_BAL.Services.User
         }
 
         #endregion
+        
+        
         
         
         private async Task<ImageUploadResult> UploadImageToCloudinary(

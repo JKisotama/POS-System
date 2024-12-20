@@ -282,7 +282,7 @@ namespace POS_Final_Year.Controller
         }
 
         [HttpPost("SavePropertyGroup")]
-        public async Task<ActionResult<TblPropertygroup>> PostTblPropertyGroup([FromQuery]TblPropertygroup group_name)
+        public async Task<ActionResult<TblPropertygroup>> PostTblPropertyGroup([FromBody]TblPropertygroup group_name)
         {
             await _goodsServices.SavePropertyGroup(group_name);
             return Ok(group_name);

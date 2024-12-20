@@ -18,6 +18,7 @@ using dotenv.net;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using POS_System_BAL.Services.Menu;
 using POS_System_BAL.Services.POS;
 using POS_System_BAL.Services.SaleReport;
 
@@ -87,6 +88,7 @@ namespace POS_System
             builder.Services.AddScoped<IPosServices, PosServices>();
             builder.Services.AddScoped<IAuthenticate, Authenticate>();
             builder.Services.AddScoped<ISaleServices, SaleServices>();
+            builder.Services.AddScoped<IMenuServices, MenuServices>();
 
 
             builder.Services.AddCors(options =>
