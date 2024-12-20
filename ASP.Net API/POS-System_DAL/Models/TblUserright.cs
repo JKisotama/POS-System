@@ -5,7 +5,7 @@ namespace POS_System_DAL.Models;
 
 public partial class TblUserright
 {
-    public int RightId { get; set; }
+    public string RightId { get; set; }
 
     public string? LoginName { get; set; }
 
@@ -14,7 +14,8 @@ public partial class TblUserright
     public int? Assigned { get; set; }
 
     public string? StoreId { get; set; }
-
+    public int counter { get; set; }
+    
     public virtual TblUser? LoginNameNavigation { get; set; }
 
     public virtual TblMenu? Menu { get; set; }

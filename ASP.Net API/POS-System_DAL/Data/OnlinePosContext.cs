@@ -268,6 +268,7 @@ public partial class OnlinePosContext : DbContext
                 .HasMaxLength(100)
                 .HasColumnName("local_text");
             entity.Property(e => e.MenuOrder).HasColumnName("menu_order");
+            entity.Property(e => e.storeId).HasColumnName("store_id");
         });
 
         modelBuilder.Entity<TblMessageText>(entity =>
@@ -751,8 +752,8 @@ public partial class OnlinePosContext : DbContext
         modelBuilder.Entity<TblUserright>(entity =>
         {
             entity
-                .HasNoKey()
-                .ToTable("tbl_userright");
+                .HasKey(e => e.RightId);
+            entity.ToTable("tbl_userright");
 
             entity.Property(e => e.Assigned).HasColumnName("assigned");
             entity.Property(e => e.LoginName)
@@ -767,6 +768,7 @@ public partial class OnlinePosContext : DbContext
                 .HasMaxLength(5)
                 .IsUnicode(false)
                 .HasColumnName("store_id");
+            entity.Property(e => e.counter).HasColumnName("right_counter");
 
             entity.HasOne(d => d.LoginNameNavigation).WithMany()
                 .HasForeignKey(d => d.LoginName)

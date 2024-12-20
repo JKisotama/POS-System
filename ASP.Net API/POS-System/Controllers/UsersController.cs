@@ -62,7 +62,7 @@ namespace POS_Final_Year.Controller
             return hasAccess ? Ok("User has access.") : Forbid("User does not have access.");
         }
 
-        [HttpGet("{store_id}/{login_name}/menus")]
+        [HttpGet("GetMenus")]
         public async Task<IActionResult> GetUserMenus(string store_id, string login_name)
         {
             var menus = await _userServices.GetUserMenus(store_id, login_name);
