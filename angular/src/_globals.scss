@@ -3,7 +3,6 @@
 
 
 :root{
-    font-family: 'Manrope', sans-serif;
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -84,9 +83,11 @@ body{
             select{
                 transition: background-color 0.3s, color 0.3s;
                 @include btn-gray-border;
+                color: $White-Snow !important;
+
                 option{
                     background-color: $Gluon-Grey;
-                    color: $White-Snow;
+                    color: $White-Snow !important;
                     
                 }
             }
@@ -134,6 +135,15 @@ body{
 
         .card-item{
             background-color: $Gluon-Grey;
+        }
+        .btn-zone {
+            @include double-btn-zone;
+            button {
+                @include btn-orange-border;
+                &:last-child {
+                    @include btn-gray-border;
+                }
+            }
         }
 
     }
@@ -260,9 +270,17 @@ body{
             }
             
         }
-
         .card-item{
             background-color: $Box-bg-light;
+        }
+        .btn-zone {
+            @include double-btn-zone;
+            button {
+                @include btn-orange-none-bg;
+                &:last-child {
+                    @include btn-gray-bg-light-exit; 
+                }
+            }
         }
 
     }
@@ -273,6 +291,29 @@ h1, h2, h3, h4, h5, h6{
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
+}
+h1 {
+    font-size: 2.5rem; // Kích thước font cho h1
+}
+
+h2 {
+    font-size: 2rem; // Kích thước font cho h2
+}
+
+h3 {
+    font-size: 1.75rem; // Kích thước font cho h3
+}
+
+h4 {
+    font-size: 1.5rem; // Kích thước font cho h4
+}
+
+h5 {
+    font-size: 1.25rem; // Kích thước font cho h5
+}
+
+h6 {
+    font-size: 1rem; // Kích thước font cho h6
 }
 p{
     font-family: 'Inter', sans-serif;
@@ -312,15 +353,7 @@ a{
 
 
 
-.btn-zone {
-    @include double-btn-zone;
-    button {
-        @include btn-orange-border;
-        &:last-child {
-            @include btn-gray-border;
-        }
-    }
-}
+
 .btn-orange-bg{
     background-color: $Liquid-Lava;
     color: $White-Snow;

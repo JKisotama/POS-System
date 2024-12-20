@@ -12,6 +12,10 @@
 }
 
 :host{
+  h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
   body.dark-mode & {
     .new-order-zone {
       .order-information {
@@ -37,6 +41,7 @@
     
           button {
             @include btn-white-border;
+            
           }
         }
     
@@ -251,7 +256,7 @@
     
         .order-deleted {
           button {
-            @include btn-orange-border;
+            @include btn-orange-bg;
           }
         }
       }
@@ -260,7 +265,7 @@
         .header {
     
           button {
-            @include btn-white-border;
+            @include btn-white-bg;
           }
     
           .search-bar {
@@ -363,7 +368,7 @@
         .checkout-info {
           .checkout-info-item {
             border-bottom: 1px solid $Dark-Void;
-    
+            
             input {
               background-color: $Gluon-Grey;
               color: $Dark-Void;
@@ -381,8 +386,9 @@
             .checkout-info-customer-pay-input {
               input {
     
-                background-color: $Gluon-Grey;
+                background-color: transparent;
                 color: $Dark-Void;
+                border-right: none;
                 border: 1px dashed $Dark-Void;
     
     
@@ -394,7 +400,35 @@
     
               p {
                 border: 1px dashed $Dark-Void;    
+                border-left: none;
               }
+            }
+          }
+        }
+      }
+
+      .customer-card {
+        .customer-title {
+          h2 {
+            span {
+              color: $Dusty-Grey;
+            }
+          }
+    
+          button {
+            @include btn-white-bg;
+          }
+        }
+    
+        .customer-item {
+          p {    
+            .bill-infor-title {
+              color: $Dark-Void;
+            }
+    
+    
+            span {
+              color: $Dusty-Grey;
             }
           }
         }
@@ -428,7 +462,7 @@
 
       button {
         margin-left: 20px;
-        padding: 14px 20px;
+        padding: 14px 20px !important;
 
         &:nth-of-type(2) {
           // Styles for the second button
@@ -440,7 +474,7 @@
 
     .order-deleted {
       button {
-        padding: 14px 40px;
+        padding: 14px 40px !important;
       }
     }
   }
@@ -448,13 +482,10 @@
   .product-card {
     .header {
 
-      h2 {
-        font-size: 30px;
-        margin-bottom: 20px;
-      }
+      
 
       button {
-        padding: 9px 42px;
+        padding: 9px 42px !important;
       }
 
       .search-bar {
@@ -570,7 +601,7 @@
       justify-content: center;
 
       button {
-        padding: 20px 90px;
+        padding: 20px 30px !important;
         border-radius: 5px;
         flex: 1 1 auto;
 
@@ -597,6 +628,7 @@
           &::placeholder {
             color: $Dusty-Grey;
           }
+          
 
         }
         .checkout-price-total{
@@ -650,6 +682,7 @@
             padding: 6px;
 
           }
+          
         }
       }
     }
@@ -664,7 +697,7 @@
       }
 
       button {
-        padding: 9px 42px;
+        padding: 9px 42px !important;
       }
     }
 

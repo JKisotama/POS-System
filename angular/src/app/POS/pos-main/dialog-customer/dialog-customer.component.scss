@@ -1,87 +1,306 @@
-@import "../../../../styles.scss";
+@import '../../../../styles.scss';
 
 
-.mat-elevation-z8 {
-    box-shadow: none; // Remove the shadow if needed
-    background-color: transparent !important; // Remove the background color
-    color: $White-Snow !important;
-
-}
-.mat-menu-item {
-    color: $Dark-Void !important; // Customize the text color
-    font-size: 16px; // Customize the font size
-    padding: 10px 20px; // Customize the padding
-    border-radius: 4px; // Customize the border radius
+body.dark-mode {
+  .dialog-form {
+    .custom-table {
+      .mat-header-cell, .mat-cell {
+      }
     
+      .mat-header-cell {
+      }
     
-}
-.dialog {
-    background-color: $Dark-Void !important;
-    padding: 25px 30px;
-    // height: 90vh;
-    
-
+     
+    }
+  
     .header {
-        h2 {
-            color: $White-Snow;
-            font-size: 30px;
-            margin-bottom: 20px;
-        }
-        .search-bar {
-            @include search-bar-input;
-            form{
-                input{
-                    border-right: none;
-                    border-radius: 5px 0 0 5px!important;
-                    &::placeholder{
-                        color: $Dusty-Grey;
-                    }
-                    &:focus {
-                        outline: none;
-                        box-shadow: none; // For Bootstrap-specific focus shadows
-                      }
-                }
-                button{
-                    @include btn-white-border;
-                    border-radius: 0 5px 5px 0!important;
-                    border-left: none;
-                }
+      h2 {
+      }
+  
+      .search-bar {
+        @include search-bar-input;
+  
+        form {
+          input {    
+            border-right: none;
+            border-radius: 5px 0 0 5px !important;    
+            &::placeholder {
+              color: $Dusty-Grey;
             }
             
+          }
+  
+          button {
+            @include btn-white-border;
+            border-radius: 0 5px 5px 0 !important;
+            border-left: none !important;    
+          }
+          
+  
         }
+      
+  
+      }
+  
+      .add-new-ctm {
+        button {
+          @include btn-green-border;
+          padding: 10px 20px;
+          border-radius: 5px;
+  
+        }
+      }
+    }
+  
 
-        .add-new-ctm{
-            button{
-                @include btn-green-border;
-                padding: 10px 20px;
-                border-radius: 5px;
-                
+    .dialog-main {
+      border-top: 1px solid $White-Snow;
+  
+      .dialog-main-left {}
+  
+      .dialog-main-right {
+        .customer-input {
+          @include input-text-field;
+        }
+      }
+    }
+  
+  
+    table {
+      .pd-name {
+        td {
+        }
+      }
+  
+      td {
+        select {
+          background-color: transparent !important;
+          color: $White-Snow;
+          option {
+            background-color: $Dusty-Grey;
+          }
+        }
+  
+        input {
+          background-color: transparent;
+          border: 1px dashed $White-Snow;
+  
+          :focus {
+            border: 1px solid $White-Snow !important;
+          }
+        }
+      }
+    }
+  }
+  
+  
+  
+}
+body.light-mode {
+  .dialog-form {
+    .custom-table {
+      .mat-header-cell, .mat-cell {
+      }
+    
+      .mat-header-cell {
+      }
+    
+     
+    }
+  
+    .header {
+      h2 {
+      }
+  
+      .search-bar {
+        @include search-bar-input-light;
+  
+        form {
+          input {    
+            border-right: none;
+            border-radius: 5px 0 0 5px !important;    
+            &::placeholder {
+              color: $Dusty-Grey;
             }
+          }
+  
+          button {
+            @include btn-white-bg;
+            border-radius: 0 5px 5px 0 !important;
+            border-left: none !important;
+            border: 1px solid $Dark-Void ;
+          }
+          
+  
         }
-    }
-
-    .dialog-main{
-        border-top: 1px solid $White-Snow;
-        .dialog-main-left{
-
+  
+      }
+      .add-new-ctm {
+        button {
+          @include btn-orange-none-bg;
+          padding: 10px 20px;
+          border-radius: 5px;
+  
         }
-        .dialog-main-right{
-            .customer-input{
-                @include input-text-field;
-            }
+      } 
+         
+  
+  
+      
+    }
+  
+    .dialog-main {
+      border-top: 1px solid $Dark-Void;
+  
+      .dialog-main-left {}
+  
+      .dialog-main-right {
+        .customer-input {
+          @include input-text-field;
         }
+      }
     }
-
-    .table-responsive {
-        max-height: 650px; // Set the maximum height for the table container
-        overflow-y: auto; // Enable vertical scrolling
-        overflow-x: auto; // Enable horizontal scrolling if needed
+  
+  
+    table {
+      .pd-name {
+        td {
+        }
+      }
+  
+      td {
+        select {
+          background-color: transparent !important;
+          border: 1px solid $Dark-Void;
+  
+          option {
+            background-color: $White-Snow;
+            color: $Dark-Void;
+          }
+        }
+  
+        input {
+          background-color: transparent;
+          border: 1px dashed $Dark-Void;
+  
+          :focus {
+            border: 1px solid $White-Snow !important;
+          }
+        }
+      }
     }
+  }
+  
+  
 }
 
-.btn-zone{
-    padding: 14px 20px;
+.dialog-form {
+  
+  padding: 25px 30px !important;
+  .custom-table {
+    .mat-header-cell, .mat-cell {
+      padding-bottom: 16px; // Customize the padding bottom
+    }
+  
+    .mat-header-cell {
+      font-weight: bold; // Customize the header font weight
+    }
+  
+   
+  }
+
+  .header {
+    h2 {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .search-bar {
+      form {
+        input {
+          border-right: none;
+          border-radius: 5px 0 0 5px !important;
+
+          &::placeholder {
+          }
+
+          &:focus {
+            outline: none;
+            box-shadow: none; // For Bootstrap-specific focus shadows
+          }
+        }
+
+        button {
+          border-radius: 0 5px 5px 0 !important;
+          border-left: none !important;
+        }
+        
+
+      }
+
+    }
+
+    .add-new-ctm {
+      button {
+        padding: 10px 20px !important;
+        border-radius: 5px;
+
+      }
+    }
+  }
+
+  .dialog-main {
+
+    .dialog-main-left {}
+
+    .dialog-main-right {
+      .customer-input {
+      }
+    }
+  }
+
+  .table-responsive {
+    max-height: 650px; // Set the maximum height for the table container
+    overflow-y: auto; // Enable vertical scrolling
+    overflow-x: auto; // Enable horizontal scrolling if needed
+  }
+
+  table {
+    .pd-name {
+      td {
+      }
+    }
+
+    td {
+      select {
+        background-color: transparent !important;
+
+        option {
+        }
+      }
+
+      input {
+        background-color: transparent;
+        border-radius: 5px;
+
+        :focus {
+        }
+      }
+    }
+  }
 }
 
 
+.btn-zone {
+  padding: 14px 20px;
+}
 
+.mat-elevation-z8 {
+  box-shadow: none; // Remove the shadow if needed
+  background-color: transparent !important; // Remove the background color
+  color: $White-Snow !important;
+}
+
+.mat-menu-item {
+  color: $Dark-Void !important; // Customize the text color
+}

@@ -1,4 +1,4 @@
-<div class="dialog">
+<div class="dialog-form">
   <div class="header">
     <div class="row">
       <div class="col-md-3">
@@ -11,15 +11,11 @@
             <input
               type="text"
               class="form-control"
-              formControlName="companyId"
+              formControlName="goodsName"
               placeholder="Search..."
             />
             <div class="input-group-append">
-              <button
-                type="button"
-                class="btn"
-                (click)="getCustomerByCompanyId()"
-              >
+              <button type="button" class="btn" (click)="getCustomerByCompanyId()">
                 <i class="fas fa-search"></i> Search
               </button>
             </div>
@@ -38,7 +34,7 @@
       </div>
     </div>
 
-    <div class="table-responsive">
+    <div class="table-responsive form-input">
       <table
         mat-table
         [dataSource]="dataSource"

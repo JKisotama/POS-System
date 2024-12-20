@@ -87,6 +87,24 @@ $desktop: 1440px;
     }
 }
 
+@mixin search-bar-input-light{
+    form{
+        input{
+            background-color: $White-Snow;
+            color: $Dark-Void;
+            
+            border-radius: 5px;
+            border: 1px solid $Dark-Void;
+            
+            padding: 6px;
+            
+            
+        }
+
+    }
+
+}
+
 @mixin btn-white-bg{
     background-color: $White-Snow;
     color: $Dark-Void;
@@ -101,26 +119,7 @@ $desktop: 1440px;
     
 }
 
-@mixin btn-orange-bg{
-    background-color: $Liquid-Lava;
-    color: $White-Snow;
-    border-radius: 5px;
-    padding: 10px 20px;
-    transition: background-color 0.3s ease, color 0.3s ease;
 
-    body.dark-mode &{
-        &:hover {
-            background-color: $White-Snow;
-            color: $Liquid-Lava;
-        }
-    }
-    body.light-mode &{
-        &:hover {
-            background-color: $White-Snow;
-            color: $Greenwich;
-        }
-    }
-}
 @mixin btn-gray-bg{
     background-color: $Dusty-Grey;
     color: $White-Snow;
@@ -168,6 +167,23 @@ $desktop: 1440px;
     
 }
 
+@mixin btn-orange-bg{
+    background-color: $Liquid-Lava;
+    color: $White-Snow;
+    border-radius: 5px;
+    border: 1px solid $Gluon-Grey;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: $White-Snow;
+        color: $Liquid-Lava;
+        border: 1px solid $Gluon-Grey;
+
+    }
+    
+}
+
 @mixin btn-orange-border {
     
         border-radius: 5px;
@@ -184,6 +200,21 @@ $desktop: 1440px;
 
     
 }
+
+@mixin btn-orange-none-bg{
+    background: transparent;
+    border-radius: 5px;
+    border: 1px solid $Liquid-Lava;
+    color: $Liquid-Lava;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+
+    &:hover {
+        background-color: $Liquid-Lava;
+        color: $White-Snow;
+        border: 1px solid $Liquid-Lava;
+    }
+}
+
 
 @mixin btn-gray-border {
         padding: 10px 20px;
@@ -218,5 +249,18 @@ $desktop: 1440px;
     color: $White-Snow;
     &::placeholder{
         color: $Dusty-Grey;
+    }
+}
+
+@mixin btn-gray-bg-light-exit{
+    background-color: $Dusty-Grey;
+    color: $White-Snow;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: $Dark-Void;
+        color: $Liquid-Lava;
     }
 }
