@@ -11,6 +11,8 @@ namespace POS_System_BAL.Services.User
 
         Task<IEnumerable<TblUser>> GetAllUser(string store_id);
         Task<TblUser> GetUser(string store_id, string login_name);
+        Task<bool> HasUserAccess(string store_id, string login_name, int menu_id, int assigned);
+        Task<IEnumerable<TblMenu>> GetUserMenus(string store_id, string login_name);
 
         #endregion
 
@@ -18,6 +20,7 @@ namespace POS_System_BAL.Services.User
         Task<TblUser> CreateUser(TblUser user);
         Task<TblUser> CreateUserLevelAsync(string store_id, string login_name, int? user_level);
         Task<TblUser> Login(string store_id, string login_name, string password);
+        Task<int> GrantRights(string store_id, string login_name, int menu_id, int assigned);
 
         #endregion
 

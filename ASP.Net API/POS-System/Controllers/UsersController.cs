@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using POS_System_BAL.DTOs;
+using POS_System_BAL.Services.Menu;
 using POS_System_BAL.Services.User;
 using POS_System_DAL.Data;
 using POS_System_DAL.Models;
@@ -14,11 +15,13 @@ namespace POS_Final_Year.Controller
     {
         private readonly OnlinePosContext _context;
         private readonly IUserServices _userServices;
+        private readonly IMenuServices _menuServices;
 
-        public UsersController(OnlinePosContext context, IUserServices userServices)
+        public UsersController(OnlinePosContext context, IUserServices userServices, IMenuServices menuServices)
         {
             _context = context;
             _userServices = userServices;
+            _menuServices = menuServices;
         }
 
         #region GET
@@ -47,7 +50,22 @@ namespace POS_Final_Year.Controller
 
             return tblUser;
         }
+        
+        [HttpGet("CheckUserAccess")]
+        public async Task<IActionResult> CheckUserAccess(string store_id, string login_name, int menu_id, int assigned)
+        {
+            bool hasAccess = await _userServices.HasUserAccess(store_id, login_name, menu_id, assigned);
+            return hasAccess ? Ok("User has access.") : Forbid("User does not have access.");
+        }
 
+        [HttpGet("{store_id}/{login_name}/menus")]
+        public async Task<IActionResult> GetUserMenus(string store_id, string login_name)
+        {
+            var menus = await _userServices.GetUserMenus(store_id, login_name);
+            return Ok(menus);
+        }
+
+        
         #endregion
 
         #region POST
@@ -59,8 +77,6 @@ namespace POS_Final_Year.Controller
                 .CreateUser(tblUser);
             return CreatedAtAction("GetTblUser", new { id = tblUser.LoginName }, newUser);
         }
-
-
         
 
         [HttpPost("Login")]
@@ -72,6 +88,17 @@ namespace POS_Final_Year.Controller
                 return Unauthorized("Invalid login credentials."); 
             }
             return Ok(new { message = "Login successful.", user = loginUser });
+        }
+        
+        [HttpPost("GrantRights")]
+        public async Task<IActionResult> GrantRights(string store_id, string login_name, int menu_id, int assigned)
+        {
+            var result = await _userServices.GrantRights(store_id, login_name, menu_id, assigned);
+            if (result == -1)
+            {
+                return NotFound("User or menu not found.");
+            }
+            return Ok("Rights granted successfully.");
         }
 
         #endregion
