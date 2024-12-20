@@ -2,9 +2,10 @@
   <div class="new-order-zone">
     <div class="row">
       <!-- Order Holder -->
+      
       <div class="col-xl-12 col-lg-12 col-md-12 order-information">
         <div class="d-flex justify-content-between">
-          <!-- Order Hang Holder -->
+          <!-- TODO: Thêm class "active" khi order được chọn -->
           <div class="order-holder" *ngFor="let pos of posHangList">
             <a
               href="javascript:void(0)"
@@ -13,25 +14,6 @@
             >
               {{ pos.posNumber }}
             </a>
-
-            <!-- Show this if no orders are hanging -->
-            <ng-template #noHangOrders>
-              <p>No hanging orders available</p>
-            </ng-template>
-          </div>
-
-          <!-- Order Hang Deleted -->
-          <div class="order-deleted">
-            <button>
-              <i class="fas fa-trash"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-12 col-lg-12 col-md-12 order-information">
-        <div class="d-flex justify-content-between">
-          <!-- TODO: Thêm class "active" khi order được chọn -->
-          <div class="order-holder">
             <a href="javascript:void(0)" class="text-capitalize">
               {{ currentPosNumber }}
             </a>
@@ -44,6 +26,9 @@
             <!-- <button (click)="hangPO()">
               <i class="fas fa-plus"></i>
             </button> -->
+            <button (click)="posHeader && hangPO(posHeader)">
+              Hang Purchase Order
+            </button>
           </div>
           <div class="order-deleted">
             <button (click)="posHeader && hangPO(posHeader)">
@@ -55,7 +40,7 @@
 
       <!-- Product Card -->
       <!-- TODO: Limited rows can show (4-5 rows) -->
-      <div class="col-xl-8 col-lg-8 col-md-8 product-card mt-5">
+      <div class="col-xl-12 col-lg-12 col-md-12 product-card mt-5">
         <div class="card-item box-pos-bg">
           <div class="header d-flex justify-content-between">
             <h2>Product</h2>
@@ -156,9 +141,7 @@
       </div>
 
       <!-- Bill Information Card -->
-      <div
-        class="col-xxl-4 xol-xl-4 col-lg-4 col-md-4 bill-information-cart mt-5"
-      >
+      <div class="col-xxl-4 xol-xl-4 col-lg-4 col-md-4 bill-information-cart mt-3">
         <div class="card-item">
           <h2>Bill Information:</h2>
           <div class="bill-information-item d-flex justify-content-between">
@@ -181,17 +164,18 @@
               {{ currentPosNumber }}
             </p>
           </div>
+          
         </div>
       </div>
 
       <!-- Note Card -->
-      <div class="col-xl-4 col-lg-4 col-md-4 note-card mt-3">
+      <!-- <div class="col-xl-4 col-lg-4 col-md-4 note-card mt-3">
         <div class="card-item">
           <h2 class="text-capitalize">Note:</h2>
 
           <textarea name="note" id="note" cols="30" rows="10"></textarea>
         </div>
-      </div>
+      </div> -->
 
       <!-- Checkout Card -->
       <div class="col-xxl-4 xol-xl-4 col-lg-4 col-md-4 checkout-card mt-3">
@@ -199,7 +183,7 @@
           <h2 class="text-capitalize">Check Out:</h2>
 
           <div class="payment-type">
-            <button class="btn" (click)="setPaymentMethod(0)">
+            <button class="btn active" (click)="setPaymentMethod(0)">
               <i class="fa-solid fa-money-bill"></i>
               Cash
             </button>

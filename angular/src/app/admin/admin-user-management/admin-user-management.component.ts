@@ -62,7 +62,7 @@ export class AdminUserManagementComponent {
   }
   openEditUserDialog(user: UserDTO) {
     const dialogRef = this.dialog.open(AdminEditUserComponent, {
-      width: '400px',
+      width: '700px',
       panelClass: 'custom-dialog-container',
       data: { user }
     });

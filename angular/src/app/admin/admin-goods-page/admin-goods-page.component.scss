@@ -3,9 +3,12 @@
 @import "../../../_globals.scss";
 
 .ad-main-content {
+    h2{
+        font-size: 35px;
+        font-weight: bold;
+    }
     .ad-main-search {
         padding: 22px 50px;
-        background-color: $Slate-Grey;
         border-radius: 14px;
         margin-top: 10px;
 
@@ -20,7 +23,6 @@
     
 
     .ad-main-data {
-        background-color: $Slate-Grey;
         border-radius: 14px;
         margin-top: 15px;
         padding: 21px 23px;
@@ -112,17 +114,9 @@
     }
 }
 
-
-
-
-
-
-
-
-
 .mat-elevation-z8 {
     box-shadow: none;
-    background-color: $Slate-Grey !important;
+    
 }
 
 tr[matNoDataRow] td {
@@ -161,11 +155,13 @@ tr[matNoDataRow] td {
         .boder_table {
             border: none !important;
         }
+
+        .detail-btn{
+            width: 0;
+            padding: 45px;
+        }
     }
 }
-
-
-
 
 .custom-select {
     background-color: grey;
@@ -174,9 +170,11 @@ tr[matNoDataRow] td {
     padding: 8px;
     border-radius: 4px;
 }
-
+.mat-mdc-menu-panel{
+    background-color: transparent !important;
+}
 .mat-mdc-menu-content {
-    background-color: grey !important;
+    background-color: transparent !important;
     color: white !important;
     /* Replace with your desired color */
 }
@@ -194,10 +192,3 @@ a {
 .mdc-button {
     min-width: 220px;
 }
-
-.no-data {
-    font-size: 15px;
-    color: white;
-  }
-
-  

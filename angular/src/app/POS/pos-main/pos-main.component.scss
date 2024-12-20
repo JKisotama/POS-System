@@ -358,10 +358,19 @@
 
       .checkout-card {
         .payment-type {
+          .btn{
+            &:active{
+              background-color: $Liquid-Lava;
+              color: $White-Snow;
+            }
+          }
     
           button {
             @include btn-white-bg;
-    
+            &:active{
+              background-color: $Liquid-Lava !important;
+              color: $White-Snow;
+            }
           }
         }
     
@@ -579,7 +588,7 @@
       }
     }
 
-    padding-bottom: 20px;
+    
   }
 
   .note-card {
@@ -608,6 +617,7 @@
         i {
           padding-right: 5px;
         }
+        
       }
     }
 

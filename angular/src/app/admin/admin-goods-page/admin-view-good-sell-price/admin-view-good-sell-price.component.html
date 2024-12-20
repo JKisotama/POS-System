@@ -2,7 +2,7 @@
   <div class="ad-main-content">
     <h2 class="">Good Sell Price Information</h2>
 
-    <div class="ad-main-search d-flex justify-content-between">
+    <div class="ad-main-search d-flex justify-content-between box-bg">
       <div class="ad-main-btn">
         <button
           type="button"
@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="ad-main-data">
+    <div class="ad-main-data box-bg">
       <div class="table-responsive">
         <table
           mat-table
@@ -29,17 +29,16 @@
                 [matMenuTriggerFor]="actionsMenu"
                 class="detail-btn"
               >
-                Actions
-                <mat-icon>arrow_drop_down</mat-icon>
+                <i class="fa-solid fa-caret-down"></i> Actions
               </button>
               <mat-menu #actionsMenu="matMenu">
                 <button
                   mat-menu-item
                   (click)="openEditGoodSellPrice(goodSellPrice)"
                 >
-                  <mat-icon>edit</mat-icon>
-                  <span>Edit</span>
-                </button>
+                <mat-icon>edit</mat-icon>
+                <span>Edit</span>
+              </button>
                 <button mat-menu-item (click)="confirmDelete(goodSellPrice)">
                   <mat-icon>delete</mat-icon>
                   <span>Delete</span>

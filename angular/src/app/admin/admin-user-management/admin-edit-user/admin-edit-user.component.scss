@@ -1,0 +1,9 @@
+@import '../../../../styles.scss';
+
+.admin-update-customer {
+    padding: 16px 20px;
+    .goods-input {
+        @include input-text-field;
+        
+    }
+}

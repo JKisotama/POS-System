@@ -1,7 +1,7 @@
 <div class="ad-main-content">
   <h2 class="">Goods Information</h2>
 
-  <div class="ad-main-search">
+  <div class="ad-main-search box-bg">
     <div class="row">
       <div class="col-md-2 ad-main-btn text-start">
         <button
@@ -9,10 +9,10 @@
           (click)="openCreateGoods()"
           class="btn btn-orange-bg"
         >
-          Create Customer
+          Create Goods
         </button>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8 search-center">
         <form>
           <input
             type="text"
@@ -22,7 +22,7 @@
           />
         </form>
       </div>
-      <div class="col-md-2 ad-main-btn text-end">
+      <div class="col-md-2 ad-main-btn text-end ad-action-btn">
         <form>
           <select class="form-select custom-select" aria-describedby="helpId">
             <option value="">Search Group</option>
@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <div class="ad-main-data">
+  <div class="ad-main-data box-bg">
     <div class="table-responsive">
       <table
         mat-table
@@ -51,37 +51,36 @@
           >
             Action
           </th>
-          <td mat-cell *matCellDef="let goods" class="text-center align-middle">
+          <td mat-cell *matCellDef="let goods" class="text-center align-middle ad-action-btn detail-btn">
             <button
               mat-raised-button
               [matMenuTriggerFor]="actionsMenu"
-              class="detail-btn"
+              class=""
             >
-              Actions
-              <mat-icon>arrow_drop_down</mat-icon>
+              <i class="fa-solid fa-caret-down"></i> Actions
             </button>
             <mat-menu #actionsMenu="matMenu">
               <button mat-menu-item (click)="openViewGoodUnit(goods.goodsId)">
-                <mat-icon>visibility</mat-icon>
+                <i class="fa-regular fa-eye pe-2"></i>
                 <span>View Good Unit</span>
               </button>
               <button
                 mat-menu-item
                 (click)="openViewGoodProperty(goods.goodsId)"
               >
-                <mat-icon>visibility</mat-icon>
+                <i class="fa-regular fa-eye pe-2"></i>
                 <span>View Good Property</span>
               </button>
               <button mat-menu-item (click)="openViewSellPrice(goods.goodsId)">
-                <mat-icon>visibility</mat-icon>
+                <i class="fa-regular fa-eye pe-2"></i>
                 <span>View Sell Price</span>
               </button>
               <button mat-menu-item (click)="openEditGoods(goods)">
-                <mat-icon>edit</mat-icon>
+                <i class="fa-regular fa-edit pe-2"></i>
                 <span>Edit</span>
               </button>
               <button mat-menu-item (click)="confirmDelete(goods)">
-                <mat-icon>delete</mat-icon>
+                <i class="fa-solid fa-trash pe-2"></i>
                 <span>Delete</span>
               </button>
             </mat-menu>
