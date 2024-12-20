@@ -242,6 +242,7 @@ export class PosMainComponent implements OnInit {
               duration: 3000, // Duration in milliseconds
               panelClass: ['snackbar-success'], // Use the success class
             });
+            this.fetchOrderDetails();
             console.log('PO successfully hung');
           },
           error: (error) => {

@@ -16,12 +16,6 @@
         <button *ngIf="userRole === 1 && hasMenuOrder(1)" routerLink="/POS">
           <i class="fa-solid fa-cash-register"></i>
         </button>
-        <button (click)="toggleTheme()">
-          <!-- <i class=" fa-solid fa-moon"></i> -->
-          <i
-            [ngClass]="isLightMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"
-          ></i>
-        </button>
       </div>
       <div class="text-end POS-user-infor">
         <p class="text-capitalize">
@@ -44,6 +38,17 @@
             <button class="dropdown-item" [routerLink]="'/Staff/user-profile'">
               <i class="fa-solid fa-user me-2"></i>
               Staff Profile
+            </button>
+          </li>
+          <li>
+            <button class="dropdown-item" (click)="toggleTheme()">
+              <!-- <i class=" fa-solid fa-moon"></i> -->
+              <i
+                [ngClass]="
+                  isLightMode ? 'fa-solid fa-moon me-2' : 'fa-solid fa-sun me-2'
+                "
+              ></i>
+              {{ isLightMode ? "Dark Mode" : "Light Mode" }}
             </button>
           </li>
           <li>

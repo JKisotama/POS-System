@@ -29,18 +29,17 @@
                 [matMenuTriggerFor]="actionsMenu"
                 class=""
               >
-                Actions
-                <mat-icon>arrow_drop_down</mat-icon>
+              <i class="fa-solid fa-caret-down"></i> Actions
               </button>
               <mat-menu #actionsMenu="matMenu">
                 <button mat-menu-item (click)="openEditGoodUnit(goodsUnit)">
-                  <mat-icon>edit</mat-icon>
+                  <i class="fa-regular fa-edit pe-2"></i>
                   <span>Edit</span>
-                </button>
+                  </button>
                 <button mat-menu-item (click)="confirmDelete(goodsUnit)">
-                  <mat-icon>delete</mat-icon>
+                  <i class="fa-solid fa-trash pe-2"></i>
                   <span>Delete</span>
-                </button>
+                  </button>
               </mat-menu>
             </td>
           </ng-container>

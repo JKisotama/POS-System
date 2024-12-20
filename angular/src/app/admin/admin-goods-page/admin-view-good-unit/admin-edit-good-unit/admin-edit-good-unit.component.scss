@@ -1,7 +1,6 @@
 @import "../../../../../styles.scss";
 
 .admin-edit-good-unit {
-    background-color: $Gluon-Grey !important;
     padding: 16px 20px;
     .prices-input {
         @include input-text-field;

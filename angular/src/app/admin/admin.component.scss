@@ -1,33 +1,91 @@
 @import "../../styles.scss";
 
-.ad-header-component{
+:host {
+    body.dark-mode & {
+    
+    .ad-sidenav {
+      transition: background-color 0.3s ease, color 0.3s ease;
+      background-color: $Gluon-Grey; // Màu nền cho sidebar trong dark mode
+      color: $White-Snow; // Màu chữ trong dark mode
+      min-height: 700px;
+
+      a {
+        color: $White-Snow;
+        &:hover {
+          color: $Liquid-Lava; // Màu chữ khi hover
+        }
+      }
+
+      .menu-item {
+        border-bottom: 1px solid $Slate-Grey; // Viền chia cách menu
+      }
+    }
+
+    .ad-header {
+      background-color: transparent; // Header nền dark mode
+    }
+  }
+  body.light-mode & {
+    .ad-sidenav {
+      transition: background-color 0.3s ease, color 0.3s ease;
+      background-color: $Sidenav-light; // Màu nền cho sidebar trong light mode
+      color: $Dark-Void !important; // Màu chữ trong light mode
+      min-height: 700px;
+      a {
+        color: $Dark-Void !important;
+        &:hover {
+          color: $Dark-Void !important; // Màu chữ khi hover
+        }
+      }
+
+      .menu-item {
+        border-bottom: 1px solid $Dusty-Grey; // Viền chia cách menu
+      }
+
+    }
+
+    .ad-header {
+      background-color: transparent; 
+    }
+  }
+
+  // Các style khác áp dụng chung
+  .ad-sidenav {
+    border-radius: 20px;
+    padding: 20px;
+
+    .menu-item {
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      
+    }
+  }
+
+  .ad-header-component {
     padding: 40px 40px 0 40px;
-    .ad-header{
-        
-        
-    }
 
-    .ad-sidenav{
-        height: 1000px;
-        background-color: $Gluon-Grey;
-        border-radius: 20px;
-        
+    .ad-header {
+      font-size: 18px;
+      font-weight: bold;
     }
+  }
+
 }
 
-.galaxy{
-    background-color: $Dark-Void;
-    
-}
 .hidden-content {
-    display: none;
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .hidden-content {
+    display: block !important;
   }
-  @media screen and (max-width: 1200px) {
-    .hidden-content {
-      display: block;
-    }
-    .ad-header-component{
-      display: none;
-    }
-    
+
+  .ad-header-component {
+    display: none !important;
   }
+
+}
