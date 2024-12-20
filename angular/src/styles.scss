@@ -62,16 +62,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --mdc-snackbar-supporting-text-color: #fff;
   }
   .custom-dialog-container {
-    --mdc-dialog-container-color: $Dusty-Grey;
-    --mdc-dialog-container-shape: 20px;
+    --mdc-dialog-container-color: none;
+    // --mdc-dialog-container-shape: 20px;
+    .mat-mdc-dialog-component-host{
+      --mdc-dialog-container-color: none;
+    }
     
-
   }
-  --mat-menu-container-color: grey;
-  --mat-menu-item-label-text-color: white;
-  --mdc-protected-button-container-color: grey;
-  --mat-menu-item-icon-color: white;
-  --mat-icon-color: white;
+  // --mat-menu-container-color: grey;
+  // --mat-menu-item-label-text-color: white;
+  // --mdc-protected-button-container-color: grey;
+  // --mat-menu-item-icon-color: white;
+  // --mat-icon-color: white;
 }
 
 

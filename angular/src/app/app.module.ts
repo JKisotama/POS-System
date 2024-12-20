@@ -104,6 +104,7 @@ import { AdminEditGoodPropertyComponent } from './admin/admin-goods-page/admin-v
 import { UserProfileComponent } from './staff/user-profile/user-profile.component';
 import { EditUserProfileComponent } from './staff/user-profile/edit-user-profile/edit-user-profile.component';
 
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 @NgModule({
   declarations: [
     AppComponent,

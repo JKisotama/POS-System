@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Renderer2 } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { CustomerDTO } from '../../../API/Staff/Customer/model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -23,6 +23,7 @@ export class DialogCustomerComponent implements OnInit {
   selectedCustomer: CustomerDTO | null = null; 
   
   constructor(
+    private renderer: Renderer2,
     public dialogRef: MatDialogRef<DialogCustomerComponent>,
     private customerService: CustomerService,
     private fb: FormBuilder,

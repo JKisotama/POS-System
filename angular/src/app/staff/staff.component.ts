@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-staff',
@@ -15,7 +16,12 @@ export class StaffComponent implements OnInit {
   isStaffCustomer = false
   isStaffUserProfile = false;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute,
+    private themeService: ThemeService,
+    private renderer: Renderer2
+  ){}
 
   ngOnInit() {
     this.router.events.subscribe(() => {
@@ -27,6 +33,10 @@ export class StaffComponent implements OnInit {
       this.isStaffSupplier = currentRoute === '/Staff/supplier'
       this.isStaffCustomer = currentRoute === '/Staff/customer'
       this.isStaffUserProfile = currentRoute === '/Staff/user-profile'
+
+      const themeClass = this.themeService.isDarkMode() ? 'dark-mode' : 'light-mode';
+      this.renderer.addClass(document.body, themeClass);
+ 
     });
   }
 }

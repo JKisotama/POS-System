@@ -1,24 +1,56 @@
 @import "../../variables";
 
 
-.ad-sidenav{
-  .nav{
-      .nav-link{
-        color: $White-Snow;
-        
-          padding: 20px 31px 20px 30px;
-          i{
-              padding-right: 15px;
-          }
-          &.active { // Fix: Apply `.active` directly to `.nav-link`
-            background-color: $White-Snow !important; // Background for active link
-            color: $Dark-Void; // Optional: Adjust text color for active state
-            font-weight: bold;
-          }
-          &:hover {
-              background-color: $Dusty-Grey; // Change background on hover (example)
-              color: $Dark-Void; // Change text color on hover (example)
+:host{
+  body.dark-mode &{
+    .ad-sidenav{
+      .nav{
+          .nav-link{
+            transition: background-color 0.3s ease, color 0.3s ease;
+            color: $White-Snow;
+              padding: 20px 31px 20px 30px;
+              i{
+                  padding-right: 15px;
+              }
+              &.active { 
+                transition: background-color 0.3s ease, color 0.3s ease;
+                background-color: $White-Snow !important; // Background for active link
+                color: $Dark-Void; // Optional: Adjust text color for active state
+                font-weight: bold;
+              }
+              &:hover {
+                  transition: background-color 0.3s ease, color 0.3s ease;
+                  background-color: $Dusty-Grey; // Change background on hover (example)
+                  color: $Dark-Void; // Change text color on hover (example)
+              }
           }
       }
+    }
+  }
+  body.light-mode &{
+    .ad-sidenav{
+      .nav{
+          .nav-link{
+            transition: background-color 0.3s ease, color 0.3s ease;
+            color: $Dark-Void;
+            
+              padding: 20px 31px 20px 30px;
+              i{
+                  padding-right: 15px;
+              }
+              &.active { 
+                transition: background-color 0.3s ease, color 0.3s ease;
+                background-color: $Dark-Void !important; // Background for active link
+                color: $White-Snow; // Optional: Adjust text color for active state
+                font-weight: bold;
+              }
+              &:hover {
+                  transition: background-color 0.3s ease, color 0.3s ease;
+                  background-color: $Dusty-Grey; // Change background on hover (example)
+                  color: $White-Snow; // Change text color on hover (example)
+              }
+          }
+      }
+    }
   }
 }

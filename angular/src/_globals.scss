@@ -2,36 +2,328 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 
-
-
-
-
-body{
-    background-color: $Dark-Void;
-    font-family: 'Manrope', sans-serif;
+:root{
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    font-size: clamp(12px, 1.5vw, 16px);
+    font-size: clamp(16px, 1.5vw, 18px) !important;
 }
+body{
+    &.dark-mode{
+        // @include dark-mode;
+        background-color: $Dark-Void !important;
+        transition: background-color 0.3s, color 0.3s;
+        h1, h2, h3, h4, h5, h6{
+            color: $White-Snow;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        p{
+            transition: background-color 0.3s, color 0.3s;
+            color: $White-Snow;
+        }
+        a{
+            transition: background-color 0.3s, color 0.3s;
+            color: $White-Snow; 
+        }
+        span{
+            transition: background-color 0.3s, color 0.3s;
+            color: $White-Snow;
+        }
+        tr{
+            th{
+                transition: background-color 0.3s, color 0.3s;
+                color: $White-Snow;
+            }
+            td{
+                transition: background-color 0.3s, color 0.3s;
+                color: $White-Snow;
+            }
+        }
+        form{
+            label{
+                transition: background-color 0.3s, color 0.3s;
+                color: $White-Snow !important;
+            }
+        }
 
+        .cdk-overlay-pane{
+            background-color: transparent !important;
+        }
+        .mat-mdc-menu-panel{
+            background-color: $Gluon-Grey !important;
+            button{
+                &:hover{
+                    background-color: $Dusty-Grey;
+                    color: $Dark-Void !important;
+                }
+            }
+        }
+        .box-bg{
+            transition: background-color 0.3s, color 0.3s;
+            background-color: $Slate-Grey;
+            border-radius: 20px ;
+        }
+
+        .search-bar-admin{
+            transition: background-color 0.3s, color 0.3s;
+            background-color: $Gluon-Grey;
+            border-radius: 100px !important;
+            border: $Dusty-Grey solid 1px;
+            color: $White-Snow;
+            &::placeholder{
+                transition: background-color 0.3s, color 0.3s;
+                color: $Dusty-Grey;
+            }
+        }
+        .ad-action-btn{
+            button{
+                transition: background-color 0.3s, color 0.3s;
+                @include btn-gray-border;
+            }
+            select{
+                transition: background-color 0.3s, color 0.3s;
+                @include btn-gray-border;
+                color: $White-Snow !important;
+
+                option{
+                    background-color: $Gluon-Grey;
+                    color: $White-Snow !important;
+                    
+                }
+            }
+        }
+        .dialog-form{
+            background-color: $Gluon-Grey;
+            .form-input {
+                @include input-text-field;
+                form{
+                    label{
+                    }
+                    input{
+                        width: 100%;
+                        border-radius: 5px;
+                        
+                        &::placeholder{
+                        }
+                        
+                    }
+                    select{
+                        background-color: transparent !important;
+                        option{
+                        }
+                        &::placeholder{
+                        }
+                    
+                      }
+                }
+
+                
+            }
+            .form-table{
+                table{
+                    tr{
+                        td{
+                            select{
+                                border: 1px dashed $White-Snow;
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+
+        .card-item{
+            background-color: $Gluon-Grey;
+        }
+        .btn-zone {
+            @include double-btn-zone;
+            button {
+                @include btn-orange-border;
+                &:last-child {
+                    @include btn-gray-border;
+                }
+            }
+        }
+
+    }
+    &.light-mode{
+        // @include light-mode;
+        background-color: $Light-mode-bg !important;
+        transition: background-color 0.3s, color 0.3s;
+        h1, h2, h3, h4, h5, h6{
+            color: $Dark-Void;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        p{
+            transition: background-color 0.3s, color 0.3s;
+            color: $Dark-Void;
+        }
+        a{
+            transition: background-color 0.3s, color 0.3s;
+            color: $Dark-Void; 
+        }
+        span{
+            transition: background-color 0.3s, color 0.3s;
+            color: $Dark-Void;
+        }
+        tr{
+            th{
+                transition: background-color 0.3s, color 0.3s;
+                color: $Dark-Void;
+            }
+            td{
+                transition: background-color 0.3s, color 0.3s;
+                color: $Dark-Void;
+            }
+        }
+        form{
+            label{
+                transition: background-color 0.3s, color 0.3s;
+                color: $Dark-Void !important;
+            }
+        }
+        .cdk-overlay-pane{
+            // background-color: #f7f2eb !important;
+            background-color: transparent;
+            
+        }
+        .mat-mdc-menu-panel{
+            background-color: #f7f2eb !important;
+        }
+        .box-bg{
+            transition: background-color 0.3s, color 0.3s;
+            background-color: $Box-bg-light;
+            border-radius: 20px ;
+        }
+        .search-bar-admin{
+            transition: background-color 0.3s, color 0.3s;
+            background-color: $White-Snow;
+            border-radius: 100px !important;
+            border: $Dusty-Grey solid 1px;
+            color: $Dark-Void;
+            &::placeholder{
+                transition: background-color 0.3s, color 0.3s;
+                color: $Dusty-Grey;
+            }
+        }
+        .ad-action-btn{
+            button{
+                transition: background-color 0.3s, color 0.3s;
+                @include btn-white-bg;
+            }
+            select{
+                transition: background-color 0.3s, color 0.3s;
+                @include btn-white-bg;
+                option{
+                    background-color: $White-Snow;
+                    color: $Dark-Void;
+                }
+            }
+        }
+        .dialog-form{
+            background-color: #f7f2eb;
+            .form-input {
+                @include input-text-field;
+                form{
+                    label{
+                    }
+                    input{
+                        background-color: $White-Snow;
+                        color: $Dark-Void;
+                        width: 100%;
+                        border-radius: 5px;
+                        border: 1px solid $Dark-Void;
+                        
+                        &::placeholder{
+                            color: $Dusty-Grey;
+                        }
+                        
+                    }
+                    select{
+                        background-color: transparent !important;
+                        color: $Dark-Void;
+                        border: 1px dashed $Dark-Void;
+                        option{
+                          background-color: $White-Snow;
+                          color: $Dusty-Grey;
+                        }
+                        &::placeholder{
+                            color: $Dusty-Grey;
+                        }
+                    
+                      }
+                }
+            
+                
+            }
+            .form-table{
+                table{
+                    tr{
+                        td{
+                            select{
+                                border: 1px dashed $White-Snow;
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+        .card-item{
+            background-color: $Box-bg-light;
+        }
+        .btn-zone {
+            @include double-btn-zone;
+            button {
+                @include btn-orange-none-bg;
+                &:last-child {
+                    @include btn-gray-bg-light-exit; 
+                }
+            }
+        }
+
+    }
+
+}
 
 h1, h2, h3, h4, h5, h6{
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    color: $White-Snow;
+}
+h1 {
+    font-size: 2.5rem; // Kích thước font cho h1
+}
+
+h2 {
+    font-size: 2rem; // Kích thước font cho h2
+}
+
+h3 {
+    font-size: 1.75rem; // Kích thước font cho h3
+}
+
+h4 {
+    font-size: 1.5rem; // Kích thước font cho h4
+}
+
+h5 {
+    font-size: 1.25rem; // Kích thước font cho h5
+}
+
+h6 {
+    font-size: 1rem; // Kích thước font cho h6
 }
 p{
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    color: $White-Snow;
 
 }
 input {
     border-right: none;
-    border-radius: 5px 0 0 5px !important;
+    border-radius: 5px !important;
 
     &::placeholder {
         color: $Dusty-Grey;
@@ -52,35 +344,16 @@ li{
 }
 a{
     text-decoration: none;
-    color: $White-Snow; 
-}
-span{
-    color: $White-Snow;
-}
-tr{
-    th{
-        color: $White-Snow;
-    }
-    td{
-        color: $White-Snow;
-    }
 }
 
-form{
-    label{
-        color: $White-Snow !important;
-    }
+
+.search-center{
+    margin: auto 0;
 }
 
-.btn-zone {
-    @include double-btn-zone;
-    button {
-        @include btn-orange-border;
-        &:last-child {
-            @include btn-gray-border;
-        }
-    }
-}
+
+
+
 .btn-orange-bg{
     background-color: $Liquid-Lava;
     color: $White-Snow;
@@ -96,7 +369,6 @@ form{
 }
 
 .card-item{
-    background-color: $Gluon-Grey;
     padding: 15px 20px;
     border-radius: 12px;
     height: 100%;
@@ -104,38 +376,22 @@ form{
 }
 
 .dialog-form{
-    background-color: $Gluon-Grey !important;
     padding: 16px 20px;
-    .form-input {
-        @include input-text-field;
-        form{
-            select{
-                border: 1px dashed $White-Snow;
-            }
-        }
-        
-    }
-    .form-table{
-        table{
-            tr{
-                td{
-                    select{
-                        border: 1px dashed $White-Snow;
-                    }
-                }
-            }
-        }
-    }
+    // .form-table{
+    //     table{
+    //         tr{
+    //             td{
+    //                 select{
+    //                     border: 1px dashed $White-Snow;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
     
 }
-.search-bar-admin{
-    background-color: $Gluon-Grey;
-    border-radius: 100px !important;
-    border: $Dusty-Grey solid 1px;
-    color: $White-Snow;
-    &::placeholder{
-        color: $Dusty-Grey;
-    }
+.min-hight-set{
+    min-height: 100vh;
 }
 
 
@@ -154,7 +410,9 @@ form{
 .mat-table {
     background-color: transparent; // Ensure the table itself has no background color
 }
-
+.mdc-button {
+    min-width: 220px;
+}
 
 
 

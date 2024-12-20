@@ -3,6 +3,35 @@
 
 
 
+:host{
+
+    body.dark-mode &{
+        
+        .POS-user-infor{
+            p{
+                transition: background-color 0.3s, color 0.3s;
+                color: $Dusty-Grey;
+                span{
+                    transition: background-color 0.3s, color 0.3s;
+                    color: $White-Snow;
+                }
+            }
+        }
+
+    }
+    body.light-mode &{
+        .POS-user-infor{
+            p{
+                color: $Dusty-Grey;
+                span{
+                    transition: background-color 0.3s, color 0.3s;
+                    color: $Dark-Void;
+                }
+            }
+        }
+
+    }
+}
 .POS-user-btn{
     button{
         padding: 14px 42px !important;
@@ -47,6 +76,7 @@
     button{
         margin: 0 10px 0 0;
         span{
+            font-weight: bold !important;
             .mat-mdc-button-touch-target{
                 margin-right: 10px !important;
             }
@@ -64,10 +94,8 @@
     margin-bottom: 50px !important;
     .POS-logo{
         img{
-            height: 80px;
-            
-            
-            
+            height: 67px;
+
         }
     }
     .POS-user{
@@ -101,12 +129,10 @@
             
         }
 
-        .POs-user-infor{
+        .POS-user-infor{
             padding: 9px 15px;
             p{
-                color: $Dusty-Grey;
                 span{
-                    color: $White-Snow;
                     font-weight: bold !important;
                 }
             }

@@ -2,9 +2,197 @@
 
 
 
-.dialog {
-  background-color: $Dark-Void !important;
-  padding: 25px 30px;
+:host{
+  body.dark-mode &{
+    .dialog-form {
+      .custom-table {
+        .mat-header-cell, .mat-cell {
+        }
+      
+        .mat-header-cell {
+        }
+      
+       
+      }
+    
+      .header {
+        h2 {
+        }
+    
+        .search-bar {
+          @include search-bar-input;
+    
+          form {
+            input {    
+              border-right: none;
+              border-radius: 5px 0 0 5px !important;    
+              &::placeholder {
+                color: $Dusty-Grey;
+              }
+              
+            }
+    
+            button {
+              @include btn-white-border;
+              border-radius: 0 5px 5px 0 !important;
+              border-left: none !important;    
+            }
+            
+    
+          }
+    
+        }
+    
+        .add-new-ctm {
+          button {
+            @include btn-green-border;    
+          }
+        }
+      }
+    
+      .dialog-main {
+        border-top: 1px solid $White-Snow;
+    
+        .dialog-main-left {}
+    
+        .dialog-main-right {
+          .customer-input {
+            @include input-text-field;
+          }
+        }
+      }
+    
+    
+      table {
+        .pd-name {
+          td {
+          }
+        }
+    
+        td {
+          select {
+            background-color: transparent !important;
+            color: $White-Snow;
+            option {
+              background-color: $Dusty-Grey;
+            }
+          }
+    
+          input {
+            background-color: transparent;
+            border: 1px dashed $White-Snow;
+            color: $White-Snow;
+    
+            :focus {
+              border: 1px solid $White-Snow !important;
+            }
+          }
+        }
+      }
+    }
+    
+    .addItem {
+      @include btn-white-border;    
+    }
+    
+  }
+  body.light-mode &{
+    .dialog-form {
+      .custom-table {
+        .mat-header-cell, .mat-cell {
+        }
+      
+        .mat-header-cell {
+        }
+      
+       
+      }
+    
+      .header {
+        h2 {
+        }
+    
+        .search-bar {
+          @include search-bar-input-light;
+    
+          form {
+            input {    
+              border-right: none;
+              border-radius: 5px 0 0 5px !important;    
+              &::placeholder {
+                color: $Dusty-Grey;
+              }
+            }
+    
+            button {
+              @include btn-white-bg;
+              border-radius: 0 5px 5px 0 !important;
+              border-left: none !important;
+              border: 1px solid $Dark-Void ;
+            }
+            
+    
+          }
+    
+        }
+    
+        .add-new-ctm {
+          button {
+            @include btn-green-border;    
+          }
+        }
+      }
+    
+      .dialog-main {
+        border-top: 1px solid $Dark-Void;
+    
+        .dialog-main-left {}
+    
+        .dialog-main-right {
+          .customer-input {
+            @include input-text-field;
+          }
+        }
+      }
+    
+    
+      table {
+        .pd-name {
+          td {
+          }
+        }
+    
+        td {
+          select {
+            background-color: transparent !important;
+            border: 1px solid $Dark-Void;
+    
+            option {
+              background-color: $White-Snow;
+              color: $Dark-Void;
+            }
+          }
+    
+          input {
+            background-color: transparent;
+            border: 1px dashed $Dark-Void;
+    
+            :focus {
+              border: 1px solid $White-Snow !important;
+            }
+          }
+        }
+      }
+    }
+    
+    .addItem {
+      @include btn-white-border;    
+    }
+  }
+}
+.dialog-form {
+  
+  padding: 25px 30px !important;
   .custom-table {
     .mat-header-cell, .mat-cell {
       padding-bottom: 16px; // Customize the padding bottom
@@ -19,21 +207,17 @@
 
   .header {
     h2 {
-      color: $White-Snow;
       font-size: 30px;
       margin-bottom: 20px;
     }
 
     .search-bar {
-      @include search-bar-input;
-
       form {
         input {
           border-right: none;
           border-radius: 5px 0 0 5px !important;
 
           &::placeholder {
-            color: $Dusty-Grey;
           }
 
           &:focus {
@@ -43,7 +227,6 @@
         }
 
         button {
-          @include btn-white-border;
           border-radius: 0 5px 5px 0 !important;
           border-left: none !important;
         }
@@ -55,8 +238,7 @@
 
     .add-new-ctm {
       button {
-        @include btn-green-border;
-        padding: 10px 20px;
+        padding: 10px 20px !important;
         border-radius: 5px;
 
       }
@@ -64,13 +246,11 @@
   }
 
   .dialog-main {
-    border-top: 1px solid $White-Snow;
 
     .dialog-main-left {}
 
     .dialog-main-right {
       .customer-input {
-        @include input-text-field;
       }
     }
   }
@@ -84,29 +264,22 @@
   table {
     .pd-name {
       td {
-        color: $Dark-Void !important;
       }
     }
 
     td {
       select {
         background-color: transparent !important;
-        color: $White-Snow;
 
         option {
-          background-color: $Dusty-Grey;
-          color: $White-Snow;
         }
       }
 
       input {
         background-color: transparent;
-        color: $White-Snow;
         border-radius: 5px;
-        border: 1px dashed $White-Snow;
 
         :focus {
-          border: 1px solid $White-Snow !important;
         }
       }
     }
@@ -114,11 +287,8 @@
 }
 
 .addItem {
-  @include btn-white-border;
   padding: 8px !important;
 
-  
-  
 }
 
 

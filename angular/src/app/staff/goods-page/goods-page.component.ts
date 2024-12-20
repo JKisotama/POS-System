@@ -139,7 +139,7 @@ export class GoodsPageComponent implements OnInit {
   openViewSellPrice(goodsId: string): void {
     const dialogRef = this.dialog.open(ViewGoodSellPriceComponent, {
       width: '80vw',
-      height: '90vh',
+      
       panelClass: 'custom-dialog-container',
       data: { goodsId }
     });
@@ -154,7 +154,7 @@ export class GoodsPageComponent implements OnInit {
   openViewGoodProperty(goodsId: string): void {
     const dialogRef = this.dialog.open(ViewGoodPropertyComponent, {
       width: '80vw',
-      height: '90vh',
+      
       panelClass: 'custom-dialog-container',
       data: {goodsId}
     });
@@ -171,7 +171,7 @@ export class GoodsPageComponent implements OnInit {
   openViewGoodUnit(goodsId: string): void {
     const dialogRef = this.dialog.open(ViewGoodUnitComponent, {
       width: '80vw',
-      height: '90vh',
+      
       panelClass: 'custom-dialog-container',
       data: {goodsId}
     });
