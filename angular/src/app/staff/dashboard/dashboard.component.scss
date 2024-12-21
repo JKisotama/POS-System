@@ -2,6 +2,53 @@
 @import "../../../styles.scss";
 @import "../../../_globals.scss";
 
+
+:host{
+    body.dark-mode &{
+        input[type="date"]{
+            &::-webkit-calendar-picker-indicator {
+                transition: all 0.3s ;
+                filter: invert(1); // Invert the color of the calendar icon
+            }
+          }
+        .dashboard-btn{
+            @include btn-white-border;
+            button{
+                
+                color: $White-Snow !important;
+            }
+            &:hover{
+                // background-color: $Dark-Void;
+                color: $Dark-Void !important;
+                button{
+                    color: $Dark-Void !important;
+                }
+            }
+        }
+    }
+    body.light-mode &{
+        input[type="date"]{
+            &::-webkit-calendar-picker-indicator {
+                transition: all 0.3s ;
+            }
+          }
+        .dashboard-btn{
+            @include btn-orange-none-bg;
+            button{
+                color: $Dark-Void !important;
+            }
+            &:hover{
+                // background-color: $White-Snow;
+                color: $White-Snow !important;
+                button{
+                    color: $White-Snow !important;
+                }
+            }
+        }
+    }
+}
+
+
 .ad-main-content {
     .ad-main-search {
         padding: 22px 50px;
