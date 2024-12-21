@@ -1,4 +1,5 @@
-﻿using POS_System_DAL.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using POS_System_DAL.Data;
 using POS_System_DAL.Models;
 
 namespace POS_System_BAL.Services.SaleReport;
@@ -14,27 +15,28 @@ public class SaleServices : ISaleServices
 
     public async Task<IEnumerable<TblPo>> GetSalesData(string storeId, DateTime startDate, DateTime endDate)
     {
-        var result = _onlinePosContext.TblPos
-            .Where(pos => pos.PosStatus == 3
+        var result = await  _onlinePosContext.TblPos
+            .Where(pos => (pos.PosStatus == 3 || pos.PosStatus == 2 || pos.PosStatus == 1)
                           && pos.PosDate >= startDate
                           && pos.PosDate <= endDate
                           && pos.StoreId == storeId)
             .GroupBy(pos => pos.PosDate)
             .Select(g => new TblPo
             {
-                PosNumber = g.FirstOrDefault().PosNumber, // Get the PosNumber from the first record in the group
+                PosNumber = g.FirstOrDefault().PosNumber, 
                 PosDate = g.Key,
-                PosTotal = g.Sum(pos => pos.PosTotal) ?? 0, // Handle nullable sums
+                PosStatus = g.FirstOrDefault().PosStatus,
+                PosTotal = g.Sum(pos => pos.PosTotal) ?? 0, 
                 PosDiscount = g.Sum(pos => pos.PosDiscount) ?? 0,
                 PosTopay = g.Sum(pos => pos.PosTopay) ?? 0,
-                CashierId = g.FirstOrDefault().CashierId, // Get the CashierId from the first record
-                CustomerName = g.FirstOrDefault().CustomerName, // Get the CustomerName from the first record
-                PosPaymentmethod = g.FirstOrDefault().PosPaymentmethod, // Get the PosPaymentMethod from the first record
-                Payer = g.FirstOrDefault().Payer, // Get the Payer from the first record
+                CashierId = g.FirstOrDefault().CashierId, 
+                CustomerName = g.FirstOrDefault().CustomerName, 
+                PosPaymentmethod = g.FirstOrDefault().PosPaymentmethod, 
+                Payer = g.FirstOrDefault().Payer,
                 Paymentdate = g.FirstOrDefault().Paymentdate 
             })
             .OrderBy(g => g.PosDate)
-            .ToList();
+            .ToListAsync();
 
         return result;
     }

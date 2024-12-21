@@ -4,7 +4,7 @@ export interface SaleReport {
     cashierId: string;
     customerId: string | null;
     customerName: string;
-    posStatus: string | null;
+    posStatus: number| null;
     posTotal: number;
     posDiscount: number;
     posTopay: number;

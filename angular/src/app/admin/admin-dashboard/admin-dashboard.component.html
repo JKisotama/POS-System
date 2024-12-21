@@ -6,7 +6,7 @@
       <div class="col-md-6 search-center">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5">
               <label for="startDate">Start Date</label>
               <input
                 type="date"
@@ -15,7 +15,7 @@
                 formControlName="startDate"
               />
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
               <label for="endDate">End Date</label>
               <input
                 type="date"
@@ -34,6 +34,30 @@
         </form>
       </div>
     </div>
+  </div>
+
+  <div class="ad-main-data box-bg"> 
+    <h4>Total Purchase Order</h4>
+
+    <div class="row mt-4">
+      <div class="col-md-4 mt-2 text-warning">
+        <label class="fw-medium">Purchase Hang: {{ purchaseHangCount }}</label>
+      </div>
+      <div class="col-md-4 mt-2 text-danger">
+        <label class="fw-medium">Purchase Cancel: {{ purchaseCancelCount }}</label>
+      </div>
+      <div class="col-md-4 mt-2 text-success">
+        <label class="fw-medium">Purchase Checked Out: {{ purchaseCheckedOutCount }}</label>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <label class="fw-medium">All Purchases: {{ getTotalPurchaseCount() }}</label>
+    </div>
+  </div>
   </div>
 
   <div class="ad-main-data box-bg">

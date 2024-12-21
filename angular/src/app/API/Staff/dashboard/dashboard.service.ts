@@ -28,4 +28,14 @@ export class DashboardService {
 
     return this.http.get<GoodsSoldReport[]>(`${this.baseUrl}/GetReportByGoodsSold`, { params });
   }
+
+  getTotalPurchaseOrder(storeId: string, startDate: string, endDate: string): Observable<SaleReport[]> {
+    const params = new HttpParams()
+      .set('storeId', storeId)
+      .set('startDate', startDate)
+      .set('endDate', endDate);
+
+    return this.http.get<SaleReport[]>(`${this.baseUrl}/GetSaleReport`, { params });
+
+  }
 }

@@ -23,7 +23,6 @@ namespace POS_Final_Year.Controller
             _receiptServices = receiptServices;
         }
 
-        // GET: api/Receipts
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TblReceipt>>> GetTblReceipts(string store_id)
         {
@@ -31,7 +30,6 @@ namespace POS_Final_Year.Controller
             return Ok(store_id);
         }
 
-        // GET: api/Receipts/5
         [HttpGet("Get Reciept")]
         public async Task<ActionResult<TblReceipt>> GetTblReceipt(string store_id, string receipt_number)
         {

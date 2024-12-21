@@ -15,6 +15,7 @@ export class AdminDashboardComponent implements OnInit{
 
 
   form: FormGroup;
+  totalPurchase: SaleReport[] = [];
   
     storeId: string | null = null;
     saleReports = new MatTableDataSource<SaleReport>();
@@ -22,6 +23,10 @@ export class AdminDashboardComponent implements OnInit{
     saleReportColumns: string[] = ['posNumber', 'posDate', 'customerName', 'posTotal', 'posDiscount', 'posTopay', 'posPaymentmethod'];
     goodsSoldReportColumns: string[] = ['goodsName', 'itemUnit', 'propertyValue', 'itemQuantity', 'lineTotal'];
   
+    purchaseHangCount = 0;
+    purchaseCancelCount = 0;
+    purchaseCheckedOutCount = 0;
+
     constructor(
       private authenticationService: AuthenticationService,
       private dashboardService: DashboardService,
@@ -48,20 +53,52 @@ export class AdminDashboardComponent implements OnInit{
         const formattedStartDate = this.customDatePipe.transform(this.form.value.startDate);
         const formattedEndDate = this.customDatePipe.transform(this.form.value.endDate);
   
-        this.loadSaleReports(formattedStartDate, formattedEndDate);
+        // this.loadSaleReports(formattedStartDate, formattedEndDate);
         this.loadGoodsSoldReports(formattedStartDate, formattedEndDate);
+        this.loadTotalPurchase(formattedStartDate, formattedEndDate)
       }
     }
   
-    loadSaleReports(startDate: string, endDate: string): void {
-      this.dashboardService.getSaleReport(this.storeId!, startDate, endDate).subscribe((data) => {
-        this.saleReports.data = data;
-      });
-    }
+    // loadSaleReports(startDate: string, endDate: string): void {
+    //   this.dashboardService.getSaleReport(this.storeId!, startDate, endDate).subscribe((data) => {
+    //     this.saleReports.data = data;
+    //   });
+    // }
   
     loadGoodsSoldReports(startDate: string, endDate: string): void {
       this.dashboardService.getReportByGoodsSold(this.storeId!, startDate, endDate).subscribe((data) => {
         this.goodsSoldReports.data = data;
       });
+    }
+
+    loadTotalPurchase(startDate: string, endDate: string) {
+      this.dashboardService.getTotalPurchaseOrder(this.storeId!, startDate, endDate).subscribe((response) => {
+        this.totalPurchase = response;
+        this.calculatePurchaseCounts();
+      });
+    }
+
+    calculatePurchaseCounts(): void {
+      this.purchaseHangCount = this.totalPurchase.filter(p => p.posStatus === 1).length;
+      this.purchaseCancelCount = this.totalPurchase.filter(p => p.posStatus === 2).length;
+      this.purchaseCheckedOutCount = this.totalPurchase.filter(p => p.posStatus === 3).length;
+    }
+
+    
+getStatusLabel(status: number): string {
+      switch (status) {
+        case 1:
+          return 'Purchase Hang';
+        case 2:
+          return 'Purchase Cancel';
+        case 3:
+          return 'Purchase Checked Out';
+        default:
+          return 'Unknown Status';
+      }
+    }
+  
+    getTotalPurchaseCount(): number {
+      return this.totalPurchase.length;
     }
 }
