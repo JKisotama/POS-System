@@ -225,7 +225,7 @@ export class PosMainComponent implements OnInit {
   }
 
   hangPO(pos: POSDto): void {
-    const message = pos.posStatus === 3 
+    const message = pos.posStatus === 1 
     ? 'Are you sure you want to bring this Purchase back?' 
     : 'Are you sure you want to hang this Purchase Order?';
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -235,14 +235,15 @@ export class PosMainComponent implements OnInit {
     
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result && this.storeId && this.currentPosNumber) {
-        this.posService.hangPo(this.storeId, this.currentPosNumber).subscribe({
+      if (result && this.storeId && pos.posNumber) {
+        this.posService.hangPo(this.storeId, pos.posNumber).subscribe({
           next: () => {
             this.snackBar.open('Hang order successfully!', 'Close', {
               duration: 3000, // Duration in milliseconds
               panelClass: ['snackbar-success'], // Use the success class
             });
             this.fetchOrderDetails();
+            this.fetchPoHangList();
             console.log('PO successfully hung');
           },
           error: (error) => {
@@ -295,6 +296,31 @@ export class PosMainComponent implements OnInit {
         }
       );
     }
+  }
+
+  cancelPO(currentPosNumber: string): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { message: 'Are you sure you want to cancel this purchase?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (this.storeId && currentPosNumber) {
+          this.posService.cancelPO(this.storeId, currentPosNumber).subscribe(
+            () => {
+              this.snackBar.open('Purchase order cancelled successfully!', 'Close', { duration: 3000, panelClass: ['snackbar-success'] });
+              this.fetchPOList(); 
+              this.fetchOrderDetails();
+              this.fetchPoHangList();
+            },
+            (error) => {
+              console.error('Error cancelling purchase order:', error);
+              this.snackBar.open('Error cancelling purchase order.', 'Close', { duration: 3000, panelClass: ['snackbar-error'] });
+            }
+          );
+        }
+      }
+    });
   }
 
 

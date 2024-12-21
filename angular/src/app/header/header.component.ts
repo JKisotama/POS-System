@@ -16,6 +16,8 @@ export class HeaderComponent  implements OnInit {
   items: MenuItem[] | undefined;
   fullName: string | null = null;
   userRole: number | null = null;
+  userType: number | null = null;
+
   storeId: string | null = null;
   loginName: string | null = null;
   userData: UserDTO | null = null;
@@ -43,6 +45,7 @@ export class HeaderComponent  implements OnInit {
     this.userRole = this.authenticationService.getUserRole();
     this.storeId = this.authenticationService.getStoreIdUser();
     this.loginName = this.authenticationService.getLoggedInUserName();
+    this.userType = this.authenticationService.getUserType();
     this.getUserByLoginName();
     this.getMenus();
 

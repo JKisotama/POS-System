@@ -36,8 +36,18 @@
         class="mat-elevation-z8 parent-table"
       >
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef class="text-center align-middle">Action</th>
-          <td mat-cell *matCellDef="let users" class="text-center align-middle ad-action-btn detail-btn">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            class="text-center align-middle"
+          >
+            Action
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let users"
+            class="text-center align-middle ad-action-btn detail-btn"
+          >
             <button
               mat-raised-button
               [matMenuTriggerFor]="actionsMenu"
@@ -46,6 +56,15 @@
               <i class="fa-solid fa-caret-down"></i> Actions
             </button>
             <mat-menu #actionsMenu="matMenu">
+              <button
+                mat-menu-item
+                (click)="openGrantRightDialog(users)"
+                [disabled]="users.userType === 1"
+              >
+                <i class="fa-regular fa-edit pe-2"></i>
+                <span>Grant Right</span>
+              </button>
+
               <button mat-menu-item (click)="openEditUserDialog(users)">
                 <i class="fa-regular fa-edit pe-2"></i>
                 <span>Edit</span>

@@ -1,0 +1,55 @@
+<div class="dialog-form">
+  <h2>Grant Rights</h2>
+  <form>
+    <div>
+      <label>
+        <input
+          type="checkbox"
+          [checked]="hasMenuOrder(1)"
+          (change)="onCheckboxChange(1, $event)"
+        />
+        POS
+      </label>
+    </div>
+    <div>
+      <label>
+        <input
+          type="checkbox"
+          [checked]="hasMenuOrder(2)"
+          (change)="onCheckboxChange(2, $event)"
+        />
+        Manage Goods
+      </label>
+    </div>
+    <div>
+      <label>
+        <input
+          type="checkbox"
+          [checked]="hasMenuOrder(3)"
+          (change)="onCheckboxChange(3, $event)"
+        />
+        Manage Customers
+      </label>
+    </div>
+    <div>
+      <label>
+        <input
+          type="checkbox"
+          [checked]="hasMenuOrder(4)"
+          (change)="onCheckboxChange(4, $event)"
+        />
+        Manage Suppliers
+      </label>
+    </div>
+    <div>
+      <label>
+        <input
+          type="checkbox"
+          [checked]="hasMenuOrder(5)"
+          (change)="onCheckboxChange(5, $event)"
+        />
+        Manage Reports
+      </label>
+    </div>
+  </form>
+</div>

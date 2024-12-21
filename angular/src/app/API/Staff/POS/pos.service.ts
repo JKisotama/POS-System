@@ -137,6 +137,18 @@ export class POSService {
             finalize(() => this.loadingService.hide())
         );
     }
+
+    cancelPO(storeId: string, posNumber: string): Observable<void> {
+        const url = `${this.baseUrl}/CancelPO`;
+        const params = new HttpParams()
+            .set('storeId', storeId)
+            .set('posNumber', posNumber);
+
+        this.loadingService.show();
+        return this.http.put<void>(url, {}, { params }).pipe(
+            finalize(() => this.loadingService.hide())
+        );
+    }
     
 
     

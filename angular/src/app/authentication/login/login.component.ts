@@ -53,8 +53,11 @@ export class LoginComponent {
         const userType = response.user.userType;
         const fullName = response.user.fullName;
         const userLanguage = response.user.userLanguage;
+        const storeIdres = response.user.storeId;
+        const loginNameres = response.user.loginName;
 
-        this.getMenus(storeId, loginName);
+        this.getMenus(this.form.get('storeId')?.value, this.form.get('loginName')?.value);
+        console.log(this.userMenu);
   
         this.authservice.setLoggedIn(true, loginName, storeId, userLevel, fullName, userLanguage, userType);
         this.snackBar.open('Logged in successfully!', '', {

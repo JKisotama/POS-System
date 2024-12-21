@@ -28,37 +28,43 @@ export class AuthenticationGuard implements CanActivate {
         if (isLoggedIn) {
           const userRole = this.authService.getUserRole();
           const userType = this.authService.getUserType();
-          this.storeId = this.authService.getStoreIdUser();
-          this.loginName = this.authService.getLoggedInUserName();
-          this.getMenus();
+          const storeId = this.authService.getStoreIdUser();
+          const loginName = this.authService.getLoggedInUserName();
+          this.getMenus(storeId!, loginName!);
 
           const allowedPagesForManager = ['Staff', 'Staff/goods-page' , 'Staff/good-group', 'POS', 'Staff/supplier', 'Staff/customer', 'Staff/user-profile', 'Staff/property-group', 'Staff/dashboard'];
           const allowedPagesForAdmin = ['Admin', 'Admin/good-group', 'Admin/supplier', 'Admin/customer', 'Admin/staff'];
           const allowedPagesForStaff = ['Staff' , 'Staff/user-profile','POS'];
 
-
+          const nextRoutePath = next.routeConfig?.path || '';
 
           // Check if user is staff and if the route is allowed
-          if (userRole === 1 && userType === 0 && !allowedPagesForManager.includes(next.routeConfig?.path || '')) {
-            this.snackBar.open('You have no right to access this page', 'Close', {
-              panelClass: ['snackbar-error'],
-              duration: 3000 
-            });
-            this.router.navigate(['/']); // Redirect to home or another page
+          if (userRole === 1 && userType === 0) {
+            if (!allowedPagesForManager.includes(nextRoutePath)) {
+              this.showAccessDeniedMessage();
+              return false;
+            }
+            if (nextRoutePath === 'POS' && !this.hasMenuOrder(1)) {
+              this.showAccessDeniedMessage();
+              return false;
+            }
+            if (nextRoutePath === 'Staff/supplier' && !this.hasMenuOrder(3)) {
+              this.showAccessDeniedMessage();
+              return false;
+            }
+            if (nextRoutePath === 'Staff/customer' && !this.hasMenuOrder(4)) {
+              this.showAccessDeniedMessage();
+              return false;
+            }
+            if (nextRoutePath === 'Staff/dashboard' && !this.hasMenuOrder(5)) {
+              this.showAccessDeniedMessage();
+              return false;
+            }
+          } else if (userRole === 0 && userType === 0 && !allowedPagesForAdmin.includes(nextRoutePath)) {
+            this.showAccessDeniedMessage();
             return false;
-          } else if (userRole === 0 && userType === 0 && !allowedPagesForAdmin.includes(next.routeConfig?.path || '')) {
-            this.snackBar.open('You have no right to access this page', 'Close', {
-              panelClass: ['snackbar-error'], 
-              duration: 3000 
-            });
-            this.router.navigate(['/']); // Redirect to home or another page
-            return false;
-          } else if (userRole === 1 && userType === 1 && !allowedPagesForStaff.includes(next.routeConfig?.path || '')) {
-            this.snackBar.open('You have no right to access this page', 'Close', {
-              panelClass: ['snackbar-error'], 
-              duration: 3000 
-            });
-            this.router.navigate(['/']); // Redirect to home or another page
+          } else if (userRole === 1 && userType === 1 && !allowedPagesForStaff.includes(nextRoutePath)) {
+            this.showAccessDeniedMessage();
             return false;
           } 
           return true; // Allow access if logged in and has permission
@@ -70,12 +76,20 @@ export class AuthenticationGuard implements CanActivate {
     );
   }
 
-  getMenus(){
-    this.userService.getMenus(this.storeId!, this.loginName!).subscribe((data) => {
+  getMenus(storeId: string, loginName: string){
+    this.userService.getMenus(storeId, loginName).subscribe((data) => {
       this.userMenu = data;
     });
   }
   hasMenuOrder(order: number): boolean {
     return this.userMenu.some(menu => menu.menuOrder === order);
+  }
+
+  showAccessDeniedMessage() {
+    this.snackBar.open('You have no right to access this page', 'Close', {
+      panelClass: ['snackbar-error'],
+      duration: 3000 
+    });
+    this.router.navigate(['/']); // Redirect to home or another page
   }
 }

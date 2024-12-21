@@ -74,6 +74,11 @@ export class UserService {
         return this.http.get<Menu[]>(url);
     }
 
+    grantUserRights(storeId: string, loginName: string, menuId: number, assigned: number): Observable<any> {
+        const url = `${this.baseUrl}/GrantRights?store_id=${storeId}&login_name=${loginName}&menu_id=${menuId}&assigned=${assigned}`;
+        return this.http.post(url, {}, { responseType: 'text' });
+    }
+
 
 
 

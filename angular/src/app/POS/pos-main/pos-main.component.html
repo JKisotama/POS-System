@@ -6,14 +6,17 @@
       <div class="col-xl-12 col-lg-12 col-md-12 order-information">
         <div class="d-flex justify-content-between">
           <!-- TODO: Thêm class "active" khi order được chọn -->
-          <div class="order-holder" *ngFor="let pos of posHangList">
-            <a
-              href="javascript:void(0)"
-              class="text-capitalize"
-              (click)="hangPO(pos)"
-            >
-              {{ pos.posNumber }}
-            </a>
+          <div class="order-holder">
+            <div *ngFor="let pos of posHangList">
+              <a
+                href="javascript:void(0)"
+                class="text-capitalize"
+                (click)="hangPO(pos)"
+              >
+                {{ pos.posNumber }}
+              </a>
+            </div>
+
             <a href="javascript:void(0)" class="text-capitalize">
               {{ currentPosNumber }}
             </a>
@@ -31,8 +34,8 @@
             </button>
           </div>
           <div class="order-deleted">
-            <button (click)="posHeader && hangPO(posHeader)">
-              Hang Purchase Order
+            <button (click)="cancelPO(currentPosNumber!)">
+              <i class="fas fa-trash"></i>
             </button>
           </div>
         </div>

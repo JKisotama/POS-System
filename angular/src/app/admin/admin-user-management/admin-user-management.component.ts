@@ -9,6 +9,7 @@ import { AdminCreateUserComponent } from './admin-create-user/admin-create-user.
 import { AdminEditUserComponent } from './admin-edit-user/admin-edit-user.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from '../../confirm-dialog.component';
+import { AdminGrantRightComponent } from './admin-grant-right/admin-grant-right.component';
 
 @Component({
   selector: 'app-admin-user-management',
@@ -70,6 +71,25 @@ export class AdminUserManagementComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.snackBar.open('Updated new user successfully!', 'Close', {
+          duration: 3000, 
+          panelClass: ['snackbar-success'], 
+        });
+        this.GetAllUser();
+        
+      }
+    });
+  }
+
+  openGrantRightDialog(user: UserDTO){
+    const dialogRef = this.dialog.open(AdminGrantRightComponent, {
+      width: '700px',
+      panelClass: 'custom-dialog-container',
+      data: { user }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.snackBar.open('Grant right successfully!', 'Close', {
           duration: 3000, 
           panelClass: ['snackbar-success'], 
         });
