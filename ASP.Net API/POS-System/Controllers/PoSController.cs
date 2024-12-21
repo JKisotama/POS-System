@@ -48,8 +48,16 @@ namespace POS_Final_Year.Controller
         [HttpPut("CancelPo")]
         public async Task<ActionResult> GetPoHeaderList(string storeId, string posNumber)
         {
-            var list = _posServices.CancelPo(storeId,posNumber);
-            return NoContent();
+            try
+            {
+                var list = _posServices.CancelPo(storeId,posNumber);
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { Message = e.Message });
+            }
+           
         }
         
         [HttpGet("GetPOSDetails")]

@@ -22,12 +22,18 @@ namespace POS_System_BAL.Services.Supplier
             _mapper = mapper;
         }
 
+        public IQueryable<TblSupplier> GetSuppliersQueryable()
+        {
+            return _onlinePosContext.TblSuppliers.AsQueryable();
+        }
+
         #region GET
 
-        public async Task<IEnumerable<TblSupplier>> GetAllSupplier(string store_id)
+        public async Task<IEnumerable<TblSupplier>> GetAllSupplier(IQueryable<TblSupplier> query, string store_id, string supplier_name = null)
         {
             return await _onlinePosContext.TblSuppliers.
                 Where(s => s.StoreId == store_id)
+                .Where(s => string.IsNullOrEmpty(supplier_name) || s.SupplierName.Contains(supplier_name))
                 .Include(s =>s.TblGoodssupplieds)
                 .ToListAsync();
         }

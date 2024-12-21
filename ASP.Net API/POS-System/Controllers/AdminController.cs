@@ -29,17 +29,19 @@ namespace POS_Final_Year.Controller
         
         [HttpGet]
         [Route("GetAllGoods")]
-        public async Task<IActionResult> GetAllGoods(string store_id)
+        public async Task<IActionResult> GetAllGoods(string store_id, [FromQuery]string filter = null)
         {
-            var goods = await _goodsServices.GetAllGoodsAsync(store_id);
+            var query = _goodsServices.GetGoodsQueryable(); 
+            var goods = await _goodsServices.GetAllGoodsAsync(query, store_id, filter);
             return Ok(goods);
         }
         
         [HttpGet]
         [Route("GetAllGoodsGroups")]
-        public async Task<IActionResult> GetAllGoodsGroups(string store_id)
+        public async Task<IActionResult> GetAllGoodsGroups(string store_id, [FromQuery] string filter = null)
         {
-            var groups = await _goodsServices.GetAllGroupAsync(store_id);
+            var query = _goodsServices.GetGroupQueryable();
+            var groups = await _goodsServices.GetAllGroupAsync(query, store_id, filter);
             return Ok(groups);
         }
       
@@ -52,9 +54,10 @@ namespace POS_Final_Year.Controller
         }
         [HttpGet]
         [Route("GetAllGroupProperties")]
-        public async Task<IActionResult> GetAllGroupProperties(string store_id)
+        public async Task<IActionResult> GetAllGroupProperties(string store_id, [FromQuery] string filter = null)
         {
-            var properties = await _goodsServices.GetAllGroupPropertyAsync(store_id);
+            var query = _goodsServices.GetPropertyGroupQueryable();
+            var properties = await _goodsServices.GetAllGroupPropertyAsync(query,store_id,filter);
             return Ok(properties);
         }
         
@@ -68,7 +71,7 @@ namespace POS_Final_Year.Controller
         
         [HttpGet]
         [Route("GetAllSellPrice")]
-        public async Task<IActionResult> GetAllSellPrice(string store_id)
+        public async Task<IActionResult> GetAllSellPrice(string store_id )
         {
             var properties = await _goodsServices.GetAllSellPriceAsync(store_id);
             return Ok(properties);
@@ -79,9 +82,9 @@ namespace POS_Final_Year.Controller
 
         [HttpGet]
         [Route("GetAllUsers")]
-        public async Task<IActionResult> GetAllUsers(string store_id)
+        public async Task<IActionResult> GetAllUsers(string store_id, [FromQuery] string full_name =null)
         {
-            var users = await _userServices.GetAllUser(store_id);
+            var users = await _userServices.GetAllUser(store_id, full_name);
             return Ok(users);
         }
 
@@ -95,9 +98,10 @@ namespace POS_Final_Year.Controller
         
         [HttpGet]
         [Route("GetAllSupplier")]
-        public async Task<IActionResult> GetAllSupplier(string store_id)
+        public async Task<IActionResult> GetAllSupplier(string store_id, [FromQuery] string filter = null)
         {
-            var customers = await _supplierServices.GetAllSupplier(store_id);
+            var query = _supplierServices.GetSuppliersQueryable();
+            var customers = await _supplierServices.GetAllSupplier(query,store_id,filter);
             return Ok(customers);
         }
         

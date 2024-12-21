@@ -31,9 +31,10 @@ namespace POS_Final_Year.Controller
         }
         #region GET
         [HttpGet("GetAllGroup")]
-        public async Task<ActionResult<IEnumerable<TblGoodsgroup>>> GetTblGoodsgroups(string store_id)
+        public async Task<ActionResult<IEnumerable<TblGoodsgroup>>> GetTblGoodsgroups([FromQuery]string store_id, [FromQuery] string filter = null)
         {
-            var groupList = await _goodsServices.GetTblGoodsgroupsAsync(store_id);
+            var query = _goodsServices.GetGoodsQueryable();
+            var groupList = await _goodsServices.GetTblGoodsgroupsAsync(query,store_id, filter);
             if (groupList == null)
             {
                 return BadRequest();
@@ -66,9 +67,10 @@ namespace POS_Final_Year.Controller
         }
 
         [HttpGet("GetAllPropertyGroup")]
-        public async Task<ActionResult<TblPropertygroup>> GetAllPropertyGood(string store_id)
+        public async Task<ActionResult<TblPropertygroup>> GetAllPropertyGood(string store_id, [FromQuery] string filter = null)
         {
-            var properties = await _goodsServices.GetAllPropertyGroupAsync(store_id);
+            var query = _goodsServices.GetPropertyGroupQueryable();
+            var properties = await _goodsServices.GetAllPropertyGroupAsync(query, store_id, filter);
             if (properties == null)
             {
                 return Ok(new { message = "No property group found" });
@@ -152,10 +154,10 @@ namespace POS_Final_Year.Controller
         }
 
         [HttpGet("GetSellPrice")]
-        public async Task<IActionResult> GetSellPrice(string store_id, string goods_id)
+        public async Task<IActionResult> GetSellPrice(string store_id, [FromQuery] string filter = null)
         {
-            
-            var sellPrice = await _goodsServices.GetSellpricesAsync(store_id, goods_id);
+            var query = _goodsServices.GetSelPriceQueryable();
+            var sellPrice = await _goodsServices.GetSellpricesAsync(query,store_id, filter);
             return Ok(sellPrice);
         }
 

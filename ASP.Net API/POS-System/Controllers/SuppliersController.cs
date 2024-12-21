@@ -24,11 +24,13 @@ namespace POS_Final_Year.Controller
             _supplierServices = supplierServices;
         }
 
+        
         #region GET
         [HttpGet("GetAllSupplier")]
-        public async Task<ActionResult<IEnumerable<TblSupplier>>> GetTblSuppliers(string store_id)
+        public async Task<ActionResult<IEnumerable<TblSupplier>>> GetTblSuppliers(string store_id, [FromQuery]string filter = null)
         {
-            var supplier = await _supplierServices.GetAllSupplier(store_id);
+            var query = _supplierServices.GetSuppliersQueryable();
+            var supplier = await _supplierServices.GetAllSupplier(query,store_id, filter);
             return Ok(supplier);
         }
 
