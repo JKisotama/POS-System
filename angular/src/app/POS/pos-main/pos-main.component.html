@@ -5,187 +5,192 @@
 
       <div class="col-xl-12 col-lg-12 col-md-12 order-information">
         <div class="d-flex justify-content-between">
-          <!-- TODO: Thêm class "active" khi order được chọn -->
-          <div class="order-holder">
-            <div *ngFor="let pos of posHangList">
-              <a
-                href="javascript:void(0)"
-                class="text-capitalize"
-                (click)="hangPO(pos)"
+          <div class="row">
+            <div class="col-9">
+              <div
+                class="order-holder justify-content-start align-content-start"
               >
-                {{ pos.posNumber }}
-              </a>
+                <div class="">
+                  <div *ngFor="let pos of posHangList">
+                    <a href="javascript:void(0)" class="text-capitalize active">
+                      {{ currentPosNumber }}
+                    </a>
+                  </div>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="text-capitalize"
+                    (click)="hangPO(pos)"
+                  >
+                    {{ pos.posNumber }}
+                  </a>
+
+                  <!-- Show this if no orders are available -->
+                  <ng-template #noOrders>
+                    <p>No orders available</p>
+                  </ng-template>
+
+                  <button (click)="posHeader && hangPO(posHeader)">
+                    Hang Purchase Order
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="order-deleted">
+              <button (click)="cancelPO(currentPosNumber!)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card -->
+        <!-- TODO: Limited rows can show (4-5 rows) -->
+        <div class="col-xl-12 col-lg-12 col-md-12 product-card mt-5">
+          <div class="card-item box-pos-bg">
+            <div class="header d-flex justify-content-between">
+              <h2>Product</h2>
+              <button (click)="openProductDialog()">
+                <i class="fas fa-plus"></i>
+              </button>
             </div>
 
-            <a href="javascript:void(0)" class="text-capitalize">
-              {{ currentPosNumber }}
-            </a>
-            <!-- Show this if no orders are available -->
-            <ng-template #noOrders>
-              <p>No orders available</p>
-            </ng-template>
+            <div
+              *ngIf="!dataSource || dataSource.data.length === 0"
+              class="empty-card d-flex flex-column align-items-center justify-content-center"
+            >
+              <i class="fas fa-box-open"></i>
+              <p>There is no item in the card yet!</p>
+            </div>
+            <table
+              *ngIf="dataSource && dataSource.data.length > 0"
+              mat-table
+              [dataSource]="dataSource"
+              matSort
+              class="mat-elevation-z8"
+            >
+              <ng-container matColumnDef="picture">
+                <th mat-header-cell *matHeaderCellDef>Picture</th>
+                <td mat-cell *matCellDef="let good">
+                  <img
+                    [src]="good.picture"
+                    alt="Goods Picture"
+                    width="100"
+                    height="100"
+                  />
+                </td>
+              </ng-container>
 
-            <!-- Button to create a new order -->
-            <!-- <button (click)="hangPO()">
-              <i class="fas fa-plus"></i>
-            </button> -->
-            <button (click)="posHeader && hangPO(posHeader)">
-              Hang Purchase Order
-            </button>
-          </div>
-          <div class="order-deleted">
-            <button (click)="cancelPO(currentPosNumber!)">
-              <i class="fas fa-trash"></i>
-            </button>
+              <ng-container matColumnDef="goodsName">
+                <th mat-header-cell *matHeaderCellDef>Goods Name</th>
+                <td mat-cell *matCellDef="let good">{{ good.goodsName }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="barcode">
+                <th mat-header-cell *matHeaderCellDef>Barcode</th>
+                <td mat-cell *matCellDef="let good">{{ good.barcode }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="unit">
+                <th mat-header-cell *matHeaderCellDef>Unit</th>
+                <td mat-cell *matCellDef="let good">{{ good.itemUnit }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="propertyName">
+                <th mat-header-cell *matHeaderCellDef>Property Name</th>
+                <td mat-cell *matCellDef="let good">{{ good.propertyName }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="propertyValue">
+                <th mat-header-cell *matHeaderCellDef>Property Value</th>
+                <td mat-cell *matCellDef="let good">
+                  {{ good.propertyValue }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef>Quantity</th>
+                <td mat-cell *matCellDef="let good">{{ good.itemQuantity }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="itemPrice">
+                <th mat-header-cell *matHeaderCellDef>Price</th>
+                <td mat-cell *matCellDef="let good">
+                  {{ good.itemPrice | number : "1.0-2" }} VND
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="subTotal">
+                <th mat-header-cell *matHeaderCellDef>Subtotal</th>
+                <td mat-cell *matCellDef="let good">
+                  {{ good.subTotal | number : "1.0-2" }} VND
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="lineDiscount">
+                <th mat-header-cell *matHeaderCellDef>Line Discount</th>
+                <td mat-cell *matCellDef="let good">
+                  {{ good.lineDiscount | number : "1.0-2" }} VND
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="lineTotal">
+                <th mat-header-cell *matHeaderCellDef>Line Total</th>
+                <td mat-cell *matCellDef="let good">
+                  {{ good.lineTotal | number : "1.0-2" }} VND
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="remove">
+                <th mat-header-cell *matHeaderCellDef>Remove Item</th>
+                <td mat-cell *matCellDef="let good; let i = index">
+                  <button
+                    class="remove"
+                    mat-icon-button
+                    (click)="confirmDelete(good)"
+                  >
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
           </div>
         </div>
-      </div>
 
-      <!-- Product Card -->
-      <!-- TODO: Limited rows can show (4-5 rows) -->
-      <div class="col-xl-12 col-lg-12 col-md-12 product-card mt-5">
-        <div class="card-item box-pos-bg">
-          <div class="header d-flex justify-content-between">
-            <h2>Product</h2>
-            <button (click)="openProductDialog()">
-              <i class="fas fa-plus"></i>
-            </button>
-          </div>
-
-          <div
-            *ngIf="!dataSource || dataSource.data.length === 0"
-            class="empty-card d-flex flex-column align-items-center justify-content-center"
-          >
-            <i class="fas fa-box-open"></i>
-            <p>There is no item in the card yet!</p>
-          </div>
-          <table
-            *ngIf="dataSource && dataSource.data.length > 0"
-            mat-table
-            [dataSource]="dataSource"
-            matSort
-            class="mat-elevation-z8"
-          >
-            <ng-container matColumnDef="picture">
-              <th mat-header-cell *matHeaderCellDef>Picture</th>
-              <td mat-cell *matCellDef="let good">
-                <img
-                  [src]="good.picture"
-                  alt="Goods Picture"
-                  width="100"
-                  height="100"
-                />
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="goodsName">
-              <th mat-header-cell *matHeaderCellDef>Goods Name</th>
-              <td mat-cell *matCellDef="let good">{{ good.goodsName }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="barcode">
-              <th mat-header-cell *matHeaderCellDef>Barcode</th>
-              <td mat-cell *matCellDef="let good">{{ good.barcode }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="unit">
-              <th mat-header-cell *matHeaderCellDef>Unit</th>
-              <td mat-cell *matCellDef="let good">{{ good.itemUnit }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="propertyName">
-              <th mat-header-cell *matHeaderCellDef>Property Name</th>
-              <td mat-cell *matCellDef="let good">{{ good.propertyName }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="propertyValue">
-              <th mat-header-cell *matHeaderCellDef>Property Value</th>
-              <td mat-cell *matCellDef="let good">{{ good.propertyValue }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="quantity">
-              <th mat-header-cell *matHeaderCellDef>Quantity</th>
-              <td mat-cell *matCellDef="let good">{{ good.itemQuantity }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="itemPrice">
-              <th mat-header-cell *matHeaderCellDef>Price</th>
-              <td mat-cell *matCellDef="let good">
-                {{ good.itemPrice | number : "1.0-2" }} VND
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="subTotal">
-              <th mat-header-cell *matHeaderCellDef>Subtotal</th>
-              <td mat-cell *matCellDef="let good">
-                {{ good.subTotal | number : "1.0-2" }} VND
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="lineDiscount">
-              <th mat-header-cell *matHeaderCellDef>Line Discount</th>
-              <td mat-cell *matCellDef="let good">
-                {{ good.lineDiscount | number : "1.0-2" }} VND
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="lineTotal">
-              <th mat-header-cell *matHeaderCellDef>Line Total</th>
-              <td mat-cell *matCellDef="let good">
-                {{ good.lineTotal | number : "1.0-2" }} VND
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="remove">
-              <th mat-header-cell *matHeaderCellDef>Remove Item</th>
-              <td mat-cell *matCellDef="let good; let i = index">
-                <button
-                  class="remove"
-                  mat-icon-button
-                  (click)="confirmDelete(good)"
-                >
-                  <i class="fas fa-trash"></i>
-                </button>
-              </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-          </table>
-        </div>
-      </div>
-
-      <!-- Bill Information Card -->
-      <div
-        class="col-xxl-4 xol-xl-4 col-lg-4 col-md-4 bill-information-cart mt-3"
-      >
-        <div class="card-item">
-          <h2>Bill Information:</h2>
-          <div class="bill-information-item d-flex justify-content-between">
-            <p class="text-capitalize bill-infor-title">Seller:</p>
-            <p class="text-capitalize bill-infor-detail">{{ fullName }}</p>
-          </div>
-          <!-- <div class="bill-information-item d-flex justify-content-between">
+        <!-- Bill Information Card -->
+        <div
+          class="col-xxl-4 xol-xl-4 col-lg-4 col-md-4 bill-information-cart mt-3"
+        >
+          <div class="card-item">
+            <h2>Bill Information:</h2>
+            <div class="bill-information-item d-flex justify-content-between">
+              <p class="text-capitalize bill-infor-title">Seller:</p>
+              <p class="text-capitalize bill-infor-detail">{{ fullName }}</p>
+            </div>
+            <!-- <div class="bill-information-item d-flex justify-content-between">
             <p class="text-capitalize bill-infor-title">Store:</p>
             <p class="text-capitalize bill-infor-detail">Location</p>
           </div> -->
-          <div class="bill-information-item d-flex justify-content-between">
-            <p class="text-capitalize bill-infor-title">Bill Date:</p>
-            <p class="text-capitalize bill-infor-detail">
-              {{ posHeader?.posDate | date : "dd/MM/yyyy" }}
-            </p>
-          </div>
-          <div class="bill-information-item d-flex justify-content-between">
-            <p class="text-capitalize bill-infor-title">POS Number:</p>
-            <p class="text-capitalize bill-infor-detail">
-              {{ currentPosNumber }}
-            </p>
+            <div class="bill-information-item d-flex justify-content-between">
+              <p class="text-capitalize bill-infor-title">Bill Date:</p>
+              <p class="text-capitalize bill-infor-detail">
+                {{ posHeader?.posDate | date : "dd/MM/yyyy" }}
+              </p>
+            </div>
+            <div class="bill-information-item d-flex justify-content-between">
+              <p class="text-capitalize bill-infor-title">POS Number:</p>
+              <p class="text-capitalize bill-infor-detail">
+                {{ currentPosNumber }}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Note Card -->
-      <!-- <div class="col-xl-4 col-lg-4 col-md-4 note-card mt-3">
+        <!-- Note Card -->
+        <!-- <div class="col-xl-4 col-lg-4 col-md-4 note-card mt-3">
         <div class="card-item">
           <h2 class="text-capitalize">Note:</h2>
 
@@ -193,93 +198,94 @@
         </div>
       </div> -->
 
-      <!-- Checkout Card -->
-      <div class="col-xxl-4 xol-xl-4 col-lg-4 col-md-4 checkout-card mt-3">
-        <div class="card-item">
-          <h2 class="text-capitalize">Check Out:</h2>
+        <!-- Checkout Card -->
+        <div class="col-xxl-4 xol-xl-4 col-lg-4 col-md-4 checkout-card mt-3">
+          <div class="card-item">
+            <h2 class="text-capitalize">Check Out:</h2>
 
-          <div class="payment-type">
-            <button class="btn active" (click)="setPaymentMethod(0)">
-              <i class="fa-solid fa-money-bill"></i>
-              Cash
-            </button>
-            <button class="btn">
-              <i class="fa-solid fa-qrcode"></i>
-              QR Code
-            </button>
-          </div>
-          <div class="checkout-info">
-            <div class="checkout-info-item d-flex justify-content-between">
-              <p class="checkout-title">Subtotal:</p>
-              <p class="checkout-price">
-                {{ subtotal | number : "1.0-2" }} VND
-              </p>
+            <div class="payment-type">
+              <button class="btn" (click)="setPaymentMethod(0)">
+                <i class="fa-solid fa-money-bill"></i>
+                Cash
+              </button>
+              <button class="btn">
+                <i class="fa-solid fa-qrcode"></i>
+                QR Code
+              </button>
             </div>
-            <div class="checkout-info-item d-flex justify-content-between">
-              <p class="checkout-title">Discount:</p>
-              <p class="checkout-price">
-                {{ discount | number : "1.0-2" }} VND
-              </p>
-            </div>
-            <div class="checkout-info-item d-flex justify-content-between">
-              <p class="checkout-title">Total:</p>
-              <p class="checkout-price-total fw-bold">
-                {{ total | number : "1.0-2" }} VND
-              </p>
-            </div>
-            <div
-              class="checkout-info-customer-pay d-flex justify-content-between"
-              [formGroup]="form"
-            >
-              <p class="checkout-title">Customer Pay:</p>
+            <div class="checkout-info">
+              <div class="checkout-info-item d-flex justify-content-between">
+                <p class="checkout-title">Subtotal:</p>
+                <p class="checkout-price">
+                  {{ subtotal | number : "1.0-2" }} VND
+                </p>
+              </div>
+              <div class="checkout-info-item d-flex justify-content-between">
+                <p class="checkout-title">Discount:</p>
+                <p class="checkout-price">
+                  {{ discount | number : "1.0-2" }} VND
+                </p>
+              </div>
+              <div class="checkout-info-item d-flex justify-content-between">
+                <p class="checkout-title">Total:</p>
+                <p class="checkout-price-total fw-bold">
+                  {{ total | number : "1.0-2" }} VND
+                </p>
+              </div>
               <div
-                class="checkout-info-customer-pay-input d-flex justify-content-between"
+                class="checkout-info-customer-pay d-flex justify-content-between"
+                [formGroup]="form"
               >
-                <!-- TODO: Chỉnh phần input thêm giấu chấm cho mỗi đơn vị lên hàng ngàn (giống phần add price trong good price) -->
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter amount"
-                  formControlName="customerPay"
-                  (input)="onPriceInput($event)"
-                />
-                <p>VND</p>
+                <p class="checkout-title">Customer Pay:</p>
+                <div
+                  class="checkout-info-customer-pay-input d-flex justify-content-between"
+                >
+                  <!-- TODO: Chỉnh phần input thêm giấu chấm cho mỗi đơn vị lên hàng ngàn (giống phần add price trong good price) -->
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter amount"
+                    formControlName="customerPay"
+                    (input)="onPriceInput($event)"
+                  />
+                  <p>VND</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Customer Card -->
+        <!-- Customer Card -->
 
-      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 customer-card mt-3">
-        <div class="card-item">
-          <div class="customer-title d-flex justify-content-between">
-            <h2>Customer:</h2>
-            <div class="customer-btn">
-              <button (click)="openCustomerDialog()">
-                <i class="fas fa-plus"></i>
-              </button>
+        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 customer-card mt-3">
+          <div class="card-item">
+            <div class="customer-title d-flex justify-content-between">
+              <h2>Customer:</h2>
+              <div class="customer-btn">
+                <button (click)="openCustomerDialog()">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
             </div>
-          </div>
 
-          <div class="customer-item" *ngIf="selectedCustomer">
-            <p class="text-capitalize">
-              Customer name: <span>{{ selectedCustomer.customerName }}</span>
-            </p>
-            <p class="text-capitalize">
-              Customer Address:
-              <span>{{ selectedCustomer.customerAddress }}</span>
-            </p>
-            <p class="text-capitalize">
-              Email: <span>{{ selectedCustomer.customerEmail }}</span>
-            </p>
-            <p class="text-capitalize">
-              Phone number: <span>{{ selectedCustomer.customerPhone }}</span>
-            </p>
-          </div>
-          <div class="customer-item" *ngIf="!selectedCustomer">
-            <p>Select a customer to display their details.</p>
+            <div class="customer-item" *ngIf="selectedCustomer">
+              <p class="text-capitalize">
+                Customer name: <span>{{ selectedCustomer.customerName }}</span>
+              </p>
+              <p class="text-capitalize">
+                Customer Address:
+                <span>{{ selectedCustomer.customerAddress }}</span>
+              </p>
+              <p class="text-capitalize">
+                Email: <span>{{ selectedCustomer.customerEmail }}</span>
+              </p>
+              <p class="text-capitalize">
+                Phone number: <span>{{ selectedCustomer.customerPhone }}</span>
+              </p>
+            </div>
+            <div class="customer-item" *ngIf="!selectedCustomer">
+              <p>Select a customer to display their details.</p>
+            </div>
           </div>
         </div>
       </div>

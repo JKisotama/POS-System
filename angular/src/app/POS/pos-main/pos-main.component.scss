@@ -32,13 +32,13 @@
               border: 1px solid $White-Snow;
             }
         
-            &:active {
-              background-color: $White-Snow;
-              color: $Dark-Void;
-              border: 1px solid $White-Snow;
-            }
+            
           }
-    
+          .active {
+            background-color: $Liquid-Lava !important;
+            color: $White-Snow;
+            border: 1px solid $White-Snow !important;
+          }
           button {
             @include btn-white-border;
             
@@ -241,13 +241,13 @@
               border: 1px solid $Dark-Void;
             }
         
-            &:active {
-              background-color: $Dark-Void;
-              color: $White-Snow;
-              border: 1px solid $White-Snow;
-            }
+            
           }
-    
+          .active {
+            background-color: $Liquid-Lava !important;
+            color: $White-Snow;
+            border: 1px solid $White-Snow !important;
+          }
           button {
             @include btn-white-bg;
             border: 1px solid $Dark-Void;
@@ -367,6 +367,7 @@
     
           button {
             @include btn-white-bg;
+            border: 1px solid $Dark-Void;
             &:active{
               background-color: $Liquid-Lava !important;
               color: $White-Snow;
@@ -465,9 +466,8 @@
           margin-left: 20px;
         }
 
-        &:active {
-        }
       }
+      
 
       button {
         margin-left: 20px;

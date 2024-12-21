@@ -2,6 +2,73 @@
 @import "../../../styles.scss";
 @import "../../../_globals.scss";
 
+
+:host{
+    body.dark-mode &{
+        .ad-main-content{
+            .ad-main-search{
+                .search-bar {
+                    @include search-bar-input;
+              
+                    form {
+                      input {    
+                        border-right: none;
+                        border-radius: 5px 0 0 5px !important;    
+                        &::placeholder {
+                          color: $Dusty-Grey;
+                        }
+                        
+                      }
+              
+                      button {
+                        @include btn-white-border;
+                        border-radius: 0 5px 5px 0 !important;
+                        border-left: none !important;    
+                      }
+                      
+              
+                    }
+                  
+              
+                  }
+    
+            }
+        }
+    }
+    body.light-mode &{
+        .ad-main-content{
+            .ad-main-search{
+                .search-bar {
+                    @include search-bar-input-light;
+              
+                    form {
+                      input {    
+                        border-right: none;
+                        border-radius: 5px 0 0 5px !important;    
+                        &::placeholder {
+                          color: $Dusty-Grey;
+                        }
+                      }
+              
+                      button {
+                        @include btn-white-bg;
+                        border-radius: 0 5px 5px 0 !important;
+                        border-left: none !important;
+                        border: 1px solid $Dark-Void ;
+                      }
+                      
+              
+                    }
+              
+                  }
+    
+            }
+        }
+    }
+
+}
+
+
 .ad-main-content {
     h2{
         font-size: 35px;
@@ -18,6 +85,31 @@
                 margin-right: 20px;
             }
         }
+        .search-bar {
+            form {
+              input {
+                border-right: none;
+                border-radius: 5px 0 0 5px !important;
+      
+                &::placeholder {
+                }
+      
+                &:focus {
+                  outline: none;
+                  box-shadow: none; // For Bootstrap-specific focus shadows
+                }
+              }
+      
+              button {
+                border-radius: 0 5px 5px 0 !important;
+                border-left: none !important;
+              }
+              
+      
+            }
+      
+          }
+    
     }
 
     
@@ -37,26 +129,6 @@
 
     }
 
-    .search-bar {
-        margin: auto;
-        padding: 0 120px;
-
-        button {
-            margin: 0 10px 0 0;
-
-            span {
-                .mat-mdc-button-touch-target {
-                    margin-right: 10px !important;
-                }
-            }
-        }
-
-        input {
-            border-radius: 50px;
-            border: 1px solid;
-        }
-
-    }
 
 
     .boder_table {

@@ -4,6 +4,7 @@
 
 :host{
   body.dark-mode &{
+    
     .ad-main-content{
       .ad-main-data{
         .profile-image{
@@ -11,6 +12,11 @@
             
             border: 1px solid $White-Snow;
             box-shadow: 0px 0px 10px 0px $White-Snow;
+          }
+        }
+        .profile-btn-zone{
+          button{
+            @include btn-orange-border;
           }
         }
       }
@@ -23,6 +29,11 @@
           img{
             border: 1px solid $Dark-Void;
             box-shadow: 0px 0px 10px 0px $Dark-Void;
+          }
+        }
+        .profile-btn-zone{
+          button{
+            @include btn-white-border;
           }
         }
       }

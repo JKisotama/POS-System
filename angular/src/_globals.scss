@@ -145,6 +145,7 @@ body{
                 }
             }
         }
+        
 
     }
     &.light-mode{
@@ -282,6 +283,7 @@ body{
                 }
             }
         }
+        
 
     }
 
@@ -335,6 +337,15 @@ input {
     }
 }
 
+table{
+    th{
+        font-weight: 600;
+    }
+    td{
+        font-weight: 500;
+    }
+}
+
 .row{
     padding: 0 !important;
 }
@@ -344,6 +355,11 @@ li{
 }
 a{
     text-decoration: none;
+    .active {
+        background-color: $Liquid-Lava !important;
+        color: $Dark-Void;
+        border: 1px solid $White-Snow;
+      }
 }
 
 
