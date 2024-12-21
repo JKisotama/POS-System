@@ -355,6 +355,11 @@ li{
 }
 a{
     text-decoration: none;
+    .active {
+        background-color: $Liquid-Lava !important;
+        color: $Dark-Void;
+        border: 1px solid $White-Snow;
+      }
 }
 
 

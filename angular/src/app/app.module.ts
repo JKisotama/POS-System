@@ -110,6 +110,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { CustomDatePipe } from '../assets/custom-date/custom.date';
+import { MatDatepicker } from '@angular/material/datepicker';
+
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);

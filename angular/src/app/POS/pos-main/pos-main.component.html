@@ -4,36 +4,42 @@
       <!-- Order Holder -->
 
       <div class="col-xl-12 col-lg-12 col-md-12 order-information">
-        <div class="d-flex justify-content-between">
-          <!-- TODO: Thêm class "active" khi order được chọn -->
-          <div class="order-holder" *ngFor="let pos of posHangList">
-            <a
-              href="javascript:void(0)"
-              class="text-capitalize"
-              (click)="hangPO(pos)"
-            >
-              {{ pos.posNumber }}
-            </a>
-            <a href="javascript:void(0)" class="text-capitalize">
-              {{ currentPosNumber }}
-            </a>
-            <!-- Show this if no orders are available -->
-            <ng-template #noOrders>
-              <p>No orders available</p>
-            </ng-template>
+        
 
-            <!-- Button to create a new order -->
-            <!-- <button (click)="hangPO()">
-              <i class="fas fa-plus"></i>
-            </button> -->
-            <button (click)="posHeader && hangPO(posHeader)">
-              Hang Purchase Order
-            </button>
+        <div class="row">
+          <div class="col-9">
+            <div class="order-holder justify-content-start align-content-start" >
+              <div class="" *ngFor="let pos of posHangList">
+                <a href="javascript:void(0)" class="text-capitalize active">
+                  {{ currentPosNumber }}
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="text-capitalize"
+                  (click)="hangPO(pos)"
+                >
+                  {{ pos.posNumber }}
+                </a>
+               
+                <!-- Show this if no orders are available -->
+                <ng-template #noOrders>
+                  <p>No orders available</p>
+                </ng-template>
+  
+                <button (click)="posHeader && hangPO(posHeader)">
+                  Hang Purchase Order
+                </button>
+              </div>
+  
+             
+            </div>
           </div>
-          <div class="order-deleted">
-            <button (click)="posHeader && hangPO(posHeader)">
-              Hang Purchase Order
-            </button>
+          <div class="col-3">
+            <div class="order-deleted justify-content-end align-content-end text-end">
+              <button (click)="posHeader && hangPO(posHeader)">
+                Remove Order
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -196,7 +202,7 @@
           <h2 class="text-capitalize">Check Out:</h2>
 
           <div class="payment-type">
-            <button class="btn active" (click)="setPaymentMethod(0)">
+            <button class="btn" (click)="setPaymentMethod(0)">
               <i class="fa-solid fa-money-bill"></i>
               Cash
             </button>
