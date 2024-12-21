@@ -111,6 +111,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { CustomDatePipe } from '../assets/custom-date/custom.date';
 import { AdminGrantRightComponent } from './admin/admin-user-management/admin-grant-right/admin-grant-right.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -191,6 +192,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     UserProfileComponent,
     EditUserProfileComponent,
     AdminGrantRightComponent,
+    AdminDashboardComponent,
     
   ],
   imports: [

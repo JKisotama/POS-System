@@ -1,0 +1,124 @@
+<div class="ad-main-content">
+  <h2 class="">Dashboard Report</h2>
+
+  <div class="ad-main-search box-bg">
+    <div class="row">
+      <div class="col-md-6 search-center">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="startDate">Start Date</label>
+              <input
+                type="date"
+                id="startDate"
+                class="form-control search-bar-admin"
+                formControlName="startDate"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="endDate">End Date</label>
+              <input
+                type="date"
+                id="endDate"
+                class="form-control search-bar-admin"
+                formControlName="endDate"
+              />
+            </div>
+
+            <div class="col-md-2 ad-main-btn">
+              <div class="d-flex justify-content-center">
+                <button class="btn btn-zone" type="submit">Search</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-main-data box-bg">
+    <h2>Sale Report</h2>
+    <div class="table-responsive">
+      <table mat-table [dataSource]="saleReports" class="mat-elevation-z8">
+        <!-- Define columns -->
+        <ng-container matColumnDef="posNumber">
+          <th mat-header-cell *matHeaderCellDef>POS Number</th>
+          <td mat-cell *matCellDef="let element">{{ element.posNumber }}</td>
+        </ng-container>
+        <ng-container matColumnDef="posDate">
+          <th mat-header-cell *matHeaderCellDef>POS Date</th>
+          <td mat-cell *matCellDef="let element">{{ element.posDate }}</td>
+        </ng-container>
+        <ng-container matColumnDef="cashierId">
+          <th mat-header-cell *matHeaderCellDef>Cashier ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.cashierId }}</td>
+        </ng-container>
+        <ng-container matColumnDef="customerName">
+          <th mat-header-cell *matHeaderCellDef>Customer Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.customerName }}</td>
+        </ng-container>
+        <ng-container matColumnDef="posTotal">
+          <th mat-header-cell *matHeaderCellDef>POS Total</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.posTotal | number : "1.0-2" }} VND
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="posDiscount">
+          <th mat-header-cell *matHeaderCellDef>POS Discount</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.posDiscount | number : "1.0-2" }} VND
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="posTopay">
+          <th mat-header-cell *matHeaderCellDef>POS To Pay</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.posTopay | number : "1.0-2" }} VND
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="posPaymentmethod">
+          <th mat-header-cell *matHeaderCellDef>Payment Method</th>
+          <td mat-cell *matCellDef="let element">
+            {{
+              element.posPaymentmethod === 0 ? "Cash" : element.posPaymentmethod
+            }}
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="saleReportColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: saleReportColumns"></tr>
+      </table>
+    </div>
+
+    <h2>Goods Sold Report</h2>
+    <div class="table-responsive">
+      <table mat-table [dataSource]="goodsSoldReports" class="mat-elevation-z8">
+        <ng-container matColumnDef="goodsName">
+          <th mat-header-cell *matHeaderCellDef>Goods Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.goodsName }}</td>
+        </ng-container>
+        <ng-container matColumnDef="itemUnit">
+          <th mat-header-cell *matHeaderCellDef>Item Unit</th>
+          <td mat-cell *matCellDef="let element">{{ element.itemUnit }}</td>
+        </ng-container>
+        <ng-container matColumnDef="propertyValue">
+          <th mat-header-cell *matHeaderCellDef>Property Value</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.propertyValue }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="itemQuantity">
+          <th mat-header-cell *matHeaderCellDef>Item Quantity</th>
+          <td mat-cell *matCellDef="let element">{{ element.itemQuantity }}</td>
+        </ng-container>
+        <ng-container matColumnDef="lineTotal">
+          <th mat-header-cell *matHeaderCellDef>Line Total</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.lineTotal | number : "1.0-2" }} VND
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="goodsSoldReportColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: goodsSoldReportColumns"></tr>
+      </table>
+    </div>
+  </div>
+</div>

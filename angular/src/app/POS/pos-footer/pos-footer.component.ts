@@ -65,6 +65,7 @@ export class PosFooterComponent implements OnInit {
 
 openInvoiceDialog(): void {
   const dialogRef = this.dialog.open(DialogInvoiceComponent, {
+    
     data: {
       storeId: this.storeId,
       customerName: this.customerName,
@@ -77,9 +78,10 @@ openInvoiceDialog(): void {
   dialogRef.afterClosed().subscribe(() => {
     // Notify parent component to reload data after dialog is closed
     window.dispatchEvent(new Event('reloadPOSMainData'));
+    this.customerPay = 0;
   });
 
-  console.log(this.posNumber);
+  console.log(this.customerPay);
 }
 
 }

@@ -19,6 +19,7 @@ import { AdminSupplierComponent } from './admin/admin-supplier/admin-supplier.co
 import { AdminCustomerComponent } from './admin/admin-customer/admin-customer.component';
 import { UserProfileComponent } from './staff/user-profile/user-profile.component';
 import { DashboardComponent } from './staff/dashboard/dashboard.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 
 
 const routes: Routes = [
@@ -46,8 +47,8 @@ const routes: Routes = [
       { path: 'property-group', component: AdminPropertyGroupComponent},
       { path: 'supplier', component: AdminSupplierComponent },
       { path: 'customer', component: AdminCustomerComponent },
-      { path: 'staff', component: AdminUserManagementComponent}
-   
+      { path: 'staff', component: AdminUserManagementComponent},
+      { path: 'dashboard', component: AdminDashboardComponent},
     ]
   },
 

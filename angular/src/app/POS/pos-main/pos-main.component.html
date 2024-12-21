@@ -237,10 +237,11 @@
               >
                 <!-- TODO: Chỉnh phần input thêm giấu chấm cho mỗi đơn vị lên hàng ngàn (giống phần add price trong good price) -->
                 <input
-                  type="number"
+                  type="text"
                   class="form-control"
                   placeholder="Enter amount"
                   formControlName="customerPay"
+                  (input)="onPriceInput($event)"
                 />
                 <p>VND</p>
               </div>

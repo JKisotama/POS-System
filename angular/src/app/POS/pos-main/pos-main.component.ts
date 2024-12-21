@@ -324,6 +324,22 @@ export class PosMainComponent implements OnInit {
   }
 
 
+  onPriceInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const formattedValue = this.formatNumber(input.value.replace(/,/g, '')); // Remove commas, format the number
+    input.value = formattedValue;
+    this.form.get('customerPay')?.setValue(formattedValue);
+  }
+
+  formatNumber(value: string | number): string {
+    const number = parseFloat(value.toString().replace(/,/g, ''));
+    if (isNaN(number)) {
+      return '';
+    }
+    return number.toLocaleString('en-US'); // Format the number with commas
+  }
+
+
 
   updateCustomerInfo(customer: CustomerDTO): void {
     this.selectedCustomer = customer;
@@ -338,11 +354,14 @@ export class PosMainComponent implements OnInit {
   }
 
   emitCheckoutData(): void {
+    const customerPay= this.form.get('customerPay')?.value;
+
+    const customerPayValue = parseFloat(customerPay.replace(/,/g, ''));
     this.checkoutData.emit({
       customerName: this.selectedCustomer?.customerName || null,
       posNumber: this.currentPosNumber,
       paymentMethod: this.paymentMethod,
-      customerPay: this.form.get('customerPay')?.value,
+      customerPay: customerPayValue,
     });
   }
 

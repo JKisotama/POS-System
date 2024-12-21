@@ -33,7 +33,7 @@ export class AuthenticationGuard implements CanActivate {
           this.getMenus(storeId!, loginName!);
 
           const allowedPagesForManager = ['Staff', 'Staff/goods-page' , 'Staff/good-group', 'POS', 'Staff/supplier', 'Staff/customer', 'Staff/user-profile', 'Staff/property-group', 'Staff/dashboard'];
-          const allowedPagesForAdmin = ['Admin', 'Admin/good-group', 'Admin/supplier', 'Admin/customer', 'Admin/staff'];
+          const allowedPagesForAdmin = ['Admin', 'Admin/good-group', 'Admin/supplier', 'Admin/customer', 'Admin/staff', 'Admin/dashboard'];
           const allowedPagesForStaff = ['Staff' , 'Staff/user-profile','POS'];
 
           const nextRoutePath = next.routeConfig?.path || '';

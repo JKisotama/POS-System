@@ -61,15 +61,19 @@ export class DialogProductComponent implements OnInit{
     if (this.storeId) {
       this.posService.getGoodsList(this.storeId, goodsName).subscribe(
         (response) => {
-          // Initialize the selectedPrice for each good
-          this.dataSource.data = response.items.map((item: GoodsDTO) => ({
-            ...item,
-            selectedPrice: item.tblSellprices[0]?.sellPrice || 0,
-            selectedUnit: '',
-            selectedProperty: '',
-            selectedGoodProperty: '',
-            quantity: 1
-          }));
+          this.dataSource.data = response.items.map((item: GoodsDTO) => {
+            const firstPrice = item.tblSellprices[0];
+            return {
+              ...item,
+              selectedPrice: firstPrice?.sellPrice || 0,
+              selectedUnit: firstPrice?.goodsUnit || '',
+              barcode: firstPrice?.barcode || '',
+              selectedProperty: '',
+              selectedGoodProperty: '',
+              quantity: 1,
+              total: (firstPrice?.sellPrice || 0) * 1 // Initialize total based on the initial price and quantity
+            };
+          });
         },
         (error) => {
           console.error('Error fetching goods list:', error);
@@ -174,7 +178,7 @@ export class DialogProductComponent implements OnInit{
       property: good.selectedProperty,
       goodProperty: good.selectedGoodProperty,
       goodsUnit: good.selectedUnit,
-      quantity: good.quantity || 0,
+      quantity: good.quantity || 1,
     };
 
     console.log('Sending payload for AddItem:', requestPayload);
@@ -204,6 +208,8 @@ export class DialogProductComponent implements OnInit{
   
 
   updateTotal(good: GoodsDTO): void {
+    // Ensure quantity is at least 1
+    good.quantity = good.quantity && good.quantity > 0 ? good.quantity : 1;
     good.total = (good.quantity ?? 1) * (good.selectedPrice ?? 0);
   }
 
@@ -216,7 +222,7 @@ export class DialogProductComponent implements OnInit{
   
     // Update the barcode based on the selected unit
     good.barcode = matchingPrice ? matchingPrice.barcode : '';
-    console.log(good.barcode);
+    this.updateTotal(good); // Update the total whenever unit changes
   }
 
   onCancel() {
