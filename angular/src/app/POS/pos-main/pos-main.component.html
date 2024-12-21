@@ -11,19 +11,19 @@
                 class="order-holder justify-content-start align-content-start"
               >
                 <div class="">
+                  <a href="javascript:void(0)" class="text-capitalize active">
+                    {{ currentPosNumber }}
+                  </a>
+
                   <div *ngFor="let pos of posHangList">
-                    <a href="javascript:void(0)" class="text-capitalize active">
-                      {{ currentPosNumber }}
+                    <a
+                      href="javascript:void(0)"
+                      class="text-capitalize"
+                      (click)="hangPO(pos)"
+                    >
+                      {{ pos.posNumber }}
                     </a>
                   </div>
-
-                  <a
-                    href="javascript:void(0)"
-                    class="text-capitalize"
-                    (click)="hangPO(pos)"
-                  >
-                    {{ pos.posNumber }}
-                  </a>
 
                   <!-- Show this if no orders are available -->
                   <ng-template #noOrders>
