@@ -31,9 +31,9 @@ namespace POS_Final_Year.Controller
         #region GET
 
         [HttpGet("GetAllUser")]
-        public async Task<ActionResult<IEnumerable<TblUser>>> GetTblUsers(string store_id)
+        public async Task<ActionResult<IEnumerable<TblUser>>> GetTblUsers(string store_id, [FromQuery]string full_name = null)
         {
-            var userList = await _userServices.GetAllUser(store_id);
+            var userList = await _userServices.GetAllUser(store_id, full_name);
             if(userList == null)
             {
                 return NotFound("No User Found");

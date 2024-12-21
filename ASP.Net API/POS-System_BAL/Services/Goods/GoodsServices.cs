@@ -35,11 +35,25 @@ namespace POS_System_BAL.Services.Goods
         {
             return _onlinePosContext.TblSellprices.AsQueryable();
         }
+        public IQueryable<TblGoodsgroup> GetGroupQueryable()
+        {
+            return _onlinePosContext.TblGoodsgroups.AsQueryable();
+        }
+        public IQueryable<TblPropertygroup> GetPropertyGroupQueryable()
+        {
+            return _onlinePosContext.TblPropertygroups.AsQueryable();
+        }
+        public IQueryable<TblGoodsproperty> GetPropertyQueryable()
+        {
+            return _onlinePosContext.TblGoodsproperties.AsQueryable();
+        }
+ 
 
-        public async Task<IEnumerable<TblGoodsgroup>> GetTblGoodsgroupsAsync(string store_id)
+        public async Task<IEnumerable<TblGoodsgroup>> GetTblGoodsgroupsAsync(IQueryable<TblGood> query, string store_id, string group_name)
         {
             return await _onlinePosContext.TblGoodsgroups
-                .Where(s => s.StoreId == store_id)
+                .Where(s => string.IsNullOrEmpty(store_id) ||s.StoreId == store_id)
+                .Where(s => string.IsNullOrEmpty(group_name) || s.GroupName.Contains(group_name))
                 .ToListAsync();
         }
 
@@ -64,11 +78,13 @@ namespace POS_System_BAL.Services.Goods
             return goods;
         }
 
-        public async Task<IEnumerable<TblPropertygroup>> GetAllPropertyGroupAsync(string store_id)
+        public async Task<IEnumerable<TblPropertygroup>> GetAllPropertyGroupAsync(IQueryable<TblPropertygroup> query, string store_id, string property_name = null)
         {
-            return await _onlinePosContext.TblPropertygroups
-                .Where(s => s.StoreId == store_id)
+            var group = await _onlinePosContext.TblPropertygroups
+                .Where(s => string.IsNullOrEmpty(store_id) ||s.StoreId == store_id)
+                .Where(s => string.IsNullOrEmpty(property_name) || s.PropertyName.Contains(property_name))
                 .ToListAsync();
+            return group;
         }
 
         public async Task<TblPropertygroup> GetPropertyGroupAsync(string store_id, string property_id)
@@ -104,18 +120,6 @@ namespace POS_System_BAL.Services.Goods
                 .Distinct()
                 .ToListAsync();
         }
-        
-        public async Task<TblGoodsproperty> GetGoodsPropertySpecificAsync(
-            string storeId,
-            string goodsId,
-            string propertyName)
-        {
-            var result = await _onlinePosContext.TblGoodsproperties
-                .Where(s => s.StoreId == storeId && s.GoodsId == goodsId && s.PropertyName == propertyName)
-                .FirstOrDefaultAsync();
-            return result;
-        }
-
         public async Task<IEnumerable<TblGoodsproperty>> GetGoodsPropertyByIdAsync(
             string store_id,
             string goods_id)
@@ -179,34 +183,43 @@ namespace POS_System_BAL.Services.Goods
         }
 
         public async Task<IEnumerable<TblSellprice>> GetSellpricesAsync(
+            IQueryable<TblSellprice> query,
             string store_id,
-            string goods_id)
+            string goods_id = null)
         {
-            return await _onlinePosContext.TblSellprices
-                .Where(s => s.StoreId == store_id && s.GoodsId == goods_id)
+            var entity =  await _onlinePosContext.TblSellprices
+                .Where(s => string.IsNullOrEmpty(store_id) ||s.StoreId == store_id)
+                .Where(s => string.IsNullOrEmpty(goods_id) || s.GoodsId.Contains(goods_id))
                 .ToListAsync();
+            return entity;
         }
 
 
-        public async Task<IEnumerable<TblGood>>GetAllGoodsAsync(string store_id)
+        public async Task<IEnumerable<TblGood>>GetAllGoodsAsync(IQueryable<TblGood> query, string store_id, string goods_name = null)
         {
-            return await _onlinePosContext.TblGoods
-                .Where(s => s.StoreId == store_id)
+            var entity = await _onlinePosContext.TblGoods
+                .Where(s => string.IsNullOrEmpty(store_id) ||s.StoreId == store_id)
+                .Where(s => string.IsNullOrEmpty(goods_name) || s.GoodsName.Contains(goods_name))
                 .ToListAsync();
+            return entity;
         }
 
-        public async Task<IEnumerable<TblGoodsgroup>>GetAllGroupAsync(string store_id)
+        public async Task<IEnumerable<TblGoodsgroup>>GetAllGroupAsync(IQueryable<TblGoodsgroup> query, string store_id, string group_name =null)
         {
-            return await _onlinePosContext.TblGoodsgroups
-                .Where(s => s.StoreId == store_id)
+            var entity = await _onlinePosContext.TblGoodsgroups
+                .Where(s => string.IsNullOrEmpty(store_id) ||s.StoreId == store_id)
+                .Where(s => string.IsNullOrEmpty(group_name) || s.GroupName.Contains( group_name))
                 .ToListAsync();
+            return entity;
         }
         
-        public async Task<IEnumerable<TblPropertygroup>> GetAllGroupPropertyAsync(string store_id)
+        public async Task<IEnumerable<TblPropertygroup>> GetAllGroupPropertyAsync(IQueryable<TblPropertygroup> query, string store_id, string property_name = null)
         {
-            return await _onlinePosContext.TblPropertygroups
-                .Where(s => s.StoreId == store_id)
+            var entity = await _onlinePosContext.TblPropertygroups
+                .Where(s => string.IsNullOrEmpty(store_id) ||s.StoreId == store_id)
+                .Where(s => string.IsNullOrEmpty(property_name) || s.PropertyName.Contains( property_name))
                 .ToListAsync();
+            return entity;
         }
         
         public async Task<IEnumerable<TblGoodsproperty>> GetAllGoodsPropertyAsync(string store_id)

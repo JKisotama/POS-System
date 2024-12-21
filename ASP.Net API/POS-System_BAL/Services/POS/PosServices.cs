@@ -366,14 +366,19 @@ namespace POS_System_BAL.Services.POS
                 throw new Exception("POS record not found.");
             }
 
-            if (po.PosStatus == 1 && po.PosStatus == 2 && po.PosStatus == 3)
+            if (po.PosStatus == 1 || po.PosStatus == 2 || po.PosStatus == 3)
             {
                 throw new Exception("Cannot cancel this PO.");
             }
 
-            po.PosStatus = 2;
-            po.CancelDate = DateTime.Now;
 
+            if (po.PosStatus == 0)
+            {
+                po.PosStatus = 2;
+                po.CancelDate = DateTime.Now;
+
+            }
+            
             try
             {
                 await _onlinePosContext.SaveChangesAsync();

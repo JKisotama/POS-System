@@ -25,11 +25,12 @@ namespace POS_System_BAL.Services.Customer
 
         #region GET
 
-        public async Task<IEnumerable<TblCustomer>> GetAllCustomer(string company_id, string customer_id)
+        public async Task<IEnumerable<TblCustomer>> GetAllCustomer(string company_id, string customer_id = null, string customer_name = null)
         {
             var customers = await _onlinePosContext.TblCustomers
                 .Where(c => String.IsNullOrEmpty(company_id) || c.CompanyId == company_id)
                 .Where(c => String.IsNullOrEmpty(customer_id) || c.CustomerId == customer_id)
+                .Where(c => String.IsNullOrEmpty(customer_name) || c.CustomerName.Contains(customer_name))
                 .ToListAsync();
             return customers;
         }

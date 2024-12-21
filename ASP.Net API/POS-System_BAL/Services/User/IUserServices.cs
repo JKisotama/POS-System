@@ -9,7 +9,7 @@ namespace POS_System_BAL.Services.User
     {
         #region GET
 
-        Task<IEnumerable<TblUser>> GetAllUser(string store_id);
+        Task<IEnumerable<TblUser>> GetAllUser(string store_id, string full_name);
         Task<TblUser> GetUser(string store_id, string login_name);
         Task<bool> HasUserAccess(string store_id, string login_name, int menu_id, int assigned);
         Task<IEnumerable<TblMenu>> GetUserMenus(string store_id, string login_name);

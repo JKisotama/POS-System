@@ -34,9 +34,12 @@ namespace POS_System_BAL.Services.User
 
         #region GET
 
-        public async Task<IEnumerable<TblUser>> GetAllUser(string store_id)
+        public async Task<IEnumerable<TblUser>> GetAllUser(string store_id, string full_name)
         {
-            return await _onlinePosContext.TblUsers.Where(s => s.StoreId == store_id && s.UserLevel == 1).ToListAsync();
+            return await _onlinePosContext.TblUsers
+                .Where(s => s.StoreId == store_id && s.UserLevel == 1)
+                .Where(s => string.IsNullOrEmpty(full_name) || s.FullName.Contains(full_name))
+                .ToListAsync();
         }
 
         public async Task<TblUser> GetUser(string store_id, string login_name)
@@ -66,7 +69,7 @@ namespace POS_System_BAL.Services.User
             }
             
             var userRights = await _onlinePosContext.TblUserrights
-                .Where(ur => ur.StoreId == store_id && ur.LoginName == login_name)
+                .Where(ur => ur.StoreId == store_id && ur.LoginName == login_name && ur.Assigned == 1)
                 .Select(ur => ur.MenuId)
                 .ToListAsync();
 
@@ -198,6 +201,7 @@ namespace POS_System_BAL.Services.User
                     Assigned = assigned,
                     counter = rightid + 1
                 };
+                
 
                 await _onlinePosContext.TblUserrights.AddAsync(userRight);
             }

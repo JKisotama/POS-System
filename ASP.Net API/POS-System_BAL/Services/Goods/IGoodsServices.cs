@@ -11,14 +11,17 @@ namespace POS_System_BAL.Services.Goods
         #region GET
         IQueryable<TblGood> GetGoodsQueryable();
         IQueryable<TblSellprice> GetSelPriceQueryable();
-        Task<IEnumerable<TblGoodsgroup>> GetTblGoodsgroupsAsync(string store_id);
+        public IQueryable<TblGoodsgroup> GetGroupQueryable();
+        IQueryable<TblPropertygroup> GetPropertyGroupQueryable();
+        IQueryable<TblGoodsproperty> GetPropertyQueryable();
+        Task<IEnumerable<TblGoodsgroup>> GetTblGoodsgroupsAsync(IQueryable<TblGood> query, string store_id, string group_name);
         Task<TblGoodsgroup> GetGroupAsync(string store_id, string group_id);
         Task<IEnumerable<TblGood>> GetGoodsByGroupAsync(
             IQueryable<TblGood> query, 
             string store_id, 
             string group_id, 
             string searchTerm = null);
-        Task<IEnumerable<TblPropertygroup>> GetAllPropertyGroupAsync(string store_id);
+        Task<IEnumerable<TblPropertygroup>> GetAllPropertyGroupAsync(IQueryable<TblPropertygroup> query, string store_id, string property_name);
         Task<TblPropertygroup> GetPropertyGroupAsync(string store_id, string property_id);
         Task<TblGood> GetGoodsAsync(string store_id, string goods_id);
         Task<IEnumerable<GoodUnitDTO>> GetGoodsUnitAsync(string store_id, string goods_id, int type);
@@ -26,11 +29,6 @@ namespace POS_System_BAL.Services.Goods
             string store_id, 
             string property_group);
 
-
-        Task<TblGoodsproperty> GetGoodsPropertySpecificAsync(
-            string storeId,
-            string goodsId,
-            string propertyName);
 
         Task<IEnumerable<TblGoodsproperty>> GetGoodsPropertyByIdAsync(
             string store_id,
@@ -42,11 +40,11 @@ namespace POS_System_BAL.Services.Goods
             string searchTerm = null,
             int? sellNumber = null,
             int? sellPrice = null);
-        Task<IEnumerable<TblSellprice>> GetSellpricesAsync(string store_id, string goods_id);
+        Task<IEnumerable<TblSellprice>> GetSellpricesAsync(IQueryable<TblSellprice> query, string store_id, string goods_id = null);
 
-        Task<IEnumerable<TblGood>> GetAllGoodsAsync(string store_id);
-        Task<IEnumerable<TblGoodsgroup>> GetAllGroupAsync(string store_id);
-        Task<IEnumerable<TblPropertygroup>> GetAllGroupPropertyAsync(string store_id);
+        Task<IEnumerable<TblGood>> GetAllGoodsAsync(IQueryable<TblGood> query,string store_id,string goods_id);
+        Task<IEnumerable<TblGoodsgroup>> GetAllGroupAsync(IQueryable<TblGoodsgroup> query,string store_id,string group_name );
+        Task<IEnumerable<TblPropertygroup>> GetAllGroupPropertyAsync(IQueryable<TblPropertygroup> query,string store_id,string property_name);
         Task<IEnumerable<TblGoodsproperty>> GetAllGoodsPropertyAsync(string store_id);
         Task<IEnumerable<TblGoodsunit>> GetAllGoodsUnitAsync(string store_id);
         Task<IEnumerable<TblSellprice>> GetAllSellPriceAsync(string store_id);
